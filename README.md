@@ -51,6 +51,8 @@ Implement a way to tag ROMs without actually writing to the ROM in order to use 
 
 Ability to add more items.
 
+Attack effect and animation database.
+
 Program Requirements
 ====================
 
@@ -59,6 +61,8 @@ Windows: Install 4.0 .Net Framework
 Windows RT: Have Jailbreak installed that allows unsigned programs.
 
 Linux: Run with "Wine Windows Program Loader" and let it install the Mono runtime.
+
+Other opperating system may work if mono works on them.
 
 Developers
 =================
