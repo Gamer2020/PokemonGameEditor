@@ -74,8 +74,6 @@ KurapikaET
 
 Issues
 =================
-Ability editor crashes on open.
-
 Battle Frontier Editor crashes on open.
 
 Running added programs on Linux not implemented yet.

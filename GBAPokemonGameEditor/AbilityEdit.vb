@@ -31,7 +31,7 @@
 
         TextBox1.Text = GetAbilityName(ListBox1.SelectedIndex)
 
-        TextBox2.Text = ((ReverseHEX(ReadHEX(LoadedROM, (AbilityDesc) + (ListBox1.SelectedIndex * 4), 4))) - &H8000000)
+        TextBox2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AbilityDesc) + (ListBox1.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
         FileNum = FreeFile()
         FileOpen(FileNum, LoadedROM, OpenMode.Binary)
