@@ -106,3 +106,7 @@ JPAN
 Kawa
 
 Bulbapedia
+
+Downloads
+================================
+https://github.com/Gamer2020/PokemonGameEditor/releases

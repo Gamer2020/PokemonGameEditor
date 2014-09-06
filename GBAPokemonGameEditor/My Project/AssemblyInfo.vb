@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("GBAPokemonGameEditor")> 
+<Assembly: AssemblyTitle("Pokemon Game Editor")> 
 <Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("0xRH")> 
-<Assembly: AssemblyProduct("GBAPokemonGameEditor")> 
-<Assembly: AssemblyCopyright("Copyright © 0xRH 2013")> 
+<Assembly: AssemblyCompany("Gamer2020")> 
+<Assembly: AssemblyProduct("Pokemon Game Editor")> 
+<Assembly: AssemblyCopyright("Copyright © Gamer2020 2014")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.3.0.1")> 
-<Assembly: AssemblyFileVersion("1.3.0.1")> 
+<Assembly: AssemblyVersion("3.0.0.0")> 
+<Assembly: AssemblyFileVersion("3.0.0.0")> 
