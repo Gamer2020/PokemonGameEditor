@@ -28,6 +28,8 @@ Windows RT support (On Jailbroken devices)
 
 Windows XP support
 
+Battle Frontier Editor
+
 Planned Features
 =================
 
@@ -74,8 +76,6 @@ KurapikaET
 
 Issues
 =================
-Battle Frontier Editor crashes on open.
-
 Running added programs on Linux not implemented yet.
 
 Credits

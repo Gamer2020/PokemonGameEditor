@@ -137,13 +137,13 @@ Public Class BattleFrontierEditor
     End Sub
     Private Sub ListBox2_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox2.SelectedIndexChanged
         'species
-        ComboBox2.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16)), 2))) - 1, System.Globalization.NumberStyles.HexNumber)
+        ComboBox2.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16)), 2))), System.Globalization.NumberStyles.HexNumber) - 1
 
         'attacks
-        ComboBox4.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 2), 2))) - 1, System.Globalization.NumberStyles.HexNumber)
-        ComboBox5.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 4), 2))) - 1, System.Globalization.NumberStyles.HexNumber)
-        ComboBox6.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 6), 2))) - 1, System.Globalization.NumberStyles.HexNumber)
-        ComboBox7.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 8), 2))) - 1, System.Globalization.NumberStyles.HexNumber)
+        ComboBox4.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 2), 2))), System.Globalization.NumberStyles.HexNumber) - 1
+        ComboBox5.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 4), 2))), System.Globalization.NumberStyles.HexNumber) - 1
+        ComboBox6.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 6), 2))), System.Globalization.NumberStyles.HexNumber) - 1
+        ComboBox7.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 8), 2))), System.Globalization.NumberStyles.HexNumber) - 1
         'items
         ComboBox3.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 10), 1))), System.Globalization.NumberStyles.HexNumber)
     End Sub
