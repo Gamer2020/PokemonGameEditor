@@ -66,6 +66,25 @@ Linux: Run with "Wine Windows Program Loader" and let it install the Mono runtim
 
 Other opperating system may work if mono works on them.
 
+Recommended Programs
+====================
+
+This is a list of recommended programs that should be used with PGE for the best possible ROM hacking experience.
+
+MEH - https://github.com/shinyquagsire23/MEH
+
+SEA - https://github.com/shinyquagsire23/SEA
+
+FSF - https://code.google.com/p/toolsfactory/downloads/detail?name=FreeSpaceFinder-2.0.1.0.zip&can=2&q=
+
+GBAIntroManager - https://github.com/diegoisawesome/GBAIntroManager
+
+BattleScriptPro - https://github.com/Jambo51/Battle_Script_Pro
+
+Trainer Editor - https://github.com/Jambo51/Trainer_Editor
+
+No$GBA - http://problemkaputt.de/gba.htm
+
 Developers
 =================
 Gamer2020
