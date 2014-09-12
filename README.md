@@ -77,8 +77,6 @@ SEA - https://github.com/shinyquagsire23/SEA
 
 FSF - https://code.google.com/p/toolsfactory/downloads/detail?name=FreeSpaceFinder-2.0.1.0.zip&can=2&q=
 
-GBAIntroManager - https://github.com/diegoisawesome/GBAIntroManager
-
 BattleScriptPro - https://github.com/Jambo51/Battle_Script_Pro
 
 Trainer Editor - https://github.com/Jambo51/Trainer_Editor
