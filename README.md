@@ -91,6 +91,8 @@ diegoisawesome
 
 KurapikaET
 
+LocksmithArmy
+
 Issues
 =================
 Running added programs on Linux not implemented yet.
