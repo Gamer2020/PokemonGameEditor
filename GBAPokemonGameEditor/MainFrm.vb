@@ -37,6 +37,12 @@ Public Class MainFrm
 
         End If
 
+        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "OsisLinux", "0") = "1" Then
+
+            LinuxToolStripMenuItem.CheckState = CheckState.Checked
+
+        End If
+
         If GetString(AppPath & "GBAPGESettings.ini", "Settings", "ProgramPath0", "") <> "" Then
 
             Button27.Text = GetString(AppPath & "GBAPGESettings.ini", "Settings", "ProgramName0", "")
@@ -488,6 +494,25 @@ Public Class MainFrm
     End Sub
 
     Private Sub Button27_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button27.Click
+        'If GetString(AppPath & "GBAPGESettings.ini", "Settings", "OSisLinux", "0") = "1" Then
+
+        '   If (IO.Path.GetExtension(GetString(AppPath & "GBAPGESettings.ini", "Settings", "ProgramPath0", "")) = ".jar") Then
+
+
+        ' If LoadedROM = "" Then
+        'Shell(" java -jar " & """" & GetString(AppPath & "GBAPGESettings.ini", "Settings", "ProgramPath0", "") & """", vbNormalFocus)
+        'Else
+
+
+        '        If System.IO.File.Exists(LoadedROM) = True Then
+        '             Shell(" java -jar " & """" & GetString(AppPath & "GBAPGESettings.ini", "Settings", "ProgramPath0", "") & """" & " " & """" & LoadedROM & """", vbNormalFocus)
+        ' End If
+        '      End If
+
+        '   Else
+
+        '   End If
+        ' Else
         If LoadedROM = "" Then
             Shell("""" & GetString(AppPath & "GBAPGESettings.ini", "Settings", "ProgramPath0", "") & """", vbNormalFocus)
         Else
@@ -497,6 +522,8 @@ Public Class MainFrm
                 Shell("""" & GetString(AppPath & "GBAPGESettings.ini", "Settings", "ProgramPath0", "") & """" & " " & """" & LoadedROM & """", vbNormalFocus)
             End If
         End If
+        '  End If
+
     End Sub
 
     Private Sub Button28_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button28.Click
@@ -751,6 +778,22 @@ Public Class MainFrm
             If System.IO.File.Exists(LoadedROM) = True Then
                 Shell("""" & GetString(AppPath & "GBAPGESettings.ini", "Settings", "ProgramPath19", "") & """" & " " & """" & LoadedROM & """", vbNormalFocus)
             End If
+        End If
+    End Sub
+
+    Private Sub LinuxToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LinuxToolStripMenuItem.Click
+        If LinuxToolStripMenuItem.CheckState = CheckState.Checked Then
+
+            LinuxToolStripMenuItem.CheckState = CheckState.Unchecked
+
+            WriteString(AppPath & "GBAPGESettings.ini", "Settings", "OSisLinux", "0")
+
+        ElseIf LinuxToolStripMenuItem.CheckState = CheckState.Unchecked Then
+
+            LinuxToolStripMenuItem.CheckState = CheckState.Checked
+
+            WriteString(AppPath & "GBAPGESettings.ini", "Settings", "OSisLinux", "1")
+
         End If
     End Sub
 End Class

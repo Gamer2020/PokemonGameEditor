@@ -34,6 +34,7 @@ Partial Class MainFrm
         Me.DisablePokemonImageLoadingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Jambo51MoveTableHackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LinuxToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditRomsiniToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator()
@@ -122,7 +123,7 @@ Partial Class MainFrm
         '
         'SettingsToolStripMenuItem
         '
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddOrRemoveProgramsToolStripMenuItem, Me.TransparentBackgroundsToolStripMenuItem, Me.DisablePokemonImageLoadingToolStripMenuItem, Me.Jambo51MoveTableHackToolStripMenuItem, Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddOrRemoveProgramsToolStripMenuItem, Me.TransparentBackgroundsToolStripMenuItem, Me.DisablePokemonImageLoadingToolStripMenuItem, Me.Jambo51MoveTableHackToolStripMenuItem, Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem, Me.LinuxToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.SettingsToolStripMenuItem.Text = "&Settings"
@@ -158,6 +159,12 @@ Partial Class MainFrm
         Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
         Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Text = "Use Jambo51's TM/HM extension hack. (If you don't know what this is don't use it." & _
     ")"
+        '
+        'LinuxToolStripMenuItem
+        '
+        Me.LinuxToolStripMenuItem.Name = "LinuxToolStripMenuItem"
+        Me.LinuxToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
+        Me.LinuxToolStripMenuItem.Text = "Linux Operating System"
         '
         'HelpToolStripMenuItem
         '
@@ -701,5 +708,6 @@ Partial Class MainFrm
     Friend WithEvents Button39 As System.Windows.Forms.Button
     Friend WithEvents Button40 As System.Windows.Forms.Button
     Friend WithEvents Button41 As System.Windows.Forms.Button
+    Friend WithEvents LinuxToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
