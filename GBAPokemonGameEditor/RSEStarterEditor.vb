@@ -71,6 +71,9 @@ Public Class RSEStarterEditor
             StarterLevel.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "StarterPokemonLevel", ""), System.Globalization.NumberStyles.HexNumber), 1))), System.Globalization.NumberStyles.HexNumber)
         Else
             MsgBox("Not supported. Use a script editor.")
+
+
+            Me.Close()
         End If
     End Sub
 

@@ -199,6 +199,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="PointerOffsetFunctions.vb" />
+    <Compile Include="PokedexDataEditor.Designer.vb">
+      <DependentUpon>PokedexDataEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PokedexDataEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PokedexOrderEditor.Designer.vb">
       <DependentUpon>PokedexOrderEditor.vb</DependentUpon>
     </Compile>
@@ -252,6 +258,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PokedexDataEditor.resx">
+      <DependentUpon>PokedexDataEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PokedexOrderEditor.resx">
       <DependentUpon>PokedexOrderEditor.vb</DependentUpon>

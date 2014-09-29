@@ -360,7 +360,7 @@ Partial Class MainFrm
         Me.Button34.Name = "Button34"
         Me.Button34.Size = New System.Drawing.Size(81, 55)
         Me.Button34.TabIndex = 44
-        Me.Button34.Text = "Button34"
+        Me.Button34.Text = "Item Editor"
         Me.Button34.UseVisualStyleBackColor = True
         '
         'Button35

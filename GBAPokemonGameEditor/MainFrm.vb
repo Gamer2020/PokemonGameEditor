@@ -584,8 +584,7 @@ Public Class MainFrm
     Private Sub Button32_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button32.Click
         'Me.Visible = False
         Me.Cursor = Cursors.WaitCursor
-        ' ShadowPass.Show()
-        MsgBox("Not added yet!")
+        PokedexDataEditor.Show()
         Me.Cursor = Cursors.Arrow
     End Sub
 

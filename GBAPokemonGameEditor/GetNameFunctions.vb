@@ -95,13 +95,6 @@ Module GetNameFunctions
 
         If header3 = "J" Then
 
-            'FileNum = FreeFile()
-            'FileOpen(FileNum, LoadedROM, OpenMode.Binary)
-            'Dim JapPokeName As String = "xxxxxx"
-            'FileGet(FileNum, JapPokeName, offvar + 1 + (6 * Index))
-            'b$ = Sapp2Asc(JapPokeName, True)
-            'While InStr(1, b$, "\x") : b$ = LSet(b$, Len(b$) - 1) : End While
-            'b$ = LSet(b$, Len(b$) - 1)
             stringvar = "not supported"
 
         Else
@@ -135,9 +128,7 @@ Module GetNameFunctions
             FileNum = FreeFile()
             FileOpen(FileNum, LoadedROM, OpenMode.Binary)
             Dim AbilityName As String = "xxxxxxxxxxxxx"
-            'MsgBox("dim abilityname")
             FileGet(FileNum, AbilityName, offvar + 1 + (13 * Index))
-            'MsgBox("filget")
             b$ = Sapp2Asc(AbilityName, False)
             While InStr(1, b$, "\x") : b$ = LSet(b$, Len(b$) - 1) : End While
             b$ = LSet(b$, Len(b$) - 1)
@@ -202,5 +193,50 @@ Module GetNameFunctions
         End If
         FileClose(FileNum)
         GetTrainerClass = b$
+    End Function
+
+    Public Function GetPokedexTypeName(ByVal Index As Integer)
+        Dim offvar As Integer
+
+        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
+
+        If header3 = "J" Then
+
+            If header2 = "AXP" Or header2 = "AXV" Then
+                SkipVar = "36"
+            ElseIf header2 = "BPR" Or header2 = "BPG" Then
+                SkipVar = "36"
+            ElseIf header2 = "BPE" Then
+                SkipVar = "32"
+            End If
+
+        Else
+            If header2 = "AXP" Or header2 = "AXV" Then
+                SkipVar = "36"
+            ElseIf header2 = "BPR" Or header2 = "BPG" Then
+                SkipVar = "36"
+            ElseIf header2 = "BPE" Then
+                SkipVar = "32"
+            End If
+        End If
+
+
+
+        If header3 = "J" Then
+
+        Else
+
+            FileNum = FreeFile()
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+            Dim PokeType As String = "xxxxxxxxxxxx"
+            FileGet(FileNum, PokeType, offvar + 1 + (SkipVar * Index))
+            b$ = Sapp2Asc(PokeType, False)
+            While InStr(1, b$, "\x") : b$ = LSet(b$, Len(b$) - 1) : End While
+            b$ = LSet(b$, Len(b$) - 1)
+
+
+        End If
+        FileClose(FileNum)
+        GetPokedexTypeName = b$
     End Function
 End Module
