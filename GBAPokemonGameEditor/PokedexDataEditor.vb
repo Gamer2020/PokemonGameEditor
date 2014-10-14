@@ -3,6 +3,55 @@ Option Explicit Off
 Imports VB = Microsoft.VisualBasic
 Public Class PokedexDataEditor
     Dim offset1 As Integer
+
+    Private Sub PokedexDataEditor_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+
+    End Sub
+
+    Private Sub EnglishRSDescpLoad()
+
+        FileNum = FreeFile()
+        FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+        Dim DexDescp As String = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+        FileGet(FileNum, DexDescp, ("&H" & (Pointer1.Text)) + 1, True)
+        DexDescp = Sapp2Asc(DexDescp)
+        DexDescp = Mid$(DexDescp, 1, InStr(1, DexDescp, "\x"))
+        DexDescp = Replace(DexDescp, "\n", vbCrLf)
+        DexDescp = Replace(RTrim$(DexDescp), "\", "")
+        Description1.Text = DexDescp
+        Description1.MaxLength = Len(DexDescp)
+
+        DexDescp = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+        FileGet(FileNum, DexDescp, ("&H" & (Pointer2.Text)) + 1, True)
+        DexDescp = Sapp2Asc(DexDescp)
+        DexDescp = Mid$(DexDescp, 1, InStr(1, DexDescp, "\x"))
+        DexDescp = Replace(DexDescp, "\n", vbCrLf)
+        DexDescp = Replace(RTrim$(DexDescp), "\", "")
+        Description2.Text = DexDescp
+        Description2.MaxLength = Len(DexDescp)
+
+        FileClose(FileNum)
+    End Sub
+
+    Private Sub EnglishFRLGEDescpLoad()
+
+        FileNum = FreeFile()
+        FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+        Dim DexDescp As String = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+        FileGet(FileNum, DexDescp, ("&H" & (Pointer1.Text)) + 1, True)
+        DexDescp = Sapp2Asc(DexDescp)
+        DexDescp = Mid$(DexDescp, 1, InStr(1, DexDescp, "\x"))
+        DexDescp = Replace(DexDescp, "\n", vbCrLf)
+        DexDescp = Replace(RTrim$(DexDescp), "\", "")
+        Description1.Text = DexDescp
+        Description1.MaxLength = Len(DexDescp)
+
+        FileClose(FileNum)
+    End Sub
     Private Sub PokedexDataEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If header2 = "BPR" Or header2 = "BPG" Or header2 = "BPE" Or header2 = "AXP" Or header2 = "AXV" Then
 
@@ -73,11 +122,17 @@ Public Class PokedexDataEditor
 
         If header2 = "AXP" Or header2 = "AXV" Then
             Pointer2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 8 + +12 + (ListBox1.SelectedIndex * SkipVar), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+            EnglishRSDescpLoad()
         ElseIf header2 = "BPR" Or header2 = "BPG" Then
+            EnglishFRLGEDescpLoad()
         ElseIf header2 = "BPE" Then
+            EnglishFRLGEDescpLoad()
         End If
 
+
         Type1.Text = GetPokedexTypeName(ListBox1.SelectedIndex)
+
+
 
     End Sub
 
@@ -97,5 +152,58 @@ Public Class PokedexDataEditor
         Label18.Text = Val(Wght.Text) / 10
 
         Label19.Text = Val(Label18.Text) * 2.2
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        i = ListBox1.SelectedIndex
+        offset1 = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
+
+
+        If header2 = "AXP" Or header2 = "AXV" Then
+
+            WriteHEX(LoadedROM, offset1 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Hght.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 2 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Wght.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 14 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 16 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 18 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 20 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
+
+        ElseIf header2 = "BPR" Or header2 = "BPG" Then
+
+            WriteHEX(LoadedROM, offset1 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Hght.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 2 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Wght.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 14 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 16 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 18 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 20 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
+
+        ElseIf header2 = "BPE" Then
+
+            WriteHEX(LoadedROM, offset1 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Hght.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 2 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Wght.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 10 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 12 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 14 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 16 + 12 + (i * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
+
+        End If
+
+        ChangePokedexTypeName(i, Type1.Text)
+
+        ListBox1.Items.Clear()
+
+        Dim varloop As Integer = 0
+
+        While varloop < (GetString(AppPath & "ini\roms.ini", header, "NumberOfDexEntries", ""))
+
+
+            ListBox1.Items.Add(VB.Right("0000" & (varloop), 4) & ". " & GetPokedexTypeName(varloop))
+            varloop = varloop + 1
+        End While
+        ListBox1.SelectedIndex = 1
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
     End Sub
 End Class

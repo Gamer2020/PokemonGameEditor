@@ -3,6 +3,48 @@ Option Explicit Off
 
 Module ChangeNameFunctions
 
+    Public Function ChangePokedexTypeName(ByVal Index As Integer, ByVal NewName As String)
+        Dim offvar As Long
+
+        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
+
+        If header3 = "J" Then
+
+            If header2 = "AXP" Or header2 = "AXV" Then
+                SkipVar = "36"
+            ElseIf header2 = "BPR" Or header2 = "BPG" Then
+                SkipVar = "36"
+            ElseIf header2 = "BPE" Then
+                SkipVar = "32"
+            End If
+
+        Else
+            If header2 = "AXP" Or header2 = "AXV" Then
+                SkipVar = "36"
+            ElseIf header2 = "BPR" Or header2 = "BPG" Then
+                SkipVar = "36"
+            ElseIf header2 = "BPE" Then
+                SkipVar = "32"
+            End If
+        End If
+
+        If header3 = "J" Then
+
+        Else
+
+            FileNum = FreeFile()
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+            Dim PokeType As String = "xxxxxxxxxxx"
+            Dim filler As Byte = "&HFF"
+            PokeType = NameAsc2Sapp(NewName)
+            FilePut(FileNum, PokeType, offvar + 1 + (SkipVar * Index))
+            FilePut(FileNum, filler, offvar + 1 + (SkipVar * Index) + Len(NewName))
+
+
+        End If
+        FileClose(FileNum)
+        ChangePokedexTypeName = NewName
+    End Function
     Public Function ChangePokemonName(ByVal Index As Integer, ByVal NewName As String)
         Dim offvar As Long
 

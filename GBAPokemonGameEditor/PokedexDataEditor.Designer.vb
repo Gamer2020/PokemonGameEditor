@@ -24,6 +24,8 @@ Partial Class PokedexDataEditor
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.Type1 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Description2 = New System.Windows.Forms.TextBox()
@@ -33,6 +35,7 @@ Partial Class PokedexDataEditor
         Me.Pointer1 = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Offset_1 = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Offset_2 = New System.Windows.Forms.TextBox()
@@ -54,10 +57,7 @@ Partial Class PokedexDataEditor
         Me.Hght = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Type1 = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.Offset_1 = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -84,6 +84,23 @@ Partial Class PokedexDataEditor
         Me.ListBox1.Size = New System.Drawing.Size(164, 147)
         Me.ListBox1.TabIndex = 0
         '
+        'Type1
+        '
+        Me.Type1.Location = New System.Drawing.Point(57, 180)
+        Me.Type1.MaxLength = 11
+        Me.Type1.Name = "Type1"
+        Me.Type1.Size = New System.Drawing.Size(127, 20)
+        Me.Type1.TabIndex = 14
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(17, 180)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(34, 13)
+        Me.Label3.TabIndex = 13
+        Me.Label3.Text = "Type:"
+        '
         'GroupBox6
         '
         Me.GroupBox6.Controls.Add(Me.Button4)
@@ -101,6 +118,7 @@ Partial Class PokedexDataEditor
         '
         'Button4
         '
+        Me.Button4.Enabled = False
         Me.Button4.Location = New System.Drawing.Point(9, 123)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(95, 24)
@@ -130,6 +148,7 @@ Partial Class PokedexDataEditor
         '
         'Button1
         '
+        Me.Button1.Enabled = False
         Me.Button1.Location = New System.Drawing.Point(9, 93)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(95, 24)
@@ -177,6 +196,13 @@ Partial Class PokedexDataEditor
         Me.GroupBox3.TabIndex = 16
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Size Comparison"
+        '
+        'Offset_1
+        '
+        Me.Offset_1.Location = New System.Drawing.Point(55, 92)
+        Me.Offset_1.Name = "Offset_1"
+        Me.Offset_1.Size = New System.Drawing.Size(38, 20)
+        Me.Offset_1.TabIndex = 9
         '
         'Label11
         '
@@ -368,23 +394,6 @@ Partial Class PokedexDataEditor
         Me.Label4.TabIndex = 1
         Me.Label4.Text = "Height:"
         '
-        'Type1
-        '
-        Me.Type1.Location = New System.Drawing.Point(57, 180)
-        Me.Type1.MaxLength = 11
-        Me.Type1.Name = "Type1"
-        Me.Type1.Size = New System.Drawing.Size(127, 20)
-        Me.Type1.TabIndex = 14
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(17, 180)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(34, 13)
-        Me.Label3.TabIndex = 13
-        Me.Label3.Text = "Type:"
-        '
         'Button3
         '
         Me.Button3.Location = New System.Drawing.Point(12, 237)
@@ -393,13 +402,6 @@ Partial Class PokedexDataEditor
         Me.Button3.TabIndex = 18
         Me.Button3.Text = "Save"
         Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Offset_1
-        '
-        Me.Offset_1.Location = New System.Drawing.Point(55, 92)
-        Me.Offset_1.Name = "Offset_1"
-        Me.Offset_1.Size = New System.Drawing.Size(38, 20)
-        Me.Offset_1.TabIndex = 9
         '
         'PokedexDataEditor
         '
