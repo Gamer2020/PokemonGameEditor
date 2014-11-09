@@ -37,6 +37,30 @@ Public Class Pokemonedit
 
         LoopVar = 0
 
+        EvoTypes.Items.Clear()
+
+        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfEvolutionTypes", "") + 1) = True
+
+            EvoTypes.Items.Add(GetString(AppPath & "ini\roms.ini", header, "EvolutionName" & LoopVar, ""))
+
+            LoopVar = LoopVar + 1
+
+        End While
+
+        LoopVar = 0
+
+        EvoSlots.Items.Clear()
+
+        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfEvolutionsPerPokemon", "")) = True
+
+            LoopVar = LoopVar + 1
+
+            EvoSlots.Items.Add("Evolution " & (LoopVar))
+
+        End While
+
+        LoopVar = 0
+
         NewAt.Items.Clear()
 
         While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfAttacks", "")) + 1 = True

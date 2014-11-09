@@ -26,6 +26,10 @@ Partial Class Pokemonedit
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox21 = New System.Windows.Forms.GroupBox()
+        Me.Button13 = New System.Windows.Forms.Button()
+        Me.CryConver = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.CryPointer = New System.Windows.Forms.TextBox()
         Me.GroupBox20 = New System.Windows.Forms.GroupBox()
@@ -157,10 +161,6 @@ Partial Class Pokemonedit
         Me.Button9 = New System.Windows.Forms.Button()
         Me.FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.ProgressBar = New System.Windows.Forms.ProgressBar()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.CryConver = New System.Windows.Forms.TextBox()
-        Me.Button13 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox21.SuspendLayout()
@@ -245,6 +245,40 @@ Partial Class Pokemonedit
         Me.GroupBox21.TabIndex = 5
         Me.GroupBox21.TabStop = False
         Me.GroupBox21.Text = "Cry"
+        '
+        'Button13
+        '
+        Me.Button13.Location = New System.Drawing.Point(9, 77)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(68, 21)
+        Me.Button13.TabIndex = 16
+        Me.Button13.Text = "Save"
+        Me.Button13.UseVisualStyleBackColor = True
+        '
+        'CryConver
+        '
+        Me.CryConver.Location = New System.Drawing.Point(10, 51)
+        Me.CryConver.Name = "CryConver"
+        Me.CryConver.Size = New System.Drawing.Size(67, 20)
+        Me.CryConver.TabIndex = 15
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(7, 24)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(60, 13)
+        Me.Label18.TabIndex = 14
+        Me.Label18.Text = "Conversion"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(80, 24)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(40, 13)
+        Me.Label17.TabIndex = 13
+        Me.Label17.Text = "Pointer"
         '
         'Button6
         '
@@ -1020,7 +1054,7 @@ Partial Class Pokemonedit
         Me.GroupBox17.Controls.Add(Me.EvoPKMNames)
         Me.GroupBox17.Location = New System.Drawing.Point(15, 96)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(571, 189)
+        Me.GroupBox17.Size = New System.Drawing.Size(571, 277)
         Me.GroupBox17.TabIndex = 2
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "Evolutions"
@@ -1481,40 +1515,6 @@ Partial Class Pokemonedit
         Me.ProgressBar.Size = New System.Drawing.Size(600, 16)
         Me.ProgressBar.TabIndex = 12
         Me.ProgressBar.Visible = False
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(80, 24)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(40, 13)
-        Me.Label17.TabIndex = 13
-        Me.Label17.Text = "Pointer"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(7, 24)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(60, 13)
-        Me.Label18.TabIndex = 14
-        Me.Label18.Text = "Conversion"
-        '
-        'CryConver
-        '
-        Me.CryConver.Location = New System.Drawing.Point(10, 51)
-        Me.CryConver.Name = "CryConver"
-        Me.CryConver.Size = New System.Drawing.Size(67, 20)
-        Me.CryConver.TabIndex = 15
-        '
-        'Button13
-        '
-        Me.Button13.Location = New System.Drawing.Point(9, 77)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(68, 21)
-        Me.Button13.TabIndex = 16
-        Me.Button13.Text = "Save"
-        Me.Button13.UseVisualStyleBackColor = True
         '
         'Pokemonedit
         '

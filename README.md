@@ -30,6 +30,10 @@ Windows XP support
 
 Battle Frontier Editor
 
+Pokedex Editor
+
+Support for more than 5 evolutions per Pokemon
+
 Planned Features
 =================
 
@@ -37,13 +41,9 @@ Ability to add more Pokemon.
 
 Add item editor.
 
-Add Pokedex Editor
-
 Ability to add more attacks.
 
 Support for more types
-
-support for more than 5 evolutions
 
 Ability to define types.
 
@@ -64,7 +64,7 @@ Windows RT: Have Jailbreak installed that allows unsigned programs.
 
 Linux: Run with "Wine Windows Program Loader" and let it install the Mono runtime.
 
-Other opperating system may work if mono works on them.
+Other operating system may work if mono works on them.
 
 Recommended Programs
 ====================
@@ -86,12 +86,6 @@ No$GBA - http://problemkaputt.de/gba.htm
 Developers
 =================
 Gamer2020
-
-diegoisawesome
-
-KurapikaET
-
-LocksmithArmy
 
 Issues
 =================
