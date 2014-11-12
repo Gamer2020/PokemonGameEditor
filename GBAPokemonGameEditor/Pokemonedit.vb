@@ -686,26 +686,30 @@ Public Class Pokemonedit
     End Sub
 
     Private Sub EvoSlots_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EvoSlots.SelectedIndexChanged
+        Dim loopy As Integer = 0
+
         EvoData = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonEvolutions", "")), System.Globalization.NumberStyles.HexNumber)
 
-        EvoTypes.SelectedIndex = -1
-        If Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) > 15 Then
-            EvoTypes.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = False
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = ""
-            EvoPKMNames.SelectedIndex = -1
 
-            Exit Sub
-        End If
+
+        'Reset the evolution stuff!
+
+        EvoTypes.SelectedIndex = -1
+        EvoPKMNames.Enabled = False
+        EvoItem.Enabled = False
+        EvoPKMNames.Enabled = False
+        EvoLevel.Enabled = False
+        EvoItem.SelectedIndex = -1
+        EvoLevel.Text = ""
+        EvoPKMNames.SelectedIndex = -1
 
 
         EvoTypes.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
 
-        If EvoTypes.SelectedIndex = 0 Then
+
+        'This will enable the right stuff
+
+        If (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "none" Then
 
             EvoPKMNames.Enabled = False
             EvoItem.Enabled = False
@@ -715,178 +719,29 @@ Public Class Pokemonedit
             EvoLevel.Text = ""
             EvoPKMNames.SelectedIndex = -1
 
-        ElseIf EvoTypes.SelectedIndex = 1 Then
+        End If
 
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = False
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = ""
-
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 2 Then
-
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = False
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = ""
+        If (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbutnoparms" Then
 
             EvoPKMNames.SelectedIndex = -1
             EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
             EvoPKMNames.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 3 Then
 
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = False
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = ""
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "level" Then
 
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 4 Then
-
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = True
-            EvoItem.SelectedIndex = -1
             EvoLevel.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
 
             EvoPKMNames.SelectedIndex = -1
             EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
             EvoPKMNames.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 5 Then
 
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = False
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = ""
-
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 6 Then
-
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = False
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = ""
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "item" Then
 
             EvoItem.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-            EvoItem.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 7 Then
-
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = False
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = ""
-
-            EvoItem.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
-            EvoPKMNames.SelectedIndex = -1
             EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
             EvoPKMNames.Enabled = True
             EvoItem.Enabled = True
 
-        ElseIf EvoTypes.SelectedIndex = 8 Then
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = True
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
-
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 9 Then
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = True
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
-
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 10 Then
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = True
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
-
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 11 Then
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = True
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
-
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-
-        ElseIf EvoTypes.SelectedIndex = 12 Then
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = True
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
-
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 13 Then
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = True
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
-
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 14 Then
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = True
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
-
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-        ElseIf EvoTypes.SelectedIndex = 15 Then
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = False
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = ""
-
-            EvoPKMNames.SelectedIndex = -1
-            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
-            EvoPKMNames.Enabled = True
-
-        ElseIf EvoTypes.SelectedIndex > 15 Then
-
-            EvoTypes.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
-            EvoLevel.Enabled = False
-            EvoItem.SelectedIndex = -1
-            EvoLevel.Text = ""
-            EvoPKMNames.SelectedIndex = -1
         End If
     End Sub
 
