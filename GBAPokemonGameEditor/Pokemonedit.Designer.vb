@@ -121,14 +121,6 @@ Partial Class Pokemonedit
         Me.EvoTypes = New System.Windows.Forms.ComboBox()
         Me.EvoSlots = New System.Windows.Forms.ListBox()
         Me.EvoPKMNames = New System.Windows.Forms.ComboBox()
-        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
-        Me.SHVal = New System.Windows.Forms.TextBox()
-        Me.SHCombo1 = New System.Windows.Forms.ComboBox()
-        Me.SH2 = New System.Windows.Forms.RadioButton()
-        Me.SH1 = New System.Windows.Forms.RadioButton()
-        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
-        Me.EggType2 = New System.Windows.Forms.ComboBox()
-        Me.EggType1 = New System.Windows.Forms.ComboBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.Button12 = New System.Windows.Forms.Button()
         Me.GroupBox25 = New System.Windows.Forms.GroupBox()
@@ -161,6 +153,26 @@ Partial Class Pokemonedit
         Me.Button9 = New System.Windows.Forms.Button()
         Me.FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.ProgressBar = New System.Windows.Forms.ProgressBar()
+        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.SHVal = New System.Windows.Forms.TextBox()
+        Me.SHCombo1 = New System.Windows.Forms.ComboBox()
+        Me.SH2 = New System.Windows.Forms.RadioButton()
+        Me.SH1 = New System.Windows.Forms.RadioButton()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.EggType2 = New System.Windows.Forms.ComboBox()
+        Me.EggType1 = New System.Windows.Forms.ComboBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox21.SuspendLayout()
@@ -191,8 +203,6 @@ Partial Class Pokemonedit
         CType(Me.EvoBasePokePic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EvoItemPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EvoPokePic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox11.SuspendLayout()
-        Me.GroupBox8.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.GroupBox25.SuspendLayout()
         Me.GroupBox24.SuspendLayout()
@@ -201,6 +211,10 @@ Partial Class Pokemonedit
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox18.SuspendLayout()
         Me.GroupBox19.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage5.SuspendLayout()
+        Me.GroupBox11.SuspendLayout()
+        Me.GroupBox8.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -209,6 +223,7 @@ Partial Class Pokemonedit
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
+        Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Location = New System.Drawing.Point(148, 27)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -1028,18 +1043,27 @@ Partial Class Pokemonedit
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.GroupBox17)
-        Me.TabPage3.Controls.Add(Me.GroupBox11)
-        Me.TabPage3.Controls.Add(Me.GroupBox8)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage3.Size = New System.Drawing.Size(592, 389)
         Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Evolution/Breed data"
+        Me.TabPage3.Text = "Evolution data"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
         'GroupBox17
         '
+        Me.GroupBox17.Controls.Add(Me.ComboBox3)
+        Me.GroupBox17.Controls.Add(Me.Label19)
+        Me.GroupBox17.Controls.Add(Me.TextBox2)
+        Me.GroupBox17.Controls.Add(Me.TextBox1)
+        Me.GroupBox17.Controls.Add(Me.Label20)
+        Me.GroupBox17.Controls.Add(Me.Label21)
+        Me.GroupBox17.Controls.Add(Me.ComboBox2)
+        Me.GroupBox17.Controls.Add(Me.Label22)
+        Me.GroupBox17.Controls.Add(Me.Label23)
+        Me.GroupBox17.Controls.Add(Me.PictureBox2)
+        Me.GroupBox17.Controls.Add(Me.ComboBox1)
         Me.GroupBox17.Controls.Add(Me.EvoBasePokePic)
         Me.GroupBox17.Controls.Add(Me.EvoItemPic)
         Me.GroupBox17.Controls.Add(Me.EvoPokePic)
@@ -1052,7 +1076,7 @@ Partial Class Pokemonedit
         Me.GroupBox17.Controls.Add(Me.EvoTypes)
         Me.GroupBox17.Controls.Add(Me.EvoSlots)
         Me.GroupBox17.Controls.Add(Me.EvoPKMNames)
-        Me.GroupBox17.Location = New System.Drawing.Point(15, 96)
+        Me.GroupBox17.Location = New System.Drawing.Point(6, 8)
         Me.GroupBox17.Name = "GroupBox17"
         Me.GroupBox17.Size = New System.Drawing.Size(571, 277)
         Me.GroupBox17.TabIndex = 2
@@ -1061,7 +1085,7 @@ Partial Class Pokemonedit
         '
         'EvoBasePokePic
         '
-        Me.EvoBasePokePic.Location = New System.Drawing.Point(63, 94)
+        Me.EvoBasePokePic.Location = New System.Drawing.Point(150, 19)
         Me.EvoBasePokePic.Name = "EvoBasePokePic"
         Me.EvoBasePokePic.Size = New System.Drawing.Size(64, 64)
         Me.EvoBasePokePic.TabIndex = 11
@@ -1069,7 +1093,7 @@ Partial Class Pokemonedit
         '
         'EvoItemPic
         '
-        Me.EvoItemPic.Location = New System.Drawing.Point(187, 113)
+        Me.EvoItemPic.Location = New System.Drawing.Point(184, 153)
         Me.EvoItemPic.Name = "EvoItemPic"
         Me.EvoItemPic.Size = New System.Drawing.Size(24, 24)
         Me.EvoItemPic.TabIndex = 10
@@ -1077,7 +1101,7 @@ Partial Class Pokemonedit
         '
         'EvoPokePic
         '
-        Me.EvoPokePic.Location = New System.Drawing.Point(406, 94)
+        Me.EvoPokePic.Location = New System.Drawing.Point(382, 16)
         Me.EvoPokePic.Name = "EvoPokePic"
         Me.EvoPokePic.Size = New System.Drawing.Size(64, 64)
         Me.EvoPokePic.TabIndex = 9
@@ -1085,7 +1109,7 @@ Partial Class Pokemonedit
         '
         'EvoLevel
         '
-        Me.EvoLevel.Location = New System.Drawing.Point(187, 55)
+        Me.EvoLevel.Location = New System.Drawing.Point(184, 102)
         Me.EvoLevel.Name = "EvoLevel"
         Me.EvoLevel.Size = New System.Drawing.Size(25, 20)
         Me.EvoLevel.TabIndex = 8
@@ -1095,7 +1119,7 @@ Partial Class Pokemonedit
         Me.EvoItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.EvoItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.EvoItem.FormattingEnabled = True
-        Me.EvoItem.Location = New System.Drawing.Point(187, 86)
+        Me.EvoItem.Location = New System.Drawing.Point(184, 126)
         Me.EvoItem.Name = "EvoItem"
         Me.EvoItem.Size = New System.Drawing.Size(121, 21)
         Me.EvoItem.TabIndex = 7
@@ -1103,7 +1127,7 @@ Partial Class Pokemonedit
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(151, 54)
+        Me.Label16.Location = New System.Drawing.Point(148, 101)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(36, 13)
         Me.Label16.TabIndex = 6
@@ -1112,7 +1136,7 @@ Partial Class Pokemonedit
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(151, 86)
+        Me.Label15.Location = New System.Drawing.Point(148, 126)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(30, 13)
         Me.Label15.TabIndex = 5
@@ -1121,7 +1145,7 @@ Partial Class Pokemonedit
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(317, 54)
+        Me.Label14.Location = New System.Drawing.Point(232, 16)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(55, 13)
         Me.Label14.TabIndex = 4
@@ -1130,7 +1154,7 @@ Partial Class Pokemonedit
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(133, 22)
+        Me.Label13.Location = New System.Drawing.Point(6, 102)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(54, 13)
         Me.Label13.TabIndex = 3
@@ -1141,7 +1165,7 @@ Partial Class Pokemonedit
         Me.EvoTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.EvoTypes.FormattingEnabled = True
         Me.EvoTypes.Items.AddRange(New Object() {"None", "Happiness", "Happiness (Day)", "Happiness (Night)", "Level", "Trade", "Trade w/ Item", "Item", "Atk > Def", "Atk = Def", "Atk < Def", "High Personality", "Low Personality", "Allow Pokemon Creation", "Create Extra Pokemon", "Max Beauty"})
-        Me.EvoTypes.Location = New System.Drawing.Point(191, 22)
+        Me.EvoTypes.Location = New System.Drawing.Point(7, 123)
         Me.EvoTypes.Name = "EvoTypes"
         Me.EvoTypes.Size = New System.Drawing.Size(121, 21)
         Me.EvoTypes.TabIndex = 2
@@ -1160,93 +1184,10 @@ Partial Class Pokemonedit
         Me.EvoPKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.EvoPKMNames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.EvoPKMNames.FormattingEnabled = True
-        Me.EvoPKMNames.Location = New System.Drawing.Point(375, 54)
+        Me.EvoPKMNames.Location = New System.Drawing.Point(235, 32)
         Me.EvoPKMNames.Name = "EvoPKMNames"
         Me.EvoPKMNames.Size = New System.Drawing.Size(121, 21)
         Me.EvoPKMNames.TabIndex = 0
-        '
-        'GroupBox11
-        '
-        Me.GroupBox11.Controls.Add(Me.SHVal)
-        Me.GroupBox11.Controls.Add(Me.SHCombo1)
-        Me.GroupBox11.Controls.Add(Me.SH2)
-        Me.GroupBox11.Controls.Add(Me.SH1)
-        Me.GroupBox11.Location = New System.Drawing.Point(160, 12)
-        Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(189, 78)
-        Me.GroupBox11.TabIndex = 1
-        Me.GroupBox11.TabStop = False
-        Me.GroupBox11.Text = "Steps to hatch"
-        '
-        'SHVal
-        '
-        Me.SHVal.Location = New System.Drawing.Point(102, 50)
-        Me.SHVal.Name = "SHVal"
-        Me.SHVal.Size = New System.Drawing.Size(74, 20)
-        Me.SHVal.TabIndex = 3
-        '
-        'SHCombo1
-        '
-        Me.SHCombo1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.SHCombo1.FormattingEnabled = True
-        Me.SHCombo1.Items.AddRange(New Object() {"Instant", "1280 steps", "2560 steps", "3840 steps", "5120 steps", "6400 steps", "7680 steps", "8960 steps", "10240 steps", "20480 steps", "30720 steps"})
-        Me.SHCombo1.Location = New System.Drawing.Point(102, 15)
-        Me.SHCombo1.Name = "SHCombo1"
-        Me.SHCombo1.Size = New System.Drawing.Size(74, 21)
-        Me.SHCombo1.TabIndex = 2
-        '
-        'SH2
-        '
-        Me.SH2.AutoSize = True
-        Me.SH2.Location = New System.Drawing.Point(6, 51)
-        Me.SH2.Name = "SH2"
-        Me.SH2.Size = New System.Drawing.Size(63, 17)
-        Me.SH2.TabIndex = 1
-        Me.SH2.TabStop = True
-        Me.SH2.Text = "Custom:"
-        Me.SH2.UseVisualStyleBackColor = True
-        '
-        'SH1
-        '
-        Me.SH1.AutoSize = True
-        Me.SH1.Location = New System.Drawing.Point(6, 19)
-        Me.SH1.Name = "SH1"
-        Me.SH1.Size = New System.Drawing.Size(71, 17)
-        Me.SH1.TabIndex = 0
-        Me.SH1.TabStop = True
-        Me.SH1.Text = "Standard:"
-        Me.SH1.UseVisualStyleBackColor = True
-        '
-        'GroupBox8
-        '
-        Me.GroupBox8.Controls.Add(Me.EggType2)
-        Me.GroupBox8.Controls.Add(Me.EggType1)
-        Me.GroupBox8.Location = New System.Drawing.Point(15, 12)
-        Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(139, 78)
-        Me.GroupBox8.TabIndex = 0
-        Me.GroupBox8.TabStop = False
-        Me.GroupBox8.Text = "Egg Groups"
-        '
-        'EggType2
-        '
-        Me.EggType2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.EggType2.FormattingEnabled = True
-        Me.EggType2.Items.AddRange(New Object() {"-------", "Monster", "Water 1", "Bug", "Flying", "Field", "Fairy", "Plant", "HumanShape", "Water 3", "Mineral", "Chaos", "Water 2", "Ditto", "Dragon", "Can't Breed"})
-        Me.EggType2.Location = New System.Drawing.Point(6, 46)
-        Me.EggType2.Name = "EggType2"
-        Me.EggType2.Size = New System.Drawing.Size(121, 21)
-        Me.EggType2.TabIndex = 1
-        '
-        'EggType1
-        '
-        Me.EggType1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.EggType1.FormattingEnabled = True
-        Me.EggType1.Items.AddRange(New Object() {"-------", "Monster", "Water 1", "Bug", "Flying", "Field", "Fairy", "Plant", "HumanShape", "Water 3", "Mineral", "Chaos", "Water 2", "Ditto", "Dragon", "Can't Breed"})
-        Me.EggType1.Location = New System.Drawing.Point(6, 19)
-        Me.EggType1.Name = "EggType1"
-        Me.EggType1.Size = New System.Drawing.Size(121, 21)
-        Me.EggType1.TabIndex = 0
         '
         'TabPage4
         '
@@ -1397,7 +1338,7 @@ Partial Class Pokemonedit
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MenuStrip1.Size = New System.Drawing.Size(768, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(754, 24)
         Me.MenuStrip1.TabIndex = 5
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -1516,11 +1457,198 @@ Partial Class Pokemonedit
         Me.ProgressBar.TabIndex = 12
         Me.ProgressBar.Visible = False
         '
+        'ComboBox3
+        '
+        Me.ComboBox3.FormattingEnabled = True
+        Me.ComboBox3.Location = New System.Drawing.Point(206, 186)
+        Me.ComboBox3.Name = "ComboBox3"
+        Me.ComboBox3.Size = New System.Drawing.Size(99, 21)
+        Me.ComboBox3.TabIndex = 32
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(148, 186)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(41, 13)
+        Me.Label19.TabIndex = 31
+        Me.Label19.Text = "Attack:"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(269, 244)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(36, 20)
+        Me.TextBox2.TabIndex = 30
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(184, 244)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(32, 20)
+        Me.TextBox1.TabIndex = 29
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(148, 244)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(35, 13)
+        Me.Label20.TabIndex = 28
+        Me.Label20.Text = "Bank:"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(232, 244)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(31, 13)
+        Me.Label21.TabIndex = 27
+        Me.Label21.Text = "Map:"
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(206, 213)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(99, 21)
+        Me.ComboBox2.TabIndex = 26
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(148, 211)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(60, 13)
+        Me.Label22.TabIndex = 25
+        Me.Label22.Text = "Map name:"
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(379, 101)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(108, 13)
+        Me.Label23.TabIndex = 24
+        Me.Label23.Text = "Species Requirement"
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Location = New System.Drawing.Point(382, 153)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(64, 64)
+        Me.PictureBox2.TabIndex = 23
+        Me.PictureBox2.TabStop = False
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(382, 123)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox1.TabIndex = 22
+        '
+        'TabPage5
+        '
+        Me.TabPage5.Controls.Add(Me.GroupBox11)
+        Me.TabPage5.Controls.Add(Me.GroupBox8)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Size = New System.Drawing.Size(592, 389)
+        Me.TabPage5.TabIndex = 4
+        Me.TabPage5.Text = "Breed data"
+        Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'GroupBox11
+        '
+        Me.GroupBox11.Controls.Add(Me.SHVal)
+        Me.GroupBox11.Controls.Add(Me.SHCombo1)
+        Me.GroupBox11.Controls.Add(Me.SH2)
+        Me.GroupBox11.Controls.Add(Me.SH1)
+        Me.GroupBox11.Location = New System.Drawing.Point(157, 15)
+        Me.GroupBox11.Name = "GroupBox11"
+        Me.GroupBox11.Size = New System.Drawing.Size(189, 78)
+        Me.GroupBox11.TabIndex = 3
+        Me.GroupBox11.TabStop = False
+        Me.GroupBox11.Text = "Steps to hatch"
+        '
+        'SHVal
+        '
+        Me.SHVal.Location = New System.Drawing.Point(102, 50)
+        Me.SHVal.Name = "SHVal"
+        Me.SHVal.Size = New System.Drawing.Size(74, 20)
+        Me.SHVal.TabIndex = 3
+        '
+        'SHCombo1
+        '
+        Me.SHCombo1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.SHCombo1.FormattingEnabled = True
+        Me.SHCombo1.Items.AddRange(New Object() {"Instant", "1280 steps", "2560 steps", "3840 steps", "5120 steps", "6400 steps", "7680 steps", "8960 steps", "10240 steps", "20480 steps", "30720 steps"})
+        Me.SHCombo1.Location = New System.Drawing.Point(102, 15)
+        Me.SHCombo1.Name = "SHCombo1"
+        Me.SHCombo1.Size = New System.Drawing.Size(74, 21)
+        Me.SHCombo1.TabIndex = 2
+        '
+        'SH2
+        '
+        Me.SH2.AutoSize = True
+        Me.SH2.Location = New System.Drawing.Point(6, 51)
+        Me.SH2.Name = "SH2"
+        Me.SH2.Size = New System.Drawing.Size(63, 17)
+        Me.SH2.TabIndex = 1
+        Me.SH2.TabStop = True
+        Me.SH2.Text = "Custom:"
+        Me.SH2.UseVisualStyleBackColor = True
+        '
+        'SH1
+        '
+        Me.SH1.AutoSize = True
+        Me.SH1.Location = New System.Drawing.Point(6, 19)
+        Me.SH1.Name = "SH1"
+        Me.SH1.Size = New System.Drawing.Size(71, 17)
+        Me.SH1.TabIndex = 0
+        Me.SH1.TabStop = True
+        Me.SH1.Text = "Standard:"
+        Me.SH1.UseVisualStyleBackColor = True
+        '
+        'GroupBox8
+        '
+        Me.GroupBox8.Controls.Add(Me.EggType2)
+        Me.GroupBox8.Controls.Add(Me.EggType1)
+        Me.GroupBox8.Location = New System.Drawing.Point(12, 15)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(139, 78)
+        Me.GroupBox8.TabIndex = 2
+        Me.GroupBox8.TabStop = False
+        Me.GroupBox8.Text = "Egg Groups"
+        '
+        'EggType2
+        '
+        Me.EggType2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.EggType2.FormattingEnabled = True
+        Me.EggType2.Items.AddRange(New Object() {"-------", "Monster", "Water 1", "Bug", "Flying", "Field", "Fairy", "Plant", "HumanShape", "Water 3", "Mineral", "Chaos", "Water 2", "Ditto", "Dragon", "Can't Breed"})
+        Me.EggType2.Location = New System.Drawing.Point(6, 46)
+        Me.EggType2.Name = "EggType2"
+        Me.EggType2.Size = New System.Drawing.Size(121, 21)
+        Me.EggType2.TabIndex = 1
+        '
+        'EggType1
+        '
+        Me.EggType1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.EggType1.FormattingEnabled = True
+        Me.EggType1.Items.AddRange(New Object() {"-------", "Monster", "Water 1", "Bug", "Flying", "Field", "Fairy", "Plant", "HumanShape", "Water 3", "Mineral", "Chaos", "Water 2", "Ditto", "Dragon", "Can't Breed"})
+        Me.EggType1.Location = New System.Drawing.Point(6, 19)
+        Me.EggType1.Name = "EggType1"
+        Me.EggType1.Size = New System.Drawing.Size(121, 21)
+        Me.EggType1.TabIndex = 0
+        '
         'Pokemonedit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(768, 483)
+        Me.ClientSize = New System.Drawing.Size(754, 480)
         Me.Controls.Add(Me.ProgressBar)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button8)
@@ -1578,9 +1706,6 @@ Partial Class Pokemonedit
         CType(Me.EvoBasePokePic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EvoItemPic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EvoPokePic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox11.ResumeLayout(False)
-        Me.GroupBox11.PerformLayout()
-        Me.GroupBox8.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         Me.GroupBox25.ResumeLayout(False)
         Me.GroupBox24.ResumeLayout(False)
@@ -1593,6 +1718,11 @@ Partial Class Pokemonedit
         Me.GroupBox18.ResumeLayout(False)
         Me.GroupBox18.PerformLayout()
         Me.GroupBox19.ResumeLayout(False)
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage5.ResumeLayout(False)
+        Me.GroupBox11.ResumeLayout(False)
+        Me.GroupBox11.PerformLayout()
+        Me.GroupBox8.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1636,18 +1766,10 @@ Partial Class Pokemonedit
     Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
     Friend WithEvents Ev2 As System.Windows.Forms.ComboBox
     Friend WithEvents Ev1 As System.Windows.Forms.ComboBox
-    Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
-    Friend WithEvents EggType2 As System.Windows.Forms.ComboBox
-    Friend WithEvents EggType1 As System.Windows.Forms.ComboBox
     Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
     Friend WithEvents Bexp As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox10 As System.Windows.Forms.GroupBox
     Friend WithEvents Grate As System.Windows.Forms.ComboBox
-    Friend WithEvents GroupBox11 As System.Windows.Forms.GroupBox
-    Friend WithEvents SHVal As System.Windows.Forms.TextBox
-    Friend WithEvents SHCombo1 As System.Windows.Forms.ComboBox
-    Friend WithEvents SH2 As System.Windows.Forms.RadioButton
-    Friend WithEvents SH1 As System.Windows.Forms.RadioButton
     Friend WithEvents GroupBox12 As System.Windows.Forms.GroupBox
     Friend WithEvents HPCombo1 As System.Windows.Forms.ComboBox
     Friend WithEvents HPVal As System.Windows.Forms.TextBox
@@ -1735,4 +1857,24 @@ Partial Class Pokemonedit
     Friend WithEvents CryConver As System.Windows.Forms.TextBox
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox3 As System.Windows.Forms.ComboBox
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents Label23 As System.Windows.Forms.Label
+    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents TabPage5 As System.Windows.Forms.TabPage
+    Friend WithEvents GroupBox11 As System.Windows.Forms.GroupBox
+    Friend WithEvents SHVal As System.Windows.Forms.TextBox
+    Friend WithEvents SHCombo1 As System.Windows.Forms.ComboBox
+    Friend WithEvents SH2 As System.Windows.Forms.RadioButton
+    Friend WithEvents SH1 As System.Windows.Forms.RadioButton
+    Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
+    Friend WithEvents EggType2 As System.Windows.Forms.ComboBox
+    Friend WithEvents EggType1 As System.Windows.Forms.ComboBox
 End Class

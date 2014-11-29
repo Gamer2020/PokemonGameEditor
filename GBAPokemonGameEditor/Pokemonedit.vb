@@ -703,6 +703,21 @@ Public Class Pokemonedit
         EvoLevel.Text = ""
         EvoPKMNames.SelectedIndex = -1
 
+        'attack
+        ComboBox3.Enabled = False
+        ComboBox3.SelectedIndex = -1
+        'map name
+        ComboBox2.Enabled = False
+        ComboBox2.SelectedIndex = -1
+        'bank and map
+        TextBox1.Enabled = False
+        TextBox1.Text = ""
+        TextBox2.Enabled = False
+        TextBox2.Text = ""
+        'species
+        ComboBox1.Enabled = False
+        ComboBox1.SelectedIndex = -1
+
 
         EvoTypes.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
 
@@ -743,15 +758,59 @@ Public Class Pokemonedit
             EvoItem.Enabled = True
             EvoLevel.Enabled = False
 
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "attack" Then
+
+            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
+            EvoPKMNames.Enabled = True
+
+            ComboBox3.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
+            ComboBox3.Enabled = True
+
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "mapname" Then
+
+            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
+            EvoPKMNames.Enabled = True
+
+            If header2 = "BPR" Or header2 = "BPG" Then
+                ComboBox2.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 1)))), System.Globalization.NumberStyles.HexNumber) - 88
+                ComboBox2.Enabled = True
+
+            ElseIf header2 = "BPE" Then
+                ComboBox2.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 1)))), System.Globalization.NumberStyles.HexNumber)
+                ComboBox2.Enabled = True
+            ElseIf header2 = "AXP" Or header2 = "AXV" Then
+                ComboBox2.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 1)))), System.Globalization.NumberStyles.HexNumber)
+                ComboBox2.Enabled = True
+            End If
+
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "species" Then
+
+            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
+            EvoPKMNames.Enabled = True
+
+            ComboBox1.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
+            ComboBox1.Enabled = True
+
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
+
+            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
+            EvoPKMNames.Enabled = True
+
+            TextBox1.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 1)))), System.Globalization.NumberStyles.HexNumber)
+            TextBox2.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (3) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 1)))), System.Globalization.NumberStyles.HexNumber)
+
+            TextBox1.Enabled = True
+            TextBox2.Enabled = True
+
         End If
     End Sub
 
-    Private Sub SH1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SH1.CheckedChanged
+    Private Sub SH1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         SHCombo1.Enabled = True
         SHVal.Enabled = False
     End Sub
 
-    Private Sub SH2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SH2.CheckedChanged
+    Private Sub SH2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         SHCombo1.Enabled = False
         SHVal.Enabled = True
     End Sub
@@ -799,6 +858,40 @@ Public Class Pokemonedit
             WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
             WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
             WriteHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoItem.SelectedIndex)), 4)))
+
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "attack" Then
+
+            WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
+            WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
+            WriteHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(ComboBox3.SelectedIndex)), 4)))
+
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "mapname" Then
+
+            WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
+            WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
+
+            If header2 = "BPR" Or header2 = "BPG" Then
+                WriteHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(Hex(ComboBox2.SelectedIndex + 88)))
+            ElseIf header2 = "BPE" Then
+                WriteHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(Hex(ComboBox2.SelectedIndex)))
+
+            ElseIf header2 = "AXP" Or header2 = "AXV" Then
+                WriteHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(Hex(ComboBox2.SelectedIndex)))
+
+            End If
+
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "species" Then
+
+            WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
+            WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
+            WriteHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(ComboBox1.SelectedIndex)), 4)))
+
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
+
+            WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
+            WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
+            WriteHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(Hex(TextBox1.Text)))
+            WriteHEX(LoadedROM, (EvoData) + (40) + (3) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(Hex(TextBox2.Text)))
 
         End If
 
@@ -2026,6 +2119,20 @@ Public Class Pokemonedit
         EvoItem.SelectedIndex = -1
         EvoLevel.Text = ""
         EvoPKMNames.SelectedIndex = -1
+        'attack
+        ComboBox3.Enabled = False
+        ComboBox3.SelectedIndex = -1
+        'map name
+        ComboBox2.Enabled = False
+        ComboBox2.SelectedIndex = -1
+        'bank and map
+        TextBox1.Enabled = False
+        TextBox1.Text = ""
+        TextBox2.Enabled = False
+        TextBox2.Text = ""
+        'species
+        ComboBox1.Enabled = False
+        ComboBox1.SelectedIndex = -1
 
         If (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "none" Then
 
@@ -2039,24 +2146,71 @@ Public Class Pokemonedit
 
         ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbutnoparms" Then
 
-            EvoPKMNames.SelectedIndex = -1
+            EvoPKMNames.SelectedIndex = 0
             EvoPKMNames.Enabled = True
             EvoLevel.Enabled = False
 
         ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "level" Then
 
-            EvoLevel.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
+            EvoLevel.Text = "1"
 
-            EvoPKMNames.SelectedIndex = -1
+            EvoPKMNames.SelectedIndex = 0
              EvoPKMNames.Enabled = True
             EvoLevel.Enabled = True
 
         ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "item" Then
 
-           EvoPKMNames.Enabled = True
+            EvoPKMNames.Enabled = True
+            EvoPKMNames.SelectedIndex = 0
+            EvoItem.SelectedIndex = 1
             EvoItem.Enabled = True
             EvoLevel.Enabled = False
 
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "attack" Then
+
+            EvoPKMNames.Enabled = True
+            EvoPKMNames.SelectedIndex = 0
+
+            ComboBox3.SelectedIndex = 0
+            ComboBox3.Enabled = True
+
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "mapname" Then
+
+            EvoPKMNames.Enabled = True
+            EvoPKMNames.SelectedIndex = 0
+
+            ComboBox2.SelectedIndex = 0
+            ComboBox2.Enabled = True
+
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "species" Then
+
+            EvoPKMNames.Enabled = True
+            EvoPKMNames.SelectedIndex = 0
+
+            ComboBox1.SelectedIndex = 0
+            ComboBox1.Enabled = True
+
+        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
+
+            EvoPKMNames.Enabled = True
+            EvoPKMNames.SelectedIndex = 0
+
+            TextBox1.Text = ""
+            TextBox2.Text = ""
+            TextBox1.Enabled = True
+            TextBox2.Enabled = True
+
+        End If
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "0") = "0" Then
+
+            If ComboBox1.SelectedIndex + 1 > 0 Then
+                GetAndDrawFrontPokemonPic(PictureBox2, ComboBox1.SelectedIndex + 1)
+            Else
+                PictureBox2.Image = Nothing
+            End If
         End If
     End Sub
 End Class
