@@ -131,7 +131,6 @@ C:\Users\JOSEWORK\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x8
 C:\Users\JOSEWORK\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.AttackEditor.resources
 C:\Users\JOSEWORK\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.BattleFrontierEditor.resources
 C:\Users\JOSEWORK\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.InputAttacks.resources
-C:\Users\JOSEWORK\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.JamboHackEvos.resources
 C:\Users\JOSEWORK\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.MainFrm.resources
 C:\Users\JOSEWORK\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.movetutor2.resources
 C:\Users\JOSEWORK\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.Resources.resources
