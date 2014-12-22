@@ -1792,10 +1792,6 @@ Public Class Pokemonedit
         End If
     End Sub
 
-    Private Sub Jambo51HackToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Jambo51HackToolStripMenuItem.Click
-        JamboHackEvos.Show()
-    End Sub
-
     Private Sub MTLoad()
         Dim LoopVar As Integer
         MTattacks = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)

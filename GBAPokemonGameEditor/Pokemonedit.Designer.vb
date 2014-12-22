@@ -109,6 +109,17 @@ Partial Class Pokemonedit
         Me.Clr1 = New System.Windows.Forms.ComboBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GroupBox17 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.EvoBasePokePic = New System.Windows.Forms.PictureBox()
         Me.EvoItemPic = New System.Windows.Forms.PictureBox()
         Me.EvoPokePic = New System.Windows.Forms.PictureBox()
@@ -135,12 +146,16 @@ Partial Class Pokemonedit
         Me.GroupBox22 = New System.Windows.Forms.GroupBox()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.LvlUpAttPointer = New System.Windows.Forms.TextBox()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.SHVal = New System.Windows.Forms.TextBox()
+        Me.SHCombo1 = New System.Windows.Forms.ComboBox()
+        Me.SH2 = New System.Windows.Forms.RadioButton()
+        Me.SH1 = New System.Windows.Forms.RadioButton()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.EggType2 = New System.Windows.Forms.ComboBox()
+        Me.EggType1 = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EvolutionModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NormalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Jambo51HackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox18 = New System.Windows.Forms.GroupBox()
         Me.ChangePKMName = New System.Windows.Forms.Button()
         Me.CurPKMName = New System.Windows.Forms.TextBox()
@@ -153,26 +168,6 @@ Partial Class Pokemonedit
         Me.Button9 = New System.Windows.Forms.Button()
         Me.FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.ProgressBar = New System.Windows.Forms.ProgressBar()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
-        Me.SHVal = New System.Windows.Forms.TextBox()
-        Me.SHCombo1 = New System.Windows.Forms.ComboBox()
-        Me.SH2 = New System.Windows.Forms.RadioButton()
-        Me.SH1 = New System.Windows.Forms.RadioButton()
-        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
-        Me.EggType2 = New System.Windows.Forms.ComboBox()
-        Me.EggType1 = New System.Windows.Forms.ComboBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox21.SuspendLayout()
@@ -200,6 +195,7 @@ Partial Class Pokemonedit
         Me.GroupBox2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EvoBasePokePic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EvoItemPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EvoPokePic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -208,13 +204,11 @@ Partial Class Pokemonedit
         Me.GroupBox24.SuspendLayout()
         Me.GroupBox23.SuspendLayout()
         Me.GroupBox22.SuspendLayout()
-        Me.MenuStrip1.SuspendLayout()
-        Me.GroupBox18.SuspendLayout()
-        Me.GroupBox19.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage5.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
+        Me.GroupBox18.SuspendLayout()
+        Me.GroupBox19.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -1083,6 +1077,99 @@ Partial Class Pokemonedit
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "Evolutions"
         '
+        'ComboBox3
+        '
+        Me.ComboBox3.FormattingEnabled = True
+        Me.ComboBox3.Location = New System.Drawing.Point(206, 186)
+        Me.ComboBox3.Name = "ComboBox3"
+        Me.ComboBox3.Size = New System.Drawing.Size(99, 21)
+        Me.ComboBox3.TabIndex = 32
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(148, 186)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(41, 13)
+        Me.Label19.TabIndex = 31
+        Me.Label19.Text = "Attack:"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(269, 244)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(36, 20)
+        Me.TextBox2.TabIndex = 30
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(184, 244)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(32, 20)
+        Me.TextBox1.TabIndex = 29
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(148, 244)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(35, 13)
+        Me.Label20.TabIndex = 28
+        Me.Label20.Text = "Bank:"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(232, 244)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(31, 13)
+        Me.Label21.TabIndex = 27
+        Me.Label21.Text = "Map:"
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(206, 213)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(99, 21)
+        Me.ComboBox2.TabIndex = 26
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(148, 211)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(60, 13)
+        Me.Label22.TabIndex = 25
+        Me.Label22.Text = "Map name:"
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(379, 101)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(108, 13)
+        Me.Label23.TabIndex = 24
+        Me.Label23.Text = "Species Requirement"
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Location = New System.Drawing.Point(382, 153)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(64, 64)
+        Me.PictureBox2.TabIndex = 23
+        Me.PictureBox2.TabStop = False
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(382, 123)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox1.TabIndex = 22
+        '
         'EvoBasePokePic
         '
         Me.EvoBasePokePic.Location = New System.Drawing.Point(150, 19)
@@ -1323,233 +1410,6 @@ Partial Class Pokemonedit
         Me.LvlUpAttPointer.Size = New System.Drawing.Size(68, 20)
         Me.LvlUpAttPointer.TabIndex = 11
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(8, 199)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(130, 41)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Save"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'MenuStrip1
-        '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MenuStrip1.Size = New System.Drawing.Size(754, 24)
-        Me.MenuStrip1.TabIndex = 5
-        Me.MenuStrip1.Text = "MenuStrip1"
-        '
-        'OptionsToolStripMenuItem
-        '
-        Me.OptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EvolutionModeToolStripMenuItem})
-        Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
-        Me.OptionsToolStripMenuItem.Text = "Options"
-        '
-        'EvolutionModeToolStripMenuItem
-        '
-        Me.EvolutionModeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NormalToolStripMenuItem, Me.Jambo51HackToolStripMenuItem})
-        Me.EvolutionModeToolStripMenuItem.Name = "EvolutionModeToolStripMenuItem"
-        Me.EvolutionModeToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
-        Me.EvolutionModeToolStripMenuItem.Text = "Evolution Mode"
-        '
-        'NormalToolStripMenuItem
-        '
-        Me.NormalToolStripMenuItem.Checked = True
-        Me.NormalToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.NormalToolStripMenuItem.Name = "NormalToolStripMenuItem"
-        Me.NormalToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
-        Me.NormalToolStripMenuItem.Text = "Normal"
-        '
-        'Jambo51HackToolStripMenuItem
-        '
-        Me.Jambo51HackToolStripMenuItem.Name = "Jambo51HackToolStripMenuItem"
-        Me.Jambo51HackToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
-        Me.Jambo51HackToolStripMenuItem.Text = "Jambo51 Hack"
-        '
-        'GroupBox18
-        '
-        Me.GroupBox18.Controls.Add(Me.ChangePKMName)
-        Me.GroupBox18.Controls.Add(Me.CurPKMName)
-        Me.GroupBox18.Location = New System.Drawing.Point(8, 121)
-        Me.GroupBox18.Name = "GroupBox18"
-        Me.GroupBox18.Size = New System.Drawing.Size(130, 72)
-        Me.GroupBox18.TabIndex = 7
-        Me.GroupBox18.TabStop = False
-        Me.GroupBox18.Text = "Rename Pokemon"
-        '
-        'ChangePKMName
-        '
-        Me.ChangePKMName.Location = New System.Drawing.Point(6, 40)
-        Me.ChangePKMName.Name = "ChangePKMName"
-        Me.ChangePKMName.Size = New System.Drawing.Size(118, 24)
-        Me.ChangePKMName.TabIndex = 6
-        Me.ChangePKMName.Text = "Change Name"
-        Me.ChangePKMName.UseVisualStyleBackColor = True
-        '
-        'CurPKMName
-        '
-        Me.CurPKMName.Location = New System.Drawing.Point(6, 14)
-        Me.CurPKMName.MaxLength = 10
-        Me.CurPKMName.Name = "CurPKMName"
-        Me.CurPKMName.Size = New System.Drawing.Size(118, 20)
-        Me.CurPKMName.TabIndex = 5
-        '
-        'GroupBox19
-        '
-        Me.GroupBox19.Controls.Add(Me.PKMNames)
-        Me.GroupBox19.Location = New System.Drawing.Point(8, 49)
-        Me.GroupBox19.Name = "GroupBox19"
-        Me.GroupBox19.Size = New System.Drawing.Size(130, 66)
-        Me.GroupBox19.TabIndex = 8
-        Me.GroupBox19.TabStop = False
-        Me.GroupBox19.Text = "Pokemon Selection"
-        '
-        'PKMNames
-        '
-        Me.PKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.PKMNames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.PKMNames.FormattingEnabled = True
-        Me.PKMNames.Location = New System.Drawing.Point(6, 28)
-        Me.PKMNames.Name = "PKMNames"
-        Me.PKMNames.Size = New System.Drawing.Size(118, 21)
-        Me.PKMNames.TabIndex = 7
-        '
-        'Button7
-        '
-        Me.Button7.Location = New System.Drawing.Point(8, 246)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(130, 41)
-        Me.Button7.TabIndex = 9
-        Me.Button7.Text = "Import Pokemon"
-        Me.Button7.UseVisualStyleBackColor = True
-        '
-        'Button8
-        '
-        Me.Button8.Location = New System.Drawing.Point(8, 293)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(130, 41)
-        Me.Button8.TabIndex = 10
-        Me.Button8.Text = "Export Pokemon"
-        Me.Button8.UseVisualStyleBackColor = True
-        '
-        'fileOpenDialog
-        '
-        Me.fileOpenDialog.FileName = "OpenFileDialog1"
-        '
-        'Button9
-        '
-        Me.Button9.Location = New System.Drawing.Point(8, 340)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(130, 41)
-        Me.Button9.TabIndex = 11
-        Me.Button9.Text = "Export All"
-        Me.Button9.UseVisualStyleBackColor = True
-        '
-        'ProgressBar
-        '
-        Me.ProgressBar.Location = New System.Drawing.Point(148, 455)
-        Me.ProgressBar.Name = "ProgressBar"
-        Me.ProgressBar.Size = New System.Drawing.Size(600, 16)
-        Me.ProgressBar.TabIndex = 12
-        Me.ProgressBar.Visible = False
-        '
-        'ComboBox3
-        '
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(206, 186)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(99, 21)
-        Me.ComboBox3.TabIndex = 32
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(148, 186)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(41, 13)
-        Me.Label19.TabIndex = 31
-        Me.Label19.Text = "Attack:"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(269, 244)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(36, 20)
-        Me.TextBox2.TabIndex = 30
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(184, 244)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(32, 20)
-        Me.TextBox1.TabIndex = 29
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(148, 244)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(35, 13)
-        Me.Label20.TabIndex = 28
-        Me.Label20.Text = "Bank:"
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(232, 244)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(31, 13)
-        Me.Label21.TabIndex = 27
-        Me.Label21.Text = "Map:"
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(206, 213)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(99, 21)
-        Me.ComboBox2.TabIndex = 26
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(148, 211)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(60, 13)
-        Me.Label22.TabIndex = 25
-        Me.Label22.Text = "Map name:"
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(379, 101)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(108, 13)
-        Me.Label23.TabIndex = 24
-        Me.Label23.Text = "Species Requirement"
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Location = New System.Drawing.Point(382, 153)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(64, 64)
-        Me.PictureBox2.TabIndex = 23
-        Me.PictureBox2.TabStop = False
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(382, 123)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBox1.TabIndex = 22
-        '
         'TabPage5
         '
         Me.TabPage5.Controls.Add(Me.GroupBox11)
@@ -1644,6 +1504,102 @@ Partial Class Pokemonedit
         Me.EggType1.Size = New System.Drawing.Size(121, 21)
         Me.EggType1.TabIndex = 0
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(8, 199)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(130, 41)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "Save"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'GroupBox18
+        '
+        Me.GroupBox18.Controls.Add(Me.ChangePKMName)
+        Me.GroupBox18.Controls.Add(Me.CurPKMName)
+        Me.GroupBox18.Location = New System.Drawing.Point(8, 121)
+        Me.GroupBox18.Name = "GroupBox18"
+        Me.GroupBox18.Size = New System.Drawing.Size(130, 72)
+        Me.GroupBox18.TabIndex = 7
+        Me.GroupBox18.TabStop = False
+        Me.GroupBox18.Text = "Rename Pokemon"
+        '
+        'ChangePKMName
+        '
+        Me.ChangePKMName.Location = New System.Drawing.Point(6, 40)
+        Me.ChangePKMName.Name = "ChangePKMName"
+        Me.ChangePKMName.Size = New System.Drawing.Size(118, 24)
+        Me.ChangePKMName.TabIndex = 6
+        Me.ChangePKMName.Text = "Change Name"
+        Me.ChangePKMName.UseVisualStyleBackColor = True
+        '
+        'CurPKMName
+        '
+        Me.CurPKMName.Location = New System.Drawing.Point(6, 14)
+        Me.CurPKMName.MaxLength = 10
+        Me.CurPKMName.Name = "CurPKMName"
+        Me.CurPKMName.Size = New System.Drawing.Size(118, 20)
+        Me.CurPKMName.TabIndex = 5
+        '
+        'GroupBox19
+        '
+        Me.GroupBox19.Controls.Add(Me.PKMNames)
+        Me.GroupBox19.Location = New System.Drawing.Point(8, 49)
+        Me.GroupBox19.Name = "GroupBox19"
+        Me.GroupBox19.Size = New System.Drawing.Size(130, 66)
+        Me.GroupBox19.TabIndex = 8
+        Me.GroupBox19.TabStop = False
+        Me.GroupBox19.Text = "Pokemon Selection"
+        '
+        'PKMNames
+        '
+        Me.PKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.PKMNames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PKMNames.FormattingEnabled = True
+        Me.PKMNames.Location = New System.Drawing.Point(6, 28)
+        Me.PKMNames.Name = "PKMNames"
+        Me.PKMNames.Size = New System.Drawing.Size(118, 21)
+        Me.PKMNames.TabIndex = 7
+        '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(8, 246)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(130, 41)
+        Me.Button7.TabIndex = 9
+        Me.Button7.Text = "Import Pokemon"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(8, 293)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(130, 41)
+        Me.Button8.TabIndex = 10
+        Me.Button8.Text = "Export Pokemon"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
+        'fileOpenDialog
+        '
+        Me.fileOpenDialog.FileName = "OpenFileDialog1"
+        '
+        'Button9
+        '
+        Me.Button9.Location = New System.Drawing.Point(8, 340)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(130, 41)
+        Me.Button9.TabIndex = 11
+        Me.Button9.Text = "Export All"
+        Me.Button9.UseVisualStyleBackColor = True
+        '
+        'ProgressBar
+        '
+        Me.ProgressBar.Location = New System.Drawing.Point(148, 455)
+        Me.ProgressBar.Name = "ProgressBar"
+        Me.ProgressBar.Size = New System.Drawing.Size(600, 16)
+        Me.ProgressBar.TabIndex = 12
+        Me.ProgressBar.Visible = False
+        '
         'Pokemonedit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1657,10 +1613,8 @@ Partial Class Pokemonedit
         Me.Controls.Add(Me.GroupBox18)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TabControl1)
-        Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
         Me.Name = "Pokemonedit"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -1703,6 +1657,7 @@ Partial Class Pokemonedit
         Me.TabPage3.ResumeLayout(False)
         Me.GroupBox17.ResumeLayout(False)
         Me.GroupBox17.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EvoBasePokePic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EvoItemPic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EvoPokePic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1713,18 +1668,14 @@ Partial Class Pokemonedit
         Me.GroupBox23.ResumeLayout(False)
         Me.GroupBox22.ResumeLayout(False)
         Me.GroupBox22.PerformLayout()
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
-        Me.GroupBox18.ResumeLayout(False)
-        Me.GroupBox18.PerformLayout()
-        Me.GroupBox19.ResumeLayout(False)
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage5.ResumeLayout(False)
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox11.PerformLayout()
         Me.GroupBox8.ResumeLayout(False)
+        Me.GroupBox18.ResumeLayout(False)
+        Me.GroupBox18.PerformLayout()
+        Me.GroupBox19.ResumeLayout(False)
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
@@ -1800,11 +1751,6 @@ Partial Class Pokemonedit
     Friend WithEvents IconPointer As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox17 As System.Windows.Forms.GroupBox
     Friend WithEvents EvoPKMNames As System.Windows.Forms.ComboBox
-    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
-    Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents EvolutionModeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents NormalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Jambo51HackToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EvoSlots As System.Windows.Forms.ListBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
