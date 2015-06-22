@@ -1,3 +1,6 @@
+THIS IS NOT BEING WORKED ON RIGHT NOW
+=====================================
+
 Pokemon Game Editor
 =================
 Pokemon Game Editor, commonly know as PGE, is an all in one tool started in 2010 by Gamer2020 for hacking the Game Boy Advanced Pokemon games. The program continues to evolve over the years and has had 40,000+ downloads. The program is currently developed in VB.Net with Visual Studio 2013.
@@ -64,7 +67,7 @@ Windows RT: Have Jailbreak installed that allows unsigned programs.
 
 Linux: Run with "Wine Windows Program Loader" and let it install the Mono runtime.
 
-Other operating system may work if mono works on them.
+Other operating systems may work if mono works on them.
 
 Recommended Programs
 ====================
