@@ -31,6 +31,8 @@ Partial Class AbilityEdit
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.AbilityIndexTextBox = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -38,10 +40,12 @@ Partial Class AbilityEdit
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.AbilityIndexTextBox)
         Me.GroupBox1.Controls.Add(Me.ListBox1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 13)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(145, 170)
+        Me.GroupBox1.Size = New System.Drawing.Size(145, 277)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Ability Selection"
@@ -51,34 +55,34 @@ Partial Class AbilityEdit
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(6, 19)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(130, 134)
+        Me.ListBox1.Size = New System.Drawing.Size(130, 212)
         Me.ListBox1.TabIndex = 1
         '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Button1)
         Me.GroupBox2.Controls.Add(Me.TextBox1)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 189)
+        Me.GroupBox2.Location = New System.Drawing.Point(163, 189)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(144, 88)
+        Me.GroupBox2.Size = New System.Drawing.Size(210, 56)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Name"
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(5, 47)
+        Me.Button1.Location = New System.Drawing.Point(115, 19)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(130, 28)
+        Me.Button1.Size = New System.Drawing.Size(71, 22)
         Me.Button1.TabIndex = 2
         Me.Button1.Text = "Rename"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(6, 21)
+        Me.TextBox1.Location = New System.Drawing.Point(12, 21)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(129, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(90, 20)
         Me.TextBox1.TabIndex = 0
         '
         'GroupBox3
@@ -119,6 +123,23 @@ Partial Class AbilityEdit
         Me.TextBox2.Size = New System.Drawing.Size(90, 20)
         Me.TextBox2.TabIndex = 0
         '
+        'AbilityIndexTextBox
+        '
+        Me.AbilityIndexTextBox.Location = New System.Drawing.Point(94, 237)
+        Me.AbilityIndexTextBox.Name = "AbilityIndexTextBox"
+        Me.AbilityIndexTextBox.ReadOnly = True
+        Me.AbilityIndexTextBox.Size = New System.Drawing.Size(42, 20)
+        Me.AbilityIndexTextBox.TabIndex = 2
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(52, 240)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(36, 13)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Index:"
+        '
         'AbilityEdit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -133,6 +154,7 @@ Partial Class AbilityEdit
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Ability Editor"
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
@@ -149,4 +171,6 @@ Partial Class AbilityEdit
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents AbilityIndexTextBox As TextBox
 End Class

@@ -150,14 +150,14 @@ Partial Class MainFrm
         '
         Me.Jambo51MoveTableHackToolStripMenuItem.Name = "Jambo51MoveTableHackToolStripMenuItem"
         Me.Jambo51MoveTableHackToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
-        Me.Jambo51MoveTableHackToolStripMenuItem.Text = "Use Jambo51's move table hack (If you don't know what it is don't use it. Your RO" & _
+        Me.Jambo51MoveTableHackToolStripMenuItem.Text = "Use Jambo51's move table hack (If you don't know what it is don't use it. Your RO" &
     "M will break! I warned you...)"
         '
         'UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem
         '
         Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Name = "UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem"
         Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
-        Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Text = "Use Jambo51's TM/HM extension hack. (If you don't know what this is don't use it." & _
+        Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Text = "Use Jambo51's TM/HM extension hack. (If you don't know what this is don't use it." &
     ")"
         '
         'LinuxToolStripMenuItem
@@ -176,19 +176,19 @@ Partial Class MainFrm
         'EditRomsiniToolStripMenuItem
         '
         Me.EditRomsiniToolStripMenuItem.Name = "EditRomsiniToolStripMenuItem"
-        Me.EditRomsiniToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.EditRomsiniToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.EditRomsiniToolStripMenuItem.Text = "Edit roms.ini"
         '
         'ToolStripMenuItem6
         '
         Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(137, 6)
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(149, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Enabled = False
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'GroupBox4
@@ -620,7 +620,7 @@ Partial Class MainFrm
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(148, 13)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Copyright © 2014 Gamer2020"
+        Me.Label1.Text = "Copyright © 2015 Gamer2020"
         '
         'MainFrm
         '

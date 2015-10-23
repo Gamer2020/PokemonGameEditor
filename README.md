@@ -1,9 +1,9 @@
-THIS IS NOT BEING WORKED ON RIGHT NOW
+THIS IS RARLEY WORKED ON!
 =====================================
 
 Pokemon Game Editor
 =================
-Pokemon Game Editor, commonly know as PGE, is an all in one tool started in 2010 by Gamer2020 for hacking the Game Boy Advanced Pokemon games. The program continues to evolve over the years and has had 40,000+ downloads. The program is currently developed in VB.Net with Visual Studio 2013.
+Pokemon Game Editor, commonly know as PGE, is an all in one tool started in 2010 by Gamer2020 for hacking the Game Boy Advanced Pokemon games. The program continues to evolve over the years and has had 50,000+ downloads. The program is currently developed in VB.Net with Visual Studio 2015.
 
 Features
 =================
@@ -92,7 +92,7 @@ Gamer2020
 
 Issues
 =================
-Running added programs on Linux not implemented yet.
+Running added programs on Linux not implemented yet and possibly won't be for a while.
 
 Credits
 =================

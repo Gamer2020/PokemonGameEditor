@@ -27,6 +27,8 @@
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox1.SelectedIndexChanged
+        AbilityIndexTextBox.Text = ListBox1.SelectedIndex
+
         AbilityDesc = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "AbilityDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber)
 
         TextBox1.Text = GetAbilityName(ListBox1.SelectedIndex)
