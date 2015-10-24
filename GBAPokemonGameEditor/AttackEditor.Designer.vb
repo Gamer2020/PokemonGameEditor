@@ -63,12 +63,16 @@ Partial Class AttackEditor
         Me.Effects = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.TextBox11 = New System.Windows.Forms.TextBox()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.ComboBox6 = New System.Windows.Forms.ComboBox()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.ComboBox6 = New System.Windows.Forms.ComboBox()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.TextBox10 = New System.Windows.Forms.TextBox()
+        Me.TextBox11 = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.TextBox13 = New System.Windows.Forms.TextBox()
+        Me.TextBox12 = New System.Windows.Forms.TextBox()
         Me.TextBox8 = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TextBox9 = New System.Windows.Forms.TextBox()
@@ -81,26 +85,26 @@ Partial Class AttackEditor
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.AnimationPointer = New System.Windows.Forms.TextBox()
-        Me.TextBox12 = New System.Windows.Forms.TextBox()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.AttackListIndex = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.TabPage2.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.AttackListIndex)
+        Me.GroupBox1.Controls.Add(Me.Label20)
         Me.GroupBox1.Controls.Add(Me.ComboBox3)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 23)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(137, 58)
+        Me.GroupBox1.Size = New System.Drawing.Size(137, 74)
         Me.GroupBox1.TabIndex = 23
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Attack Selection:"
@@ -118,7 +122,7 @@ Partial Class AttackEditor
         '
         Me.GroupBox2.Controls.Add(Me.Button1)
         Me.GroupBox2.Controls.Add(Me.TextBox1)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 87)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 102)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(137, 83)
         Me.GroupBox2.TabIndex = 24
@@ -264,6 +268,7 @@ Partial Class AttackEditor
         Me.TextBox7.Location = New System.Drawing.Point(287, 257)
         Me.TextBox7.Multiline = True
         Me.TextBox7.Name = "TextBox7"
+        Me.TextBox7.ReadOnly = True
         Me.TextBox7.Size = New System.Drawing.Size(147, 74)
         Me.TextBox7.TabIndex = 24
         '
@@ -501,37 +506,39 @@ Partial Class AttackEditor
         Me.TabPage2.Text = "Contest Data"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'TextBox10
+        'GroupBox5
         '
-        Me.TextBox10.Location = New System.Drawing.Point(103, 71)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(40, 20)
-        Me.TextBox10.TabIndex = 19
+        Me.GroupBox5.Controls.Add(Me.Button5)
+        Me.GroupBox5.Controls.Add(Me.Label15)
+        Me.GroupBox5.Controls.Add(Me.ComboBox6)
+        Me.GroupBox5.Controls.Add(Me.Label17)
+        Me.GroupBox5.Controls.Add(Me.TextBox10)
+        Me.GroupBox5.Controls.Add(Me.TextBox11)
+        Me.GroupBox5.Controls.Add(Me.Label16)
+        Me.GroupBox5.Location = New System.Drawing.Point(6, 138)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(448, 138)
+        Me.GroupBox5.TabIndex = 22
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Move Effect"
         '
-        'Label16
+        'Button5
         '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(11, 74)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(29, 13)
-        Me.Label16.TabIndex = 18
-        Me.Label16.Text = "Jam:"
+        Me.Button5.Location = New System.Drawing.Point(306, 91)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(120, 33)
+        Me.Button5.TabIndex = 20
+        Me.Button5.Text = "Save Effect"
+        Me.Button5.UseVisualStyleBackColor = True
         '
-        'TextBox11
+        'Label15
         '
-        Me.TextBox11.Location = New System.Drawing.Point(103, 45)
-        Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.Size = New System.Drawing.Size(40, 20)
-        Me.TextBox11.TabIndex = 17
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(11, 48)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(43, 13)
-        Me.Label17.TabIndex = 16
-        Me.Label17.Text = "Appeal:"
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(11, 20)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(38, 13)
+        Me.Label15.TabIndex = 14
+        Me.Label15.Text = "Effect:"
         '
         'ComboBox6
         '
@@ -543,14 +550,51 @@ Partial Class AttackEditor
         Me.ComboBox6.Size = New System.Drawing.Size(323, 21)
         Me.ComboBox6.TabIndex = 15
         '
-        'Label15
+        'Label17
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(11, 20)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(38, 13)
-        Me.Label15.TabIndex = 14
-        Me.Label15.Text = "Effect:"
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(11, 48)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(43, 13)
+        Me.Label17.TabIndex = 16
+        Me.Label17.Text = "Appeal:"
+        '
+        'TextBox10
+        '
+        Me.TextBox10.Location = New System.Drawing.Point(103, 71)
+        Me.TextBox10.Name = "TextBox10"
+        Me.TextBox10.Size = New System.Drawing.Size(40, 20)
+        Me.TextBox10.TabIndex = 19
+        '
+        'TextBox11
+        '
+        Me.TextBox11.Location = New System.Drawing.Point(103, 45)
+        Me.TextBox11.Name = "TextBox11"
+        Me.TextBox11.Size = New System.Drawing.Size(40, 20)
+        Me.TextBox11.TabIndex = 17
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(11, 74)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(29, 13)
+        Me.Label16.TabIndex = 18
+        Me.Label16.Text = "Jam:"
+        '
+        'TextBox13
+        '
+        Me.TextBox13.Location = New System.Drawing.Point(201, 105)
+        Me.TextBox13.Name = "TextBox13"
+        Me.TextBox13.Size = New System.Drawing.Size(40, 20)
+        Me.TextBox13.TabIndex = 21
+        '
+        'TextBox12
+        '
+        Me.TextBox12.Location = New System.Drawing.Point(155, 105)
+        Me.TextBox12.Name = "TextBox12"
+        Me.TextBox12.Size = New System.Drawing.Size(40, 20)
+        Me.TextBox12.TabIndex = 20
         '
         'TextBox8
         '
@@ -624,7 +668,7 @@ Partial Class AttackEditor
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(18, 279)
+        Me.Button3.Location = New System.Drawing.Point(18, 294)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(120, 33)
         Me.Button3.TabIndex = 26
@@ -635,7 +679,7 @@ Partial Class AttackEditor
         '
         Me.GroupBox4.Controls.Add(Me.Button4)
         Me.GroupBox4.Controls.Add(Me.AnimationPointer)
-        Me.GroupBox4.Location = New System.Drawing.Point(12, 180)
+        Me.GroupBox4.Location = New System.Drawing.Point(12, 195)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(137, 83)
         Me.GroupBox4.TabIndex = 27
@@ -658,44 +702,22 @@ Partial Class AttackEditor
         Me.AnimationPointer.Size = New System.Drawing.Size(121, 20)
         Me.AnimationPointer.TabIndex = 0
         '
-        'TextBox12
+        'Label20
         '
-        Me.TextBox12.Location = New System.Drawing.Point(155, 105)
-        Me.TextBox12.Name = "TextBox12"
-        Me.TextBox12.Size = New System.Drawing.Size(40, 20)
-        Me.TextBox12.TabIndex = 20
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(6, 49)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(36, 13)
+        Me.Label20.TabIndex = 24
+        Me.Label20.Text = "Index:"
         '
-        'TextBox13
+        'AttackListIndex
         '
-        Me.TextBox13.Location = New System.Drawing.Point(201, 105)
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(40, 20)
-        Me.TextBox13.TabIndex = 21
-        '
-        'GroupBox5
-        '
-        Me.GroupBox5.Controls.Add(Me.Button5)
-        Me.GroupBox5.Controls.Add(Me.Label15)
-        Me.GroupBox5.Controls.Add(Me.ComboBox6)
-        Me.GroupBox5.Controls.Add(Me.Label17)
-        Me.GroupBox5.Controls.Add(Me.TextBox10)
-        Me.GroupBox5.Controls.Add(Me.TextBox11)
-        Me.GroupBox5.Controls.Add(Me.Label16)
-        Me.GroupBox5.Location = New System.Drawing.Point(6, 138)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(448, 138)
-        Me.GroupBox5.TabIndex = 22
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Move Effect"
-        '
-        'Button5
-        '
-        Me.Button5.Location = New System.Drawing.Point(306, 91)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(120, 33)
-        Me.Button5.TabIndex = 20
-        Me.Button5.Text = "Save Effect"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.AttackListIndex.Location = New System.Drawing.Point(46, 46)
+        Me.AttackListIndex.Name = "AttackListIndex"
+        Me.AttackListIndex.ReadOnly = True
+        Me.AttackListIndex.Size = New System.Drawing.Size(40, 20)
+        Me.AttackListIndex.TabIndex = 25
         '
         'AttackEditor
         '
@@ -714,6 +736,7 @@ Partial Class AttackEditor
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Attack Editor"
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
@@ -723,10 +746,10 @@ Partial Class AttackEditor
         Me.GroupBox3.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -792,4 +815,6 @@ Partial Class AttackEditor
     Friend WithEvents TextBox12 As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
     Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents AttackListIndex As TextBox
+    Friend WithEvents Label20 As Label
 End Class

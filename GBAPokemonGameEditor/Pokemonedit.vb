@@ -32,6 +32,11 @@ Public Class Pokemonedit
 
     Private Sub Pokemonedit_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
+        Type1.Items.Clear()
+        Type2.Items.Clear()
+
+        Type1.Items.AddRange(IO.File.ReadAllLines(AppPath & "PGETypeList.txt"))
+        Type2.Items.AddRange(IO.File.ReadAllLines(AppPath & "PGETypeList.txt"))
 
         Dim LoopVar As Integer
 
@@ -965,7 +970,9 @@ Public Class Pokemonedit
 
 
     Private Sub PKMNames_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PKMNames.SelectedIndexChanged
+
         i = PKMNames.SelectedIndex
+        PokemonListIndex.Text = PKMNames.SelectedIndex + 1
 
 
         Baseload()

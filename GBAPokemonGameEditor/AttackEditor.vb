@@ -14,6 +14,10 @@
         Dim LoopVar As Integer
         LoopVar = 1
 
+        ComboBox1.Items.Clear()
+
+        ComboBox1.Items.AddRange(IO.File.ReadAllLines(AppPath & "PGETypeList.txt"))
+
         ComboBox3.Items.Clear()
 
         While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfAttacks", "")) + 1 = True
@@ -39,6 +43,8 @@
         AttackAni = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "AttackAnimationTable", "")), System.Globalization.NumberStyles.HexNumber)
 
         AnimationPointer.Text = Hex(Val("&H" & ReverseHEX(ReadHEX(LoadedROM, (AttackAni) + (ComboBox3.SelectedIndex * 4) + 4, 4))) - &H8000000)
+
+        AttackListIndex.Text = ComboBox3.SelectedIndex + 1
 
         TextBox1.Text = GetAttackName(ComboBox3.SelectedIndex + 1)
 

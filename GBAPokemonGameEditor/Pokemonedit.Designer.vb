@@ -168,6 +168,8 @@ Partial Class Pokemonedit
         Me.Button9 = New System.Windows.Forms.Button()
         Me.FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.ProgressBar = New System.Windows.Forms.ProgressBar()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.PokemonListIndex = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox21.SuspendLayout()
@@ -1506,7 +1508,7 @@ Partial Class Pokemonedit
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(8, 199)
+        Me.Button1.Location = New System.Drawing.Point(8, 235)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(130, 41)
         Me.Button1.TabIndex = 2
@@ -1517,7 +1519,7 @@ Partial Class Pokemonedit
         '
         Me.GroupBox18.Controls.Add(Me.ChangePKMName)
         Me.GroupBox18.Controls.Add(Me.CurPKMName)
-        Me.GroupBox18.Location = New System.Drawing.Point(8, 121)
+        Me.GroupBox18.Location = New System.Drawing.Point(8, 157)
         Me.GroupBox18.Name = "GroupBox18"
         Me.GroupBox18.Size = New System.Drawing.Size(130, 72)
         Me.GroupBox18.TabIndex = 7
@@ -1543,10 +1545,12 @@ Partial Class Pokemonedit
         '
         'GroupBox19
         '
+        Me.GroupBox19.Controls.Add(Me.PokemonListIndex)
+        Me.GroupBox19.Controls.Add(Me.Label24)
         Me.GroupBox19.Controls.Add(Me.PKMNames)
         Me.GroupBox19.Location = New System.Drawing.Point(8, 49)
         Me.GroupBox19.Name = "GroupBox19"
-        Me.GroupBox19.Size = New System.Drawing.Size(130, 66)
+        Me.GroupBox19.Size = New System.Drawing.Size(130, 98)
         Me.GroupBox19.TabIndex = 8
         Me.GroupBox19.TabStop = False
         Me.GroupBox19.Text = "Pokemon Selection"
@@ -1563,7 +1567,7 @@ Partial Class Pokemonedit
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(8, 246)
+        Me.Button7.Location = New System.Drawing.Point(8, 282)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(130, 41)
         Me.Button7.TabIndex = 9
@@ -1572,7 +1576,7 @@ Partial Class Pokemonedit
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(8, 293)
+        Me.Button8.Location = New System.Drawing.Point(8, 329)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(130, 41)
         Me.Button8.TabIndex = 10
@@ -1585,7 +1589,7 @@ Partial Class Pokemonedit
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(8, 340)
+        Me.Button9.Location = New System.Drawing.Point(8, 376)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(130, 41)
         Me.Button9.TabIndex = 11
@@ -1599,6 +1603,23 @@ Partial Class Pokemonedit
         Me.ProgressBar.Size = New System.Drawing.Size(600, 16)
         Me.ProgressBar.TabIndex = 12
         Me.ProgressBar.Visible = False
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(6, 69)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(36, 13)
+        Me.Label24.TabIndex = 8
+        Me.Label24.Text = "Index:"
+        '
+        'PokemonListIndex
+        '
+        Me.PokemonListIndex.Location = New System.Drawing.Point(48, 66)
+        Me.PokemonListIndex.Name = "PokemonListIndex"
+        Me.PokemonListIndex.ReadOnly = True
+        Me.PokemonListIndex.Size = New System.Drawing.Size(40, 20)
+        Me.PokemonListIndex.TabIndex = 9
         '
         'Pokemonedit
         '
@@ -1675,6 +1696,7 @@ Partial Class Pokemonedit
         Me.GroupBox18.ResumeLayout(False)
         Me.GroupBox18.PerformLayout()
         Me.GroupBox19.ResumeLayout(False)
+        Me.GroupBox19.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1823,4 +1845,6 @@ Partial Class Pokemonedit
     Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
     Friend WithEvents EggType2 As System.Windows.Forms.ComboBox
     Friend WithEvents EggType1 As System.Windows.Forms.ComboBox
+    Friend WithEvents PokemonListIndex As TextBox
+    Friend WithEvents Label24 As Label
 End Class

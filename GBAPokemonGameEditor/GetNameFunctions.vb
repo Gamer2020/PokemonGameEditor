@@ -127,9 +127,9 @@ Module GetNameFunctions
 
             FileNum = FreeFile()
             FileOpen(FileNum, LoadedROM, OpenMode.Binary)
-            Dim AbilityName As String = "xxxxxxxxxxxxx"
-            FileGet(FileNum, AbilityName, offvar + 1 + (13 * Index))
-            b$ = Sapp2Asc(AbilityName, False)
+            Dim AttackName As String = "xxxxxxxxxxxxx"
+            FileGet(FileNum, AttackName, offvar + 1 + (13 * Index))
+            b$ = Sapp2Asc(AttackName, False)
             While InStr(1, b$, "\x") : b$ = LSet(b$, Len(b$) - 1) : End While
             b$ = LSet(b$, Len(b$) - 1)
 
