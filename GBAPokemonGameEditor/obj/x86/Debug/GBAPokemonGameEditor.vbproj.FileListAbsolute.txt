@@ -172,3 +172,4 @@ C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x
 C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.exe
 C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.xml
 C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.pdb
+C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.TMHMEditor.resources

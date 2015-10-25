@@ -21,7 +21,7 @@ Ability Editor
 
 Move Tutor Editor
 
-Linux Support - Runs with mono.
+Linux Support - Runs with mono. *Please note that I currently can't test under Linux so some things may have become broken since PGE was ableto run on Linux.*
 
 Multiple Windows open at once.
 
@@ -37,6 +37,10 @@ Pokedex Editor
 
 Support for more than 5 evolutions per Pokemon
 
+Support for more types
+
+Ability to define evolutions.
+
 Planned Features
 =================
 
@@ -46,11 +50,7 @@ Add item editor.
 
 Ability to add more attacks.
 
-Support for more types
-
 Ability to define types.
-
-Ability to define evolutions.
 
 Implement a way to tag ROMs without actually writing to the ROM in order to use separate inis. Tag should only be applied if needed.
 

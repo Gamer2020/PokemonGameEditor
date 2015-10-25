@@ -176,19 +176,19 @@ Partial Class MainFrm
         'EditRomsiniToolStripMenuItem
         '
         Me.EditRomsiniToolStripMenuItem.Name = "EditRomsiniToolStripMenuItem"
-        Me.EditRomsiniToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EditRomsiniToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.EditRomsiniToolStripMenuItem.Text = "Edit roms.ini"
         '
         'ToolStripMenuItem6
         '
         Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(137, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Enabled = False
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'GroupBox4
@@ -370,7 +370,7 @@ Partial Class MainFrm
         Me.Button35.Name = "Button35"
         Me.Button35.Size = New System.Drawing.Size(79, 55)
         Me.Button35.TabIndex = 45
-        Me.Button35.Text = "Button35"
+        Me.Button35.Text = "TM/HM Editor"
         Me.Button35.UseVisualStyleBackColor = True
         '
         'Button36

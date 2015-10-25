@@ -217,6 +217,12 @@
     <Compile Include="RSEStarterEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="TMHMEditor.Designer.vb">
+      <DependentUpon>TMHMEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TMHMEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AbilityEdit.resx">
@@ -261,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RSEStarterEditor.resx">
       <DependentUpon>RSEStarterEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMHMEditor.resx">
+      <DependentUpon>TMHMEditor.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
