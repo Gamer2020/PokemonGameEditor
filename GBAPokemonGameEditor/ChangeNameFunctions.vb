@@ -114,6 +114,29 @@ Module ChangeNameFunctions
         ChangeAbilityName = NewName
     End Function
 
+    Public Function ChangeItemName(ByVal Index As Integer, ByVal NewName As String)
+        Dim offvar As Long
+
+        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "ItemData", "")), System.Globalization.NumberStyles.HexNumber)
+
+        If header3 = "J" Then
+
+        Else
+
+            FileNum = FreeFile()
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+            Dim PokeName As String = "xxxxxxxxxxxxxx"
+            Dim filler As Byte = "&HFF"
+            PokeName = NameAsc2Sapp(NewName)
+            FilePut(FileNum, PokeName, offvar + 1 + (44 * Index))
+            FilePut(FileNum, filler, offvar + 1 + (44 * Index) + Len(NewName))
+
+
+        End If
+        FileClose(FileNum)
+        ChangeItemName = NewName
+    End Function
+
     Public Function ChangeBattleFrontierTrainerName(ByVal Index As Integer, ByVal NewName As String)
         Dim offvar As Long
 

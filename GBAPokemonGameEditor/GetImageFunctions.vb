@@ -126,8 +126,8 @@ Module GetImageFunctions
     End Function
 
     Public Sub GetAndDrawItemPic(ByVal picBox As PictureBox, ByVal index As Integer)
-        Dim sOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
-        Dim pOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) + 4 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim sOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8)
+        Dim pOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) + 4
         Dim Temp(&HFFF) As Byte
         Dim Image(&HFFFF) As Byte
         Dim Palette15(&HFFF) As Byte

@@ -803,7 +803,9 @@ Public Class MainFrm
     End Sub
 
     Private Sub Button34_Click(sender As Object, e As EventArgs) Handles Button34.Click
-
+        Me.Cursor = Cursors.WaitCursor
+        ItemEditor.Show()
+        Me.Cursor = Cursors.Arrow
     End Sub
 
     Private Sub Button35_Click(sender As Object, e As EventArgs) Handles Button35.Click

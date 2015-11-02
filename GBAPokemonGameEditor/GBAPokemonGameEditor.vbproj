@@ -159,6 +159,12 @@
     <Compile Include="InputAttacks.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ItemEditor.Designer.vb">
+      <DependentUpon>ItemEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ItemEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LZ77.vb" />
     <Compile Include="INI.vb" />
     <Compile Include="MainFrm.vb">
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputAttacks.resx">
       <DependentUpon>InputAttacks.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemEditor.resx">
+      <DependentUpon>ItemEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.vb</DependentUpon>

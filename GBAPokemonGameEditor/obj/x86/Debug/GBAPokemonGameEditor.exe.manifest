@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GBAPokemonGameEditor.exe" size="430080">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GBAPokemonGameEditor.exe" size="437760">
       <assemblyIdentity name="GBAPokemonGameEditor" version="3.1.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>4McaiERj9WySPDsR1x0ELrBZZ/s=</dsig:DigestValue>
+        <dsig:DigestValue>lg5NGvUaj+WEV6aqk8NOch3ar7o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
