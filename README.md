@@ -41,22 +41,22 @@ Support for more types
 
 Ability to define evolutions.
 
+Item editor
+
+TM/HM Editor
+
 Planned Features
 =================
 
 Ability to add more Pokemon.
 
-Add item editor.
-
 Ability to add more attacks.
 
-Ability to define types.
-
-Implement a way to tag ROMs without actually writing to the ROM in order to use separate inis. Tag should only be applied if needed.
+Implement a way to tag ROMs without actually writing to the ROM in order to use separate inis. Tag should only be applied if needed. Some way of using seperate inis.
 
 Ability to add more items.
 
-Attack effect and animation database.
+Attack effect and animation database?
 
 Program Requirements
 ====================
@@ -65,7 +65,7 @@ Windows: Install 4.0 .Net Framework
 
 Windows RT: Have Jailbreak installed that allows unsigned programs.
 
-Linux: Run with "Wine Windows Program Loader" and let it install the Mono runtime.
+Linux: Run with "Wine Windows Program Loader" and let it install the Mono runtime. *The program has not been tested under linux in a long time. Let me know if something doesn't work under Linux.*
 
 Other operating systems may work if mono works on them.
 

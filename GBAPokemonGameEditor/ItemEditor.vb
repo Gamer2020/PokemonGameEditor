@@ -62,6 +62,11 @@ Public Class ItemEditor
         PocketComboBox.SelectedIndex = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 26) + (ItemListComboBox.SelectedIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
         TypeTextBox.Text = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 27) + (ItemListComboBox.SelectedIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
 
+        FieldUsagePTTextBox.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 28) + (ItemListComboBox.SelectedIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        BattleUsagePTTextBox.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemListComboBox.SelectedIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        BUTextBox.Text = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 32) + (ItemListComboBox.SelectedIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+
+
         FileNum = FreeFile()
         FileOpen(FileNum, LoadedROM, OpenMode.Binary)
         Dim ItemDescp As String = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
@@ -109,6 +114,9 @@ Public Class ItemEditor
         WriteHEX(LoadedROM, ((ItemBaseOff) + 26) + (listvar * 44), Hex(PocketComboBox.SelectedIndex))
         WriteHEX(LoadedROM, ((ItemBaseOff) + 27) + (listvar * 44), Hex(TypeTextBox.Text))
 
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 28) + (ItemListComboBox.SelectedIndex * 44), ReverseHEX(Hex(Int32.Parse(((FieldUsagePTTextBox.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemListComboBox.SelectedIndex * 44), ReverseHEX(Hex(Int32.Parse(((BattleUsagePTTextBox.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 32) + (listvar * 44), Hex(BUTextBox.Text))
 
         If header2 = "BPR" Or header2 = "BPG" Or header2 = "BPE" Then
 

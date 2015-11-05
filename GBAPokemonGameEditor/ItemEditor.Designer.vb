@@ -54,6 +54,12 @@ Partial Class ItemEditor
         Me.TypeTextBox = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
+        Me.FieldUsagePTTextBox = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.BattleUsagePTTextBox = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.BUTextBox = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.ItemImagePictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -339,11 +345,65 @@ Partial Class ItemEditor
         Me.Label11.TabIndex = 44
         Me.Label11.Text = "Bag Keyitem:"
         '
+        'FieldUsagePTTextBox
+        '
+        Me.FieldUsagePTTextBox.Location = New System.Drawing.Point(372, 58)
+        Me.FieldUsagePTTextBox.Name = "FieldUsagePTTextBox"
+        Me.FieldUsagePTTextBox.Size = New System.Drawing.Size(83, 20)
+        Me.FieldUsagePTTextBox.TabIndex = 45
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(369, 35)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(102, 13)
+        Me.Label12.TabIndex = 46
+        Me.Label12.Text = "Field Usage Pointer:"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(369, 87)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(107, 13)
+        Me.Label13.TabIndex = 48
+        Me.Label13.Text = "Battle Usage Pointer:"
+        '
+        'BattleUsagePTTextBox
+        '
+        Me.BattleUsagePTTextBox.Location = New System.Drawing.Point(372, 115)
+        Me.BattleUsagePTTextBox.Name = "BattleUsagePTTextBox"
+        Me.BattleUsagePTTextBox.Size = New System.Drawing.Size(83, 20)
+        Me.BattleUsagePTTextBox.TabIndex = 47
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(369, 144)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(71, 13)
+        Me.Label14.TabIndex = 49
+        Me.Label14.Text = "Battle Usage:"
+        '
+        'BUTextBox
+        '
+        Me.BUTextBox.Location = New System.Drawing.Point(446, 141)
+        Me.BUTextBox.Name = "BUTextBox"
+        Me.BUTextBox.Size = New System.Drawing.Size(25, 20)
+        Me.BUTextBox.TabIndex = 50
+        '
         'ItemEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(496, 318)
+        Me.Controls.Add(Me.BUTextBox)
+        Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.BattleUsagePTTextBox)
+        Me.Controls.Add(Me.Label12)
+        Me.Controls.Add(Me.FieldUsagePTTextBox)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.TypeTextBox)
         Me.Controls.Add(Me.Label9)
@@ -413,4 +473,10 @@ Partial Class ItemEditor
     Friend WithEvents TypeTextBox As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label11 As Label
+    Friend WithEvents FieldUsagePTTextBox As TextBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents BattleUsagePTTextBox As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents BUTextBox As TextBox
 End Class
