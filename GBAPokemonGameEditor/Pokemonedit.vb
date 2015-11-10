@@ -1801,12 +1801,13 @@ Public Class Pokemonedit
 
     Private Sub MTLoad()
         Dim LoopVar As Integer
-        MTattacks = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
 
         MTCom.Items.Clear()
 
         LoopVar = 0
         If header2 = "BPE" Then
+            MTattacks = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
+
             MTCom.Enabled = True
             While LoopVar < 32
                 MTCom.Items.Add(GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, MTattacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
@@ -1814,6 +1815,8 @@ Public Class Pokemonedit
 
             End While
         ElseIf header2 = "BPR" Or header2 = "BPE" Then
+            MTattacks = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
+
             MTCom.Enabled = True
 
             While LoopVar < 16
@@ -1833,10 +1836,11 @@ Public Class Pokemonedit
         Dim emloop As Integer
         Dim blah As Integer
         Dim curchar As String
-        MTCompoLoc = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
-
 
         If header2 = "BPE" Then
+            MTCompoLoc = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
+
+
             For emloop = 0 To 1
                 blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, MTCompoLoc + 4 + (PKMNames.SelectedIndex * 4) + (emloop * 2), 2))), System.Globalization.NumberStyles.HexNumber)
                 binarythebitch = (Convert.ToString(blah, 2))
@@ -1865,6 +1869,7 @@ Public Class Pokemonedit
             Next emloop
 
         ElseIf header2 = "BPR" Or header2 = "BPG" Then
+            MTCompoLoc = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
 
             blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, MTCompoLoc + 2 + (PKMNames.SelectedIndex * 2), 2))), System.Globalization.NumberStyles.HexNumber)
             binarythebitch = (Convert.ToString(blah, 2))
