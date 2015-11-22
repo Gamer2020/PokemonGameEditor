@@ -310,6 +310,8 @@ Public Class MainFrm
         header3 = Mid(header, 4, 1)
         FileClose(FileNum)
 
+        'MsgBox(GetINIFileLocation())
+
         If header2 = "BPR" Or header2 = "BPG" Or header2 = "BPE" Or header2 = "AXP" Or header2 = "AXV" Then
             If header3 = "J" Then
                 Label2.Text = ""
@@ -326,7 +328,7 @@ Public Class MainFrm
                 MessageBox.Show("I haven't added Jap support out of pure lazziness. I will though if it get's highly Demanded.")
             Else
 
-                Label2.Text = header & " - " & GetString(AppPath & "ini\roms.ini", header, "ROMName", "")
+                Label2.Text = header & " - " & GetString(GetINIFileLocation(), header, "ROMName", "")
 
                 Button5.Enabled = True
                 Button6.Enabled = True
@@ -360,23 +362,6 @@ Public Class MainFrm
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         OpenToolStripMenuItem.PerformClick()
-    End Sub
-
-    Private Sub UpdateRomsiniToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-        Dim result1 As DialogResult = MessageBox.Show("Download and replace your current roms.ini?", "Update?", MessageBoxButtons.YesNo)
-
-        If result1 = DialogResult.Yes Then
-            Dim wc As New WebClient
-            wc.DownloadFile("http://gamer2020.0xrh.net/programs/GBAPokemonGameEditor/ini.zip", "ini.zip")
-
-            'ExtractArchive(AppPath & "ini.zip", AppPath)
-
-            System.IO.File.Delete(AppPath & "ini.zip")
-
-            MessageBox.Show("roms.ini updated!")
-
-        End If
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click

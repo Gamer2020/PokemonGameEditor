@@ -70,5 +70,17 @@ Module mMain
     Public MapTiles2 As Integer(,)
 
 
+    Public Function GetINIFileLocation()
+
+        If System.IO.File.Exists((LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini") = True Then
+
+            Return (LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini"
+        Else
+
+            Return AppPath & "ini\roms.ini"
+        End If
+
+    End Function
+
 
 End Module

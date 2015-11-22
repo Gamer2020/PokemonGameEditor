@@ -18,7 +18,7 @@ Public Class ItemEditor
             ItmPlPntrTextBox.Enabled = True
             ItmRpntBttn.Enabled = True
 
-            ItemPicDataOff = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
+            ItemPicDataOff = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
 
         Else
 
@@ -28,7 +28,7 @@ Public Class ItemEditor
 
         End If
 
-        ItemBaseOff = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "ItemData", "")), System.Globalization.NumberStyles.HexNumber)
+        ItemBaseOff = Int32.Parse((GetString(GetINIFileLocation(), header, "ItemData", "")), System.Globalization.NumberStyles.HexNumber)
 
 
         Dim LoopVar As Integer
@@ -37,7 +37,7 @@ Public Class ItemEditor
 
         ItemListComboBox.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfItems", "")) = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) = True
             ItemListComboBox.Items.Add(GetItemName(LoopVar))
 
             LoopVar = LoopVar + 1
@@ -128,7 +128,7 @@ Public Class ItemEditor
 
         ItemListComboBox.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfItems", "")) = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) = True
             ItemListComboBox.Items.Add(GetItemName(LoopVar))
 
             LoopVar = LoopVar + 1

@@ -6,7 +6,7 @@ Module ChangeNameFunctions
     Public Function ChangePokedexTypeName(ByVal Index As Integer, ByVal NewName As String)
         Dim offvar As Long
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
 
@@ -48,7 +48,7 @@ Module ChangeNameFunctions
     Public Function ChangePokemonName(ByVal Index As Integer, ByVal NewName As String)
         Dim offvar As Long
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonNames", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonNames", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
 
@@ -71,7 +71,7 @@ Module ChangeNameFunctions
     Public Function ChangeAttackName(ByVal Index As Integer, ByVal NewName As String)
         Dim offvar As Integer
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "AttackNames", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "AttackNames", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
 
@@ -94,7 +94,7 @@ Module ChangeNameFunctions
     Public Function ChangeAbilityName(ByVal Index As Integer, ByVal NewName As String)
         Dim offvar As Long
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "AbilityNames", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "AbilityNames", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
 
@@ -117,7 +117,7 @@ Module ChangeNameFunctions
     Public Function ChangeItemName(ByVal Index As Integer, ByVal NewName As String)
         Dim offvar As Long
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "ItemData", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "ItemData", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
 
@@ -140,7 +140,7 @@ Module ChangeNameFunctions
     Public Function ChangeBattleFrontierTrainerName(ByVal Index As Integer, ByVal NewName As String)
         Dim offvar As Long
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber)
         If header2 = "BPE" Then
             If header3 = "J" Then
 

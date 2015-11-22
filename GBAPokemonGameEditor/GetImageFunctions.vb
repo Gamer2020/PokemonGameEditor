@@ -126,8 +126,8 @@ Module GetImageFunctions
     End Function
 
     Public Sub GetAndDrawItemPic(ByVal picBox As PictureBox, ByVal index As Integer)
-        Dim sOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8)
-        Dim pOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) + 4
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8)
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) + 4
         Dim Temp(&HFFF) As Byte
         Dim Image(&HFFFF) As Byte
         Dim Palette15(&HFFF) As Byte
@@ -160,8 +160,8 @@ Module GetImageFunctions
     End Sub
 
     Public Sub GetAndDrawFrontPokemonPic(ByVal picBox As PictureBox, ByVal index As Integer)
-        Dim sOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "PokemonFrontSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
-        Dim pOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonFrontSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
         Dim Temp(&HFFF) As Byte
         Dim Image(&HFFFF) As Byte
         Dim Palette15(&HFFF) As Byte
@@ -194,8 +194,8 @@ Module GetImageFunctions
     End Sub
 
     Public Sub GetAndDrawBackPokemonPic(ByVal picBox As PictureBox, ByVal index As Integer)
-        Dim sOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "PokemonBackSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
-        Dim pOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "PokemonShinyPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonBackSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonShinyPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
         Dim Temp(&HFFF) As Byte
         Dim Image(&HFFFF) As Byte
         Dim Palette15(&HFFF) As Byte
@@ -228,8 +228,8 @@ Module GetImageFunctions
     End Sub
 
     Public Sub GetAndDrawAnimationPokemonPic(ByVal picBox As PictureBox, ByVal index As Integer)
-        Dim sOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "PokemonAnimations", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
-        Dim pOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonAnimations", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
         Dim Temp(&HFFF) As Byte
         Dim Image(&HFFFF) As Byte
         Dim Palette15(&HFFF) As Byte
@@ -262,8 +262,8 @@ Module GetImageFunctions
     End Sub
 
     Public Sub GetAndDrawShadowAnimationPokemonPic(ByVal picBox As PictureBox, ByVal index As Integer)
-        Dim sOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ShadowFronts", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
-        Dim pOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ShadowPals", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ShadowFronts", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ShadowPals", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
         Dim Temp(&HFFF) As Byte
         Dim Image(&HFFFF) As Byte
         Dim Palette15(&HFFF) As Byte
@@ -296,8 +296,8 @@ Module GetImageFunctions
     End Sub
 
     Public Sub GetAndDrawBackShadowPokemonPic(ByVal picBox As PictureBox, ByVal index As Integer)
-        Dim sOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ShadowBacks", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
-        Dim pOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ShadowPals", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ShadowBacks", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ShadowPals", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
         Dim Temp(&HFFF) As Byte
         Dim Image(&HFFFF) As Byte
         Dim Palette15(&HFFF) As Byte
@@ -330,8 +330,8 @@ Module GetImageFunctions
     End Sub
 
     Public Sub GetAndDrawShadowFrontPokemonPic(ByVal picBox As PictureBox, ByVal index As Integer)
-        Dim sOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ShadowFronts", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
-        Dim pOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "ShadowPals", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ShadowFronts", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ShadowPals", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
         Dim Temp(&HFFF) As Byte
         Dim Image(&HFFFF) As Byte
         Dim Palette15(&HFFF) As Byte
@@ -432,8 +432,8 @@ ErrorHandle:
     End Function
 
     Public Sub GetAndDrawPokemonIconPic(ByVal picBox As PictureBox, ByVal index As Integer, ByVal palindex As Integer)
-        Dim sOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "IconPointerTable", ""), System.Globalization.NumberStyles.HexNumber) + (4 + (index * 4))
-        Dim pOffset As Integer = Int32.Parse(GetString(AppPath & "ini\roms.ini", header, "IconPals", ""), System.Globalization.NumberStyles.HexNumber) + (palindex * 32)
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPointerTable", ""), System.Globalization.NumberStyles.HexNumber) + (4 + (index * 4))
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPals", ""), System.Globalization.NumberStyles.HexNumber) + (palindex * 32)
         Dim Temp(&HFFF) As Byte
         Dim Image(&HFFFF) As Byte
         Dim Palette15(&HFFF) As Byte

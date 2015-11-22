@@ -10,7 +10,7 @@ Public Class TMHMEditor
 
         Dim LoopVar As Integer
 
-        TMHMAttacks = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "TMData", "")), System.Globalization.NumberStyles.HexNumber)
+        TMHMAttacks = Int32.Parse((GetString(GetINIFileLocation(), header, "TMData", "")), System.Globalization.NumberStyles.HexNumber)
 
         TMHMList.Items.Clear()
 
@@ -49,7 +49,7 @@ Public Class TMHMEditor
 
         LoopVar = 0
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfAttacks", "")) + 1 = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1 = True
 
 
             AttackList.Items.Add(GetAttackName(LoopVar))

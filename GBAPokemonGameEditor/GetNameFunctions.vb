@@ -6,7 +6,7 @@ Module GetNameFunctions
     Public Function GetAbilityName(ByVal Index As Integer)
         Dim offvar As Integer
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "AbilityNames", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "AbilityNames", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
 
@@ -29,7 +29,7 @@ Module GetNameFunctions
     Public Function GetItemName(ByVal Index As Integer)
         Dim offvar As Integer
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "ItemData", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "ItemData", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
 
@@ -52,7 +52,7 @@ Module GetNameFunctions
     Public Function GetPokemonName(ByVal Index As Integer)
         Dim offvar As Integer
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonNames", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonNames", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
 
@@ -84,7 +84,7 @@ Module GetNameFunctions
     Public Function GetMapLabelName(ByVal Index As Integer) As String
         Dim offvar As Integer
         Dim stringvar As String
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MapLabelData", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "MapLabelData", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header2 = "BPR" Or header2 = "BPG" Then
             offvar = "&H" & Hex(Val("&H" & ReverseHEX(ReadHEX(LoadedROM, offvar + (4 * Index), 4))) - &H8000000)
@@ -119,7 +119,7 @@ Module GetNameFunctions
     Public Function GetAttackName(ByVal Index As Integer)
         Dim offvar As Integer
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "AttackNames", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "AttackNames", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
 
@@ -142,7 +142,7 @@ Module GetNameFunctions
     Public Function GetBattleFrontierTrainerName(ByVal Index As Integer) As String
         Dim offvar As Integer
         Dim stringvar As String
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header2 = "BPE" Then
             If header3 = "J" Then
@@ -175,7 +175,7 @@ Module GetNameFunctions
     Public Function GetTrainerClass(ByVal Index As Integer)
         Dim offvar As Integer
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "TrainerClasses", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerClasses", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
 
@@ -198,7 +198,7 @@ Module GetNameFunctions
     Public Function GetPokedexTypeName(ByVal Index As Integer)
         Dim offvar As Integer
 
-        offvar = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
 

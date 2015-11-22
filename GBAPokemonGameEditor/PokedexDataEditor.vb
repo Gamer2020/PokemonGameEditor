@@ -67,11 +67,11 @@ Public Class PokedexDataEditor
 
             ListBox1.Items.Clear()
 
-            offset1 = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
+            offset1 = Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
 
             Dim varloop As Integer = 0
 
-            While varloop < (GetString(AppPath & "ini\roms.ini", header, "NumberOfDexEntries", ""))
+            While varloop < (GetString(GetINIFileLocation(), header, "NumberOfDexEntries", ""))
 
 
                 ListBox1.Items.Add(VB.Right("0000" & (varloop), 4) & ". " & GetPokedexTypeName(varloop))
@@ -156,7 +156,7 @@ Public Class PokedexDataEditor
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         i = ListBox1.SelectedIndex
-        offset1 = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
+        offset1 = Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
 
 
         If header2 = "AXP" Or header2 = "AXV" Then
@@ -194,7 +194,7 @@ Public Class PokedexDataEditor
 
         Dim varloop As Integer = 0
 
-        While varloop < (GetString(AppPath & "ini\roms.ini", header, "NumberOfDexEntries", ""))
+        While varloop < (GetString(GetINIFileLocation(), header, "NumberOfDexEntries", ""))
 
 
             ListBox1.Items.Add(VB.Right("0000" & (varloop), 4) & ". " & GetPokedexTypeName(varloop))

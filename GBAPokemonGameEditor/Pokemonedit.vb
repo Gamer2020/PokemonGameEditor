@@ -44,9 +44,9 @@ Public Class Pokemonedit
 
         EvoTypes.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfEvolutionTypes", "") + 1) = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfEvolutionTypes", "") + 1) = True
 
-            EvoTypes.Items.Add(GetString(AppPath & "ini\roms.ini", header, "EvolutionName" & LoopVar, ""))
+            EvoTypes.Items.Add(GetString(GetINIFileLocation(), header, "EvolutionName" & LoopVar, ""))
 
             LoopVar = LoopVar + 1
 
@@ -56,7 +56,7 @@ Public Class Pokemonedit
 
         EvoSlots.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfEvolutionsPerPokemon", "")) = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")) = True
 
             LoopVar = LoopVar + 1
 
@@ -68,7 +68,7 @@ Public Class Pokemonedit
 
         NewAt.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfAttacks", "")) + 1 = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1 = True
 
 
             NewAt.Items.Add(GetAttackName(LoopVar))
@@ -83,7 +83,7 @@ Public Class Pokemonedit
         PKMNames.Items.Clear()
         EvoPKMNames.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfPokemon", "")) - 1 = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
 
 
             LoopVar = LoopVar + 1
@@ -99,7 +99,7 @@ Public Class Pokemonedit
         Item2.Items.Clear()
         EvoItem.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfItems", "")) = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) = True
             Item1.Items.Add(GetItemName(LoopVar))
             Item2.Items.Add(GetItemName(LoopVar))
             EvoItem.Items.Add(GetItemName(LoopVar))
@@ -115,7 +115,7 @@ Public Class Pokemonedit
         Ab1.Items.Clear()
         Ab2.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfAbilities", "")) = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) = True
 
             Ab1.Items.Add(GetAbilityName(LoopVar))
             Ab2.Items.Add(GetAbilityName(LoopVar))
@@ -137,7 +137,7 @@ Public Class Pokemonedit
 
     Private Sub Baseload()
 
-        baseoff = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonData", "")), System.Globalization.NumberStyles.HexNumber)
+        baseoff = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonData", "")), System.Globalization.NumberStyles.HexNumber)
 
         HpBase.Text = Int32.Parse(((ReadHEX(LoadedROM, (baseoff) + 28 + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
         AtBase.Text = Int32.Parse(((ReadHEX(LoadedROM, ((baseoff) + 28 + 1) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
@@ -583,15 +583,15 @@ Public Class Pokemonedit
 
 
     Private Sub MediaLoad()
-        FrontSpritePointers = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonFrontSprites", "")), System.Globalization.NumberStyles.HexNumber)
-        BackSpritePointers = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonBackSprites", "")), System.Globalization.NumberStyles.HexNumber)
-        NormalPalPointers = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonNormalPal", "")), System.Globalization.NumberStyles.HexNumber)
-        ShinyPalPointers = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonShinyPal", "")), System.Globalization.NumberStyles.HexNumber)
-        IconPointers = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber)
-        IconPalTable = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber)
-        FootPrintTable = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "FootPrintTable", "")), System.Globalization.NumberStyles.HexNumber)
-        CryTable = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "CryTable", "")), System.Globalization.NumberStyles.HexNumber)
-        CryTable2 = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
+        FrontSpritePointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonFrontSprites", "")), System.Globalization.NumberStyles.HexNumber)
+        BackSpritePointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonBackSprites", "")), System.Globalization.NumberStyles.HexNumber)
+        NormalPalPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonNormalPal", "")), System.Globalization.NumberStyles.HexNumber)
+        ShinyPalPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonShinyPal", "")), System.Globalization.NumberStyles.HexNumber)
+        IconPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber)
+        IconPalTable = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber)
+        FootPrintTable = Int32.Parse((GetString(GetINIFileLocation(), header, "FootPrintTable", "")), System.Globalization.NumberStyles.HexNumber)
+        CryTable = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable", "")), System.Globalization.NumberStyles.HexNumber)
+        CryTable2 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
 
         FrontPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (FrontSpritePointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
         BackPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (BackSpritePointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
@@ -642,7 +642,7 @@ Public Class Pokemonedit
                 Button2.Enabled = True
                 AnimationPointer.Enabled = True
 
-                AnimationPointers = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonAnimations", "")), System.Globalization.NumberStyles.HexNumber)
+                AnimationPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAnimations", "")), System.Globalization.NumberStyles.HexNumber)
                 AnimationPointer.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AnimationPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
 
                 GetAndDrawAnimationPokemonPic(AniPic, i + 1)
@@ -693,7 +693,7 @@ Public Class Pokemonedit
     Private Sub EvoSlots_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EvoSlots.SelectedIndexChanged
         Dim loopy As Integer = 0
 
-        EvoData = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonEvolutions", "")), System.Globalization.NumberStyles.HexNumber)
+        EvoData = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonEvolutions", "")), System.Globalization.NumberStyles.HexNumber)
 
 
 
@@ -729,7 +729,7 @@ Public Class Pokemonedit
 
         'This will enable the right stuff
 
-        If (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "none" Then
+        If (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "none" Then
 
             EvoPKMNames.Enabled = False
             EvoItem.Enabled = False
@@ -739,14 +739,14 @@ Public Class Pokemonedit
             EvoLevel.Text = ""
             EvoPKMNames.SelectedIndex = -1
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbutnoparms" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbutnoparms" Then
 
             EvoPKMNames.SelectedIndex = -1
             EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
             EvoPKMNames.Enabled = True
             EvoLevel.Enabled = False
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "level" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "level" Then
 
             EvoLevel.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
 
@@ -755,7 +755,7 @@ Public Class Pokemonedit
             EvoPKMNames.Enabled = True
             EvoLevel.Enabled = True
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "item" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "item" Then
 
             EvoItem.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
             EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
@@ -763,7 +763,7 @@ Public Class Pokemonedit
             EvoItem.Enabled = True
             EvoLevel.Enabled = False
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "attack" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "attack" Then
 
             EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
             EvoPKMNames.Enabled = True
@@ -771,7 +771,7 @@ Public Class Pokemonedit
             ComboBox3.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
             ComboBox3.Enabled = True
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "mapname" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "mapname" Then
 
             EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
             EvoPKMNames.Enabled = True
@@ -788,7 +788,7 @@ Public Class Pokemonedit
                 ComboBox2.Enabled = True
             End If
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "species" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "species" Then
 
             EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
             EvoPKMNames.Enabled = True
@@ -796,7 +796,7 @@ Public Class Pokemonedit
             ComboBox1.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
             ComboBox1.Enabled = True
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
 
             EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
             EvoPKMNames.Enabled = True
@@ -842,35 +842,35 @@ Public Class Pokemonedit
 
     Private Sub EvoSave()
 
-        If (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "none" Then
+        If (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "none" Then
 
             WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbutnoparms" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbutnoparms" Then
 
             WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
             WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "level" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "level" Then
 
             WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
             WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
             WriteHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(Hex(EvoLevel.Text)))
             WriteHEX(LoadedROM, (EvoData) + (40) + (3) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(Hex("00")))
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "item" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "item" Then
 
             WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
             WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
             WriteHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoItem.SelectedIndex)), 4)))
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "attack" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "attack" Then
 
             WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
             WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
             WriteHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(ComboBox3.SelectedIndex)), 4)))
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "mapname" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "mapname" Then
 
             WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
             WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
@@ -885,13 +885,13 @@ Public Class Pokemonedit
 
             End If
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "species" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "species" Then
 
             WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
             WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
             WriteHEX(LoadedROM, (EvoData) + (40) + (2) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(ComboBox1.SelectedIndex)), 4)))
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
 
             WriteHEX(LoadedROM, (EvoData) + (40) + (0) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
             WriteHEX(LoadedROM, (EvoData) + (40) + (4) + ((PKMNames.SelectedIndex) * 40) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
@@ -1241,7 +1241,7 @@ Public Class Pokemonedit
     Private Sub TMHMLoad()
         Dim LoopVar As Integer
 
-        TMHMAttacks = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "TMData", "")), System.Globalization.NumberStyles.HexNumber)
+        TMHMAttacks = Int32.Parse((GetString(GetINIFileLocation(), header, "TMData", "")), System.Globalization.NumberStyles.HexNumber)
 
         TMHMCom.Items.Clear()
 
@@ -1302,7 +1302,7 @@ Public Class Pokemonedit
 
         i = PKMNames.SelectedIndex
 
-        TMHMCompoLoc = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "TMHMCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
+        TMHMCompoLoc = Int32.Parse((GetString(GetINIFileLocation(), header, "TMHMCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
 
         Dim blah As Integer
         Dim howmanyzeros As Integer
@@ -1569,7 +1569,7 @@ Public Class Pokemonedit
 
             LoopVar = 0
 
-            While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfPokemon", "")) - 1 = True
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
                 PKMNames.SelectedIndex = LoopVar
 
                 LoopVar = LoopVar + 1
@@ -1641,7 +1641,7 @@ Public Class Pokemonedit
                     WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "TMHM" & (LoopVarthing + 1), TMHMCom.GetItemChecked(LoopVarthing))
                     LoopVarthing = LoopVarthing + 1
                 End While
-                ProgressBar.Value = (LoopVar / (GetString(AppPath & "ini\roms.ini", header, "NumberOfPokemon", ""))) * 100
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
             End While
 
             Me.Text = "Pokemon Editor"
@@ -1666,7 +1666,7 @@ Public Class Pokemonedit
         'Dim loopme As Integer
         If GetString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0") = 0 Then
 
-            AttackTable = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
+            AttackTable = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
 
             LvlUpAttPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
@@ -1702,7 +1702,7 @@ Public Class Pokemonedit
 
 
         If GetString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0") = 1 Then
-            AttackTable = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
+            AttackTable = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
 
             LvlUpAttPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
@@ -1712,7 +1712,7 @@ Public Class Pokemonedit
 
             Looper = 0
 
-            While ReadHEX(LoadedROM, Int32.Parse((LvlUpAttPointer.Text), System.Globalization.NumberStyles.HexNumber) + (Looper * 3), 3) = GetString(AppPath & "ini\roms.ini", header, "JamboLearnableMovesTerm", "") = False
+            While ReadHEX(LoadedROM, Int32.Parse((LvlUpAttPointer.Text), System.Globalization.NumberStyles.HexNumber) + (Looper * 3), 3) = GetString(GetINIFileLocation(), header, "JamboLearnableMovesTerm", "") = False
 
                 lvl = Int32.Parse(((ReadHEX(LoadedROM, Int32.Parse((LvlUpAttPointer.Text), System.Globalization.NumberStyles.HexNumber) + (Looper * 3) + 2, 1))), System.Globalization.NumberStyles.HexNumber)
 
@@ -1771,7 +1771,7 @@ Public Class Pokemonedit
 
             Looper = 0
 
-            While ReadHEX(LoadedROM, Int32.Parse((LvlUpAttPointer.Text), System.Globalization.NumberStyles.HexNumber) + (Looper * 3), 3) = GetString(AppPath & "ini\roms.ini", header, "JamboLearnableMovesTerm", "") = False
+            While ReadHEX(LoadedROM, Int32.Parse((LvlUpAttPointer.Text), System.Globalization.NumberStyles.HexNumber) + (Looper * 3), 3) = GetString(GetINIFileLocation(), header, "JamboLearnableMovesTerm", "") = False
 
                 lvl = Int32.Parse(((ReadHEX(LoadedROM, Int32.Parse((LvlUpAttPointer.Text), System.Globalization.NumberStyles.HexNumber) + (Looper * 3) + 2, 1))), System.Globalization.NumberStyles.HexNumber)
 
@@ -1806,7 +1806,7 @@ Public Class Pokemonedit
 
         LoopVar = 0
         If header2 = "BPE" Then
-            MTattacks = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
+            MTattacks = Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
 
             MTCom.Enabled = True
             While LoopVar < 32
@@ -1815,7 +1815,7 @@ Public Class Pokemonedit
 
             End While
         ElseIf header2 = "BPR" Or header2 = "BPE" Then
-            MTattacks = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
+            MTattacks = Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
 
             MTCom.Enabled = True
 
@@ -1838,7 +1838,7 @@ Public Class Pokemonedit
         Dim curchar As String
 
         If header2 = "BPE" Then
-            MTCompoLoc = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
+            MTCompoLoc = Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
 
 
             For emloop = 0 To 1
@@ -1869,7 +1869,7 @@ Public Class Pokemonedit
             Next emloop
 
         ElseIf header2 = "BPR" Or header2 = "BPG" Then
-            MTCompoLoc = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
+            MTCompoLoc = Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
 
             blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, MTCompoLoc + 2 + (PKMNames.SelectedIndex * 2), 2))), System.Globalization.NumberStyles.HexNumber)
             binarythebitch = (Convert.ToString(blah, 2))
@@ -2077,7 +2077,7 @@ Public Class Pokemonedit
         PKMNames.Items.Clear()
         EvoPKMNames.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfPokemon", "")) - 1 = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
 
 
             LoopVar = LoopVar + 1
@@ -2142,7 +2142,7 @@ Public Class Pokemonedit
         ComboBox1.Enabled = False
         ComboBox1.SelectedIndex = -1
 
-        If (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "none" Then
+        If (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "none" Then
 
             EvoPKMNames.Enabled = False
             EvoItem.Enabled = False
@@ -2152,21 +2152,21 @@ Public Class Pokemonedit
             EvoLevel.Text = ""
             EvoPKMNames.SelectedIndex = -1
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbutnoparms" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbutnoparms" Then
 
             EvoPKMNames.SelectedIndex = 0
             EvoPKMNames.Enabled = True
             EvoLevel.Enabled = False
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "level" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "level" Then
 
             EvoLevel.Text = "1"
 
             EvoPKMNames.SelectedIndex = 0
-             EvoPKMNames.Enabled = True
+            EvoPKMNames.Enabled = True
             EvoLevel.Enabled = True
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "item" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "item" Then
 
             EvoPKMNames.Enabled = True
             EvoPKMNames.SelectedIndex = 0
@@ -2174,7 +2174,7 @@ Public Class Pokemonedit
             EvoItem.Enabled = True
             EvoLevel.Enabled = False
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "attack" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "attack" Then
 
             EvoPKMNames.Enabled = True
             EvoPKMNames.SelectedIndex = 0
@@ -2182,7 +2182,7 @@ Public Class Pokemonedit
             ComboBox3.SelectedIndex = 0
             ComboBox3.Enabled = True
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "mapname" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "mapname" Then
 
             EvoPKMNames.Enabled = True
             EvoPKMNames.SelectedIndex = 0
@@ -2190,7 +2190,7 @@ Public Class Pokemonedit
             ComboBox2.SelectedIndex = 0
             ComboBox2.Enabled = True
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "species" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "species" Then
 
             EvoPKMNames.Enabled = True
             EvoPKMNames.SelectedIndex = 0
@@ -2198,7 +2198,7 @@ Public Class Pokemonedit
             ComboBox1.SelectedIndex = 0
             ComboBox1.Enabled = True
 
-        ElseIf (GetString(AppPath & "ini\roms.ini", header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
 
             EvoPKMNames.Enabled = True
             EvoPKMNames.SelectedIndex = 0

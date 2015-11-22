@@ -4,11 +4,10 @@ Public Class PokedexOrderEditor
     Dim Offset1 As Integer
     Dim Offset2 As Integer
     Private Sub PokedexOrderEditor_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ' MessageBox.Show((GetString(AppPath & "ini\roms.ini", header, "NumberOfPokemon", "")) - 2)
 
-        Offset1 = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber)
+        Offset1 = Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber)
 
-        Offset2 = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "SecondDexTable", "")), System.Globalization.NumberStyles.HexNumber)
+        Offset2 = Int32.Parse((GetString(GetINIFileLocation(), header, "SecondDexTable", "")), System.Globalization.NumberStyles.HexNumber)
 
         Dim LoopVar As Integer
 
@@ -16,7 +15,7 @@ Public Class PokedexOrderEditor
 
         LoopVar = 0
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfPokemon", "")) - 1 = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
 
 
             LoopVar = LoopVar + 1

@@ -18,8 +18,8 @@ Public Class BattleFrontierEditor
 
     Private Sub ListBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox1.SelectedIndexChanged
         TextBox1.Text = GetBattleFrontierTrainerName(ListBox1.SelectedIndex)
-        'ComboBox1.SelectedIndex = CInt("&H" & (ReverseHEX(ReadHEX(LoadedROM, (GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")) + (52 * ListBox1.SelectedIndex), 1))))
-        TextBox2.Text = Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)
+        'ComboBox1.SelectedIndex = CInt("&H" & (ReverseHEX(ReadHEX(LoadedROM, (GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")) + (52 * ListBox1.SelectedIndex), 1))))
+        TextBox2.Text = Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)
 
         ListBox3.Items.Clear()
 
@@ -31,7 +31,7 @@ Public Class BattleFrontierEditor
 
         While curbytes <> "FFFF"
 
-            ListBox3.Items.Add((Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber)) & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber) * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
+            ListBox3.Items.Add((Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber)) & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber) * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
 
             counter = counter + 1
 
@@ -50,7 +50,7 @@ Public Class BattleFrontierEditor
 
         ListBox1.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfBattleFrontierTrainers", "")) = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfBattleFrontierTrainers", "")) = True
 
 
             ListBox1.Items.Add(GetBattleFrontierTrainerName(LoopVar))
@@ -64,7 +64,7 @@ Public Class BattleFrontierEditor
 
         ComboBox1.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfTrainerClasses", "")) + 1 = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfTrainerClasses", "")) + 1 = True
 
 
             ComboBox1.Items.Add(GetTrainerClass(LoopVar))
@@ -78,17 +78,17 @@ Public Class BattleFrontierEditor
         ListBox2.Items.Clear()
         ComboBox8.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfBattleFrontierPokemon", "")) = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfBattleFrontierPokemon", "")) = True
 
-            ListBox2.Items.Add(LoopVar & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", "")), System.Globalization.NumberStyles.HexNumber)) + (LoopVar * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
-            ComboBox8.Items.Add(LoopVar & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", "")), System.Globalization.NumberStyles.HexNumber)) + (LoopVar * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
+            ListBox2.Items.Add(LoopVar & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", "")), System.Globalization.NumberStyles.HexNumber)) + (LoopVar * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
+            ComboBox8.Items.Add(LoopVar & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", "")), System.Globalization.NumberStyles.HexNumber)) + (LoopVar * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
 
             LoopVar = LoopVar + 1
         End While
 
         LoopVar = 0
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfPokemon", "")) - 1 = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
 
 
             LoopVar = LoopVar + 1
@@ -104,7 +104,7 @@ Public Class BattleFrontierEditor
         ComboBox6.Items.Clear()
         ComboBox7.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfAttacks", "")) + 1 = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1 = True
 
 
             ComboBox4.Items.Add(GetAttackName(LoopVar))
@@ -122,10 +122,10 @@ Public Class BattleFrontierEditor
         ComboBox3.Items.Clear()
 
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfBattlefrontierHeldItems", "")) + 1 = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfBattlefrontierHeldItems", "")) + 1 = True
 
 
-            ComboBox3.Items.Add(GetItemName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierHeldItems", "")), System.Globalization.NumberStyles.HexNumber)) + (LoopVar * 2)), 2))), System.Globalization.NumberStyles.HexNumber)))
+            ComboBox3.Items.Add(GetItemName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierHeldItems", "")), System.Globalization.NumberStyles.HexNumber)) + (LoopVar * 2)), 2))), System.Globalization.NumberStyles.HexNumber)))
 
 
 
@@ -137,15 +137,15 @@ Public Class BattleFrontierEditor
     End Sub
     Private Sub ListBox2_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox2.SelectedIndexChanged
         'species
-        ComboBox2.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16)), 2))), System.Globalization.NumberStyles.HexNumber) - 1
+        ComboBox2.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16)), 2))), System.Globalization.NumberStyles.HexNumber) - 1
 
         'attacks
-        ComboBox4.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 2), 2))), System.Globalization.NumberStyles.HexNumber) - 1
-        ComboBox5.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 4), 2))), System.Globalization.NumberStyles.HexNumber) - 1
-        ComboBox6.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 6), 2))), System.Globalization.NumberStyles.HexNumber) - 1
-        ComboBox7.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 8), 2))), System.Globalization.NumberStyles.HexNumber) - 1
+        ComboBox4.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 2), 2))), System.Globalization.NumberStyles.HexNumber) - 1
+        ComboBox5.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 4), 2))), System.Globalization.NumberStyles.HexNumber) - 1
+        ComboBox6.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 6), 2))), System.Globalization.NumberStyles.HexNumber) - 1
+        ComboBox7.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 8), 2))), System.Globalization.NumberStyles.HexNumber) - 1
         'items
-        ComboBox3.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 10), 1))), System.Globalization.NumberStyles.HexNumber)
+        ComboBox3.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 10), 1))), System.Globalization.NumberStyles.HexNumber)
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
@@ -159,7 +159,7 @@ Public Class BattleFrontierEditor
 
         ListBox1.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfBattleFrontierTrainers", "")) = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfBattleFrontierTrainers", "")) = True
 
 
             ListBox1.Items.Add(GetBattleFrontierTrainerName(LoopVar))
@@ -174,9 +174,9 @@ Public Class BattleFrontierEditor
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        WriteHEX(LoadedROM, Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), ReverseHEX(Hex((Int32.Parse((TextBox2.Text), System.Globalization.NumberStyles.HexNumber)) + &H8000000)))
+        WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), ReverseHEX(Hex((Int32.Parse((TextBox2.Text), System.Globalization.NumberStyles.HexNumber)) + &H8000000)))
 
-        TextBox2.Text = Hex(((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))), System.Globalization.NumberStyles.HexNumber))) - &H8000000)
+        TextBox2.Text = Hex(((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))), System.Globalization.NumberStyles.HexNumber))) - &H8000000)
 
         ListBox3.Items.Clear()
 
@@ -188,7 +188,7 @@ Public Class BattleFrontierEditor
 
         While curbytes <> "FFFF"
 
-            ListBox3.Items.Add((Val("&H" & curbytes)) & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber) * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
+            ListBox3.Items.Add((Val("&H" & curbytes)) & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber) * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
 
             counter = counter + 1
 
@@ -200,7 +200,7 @@ Public Class BattleFrontierEditor
     End Sub
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
-        ListBox2.SelectedIndex = Val("&H" & (ReverseHEX(ReadHEX(LoadedROM, ("&H" & Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)) + (ListBox3.SelectedIndex * 2), 2))))
+        ListBox2.SelectedIndex = Val("&H" & (ReverseHEX(ReadHEX(LoadedROM, ("&H" & Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)) + (ListBox3.SelectedIndex * 2), 2))))
     End Sub
 
     Private Sub ComboBox2_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox2.SelectedIndexChanged
@@ -208,8 +208,8 @@ Public Class BattleFrontierEditor
     End Sub
 
     Private Sub ListBox3_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox3.SelectedIndexChanged
-        GetAndDrawAnimationPokemonPic(PictureBox2, (Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + ((Val("&H" & (ReverseHEX(ReadHEX(LoadedROM, ("&H" & Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)) + (ListBox3.SelectedIndex * 2), 2))))) * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
-        ComboBox8.SelectedIndex = Val("&H" & (ReverseHEX(ReadHEX(LoadedROM, ("&H" & Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)) + (ListBox3.SelectedIndex * 2), 2))))
+        GetAndDrawAnimationPokemonPic(PictureBox2, (Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + ((Val("&H" & (ReverseHEX(ReadHEX(LoadedROM, ("&H" & Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)) + (ListBox3.SelectedIndex * 2), 2))))) * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
+        ComboBox8.SelectedIndex = Val("&H" & (ReverseHEX(ReadHEX(LoadedROM, ("&H" & Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)) + (ListBox3.SelectedIndex * 2), 2))))
     End Sub
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
@@ -217,8 +217,8 @@ Public Class BattleFrontierEditor
 
         indexmemory = ListBox3.SelectedIndex
 
-        WriteHEX(LoadedROM, ("&H" & Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)) + (ListBox3.SelectedIndex * 2), ReverseHEX(VB.Right("0000" & Hex(ComboBox8.SelectedIndex), 4)))
-        TextBox2.Text = Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)
+        WriteHEX(LoadedROM, ("&H" & Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)) + (ListBox3.SelectedIndex * 2), ReverseHEX(VB.Right("0000" & Hex(ComboBox8.SelectedIndex), 4)))
+        TextBox2.Text = Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)
         ListBox3.Items.Clear()
 
         Dim curbytes As String
@@ -229,7 +229,7 @@ Public Class BattleFrontierEditor
 
         While curbytes <> "FFFF"
 
-            ListBox3.Items.Add((Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber)) & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber) * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
+            ListBox3.Items.Add((Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber)) & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber) * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
 
             counter = counter + 1
 
@@ -251,30 +251,30 @@ Public Class BattleFrontierEditor
         indexmemory2 = ComboBox8.SelectedIndex
         indexmemory3 = ListBox3.SelectedIndex
 
-        WriteHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16)), ReverseHEX(VB.Right("0000" & Hex(ComboBox2.SelectedIndex + 1), 4)))
+        WriteHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16)), ReverseHEX(VB.Right("0000" & Hex(ComboBox2.SelectedIndex + 1), 4)))
 
-        WriteHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 10), Hex(ComboBox3.SelectedIndex))
+        WriteHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 10), Hex(ComboBox3.SelectedIndex))
 
-        WriteHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 2), ReverseHEX(VB.Right("0000" & Hex(ComboBox4.SelectedIndex + 1), 4)))
-        WriteHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 4), ReverseHEX(VB.Right("0000" & Hex(ComboBox5.SelectedIndex + 1), 4)))
-        WriteHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 6), ReverseHEX(VB.Right("0000" & Hex(ComboBox6.SelectedIndex + 1), 4)))
-        WriteHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 8), ReverseHEX(VB.Right("0000" & Hex(ComboBox7.SelectedIndex + 1), 4)))
+        WriteHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 2), ReverseHEX(VB.Right("0000" & Hex(ComboBox4.SelectedIndex + 1), 4)))
+        WriteHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 4), ReverseHEX(VB.Right("0000" & Hex(ComboBox5.SelectedIndex + 1), 4)))
+        WriteHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 6), ReverseHEX(VB.Right("0000" & Hex(ComboBox6.SelectedIndex + 1), 4)))
+        WriteHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 8), ReverseHEX(VB.Right("0000" & Hex(ComboBox7.SelectedIndex + 1), 4)))
 
         'Everything past here loads stuff
-        LoopVar = 0
+        loopvar = 0
 
         ListBox2.Items.Clear()
         ComboBox8.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfBattleFrontierPokemon", "")) = True
+        While loopvar < (GetString(GetINIFileLocation(), header, "NumberOfBattleFrontierPokemon", "")) = True
 
-            ListBox2.Items.Add(loopvar & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (loopvar * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
-            ComboBox8.Items.Add(loopvar & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (loopvar * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
+            ListBox2.Items.Add(loopvar & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (loopvar * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
+            ComboBox8.Items.Add(loopvar & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (loopvar * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
 
-            LoopVar = LoopVar + 1
+            loopvar = LoopVar + 1
         End While
 
-        TextBox2.Text = Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)
+        TextBox2.Text = Hex((("&H" & (ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber) + ((52 * ListBox1.SelectedIndex) + 48), 4))))) - &H8000000)
 
         ListBox3.Items.Clear()
 
@@ -286,7 +286,7 @@ Public Class BattleFrontierEditor
 
         While curbytes <> "FFFF"
 
-            ListBox3.Items.Add((Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber)) & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(AppPath & "ini\roms.ini", header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber) * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
+            ListBox3.Items.Add((Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber)) & " - " & GetPokemonName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber) * 16)), 2))), System.Globalization.NumberStyles.HexNumber)))
 
             counter = counter + 1
 

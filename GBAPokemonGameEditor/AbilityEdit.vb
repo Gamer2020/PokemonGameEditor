@@ -12,7 +12,7 @@
 
         ListBox1.Items.Clear()
 
-        While loopvar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfAbilities", "")) = True
+        While loopvar < (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) = True
 
             ListBox1.Items.Add(GetAbilityName(loopvar))
 
@@ -29,7 +29,7 @@
     Private Sub ListBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox1.SelectedIndexChanged
         AbilityIndexTextBox.Text = ListBox1.SelectedIndex
 
-        AbilityDesc = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "AbilityDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber)
+        AbilityDesc = Int32.Parse((GetString(GetINIFileLocation(), header, "AbilityDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber)
 
         TextBox1.Text = GetAbilityName(ListBox1.SelectedIndex)
 
@@ -60,7 +60,7 @@
 
         ListBox1.Items.Clear()
 
-        While loopvar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfAbilities", "")) = True
+        While loopvar < (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) = True
 
             ListBox1.Items.Add(GetAbilityName(loopvar))
 

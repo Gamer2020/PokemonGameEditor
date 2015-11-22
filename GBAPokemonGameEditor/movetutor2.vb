@@ -85,14 +85,14 @@ Public Class movetutor2
             ComboBox15.Items.Clear()
             ComboBox16.Items.Clear()
 
-            Offset = Int32.Parse((GetString("ini\roms.ini", header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
+            Offset = Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
 
 
             Dim loopything As String = 0
 
             Dim curattack As String
 
-            While loopything < (Val(GetString("ini\roms.ini", header, "NumberOfAttacks", "")) + 1)
+            While loopything < (Val(GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1)
 
 
                 curattack = GetAttackName(loopything)

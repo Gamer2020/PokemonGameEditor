@@ -20,7 +20,7 @@
 
         ComboBox3.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfAttacks", "")) + 1 = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1 = True
 
 
             ComboBox3.Items.Add(GetAttackName(LoopVar))
@@ -38,9 +38,9 @@
     Private Sub ComboBox3_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox3.SelectedIndexChanged
         Dim blah As Integer
         Dim binarythebitch As String
-        AttackDesc = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "AttackDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber)
-        AttackData = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "AttackData", "")), System.Globalization.NumberStyles.HexNumber)
-        AttackAni = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "AttackAnimationTable", "")), System.Globalization.NumberStyles.HexNumber)
+        AttackDesc = Int32.Parse((GetString(GetINIFileLocation(), header, "AttackDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber)
+        AttackData = Int32.Parse((GetString(GetINIFileLocation(), header, "AttackData", "")), System.Globalization.NumberStyles.HexNumber)
+        AttackAni = Int32.Parse((GetString(GetINIFileLocation(), header, "AttackAnimationTable", "")), System.Globalization.NumberStyles.HexNumber)
 
         AnimationPointer.Text = Hex(Val("&H" & ReverseHEX(ReadHEX(LoadedROM, (AttackAni) + (ComboBox3.SelectedIndex * 4) + 4, 4))) - &H8000000)
 
@@ -151,8 +151,8 @@
             TextBox12.Enabled = True
             TextBox13.Enabled = True
             Button5.Enabled = True
-            ContestMoveData = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "ContestMoveData", "")), System.Globalization.NumberStyles.HexNumber)
-            ContestMoveEffectData = Int32.Parse((GetString(AppPath & "ini\roms.ini", header, "ContestMoveEffectData", "")), System.Globalization.NumberStyles.HexNumber)
+            ContestMoveData = Int32.Parse((GetString(GetINIFileLocation(), header, "ContestMoveData", "")), System.Globalization.NumberStyles.HexNumber)
+            ContestMoveEffectData = Int32.Parse((GetString(GetINIFileLocation(), header, "ContestMoveEffectData", "")), System.Globalization.NumberStyles.HexNumber)
 
 
             ComboBox4.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ((ContestMoveData) + 8 + 0) + (ComboBox3.SelectedIndex * 8), 1)))), System.Globalization.NumberStyles.HexNumber)
@@ -202,7 +202,7 @@
 
         ComboBox3.Items.Clear()
 
-        While LoopVar < (GetString(AppPath & "ini\roms.ini", header, "NumberOfAttacks", "")) + 1 = True
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1 = True
 
 
             ComboBox3.Items.Add(GetAttackName(LoopVar))
@@ -288,6 +288,7 @@
         End If
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+
         WriteHEX(LoadedROM, (AttackDesc) + (0) + (ComboBox3.SelectedIndex * 4), ReverseHEX(Hex(Int32.Parse(((TextBox6.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
         FileNum = FreeFile()
         FileOpen(FileNum, LoadedROM, OpenMode.Binary)
