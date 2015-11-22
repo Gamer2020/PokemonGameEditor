@@ -21,7 +21,7 @@ Ability Editor
 
 Move Tutor Editor
 
-Linux Support - Runs with mono. *Please note that I currently can't test under Linux so some things may have become broken since PGE was ableto run on Linux.*
+Linux Support - Runs with mono. *Please note that I currently can't test under Linux so some things may have become broken since PGE was able to run on Linux.*
 
 Multiple Windows open at once.
 
@@ -45,14 +45,14 @@ Item editor
 
 TM/HM Editor
 
+Ability to use a seperate ini
+
 Planned Features
 =================
 
 Ability to add more Pokemon.
 
 Ability to add more attacks.
-
-Implement a way to tag ROMs without actually writing to the ROM in order to use separate inis. Tag should only be applied if needed. Some way of using seperate inis.
 
 Ability to add more items.
 
