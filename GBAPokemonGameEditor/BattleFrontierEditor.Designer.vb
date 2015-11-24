@@ -57,6 +57,11 @@ Partial Class BattleFrontierEditor
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.ComboBox9 = New System.Windows.Forms.ComboBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -76,7 +81,7 @@ Partial Class BattleFrontierEditor
         Me.TabControl1.Location = New System.Drawing.Point(7, 7)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(564, 450)
+        Me.TabControl1.Size = New System.Drawing.Size(564, 506)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -88,13 +93,17 @@ Partial Class BattleFrontierEditor
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(556, 424)
+        Me.TabPage1.Size = New System.Drawing.Size(556, 480)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Battle Frontier"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.Label8)
+        Me.GroupBox4.Controls.Add(Me.ComboBox9)
+        Me.GroupBox4.Controls.Add(Me.CheckedListBox1)
+        Me.GroupBox4.Controls.Add(Me.Label7)
         Me.GroupBox4.Controls.Add(Me.Button5)
         Me.GroupBox4.Controls.Add(Me.Label6)
         Me.GroupBox4.Controls.Add(Me.PictureBox1)
@@ -109,14 +118,14 @@ Partial Class BattleFrontierEditor
         Me.GroupBox4.Controls.Add(Me.ListBox2)
         Me.GroupBox4.Location = New System.Drawing.Point(12, 232)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(526, 186)
+        Me.GroupBox4.Size = New System.Drawing.Size(526, 241)
         Me.GroupBox4.TabIndex = 5
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Pokemon Data"
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(396, 153)
+        Me.Button5.Location = New System.Drawing.Point(396, 189)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(75, 23)
         Me.Button5.TabIndex = 13
@@ -134,7 +143,7 @@ Partial Class BattleFrontierEditor
         '
         'PictureBox1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(242, 51)
+        Me.PictureBox1.Location = New System.Drawing.Point(108, 148)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(64, 64)
         Me.PictureBox1.TabIndex = 11
@@ -144,7 +153,7 @@ Partial Class BattleFrontierEditor
         '
         Me.ComboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox7.FormattingEnabled = True
-        Me.ComboBox7.Location = New System.Drawing.Point(350, 126)
+        Me.ComboBox7.Location = New System.Drawing.Point(350, 120)
         Me.ComboBox7.Name = "ComboBox7"
         Me.ComboBox7.Size = New System.Drawing.Size(121, 21)
         Me.ComboBox7.TabIndex = 10
@@ -153,7 +162,7 @@ Partial Class BattleFrontierEditor
         '
         Me.ComboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox6.FormattingEnabled = True
-        Me.ComboBox6.Location = New System.Drawing.Point(350, 99)
+        Me.ComboBox6.Location = New System.Drawing.Point(350, 93)
         Me.ComboBox6.Name = "ComboBox6"
         Me.ComboBox6.Size = New System.Drawing.Size(121, 21)
         Me.ComboBox6.TabIndex = 9
@@ -162,7 +171,7 @@ Partial Class BattleFrontierEditor
         '
         Me.ComboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox5.FormattingEnabled = True
-        Me.ComboBox5.Location = New System.Drawing.Point(350, 72)
+        Me.ComboBox5.Location = New System.Drawing.Point(350, 66)
         Me.ComboBox5.Name = "ComboBox5"
         Me.ComboBox5.Size = New System.Drawing.Size(121, 21)
         Me.ComboBox5.TabIndex = 8
@@ -180,7 +189,7 @@ Partial Class BattleFrontierEditor
         '
         Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(209, 121)
+        Me.ComboBox3.Location = New System.Drawing.Point(209, 39)
         Me.ComboBox3.Name = "ComboBox3"
         Me.ComboBox3.Size = New System.Drawing.Size(121, 21)
         Me.ComboBox3.TabIndex = 6
@@ -189,7 +198,7 @@ Partial Class BattleFrontierEditor
         '
         Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(209, 26)
+        Me.ComboBox2.Location = New System.Drawing.Point(75, 123)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(121, 21)
         Me.ComboBox2.TabIndex = 5
@@ -197,7 +206,7 @@ Partial Class BattleFrontierEditor
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(155, 121)
+        Me.Label5.Location = New System.Drawing.Point(155, 39)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(55, 13)
         Me.Label5.TabIndex = 4
@@ -206,7 +215,7 @@ Partial Class BattleFrontierEditor
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(155, 29)
+        Me.Label4.Location = New System.Drawing.Point(21, 126)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(48, 13)
         Me.Label4.TabIndex = 3
@@ -307,6 +316,7 @@ Partial Class BattleFrontierEditor
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.TextBox3)
         Me.GroupBox2.Controls.Add(Me.Button1)
         Me.GroupBox2.Controls.Add(Me.ComboBox1)
         Me.GroupBox2.Controls.Add(Me.Label2)
@@ -331,12 +341,12 @@ Partial Class BattleFrontierEditor
         'ComboBox1
         '
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.Enabled = False
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(66, 45)
+        Me.ComboBox1.Location = New System.Drawing.Point(32, 128)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(100, 21)
         Me.ComboBox1.TabIndex = 5
+        Me.ComboBox1.Visible = False
         '
         'Label2
         '
@@ -386,7 +396,7 @@ Partial Class BattleFrontierEditor
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(707, 424)
+        Me.TabPage2.Size = New System.Drawing.Size(556, 424)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Slateport Battle Tent"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -395,7 +405,7 @@ Partial Class BattleFrontierEditor
         '
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(707, 424)
+        Me.TabPage3.Size = New System.Drawing.Size(556, 424)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Verdanturf Battle Tent"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -404,16 +414,59 @@ Partial Class BattleFrontierEditor
         '
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(707, 424)
+        Me.TabPage4.Size = New System.Drawing.Size(556, 424)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Fallarbor Battle Tent"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(66, 48)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox3.TabIndex = 7
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(206, 69)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(61, 13)
+        Me.Label7.TabIndex = 14
+        Me.Label7.Text = "EV Spread:"
+        '
+        'CheckedListBox1
+        '
+        Me.CheckedListBox1.FormattingEnabled = True
+        Me.CheckedListBox1.Items.AddRange(New Object() {"HP", "Attack", "Defense", "Speed", "Special Attack", "Special Defense"})
+        Me.CheckedListBox1.Location = New System.Drawing.Point(209, 93)
+        Me.CheckedListBox1.Name = "CheckedListBox1"
+        Me.CheckedListBox1.Size = New System.Drawing.Size(121, 94)
+        Me.CheckedListBox1.TabIndex = 15
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(347, 148)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(42, 13)
+        Me.Label8.TabIndex = 17
+        Me.Label8.Text = "Nature:"
+        '
+        'ComboBox9
+        '
+        Me.ComboBox9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox9.FormattingEnabled = True
+        Me.ComboBox9.Location = New System.Drawing.Point(350, 164)
+        Me.ComboBox9.Name = "ComboBox9"
+        Me.ComboBox9.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox9.TabIndex = 16
         '
         'BattleFrontierEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(579, 469)
+        Me.ClientSize = New System.Drawing.Size(579, 514)
         Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
@@ -469,4 +522,9 @@ Partial Class BattleFrontierEditor
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents CheckedListBox1 As CheckedListBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents ComboBox9 As ComboBox
 End Class
