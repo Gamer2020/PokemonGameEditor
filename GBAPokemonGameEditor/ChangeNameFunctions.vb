@@ -163,4 +163,85 @@ Module ChangeNameFunctions
             End
         End If
     End Function
+
+    Public Function ChangeSlateportBattleTentName(ByVal Index As Integer, ByVal NewName As String)
+        Dim offvar As Long
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "SlateportBattleTentTrainers", "")), System.Globalization.NumberStyles.HexNumber)
+        If header2 = "BPE" Then
+            If header3 = "J" Then
+
+            Else
+
+                FileNum = FreeFile()
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+                Dim PokeName As String = "xxxxxxxx"
+                Dim filler As Byte = "&HFF"
+                PokeName = NameAsc2Sapp(NewName)
+                FilePut(FileNum, PokeName, offvar + 1 + 4 + (Index * 52))
+                FilePut(FileNum, filler, offvar + 1 + 4 + (Index * 52) + Len(NewName))
+
+
+            End If
+            FileClose(FileNum)
+            ChangeSlateportBattleTentName = NewName
+        Else
+            MsgBox("What did you do? Contact Gamer2020")
+            End
+        End If
+    End Function
+
+    Public Function ChangeVerdanturfBattleTentName(ByVal Index As Integer, ByVal NewName As String)
+        Dim offvar As Long
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "VerdanturfBattleTentTrainers", "")), System.Globalization.NumberStyles.HexNumber)
+        If header2 = "BPE" Then
+            If header3 = "J" Then
+
+            Else
+
+                FileNum = FreeFile()
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+                Dim PokeName As String = "xxxxxxxx"
+                Dim filler As Byte = "&HFF"
+                PokeName = NameAsc2Sapp(NewName)
+                FilePut(FileNum, PokeName, offvar + 1 + 4 + (Index * 52))
+                FilePut(FileNum, filler, offvar + 1 + 4 + (Index * 52) + Len(NewName))
+
+
+            End If
+            FileClose(FileNum)
+            ChangeVerdanturfBattleTentName = NewName
+        Else
+            MsgBox("What did you do? Contact Gamer2020")
+            End
+        End If
+    End Function
+
+    Public Function ChangeFallarborBattleTentName(ByVal Index As Integer, ByVal NewName As String)
+        Dim offvar As Long
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "FallarborBattleTentTrainers", "")), System.Globalization.NumberStyles.HexNumber)
+        If header2 = "BPE" Then
+            If header3 = "J" Then
+
+            Else
+
+                FileNum = FreeFile()
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+                Dim PokeName As String = "xxxxxxxx"
+                Dim filler As Byte = "&HFF"
+                PokeName = NameAsc2Sapp(NewName)
+                FilePut(FileNum, PokeName, offvar + 1 + 4 + (Index * 52))
+                FilePut(FileNum, filler, offvar + 1 + 4 + (Index * 52) + Len(NewName))
+
+
+            End If
+            FileClose(FileNum)
+            ChangeFallarborBattleTentName = NewName
+        Else
+            MsgBox("What did you do? Contact Gamer2020")
+            End
+        End If
+    End Function
 End Module

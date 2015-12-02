@@ -172,6 +172,105 @@ Module GetNameFunctions
         GetBattleFrontierTrainerName = stringvar
     End Function
 
+    Public Function GetSlateportBattleTentTrainerName(ByVal Index As Integer) As String
+        Dim offvar As Integer
+        Dim stringvar As String
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "SlateportBattleTentTrainers", "")), System.Globalization.NumberStyles.HexNumber)
+
+        If header2 = "BPE" Then
+            If header3 = "J" Then
+            Else
+                offvar = offvar + 4 + (Index * 52)
+                FileNum = FreeFile()
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+                Dim LabelName As String = "xxxxxxxx"
+
+
+
+                FileGet(FileNum, LabelName, offvar + 1)
+                stringvar = Sapp2Asc(LabelName, False)
+                While InStr(1, stringvar, "\x") : stringvar = LSet(stringvar, Len(stringvar) - 1) : End While
+                stringvar = LSet(stringvar, Len(stringvar) - 1)
+
+            End If
+
+            FileClose(FileNum)
+        Else
+            MsgBox("What did you do?")
+            End
+        End If
+
+
+
+        GetSlateportBattleTentTrainerName = stringvar
+    End Function
+
+    Public Function GetVerdanturfBattleTentTrainerName(ByVal Index As Integer) As String
+        Dim offvar As Integer
+        Dim stringvar As String
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "VerdanturfBattleTentTrainers", "")), System.Globalization.NumberStyles.HexNumber)
+
+        If header2 = "BPE" Then
+            If header3 = "J" Then
+            Else
+                offvar = offvar + 4 + (Index * 52)
+                FileNum = FreeFile()
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+                Dim LabelName As String = "xxxxxxxx"
+
+
+
+                FileGet(FileNum, LabelName, offvar + 1)
+                stringvar = Sapp2Asc(LabelName, False)
+                While InStr(1, stringvar, "\x") : stringvar = LSet(stringvar, Len(stringvar) - 1) : End While
+                stringvar = LSet(stringvar, Len(stringvar) - 1)
+
+            End If
+
+            FileClose(FileNum)
+        Else
+            MsgBox("What did you do?")
+            End
+        End If
+
+
+
+        GetVerdanturfBattleTentTrainerName = stringvar
+    End Function
+
+    Public Function GetFallarborBattleTentTrainerName(ByVal Index As Integer) As String
+        Dim offvar As Integer
+        Dim stringvar As String
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "FallarborBattleTentTrainers", "")), System.Globalization.NumberStyles.HexNumber)
+
+        If header2 = "BPE" Then
+            If header3 = "J" Then
+            Else
+                offvar = offvar + 4 + (Index * 52)
+                FileNum = FreeFile()
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+                Dim LabelName As String = "xxxxxxxx"
+
+
+
+                FileGet(FileNum, LabelName, offvar + 1)
+                stringvar = Sapp2Asc(LabelName, False)
+                While InStr(1, stringvar, "\x") : stringvar = LSet(stringvar, Len(stringvar) - 1) : End While
+                stringvar = LSet(stringvar, Len(stringvar) - 1)
+
+            End If
+
+            FileClose(FileNum)
+        Else
+            MsgBox("What did you do?")
+            End
+        End If
+
+
+
+        GetFallarborBattleTentTrainerName = stringvar
+    End Function
+
     Public Function GetTrainerClass(ByVal Index As Integer)
         Dim offvar As Integer
 
