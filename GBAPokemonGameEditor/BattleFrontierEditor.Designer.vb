@@ -167,6 +167,11 @@ Partial Class BattleFrontierEditor
         Me.TextBox12 = New System.Windows.Forms.TextBox()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.ListBox12 = New System.Windows.Forms.ListBox()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.ListBox13 = New System.Windows.Forms.ListBox()
+        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
+        Me.ComboBox37 = New System.Windows.Forms.ComboBox()
+        Me.Button21 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -196,6 +201,8 @@ Partial Class BattleFrontierEditor
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox15.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
+        Me.TabPage5.SuspendLayout()
+        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -204,6 +211,7 @@ Partial Class BattleFrontierEditor
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
+        Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Location = New System.Drawing.Point(7, 7)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -1608,6 +1616,53 @@ Partial Class BattleFrontierEditor
         Me.ListBox12.Size = New System.Drawing.Size(97, 134)
         Me.ListBox12.TabIndex = 0
         '
+        'TabPage5
+        '
+        Me.TabPage5.Controls.Add(Me.Button21)
+        Me.TabPage5.Controls.Add(Me.PictureBox9)
+        Me.TabPage5.Controls.Add(Me.ComboBox37)
+        Me.TabPage5.Controls.Add(Me.ListBox13)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Size = New System.Drawing.Size(556, 480)
+        Me.TabPage5.TabIndex = 4
+        Me.TabPage5.Text = "Ban List"
+        Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'ListBox13
+        '
+        Me.ListBox13.FormattingEnabled = True
+        Me.ListBox13.Location = New System.Drawing.Point(16, 17)
+        Me.ListBox13.Name = "ListBox13"
+        Me.ListBox13.Size = New System.Drawing.Size(121, 173)
+        Me.ListBox13.TabIndex = 0
+        '
+        'PictureBox9
+        '
+        Me.PictureBox9.Location = New System.Drawing.Point(185, 44)
+        Me.PictureBox9.Name = "PictureBox9"
+        Me.PictureBox9.Size = New System.Drawing.Size(64, 64)
+        Me.PictureBox9.TabIndex = 13
+        Me.PictureBox9.TabStop = False
+        '
+        'ComboBox37
+        '
+        Me.ComboBox37.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox37.FormattingEnabled = True
+        Me.ComboBox37.Location = New System.Drawing.Point(152, 17)
+        Me.ComboBox37.Name = "ComboBox37"
+        Me.ComboBox37.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox37.TabIndex = 12
+        '
+        'Button21
+        '
+        Me.Button21.Location = New System.Drawing.Point(316, 17)
+        Me.Button21.Name = "Button21"
+        Me.Button21.Size = New System.Drawing.Size(75, 23)
+        Me.Button21.TabIndex = 14
+        Me.Button21.Text = "Save"
+        Me.Button21.UseVisualStyleBackColor = True
+        '
         'BattleFrontierEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1660,6 +1715,8 @@ Partial Class BattleFrontierEditor
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox15.PerformLayout()
         Me.GroupBox16.ResumeLayout(False)
+        Me.TabPage5.ResumeLayout(False)
+        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1808,4 +1865,9 @@ Partial Class BattleFrontierEditor
     Friend WithEvents TextBox12 As TextBox
     Friend WithEvents GroupBox16 As GroupBox
     Friend WithEvents ListBox12 As ListBox
+    Friend WithEvents TabPage5 As TabPage
+    Friend WithEvents PictureBox9 As PictureBox
+    Friend WithEvents ComboBox37 As ComboBox
+    Friend WithEvents ListBox13 As ListBox
+    Friend WithEvents Button21 As Button
 End Class

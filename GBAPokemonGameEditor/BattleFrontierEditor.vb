@@ -195,6 +195,7 @@ Public Class BattleFrontierEditor
         ComboBox16.Items.Clear()
         ComboBox25.Items.Clear()
         ComboBox34.Items.Clear()
+        ComboBox37.Items.Clear()
 
         While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
 
@@ -205,6 +206,7 @@ Public Class BattleFrontierEditor
             ComboBox16.Items.Add(GetPokemonName(LoopVar))
             ComboBox25.Items.Add(GetPokemonName(LoopVar))
             ComboBox34.Items.Add(GetPokemonName(LoopVar))
+            ComboBox37.Items.Add(GetPokemonName(LoopVar))
 
         End While
 
@@ -278,6 +280,25 @@ Public Class BattleFrontierEditor
             LoopVar = LoopVar + 1
 
         End While
+
+        Dim curbytes As String
+        Dim counter As Integer = 0
+
+        ListBox13.Items.Clear()
+
+        curbytes = ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierBanList", "")), System.Globalization.NumberStyles.HexNumber), 2))
+
+        While curbytes <> "FFFF"
+
+            ListBox13.Items.Add(GetPokemonName(Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber)))
+
+            counter = counter + 1
+
+            curbytes = ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierBanList", "")), System.Globalization.NumberStyles.HexNumber) + (counter * 2), 2))
+
+        End While
+
+        ListBox13.SelectedIndex = 0
 
         'Tab 1
         ListBox1.SelectedIndex = 0
@@ -1604,5 +1625,42 @@ Public Class BattleFrontierEditor
         ListBox10.SelectedIndex = indexmemory
         ComboBox35.SelectedIndex = indexmemory2
         ListBox11.SelectedIndex = indexmemory3
+    End Sub
+
+    Private Sub ComboBox37_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox37.SelectedIndexChanged
+        GetAndDrawAnimationPokemonPic(PictureBox9, ComboBox37.SelectedIndex + 1)
+    End Sub
+
+    Private Sub ListBox13_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox13.SelectedIndexChanged
+        ComboBox37.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierBanList", "")), System.Globalization.NumberStyles.HexNumber) + (ListBox13.SelectedIndex * 2), 2)), System.Globalization.NumberStyles.HexNumber) - 1
+    End Sub
+
+    Private Sub Button21_Click(sender As Object, e As EventArgs) Handles Button21.Click
+
+        Dim indexmem As Integer
+
+
+        Dim curbytes As String
+        Dim counter As Integer = 0
+
+        indexmem = ListBox13.SelectedIndex
+
+        WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierBanList", "")), System.Globalization.NumberStyles.HexNumber) + (ListBox13.SelectedIndex * 2), ReverseHEX(VB.Right("0000" & Hex(ComboBox37.SelectedIndex + 1), 4)))
+
+        ListBox13.Items.Clear()
+
+        curbytes = ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierBanList", "")), System.Globalization.NumberStyles.HexNumber), 2))
+
+        While curbytes <> "FFFF"
+
+            ListBox13.Items.Add(GetPokemonName(Int32.Parse((curbytes), System.Globalization.NumberStyles.HexNumber)))
+
+            counter = counter + 1
+
+            curbytes = ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierBanList", "")), System.Globalization.NumberStyles.HexNumber) + (counter * 2), 2))
+
+        End While
+
+        ListBox13.SelectedIndex = indexmem
     End Sub
 End Class
