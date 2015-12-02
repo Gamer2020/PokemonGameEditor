@@ -5,7 +5,17 @@ Pokemon Game Editor, commonly know as PGE, is an all in one tool started in 2010
 Screenshots
 =================
 
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/1.png)
 
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/2.png)
+
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/3.png)
+
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/4.png)
+
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/5.png)
+
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/6.png)
 
 Features
 =================
@@ -130,3 +140,9 @@ Agastya
 Downloads
 ================================
 https://github.com/Gamer2020/PokemonGameEditor/releases
+
+Beta builds
+================================
+These are builds that are not recommended for regular use because they contain features that are still in development. These builds are sort of previews of what is currently being worked on.
+
+https://github.com/Gamer2020/PokemonGameEditor/tree/master/GBAPokemonGameEditor/bin/Debug
