@@ -1663,8 +1663,8 @@ Public Class Pokemonedit
         Dim binarythebitch As String
         Dim at As String
         Dim lvl As String
-        'Dim loopme As Integer
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0") = 0 Then
+
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
 
             AttackTable = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
 
@@ -1701,7 +1701,7 @@ Public Class Pokemonedit
         End If
 
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0") = 1 Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
             AttackTable = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
 
             LvlUpAttPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
@@ -1729,7 +1729,7 @@ Public Class Pokemonedit
         Dim at As String
         Dim lvl As String
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0") = 0 Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
             i = PKMNames.SelectedIndex
             WriteHEX(LoadedROM, (AttackTable) + (4) + (i * 4), ReverseHEX(Hex(Int32.Parse(((LvlUpAttPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
             lvlupattacks.Items.Clear()
@@ -1762,7 +1762,7 @@ Public Class Pokemonedit
             End While
         End If
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0") = 1 Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
             i = PKMNames.SelectedIndex
             WriteHEX(LoadedROM, (AttackTable) + (4) + (i * 4), ReverseHEX(Hex(Val("&H" & (LvlUpAttPointer.Text)) + &H8000000)))
             lvlupattacks.Items.Clear()
@@ -1961,7 +1961,7 @@ Public Class Pokemonedit
         Dim pointer As String
         'Dim loopme As Integer
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0") = 0 Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
 
             pointer = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
@@ -1987,7 +1987,7 @@ Public Class Pokemonedit
             AtLvl.Text = lvl
             NewAt.SelectedIndex = at
         End If
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0") = 1 Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
 
             pointer = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
@@ -2015,7 +2015,7 @@ Public Class Pokemonedit
         Dim temp As Integer
         'Dim loopme As Integer
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0") = 0 Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
             holder = lvlupattacks.SelectedIndex
             pointer = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
@@ -2046,7 +2046,7 @@ Public Class Pokemonedit
         End If
 
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0") = 1 Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
             holder = lvlupattacks.SelectedIndex
             pointer = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 

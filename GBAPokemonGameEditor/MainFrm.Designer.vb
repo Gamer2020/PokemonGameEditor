@@ -78,6 +78,7 @@ Partial Class MainFrm
         Me.Button40 = New System.Windows.Forms.Button()
         Me.Button41 = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
@@ -85,6 +86,7 @@ Partial Class MainFrm
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -148,10 +150,12 @@ Partial Class MainFrm
         '
         'Jambo51MoveTableHackToolStripMenuItem
         '
+        Me.Jambo51MoveTableHackToolStripMenuItem.Enabled = False
         Me.Jambo51MoveTableHackToolStripMenuItem.Name = "Jambo51MoveTableHackToolStripMenuItem"
         Me.Jambo51MoveTableHackToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
         Me.Jambo51MoveTableHackToolStripMenuItem.Text = "Use Jambo51's move table hack (If you don't know what it is don't use it. Your RO" &
     "M will break! I warned you...)"
+        Me.Jambo51MoveTableHackToolStripMenuItem.Visible = False
         '
         'UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem
         '
@@ -596,6 +600,7 @@ Partial Class MainFrm
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Button1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
@@ -603,6 +608,16 @@ Partial Class MainFrm
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Patchers and Expanders"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Enabled = False
+        Me.Button1.Location = New System.Drawing.Point(3, 6)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(81, 55)
+        Me.Button1.TabIndex = 15
+        Me.Button1.Text = "Attack Expander"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -646,6 +661,7 @@ Partial Class MainFrm
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -709,5 +725,5 @@ Partial Class MainFrm
     Friend WithEvents Button40 As System.Windows.Forms.Button
     Friend WithEvents Button41 As System.Windows.Forms.Button
     Friend WithEvents LinuxToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-
+    Friend WithEvents Button1 As Button
 End Class

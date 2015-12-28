@@ -70,7 +70,7 @@ ErrHandle:
         Dim iFile As Integer
         Dim sPost As Integer
         Dim bytHex As Byte
-        Start = Start + 1
+        ' Start = Start + 1
         iFile = FreeFile
         sPost = 0
 
@@ -81,7 +81,7 @@ ErrHandle:
         Do While Len(Data) > 0
             bytHex = Int32.Parse((Mid(Data, 1, 2)), System.Globalization.NumberStyles.HexNumber)
             'UPGRADE_WARNING: Put was upgraded to FilePut and has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-            FilePut(iFile, bytHex, Start + sPost)
+            FilePut(iFile, bytHex, Start + 1 + sPost)
             Data = Right(Data, Len(Data) - 2)
             sPost = sPost + 1
         Loop

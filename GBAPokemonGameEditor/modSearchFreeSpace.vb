@@ -133,4 +133,25 @@ LocalHandler:
 
     End Function
 
+    Public Function SearchFreeSpaceFourAligned(ByVal FileName As String, ByVal FreeSpaceByte As Byte, ByVal NeededBytes As Long, Optional ByVal StartOffset As Long = 0) As Long
+
+        Dim SearchIncrement As String
+        Dim CurSearchOffset As String
+
+        CurSearchOffset = Hex(SearchFreeSpace(FileName, FreeSpaceByte, NeededBytes, StartOffset, 100))
+
+        SearchIncrement = 1
+
+        While (((CurSearchOffset(CurSearchOffset.Length - 1)) <> "0") AndAlso ((CurSearchOffset(CurSearchOffset.Length - 1)) <> "4") AndAlso ((CurSearchOffset(CurSearchOffset.Length - 1)) <> "8") AndAlso ((CurSearchOffset(CurSearchOffset.Length - 1)) <> "C"))
+
+            CurSearchOffset = Hex(SearchFreeSpace(FileName, FreeSpaceByte, NeededBytes, (StartOffset) + SearchIncrement))
+
+            SearchIncrement = SearchIncrement + 1
+
+        End While
+
+        Return "&H" & CurSearchOffset
+
+    End Function
+
 End Module

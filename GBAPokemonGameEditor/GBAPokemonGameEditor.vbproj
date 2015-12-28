@@ -90,10 +90,6 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -141,6 +137,12 @@
       <DependentUpon>AttackEditor.vb</DependentUpon>
     </Compile>
     <Compile Include="AttackEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttackExpander.Designer.vb">
+      <DependentUpon>AttackExpander.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AttackExpander.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BattleFrontierEditor.Designer.vb">
@@ -243,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AttackEditor.resx">
       <DependentUpon>AttackEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttackExpander.resx">
+      <DependentUpon>AttackExpander.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BattleFrontierEditor.resx">
       <DependentUpon>BattleFrontierEditor.vb</DependentUpon>
