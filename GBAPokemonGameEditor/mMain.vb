@@ -82,7 +82,7 @@ Module mMain
 
     End Function
 
-    Public Function MakeFreeSpaceString(NeededLength As Integer)
+    Public Function MakeFreeSpaceString(NeededLength As Integer, Optional NeedByteString As String = "FF")
 
         Dim PrivLoopVar As Integer
         Dim OutBuffThing As String = ""
@@ -91,7 +91,7 @@ Module mMain
 
         While (PrivLoopVar < NeededLength)
 
-            OutBuffThing = OutBuffThing & "FF"
+            OutBuffThing = OutBuffThing & NeedByteString
 
             PrivLoopVar = PrivLoopVar + 1
         End While

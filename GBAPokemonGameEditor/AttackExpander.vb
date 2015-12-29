@@ -1,4 +1,6 @@
-﻿Imports System.IO
+﻿Option Strict Off
+Option Explicit On
+Imports System.IO
 
 Public Class AttackExpander
     Private Sub AttackExpander_Load(sender As Object, e As EventArgs) Handles MyBase.Load
