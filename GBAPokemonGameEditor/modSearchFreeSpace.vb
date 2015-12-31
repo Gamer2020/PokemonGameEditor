@@ -147,7 +147,7 @@ Module modSearchFreeSpace
 
         While (((CurSearchOffset(CurSearchOffset.Length - 1)) <> "0") AndAlso ((CurSearchOffset(CurSearchOffset.Length - 1)) <> "4") AndAlso ((CurSearchOffset(CurSearchOffset.Length - 1)) <> "8") AndAlso ((CurSearchOffset(CurSearchOffset.Length - 1)) <> "C"))
 
-            MsgBox(CInt("&H" & CurSearchOffset) + CInt(SearchIncrement))
+            ' MsgBox(CInt("&H" & CurSearchOffset) + CInt(SearchIncrement))
 
             CurSearchOffset = Hex(FindFreeSpace(FileName, FreeSpaceByte, NeededBytes, CInt("&H" & CurSearchOffset) + CInt(SearchIncrement)))
 

@@ -1,6 +1,7 @@
 ﻿Option Strict Off
 Option Explicit On
 Imports System.IO
+Imports VB = Microsoft.VisualBasic
 
 Public Class AttackExpander
     Private Sub AttackExpander_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -49,6 +50,9 @@ Public Class AttackExpander
 
         Dim AttackAnimationTableBuffer As String
         Dim AttackAnimationTableNewOffset As String
+
+        Dim AttackDescriptionTableBuffer As String
+        Dim AttackDescriptionTableNewOffset As String
 
         If System.IO.File.Exists((LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini") = True Then
 
@@ -340,13 +344,150 @@ Public Class AttackExpander
 
         WriteHEX(LoadedROM, &H725D0, ReverseHEX(Hex((AttackAnimationTableNewOffset) + &H8000000)))
 
+        ''Attack Descriptions
+
+
+        AttackDescriptionTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AttackDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfAttacks", ""))) * 4)
+
+        ''Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AttackDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(AttackDescriptionTableBuffer) / 2)))
+        End If
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            AttackDescriptionTableBuffer = AttackDescriptionTableBuffer & "34284808"
+
+        End While
+
+
+        AttackDescriptionTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(AttackDescriptionTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, AttackDescriptionTableNewOffset, AttackDescriptionTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "AttackDescriptionTable", Hex(AttackDescriptionTableNewOffset))
+
+        'Repoint Attack Description Table
+
+        WriteHEX(LoadedROM, &HE5440, ReverseHEX(Hex((AttackDescriptionTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H137BC8, ReverseHEX(Hex((AttackDescriptionTableNewOffset) + &H8000000)))
+
+
         'Only limiter in ROM patch
 
-        WriteHEX(LoadedROM, "&HD75FC", "000000000000")
+        WriteHEX(LoadedROM, &HD75FC, "000000000000")
 
         'Move Table hack stuff
-        If CheckBox1.Checked Then
+        If CheckBox1.Checked And GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+
+            'Converts the table to the new format
+
+            Dim pokeloopcounter As Integer = 1
+            Dim AttackTable As Integer = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
+            Dim CurLvlUpAttPointer As String = ""
+            Dim newmovesoffset As String = ""
+
+            Dim CurAttacksLooper As Integer
+
+            Dim TempLoadBuff As Integer
+            Dim binarybuffer As String
+            Dim at As String
+            Dim lvl As String
+
+            Dim CurPokeAttacksBuff As String
+
+
+            MsgBox("Movesets will now be converted. This will take a while...")
+
+            While (pokeloopcounter < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")))
+
+                CurLvlUpAttPointer = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (pokeloopcounter * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
+                CurAttacksLooper = 0
+                CurPokeAttacksBuff = ""
+
+                While ReadHEX(LoadedROM, Int32.Parse((CurLvlUpAttPointer), System.Globalization.NumberStyles.HexNumber) + (CurAttacksLooper * 2), 2) = "FFFF" = False
+
+                    TempLoadBuff = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((CurLvlUpAttPointer), System.Globalization.NumberStyles.HexNumber) + (CurAttacksLooper * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+
+                    binarybuffer = Convert.ToString(TempLoadBuff, 2)
+
+                    While Len(binarybuffer) < 16
+
+                        binarybuffer = "0" & binarybuffer
+
+                    End While
+
+                    lvl = Mid(binarybuffer, 1, 7)
+
+                    at = Mid(binarybuffer, 8, 9)
+
+                    lvl = Convert.ToInt32(lvl, 2)
+
+                    at = Convert.ToInt32(at, 2)
+
+                    lvl = VB.Right("00" & Hex(lvl), 2)
+                    at = ReverseHEX(VB.Right("0000" & Hex(at), 4))
+
+
+                    CurPokeAttacksBuff = CurPokeAttacksBuff & at & lvl
+
+                    CurAttacksLooper = CurAttacksLooper + 1
+                End While
+
+                'deletes the old moves
+
+                If CheckBox2.Checked Then
+                    WriteHEX(LoadedROM, Int32.Parse(CurLvlUpAttPointer, System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((CurAttacksLooper * 2)))
+                End If
+
+                CurPokeAttacksBuff = CurPokeAttacksBuff & "0000FF00"
+
+                newmovesoffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(CurPokeAttacksBuff) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+                WriteHEX(LoadedROM, (AttackTable) + (pokeloopcounter * 4), ReverseHEX(Hex((newmovesoffset) + &H8000000)))
+
+                WriteHEX(LoadedROM, newmovesoffset, CurPokeAttacksBuff)
+
+                pokeloopcounter = pokeloopcounter + 1
+            End While
+
+            'Write the routines
+
+            Dim routine1 As String = "494689001148401800680F4E063637787900C9194318997854468C4203D0FF290BD00137F4E7084A01373770597809021878084310800249084702480047C04665EB030873EB030822400202" & ReverseHEX(Hex(AttackTable + &H8000000))
+            Dim routine2 As String = "8178FF22914225D01202FF32914600235800C0181949891909684718B8785446A04217DC7978387809020143404600930C1C00F017F8FF25009B484504D14046211C00F013F8009B0133032178188078A842DDD101B038BC9846A146AA46F0BC01BC0047F0B581B0024F3847F0B5024F3847C046B5E8030843EC0308" & ReverseHEX(Hex(AttackTable + &H8000000))
+            Dim routine3 As String = "6A0052190499501880780399171C0135AC46884249DC0024814214D00124644205982B4946186B46023B3D1C02330134032C08DC3068281802784078000210431A889042F2D1042C2FD1002454451CDA494608683818027841780902114302980288914211D00599194A8E18029B3D1C02330134544508DA3068281802784078000210431A889042F2D154450DD15046013082466200029952184C4620683818017840780002084310806546494608686900491909188878FF28A1D1504606B038BC9846A146AA46F0BC02BC0847C046" & ReverseHEX(Hex(AttackTable + &H8000000))
+
+            Dim routine1offset As String = ""
+            Dim routine2offset As String = ""
+            Dim routine3offset As String = ""
+
+            routine1offset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(routine1) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+            WriteHEX(LoadedROM, routine1offset, routine1)
+
+            WriteHEX(LoadedROM, &H3EB20, "18490847")
+            WriteHEX(LoadedROM, &H3EB84, ReverseHEX(Hex((routine1offset) + &H8000001)))
+
+            routine2offset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(routine2) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+            WriteHEX(LoadedROM, routine2offset, routine2)
+
+            WriteHEX(LoadedROM, &H3EA10, "00490847" & ReverseHEX(Hex((routine2offset) + &H8000001)))
+
+            routine3offset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(routine3) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+            WriteHEX(LoadedROM, routine3offset, routine3)
+
+            WriteHEX(LoadedROM, &H43CE8, "004A1047" & ReverseHEX(Hex((routine3offset) + &H8000001)))
+
+            'Enable the hack in the ini file.
             WriteString(GetINIFileLocation(), header, "MoveTableHack", "True")
+
         End If
 
         'Updates the number of attacks
