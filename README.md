@@ -17,6 +17,8 @@ Screenshots
 
 ![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/6.png)
 
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/7.png)
+
 Features
 =================
 Editable INI that contains all the offsets

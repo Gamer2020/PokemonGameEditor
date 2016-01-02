@@ -16,4 +16,9 @@ Psychic
 Ice
 Dragon
 Dark
+Filler
+Filler
+Filler
+Filler
+Filler
 Fairy

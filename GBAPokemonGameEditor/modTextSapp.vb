@@ -55,6 +55,7 @@ Module modTextSapp
             End If
 
             If Len(asciistring) - (i - 1) > 1 And m = False Then
+
                 Select Case Mid(asciistring, i, 2)
                     Case "\l" : Y = &HFA : m = True
                     Case "\p" : Y = &HFB : m = True
@@ -70,6 +71,7 @@ Module modTextSapp
             End If
 
             If m = False Then
+
                 Select Case Mid(asciistring, i, 1)
                     Case " " : Y = &H0 : m = True
                     Case "À" : Y = &H1 : m = True
@@ -198,7 +200,7 @@ Module modTextSapp
                     Case "ö" : Y = &HF5 : m = True
                     Case "ü" : Y = &HF6 : m = True
 
-                        'This whole thing auto-converted from TBL file
+                    'This whole thing auto-converted from TBL file
                     Case "あ" : Y = &H1 '"a"
                     Case "い" : Y = &H2 '"i"
                     Case "う" : Y = &H3 '"u"
@@ -763,11 +765,12 @@ Module modTextSapp
     Private Function IsHex(ByVal hexstring As String) As Boolean
         Dim z As Boolean
         Dim Y As Byte
-        For i = 1 To Len(hexstring)
-            Y = Asc(Mid(hexstring, i, 1))
+        Dim privi As Integer
+        For privi = 1 To Len(hexstring)
+            Y = Asc(Mid(hexstring, privi, 1))
             z = IIf((Y > 47 And Y < 58) Or (Y > 64 And Y < 71) Or (Y > 96 And Y < 103), True, False)
             If z = False Then Exit For
-        Next i
+        Next privi
         IsHex = z
     End Function
 

@@ -24,12 +24,16 @@ Partial Class AttackEditor
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AttackEditor))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.AttackListIndex = New System.Windows.Forms.TextBox()
+        Me.Label20 = New System.Windows.Forms.Label()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.ComboBox8 = New System.Windows.Forms.ComboBox()
         Me.ComboBox7 = New System.Windows.Forms.ComboBox()
@@ -85,8 +89,6 @@ Partial Class AttackEditor
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.AnimationPointer = New System.Windows.Forms.TextBox()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.AttackListIndex = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -108,6 +110,23 @@ Partial Class AttackEditor
         Me.GroupBox1.TabIndex = 23
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Attack Selection:"
+        '
+        'AttackListIndex
+        '
+        Me.AttackListIndex.Location = New System.Drawing.Point(46, 46)
+        Me.AttackListIndex.Name = "AttackListIndex"
+        Me.AttackListIndex.ReadOnly = True
+        Me.AttackListIndex.Size = New System.Drawing.Size(40, 20)
+        Me.AttackListIndex.TabIndex = 25
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(6, 49)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(36, 13)
+        Me.Label20.TabIndex = 24
+        Me.Label20.Text = "Index:"
         '
         'ComboBox3
         '
@@ -153,11 +172,13 @@ Partial Class AttackEditor
         Me.TabControl1.Location = New System.Drawing.Point(170, 28)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(468, 394)
+        Me.TabControl1.Size = New System.Drawing.Size(468, 408)
         Me.TabControl1.TabIndex = 25
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Label21)
+        Me.TabPage1.Controls.Add(Me.Button6)
         Me.TabPage1.Controls.Add(Me.GroupBox3)
         Me.TabPage1.Controls.Add(Me.Button2)
         Me.TabPage1.Controls.Add(Me.Label10)
@@ -189,10 +210,29 @@ Partial Class AttackEditor
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(460, 368)
+        Me.TabPage1.Size = New System.Drawing.Size(460, 382)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Attack Data"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label21.Location = New System.Drawing.Point(284, 337)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(43, 13)
+        Me.Label21.TabIndex = 29
+        Me.Label21.Text = "Length:"
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(367, 356)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(67, 20)
+        Me.Button6.TabIndex = 28
+        Me.Button6.Text = "Save"
+        Me.Button6.UseVisualStyleBackColor = True
         '
         'GroupBox3
         '
@@ -268,7 +308,6 @@ Partial Class AttackEditor
         Me.TextBox7.Location = New System.Drawing.Point(287, 257)
         Me.TextBox7.Multiline = True
         Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.ReadOnly = True
         Me.TextBox7.Size = New System.Drawing.Size(147, 74)
         Me.TextBox7.TabIndex = 24
         '
@@ -501,7 +540,7 @@ Partial Class AttackEditor
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(460, 368)
+        Me.TabPage2.Size = New System.Drawing.Size(460, 382)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Contest Data"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -702,28 +741,11 @@ Partial Class AttackEditor
         Me.AnimationPointer.Size = New System.Drawing.Size(121, 20)
         Me.AnimationPointer.TabIndex = 0
         '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(6, 49)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(36, 13)
-        Me.Label20.TabIndex = 24
-        Me.Label20.Text = "Index:"
-        '
-        'AttackListIndex
-        '
-        Me.AttackListIndex.Location = New System.Drawing.Point(46, 46)
-        Me.AttackListIndex.Name = "AttackListIndex"
-        Me.AttackListIndex.ReadOnly = True
-        Me.AttackListIndex.Size = New System.Drawing.Size(40, 20)
-        Me.AttackListIndex.TabIndex = 25
-        '
         'AttackEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(650, 434)
+        Me.ClientSize = New System.Drawing.Size(650, 448)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.TabControl1)
@@ -817,4 +839,6 @@ Partial Class AttackEditor
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents AttackListIndex As TextBox
     Friend WithEvents Label20 As Label
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Label21 As Label
 End Class

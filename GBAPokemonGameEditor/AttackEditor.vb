@@ -4,6 +4,7 @@
     Dim AttackAni As Integer
     Dim ContestMoveData As Integer
     Dim ContestMoveEffectData As Integer
+    Dim CurrentAttackDescripLength As Integer
 
     Private Sub AttackEditor_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         MainFrm.Visible = True
@@ -52,15 +53,18 @@
 
         FileNum = FreeFile()
         FileOpen(FileNum, LoadedROM, OpenMode.Binary)
-        Dim DexDescp As String = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        Dim AttackDescp As String = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
-        FileGet(FileNum, DexDescp, Int32.Parse(((TextBox6.Text)), System.Globalization.NumberStyles.HexNumber) + 1, True)
-        DexDescp = Sapp2Asc(DexDescp)
-        DexDescp = Mid$(DexDescp, 1, InStr(1, DexDescp, "\x"))
-        DexDescp = Replace(DexDescp, "\n", vbCrLf)
-        DexDescp = Replace(RTrim$(DexDescp), "\", "")
-        TextBox7.Text = DexDescp
-        TextBox7.MaxLength = Len(DexDescp)
+        FileGet(FileNum, AttackDescp, Int32.Parse(((TextBox6.Text)), System.Globalization.NumberStyles.HexNumber) + 1, True)
+        AttackDescp = Sapp2Asc(AttackDescp)
+        AttackDescp = Mid$(AttackDescp, 1, InStr(1, AttackDescp, "\x"))
+        AttackDescp = Replace(AttackDescp, "\n", vbCrLf)
+        AttackDescp = Replace(RTrim$(AttackDescp), "\", "")
+
+        CurrentAttackDescripLength = Len(AttackDescp)
+        TextBox7.Text = AttackDescp
+
+        ' Label21.Text = "Length:" & CurrentAttackDescripLength & " / " & CurrentAttackDescripLength
 
         FileClose(FileNum)
 
@@ -292,15 +296,16 @@
         WriteHEX(LoadedROM, (AttackDesc) + (0) + (ComboBox3.SelectedIndex * 4), ReverseHEX(Hex(Int32.Parse(((TextBox6.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
         FileNum = FreeFile()
         FileOpen(FileNum, LoadedROM, OpenMode.Binary)
-        Dim DexDescp As String = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        Dim AttackDescp As String = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
-        FileGet(FileNum, DexDescp, Int32.Parse(((TextBox6.Text)), System.Globalization.NumberStyles.HexNumber) + 1, True)
-        DexDescp = Sapp2Asc(DexDescp)
-        DexDescp = Mid$(DexDescp, 1, InStr(1, DexDescp, "\x"))
-        DexDescp = Replace(DexDescp, "\n", vbCrLf)
-        DexDescp = Replace(RTrim$(DexDescp), "\", "")
-        TextBox7.Text = DexDescp
-        TextBox7.MaxLength = Len(DexDescp)
+        FileGet(FileNum, AttackDescp, Int32.Parse(((TextBox6.Text)), System.Globalization.NumberStyles.HexNumber) + 1, True)
+        AttackDescp = Sapp2Asc(AttackDescp)
+        AttackDescp = Mid$(AttackDescp, 1, InStr(1, AttackDescp, "\x"))
+        AttackDescp = Replace(AttackDescp, "\n", vbCrLf)
+        AttackDescp = Replace(RTrim$(AttackDescp), "\", "")
+        CurrentAttackDescripLength = Len(AttackDescp)
+        TextBox7.Text = AttackDescp
+        TextBox7.MaxLength = Len(AttackDescp)
 
         FileClose(FileNum)
 
@@ -324,4 +329,83 @@
         'WriteHEX(LoadedROM, ((ContestMoveEffectData) + 2) + (ComboBox4.SelectedIndex * 4), Hex(TextBox10.Text))
         MsgBox("disabled till I double check it works")
      End Sub
+
+    Private Sub TextBox7_TextChanged(sender As Object, e As EventArgs) Handles TextBox7.TextChanged
+        Label21.Text = "Length: " & Len(TextBox7.Text) & "/" & CurrentAttackDescripLength
+        Label21.ForeColor = Color.Black
+
+        If Len(TextBox7.Text) > CurrentAttackDescripLength Then
+            Label21.Text = Label21.Text & " Requires repoint!"
+
+            Label21.ForeColor = Color.Red
+
+        End If
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim curdespoff As String
+
+        Dim destowrite As String
+
+        curdespoff = Hex(Val("&H" & ReverseHEX(ReadHEX(LoadedROM, (AttackDesc) + (ComboBox3.SelectedIndex * 4), 4))) - &H8000000)
+
+        destowrite = Asc2Sapp(Replace(TextBox7.Text, vbCrLf, "\n") & "\x")
+
+
+
+        If Len(TextBox7.Text) > CurrentAttackDescripLength Then
+
+
+            Dim result As DialogResult = MessageBox.Show("The text will be written to free space and the pointer will be repointed. Would you like to do that?",
+                              "Repoint?",
+                              MessageBoxButtons.YesNo)
+
+            If (result = DialogResult.Yes) Then
+
+                Dim newtextoff As String
+
+                newtextoff = SearchFreeSpaceFourAligned(LoadedROM, &HFF, (Len(destowrite & " ")), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+                FileNum = FreeFile()
+
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                FilePut(FileNum, destowrite & " ", ("&H" & Hex(newtextoff)) + 1, False)
+
+                FileClose(FileNum)
+
+                TextBox6.Text = Hex(newtextoff)
+
+                Button2.PerformClick()
+
+                Label21.Text = "Length: " & Len(TextBox7.Text) & "/" & CurrentAttackDescripLength
+                Label21.ForeColor = Color.Black
+
+                If Len(TextBox7.Text) > CurrentAttackDescripLength Then
+                    Label21.Text = Label21.Text & " Requires repoint!"
+
+                    Label21.ForeColor = Color.Red
+
+                End If
+
+            Else
+
+            End If
+
+        Else
+
+
+            FileNum = FreeFile()
+
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+            FilePut(FileNum, destowrite, ("&H" & curdespoff) + 1, False)
+
+            FileClose(FileNum)
+
+            TextBox6.Text = curdespoff
+
+        End If
+
+    End Sub
 End Class
