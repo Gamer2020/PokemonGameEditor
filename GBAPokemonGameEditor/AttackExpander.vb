@@ -313,6 +313,21 @@ Public Class AttackExpander
         WriteHEX(LoadedROM, &H131E14, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
         WriteHEX(LoadedROM, &H13695C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
 
+        'Repoint Field Move names
+
+        WriteHEX(LoadedROM, &H45A6A8, ReverseHEX(Hex((AttackNamesNewOffset + (148 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H45A6B0, ReverseHEX(Hex((AttackNamesNewOffset + (15 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H45A6B8, ReverseHEX(Hex((AttackNamesNewOffset + (19 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H45A6C0, ReverseHEX(Hex((AttackNamesNewOffset + (70 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H45A6C8, ReverseHEX(Hex((AttackNamesNewOffset + (57 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H45A6D0, ReverseHEX(Hex((AttackNamesNewOffset + (249 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H45A6D8, ReverseHEX(Hex((AttackNamesNewOffset + (127 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H45A6E0, ReverseHEX(Hex((AttackNamesNewOffset + (100 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H45A6E8, ReverseHEX(Hex((AttackNamesNewOffset + (91 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H45A6F0, ReverseHEX(Hex((AttackNamesNewOffset + (208 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H45A6F8, ReverseHEX(Hex((AttackNamesNewOffset + (135 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H45A700, ReverseHEX(Hex((AttackNamesNewOffset + (230 * 13)) + &H8000000)))
+
         ''Attack Animations
 
 
