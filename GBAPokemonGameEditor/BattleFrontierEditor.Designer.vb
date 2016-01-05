@@ -22,6 +22,7 @@ Partial Class BattleFrontierEditor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BattleFrontierEditor))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
@@ -168,10 +169,10 @@ Partial Class BattleFrontierEditor
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.ListBox12 = New System.Windows.Forms.ListBox()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.ListBox13 = New System.Windows.Forms.ListBox()
+        Me.Button21 = New System.Windows.Forms.Button()
         Me.PictureBox9 = New System.Windows.Forms.PictureBox()
         Me.ComboBox37 = New System.Windows.Forms.ComboBox()
-        Me.Button21 = New System.Windows.Forms.Button()
+        Me.ListBox13 = New System.Windows.Forms.ListBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -1629,13 +1630,14 @@ Partial Class BattleFrontierEditor
         Me.TabPage5.Text = "Ban List"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
-        'ListBox13
+        'Button21
         '
-        Me.ListBox13.FormattingEnabled = True
-        Me.ListBox13.Location = New System.Drawing.Point(16, 17)
-        Me.ListBox13.Name = "ListBox13"
-        Me.ListBox13.Size = New System.Drawing.Size(121, 173)
-        Me.ListBox13.TabIndex = 0
+        Me.Button21.Location = New System.Drawing.Point(316, 17)
+        Me.Button21.Name = "Button21"
+        Me.Button21.Size = New System.Drawing.Size(75, 23)
+        Me.Button21.TabIndex = 14
+        Me.Button21.Text = "Save"
+        Me.Button21.UseVisualStyleBackColor = True
         '
         'PictureBox9
         '
@@ -1654,14 +1656,13 @@ Partial Class BattleFrontierEditor
         Me.ComboBox37.Size = New System.Drawing.Size(121, 21)
         Me.ComboBox37.TabIndex = 12
         '
-        'Button21
+        'ListBox13
         '
-        Me.Button21.Location = New System.Drawing.Point(316, 17)
-        Me.Button21.Name = "Button21"
-        Me.Button21.Size = New System.Drawing.Size(75, 23)
-        Me.Button21.TabIndex = 14
-        Me.Button21.Text = "Save"
-        Me.Button21.UseVisualStyleBackColor = True
+        Me.ListBox13.FormattingEnabled = True
+        Me.ListBox13.Location = New System.Drawing.Point(16, 17)
+        Me.ListBox13.Name = "ListBox13"
+        Me.ListBox13.Size = New System.Drawing.Size(121, 173)
+        Me.ListBox13.TabIndex = 0
         '
         'BattleFrontierEditor
         '
@@ -1670,6 +1671,7 @@ Partial Class BattleFrontierEditor
         Me.ClientSize = New System.Drawing.Size(579, 514)
         Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "BattleFrontierEditor"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

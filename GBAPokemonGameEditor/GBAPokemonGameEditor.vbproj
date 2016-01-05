@@ -84,7 +84,7 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -133,6 +133,7 @@
     <Compile Include="AddOrRemovePrograms.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="AttackEditor.Designer.vb">
       <DependentUpon>AttackEditor.vb</DependentUpon>
     </Compile>
@@ -225,6 +226,12 @@
     <Compile Include="RSEStarterEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SplashScreen1.Designer.vb">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="TMHMEditor.Designer.vb">
       <DependentUpon>TMHMEditor.vb</DependentUpon>
     </Compile>
@@ -282,6 +289,9 @@
     <EmbeddedResource Include="RSEStarterEditor.resx">
       <DependentUpon>RSEStarterEditor.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TMHMEditor.resx">
       <DependentUpon>TMHMEditor.vb</DependentUpon>
     </EmbeddedResource>
@@ -324,7 +334,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icon.ico" />
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -175,3 +175,4 @@ C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x
 C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.TMHMEditor.resources
 C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.ItemEditor.resources
 C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.AttackExpander.resources
+C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.SplashScreen1.resources

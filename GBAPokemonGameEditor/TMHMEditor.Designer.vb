@@ -22,6 +22,7 @@ Partial Class TMHMEditor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TMHMEditor))
         Me.TMHMList = New System.Windows.Forms.ListBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -84,6 +85,7 @@ Partial Class TMHMEditor
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TMHMList)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "TMHMEditor"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

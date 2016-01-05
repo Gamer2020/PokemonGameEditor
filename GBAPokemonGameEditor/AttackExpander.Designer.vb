@@ -25,6 +25,7 @@ Partial Class AttackExpander
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AttackExpander))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -32,7 +33,6 @@ Partial Class AttackExpander
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.SuspendLayout()
@@ -62,6 +62,16 @@ Partial Class AttackExpander
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Fire Red"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(20, 96)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(100, 17)
+        Me.CheckBox2.TabIndex = 5
+        Me.CheckBox2.Text = "Delete Old data"
+        Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'CheckBox1
         '
@@ -127,16 +137,6 @@ Partial Class AttackExpander
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = resources.GetString("LinkLabel1.Text")
         '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(20, 96)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(100, 17)
-        Me.CheckBox2.TabIndex = 5
-        Me.CheckBox2.Text = "Delete Old data"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
         'AttackExpander
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -145,6 +145,7 @@ Partial Class AttackExpander
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "AttackExpander"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

@@ -160,6 +160,8 @@ Partial Class Pokemonedit
         Me.ChangePKMName = New System.Windows.Forms.Button()
         Me.CurPKMName = New System.Windows.Forms.TextBox()
         Me.GroupBox19 = New System.Windows.Forms.GroupBox()
+        Me.PokemonListIndex = New System.Windows.Forms.TextBox()
+        Me.Label24 = New System.Windows.Forms.Label()
         Me.PKMNames = New System.Windows.Forms.ComboBox()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
@@ -168,8 +170,6 @@ Partial Class Pokemonedit
         Me.Button9 = New System.Windows.Forms.Button()
         Me.FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.ProgressBar = New System.Windows.Forms.ProgressBar()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.PokemonListIndex = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox21.SuspendLayout()
@@ -1555,6 +1555,23 @@ Partial Class Pokemonedit
         Me.GroupBox19.TabStop = False
         Me.GroupBox19.Text = "Pokemon Selection"
         '
+        'PokemonListIndex
+        '
+        Me.PokemonListIndex.Location = New System.Drawing.Point(48, 66)
+        Me.PokemonListIndex.Name = "PokemonListIndex"
+        Me.PokemonListIndex.ReadOnly = True
+        Me.PokemonListIndex.Size = New System.Drawing.Size(40, 20)
+        Me.PokemonListIndex.TabIndex = 9
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(6, 69)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(36, 13)
+        Me.Label24.TabIndex = 8
+        Me.Label24.Text = "Index:"
+        '
         'PKMNames
         '
         Me.PKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
@@ -1603,23 +1620,6 @@ Partial Class Pokemonedit
         Me.ProgressBar.Size = New System.Drawing.Size(600, 16)
         Me.ProgressBar.TabIndex = 12
         Me.ProgressBar.Visible = False
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(6, 69)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(36, 13)
-        Me.Label24.TabIndex = 8
-        Me.Label24.Text = "Index:"
-        '
-        'PokemonListIndex
-        '
-        Me.PokemonListIndex.Location = New System.Drawing.Point(48, 66)
-        Me.PokemonListIndex.Name = "PokemonListIndex"
-        Me.PokemonListIndex.ReadOnly = True
-        Me.PokemonListIndex.Size = New System.Drawing.Size(40, 20)
-        Me.PokemonListIndex.TabIndex = 9
         '
         'Pokemonedit
         '

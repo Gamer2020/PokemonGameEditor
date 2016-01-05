@@ -22,7 +22,10 @@ Partial Class AbilityEdit
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AbilityEdit))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.AbilityIndexTextBox = New System.Windows.Forms.TextBox()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -31,8 +34,6 @@ Partial Class AbilityEdit
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.AbilityIndexTextBox = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -49,6 +50,23 @@ Partial Class AbilityEdit
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Ability Selection"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(52, 240)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(36, 13)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Index:"
+        '
+        'AbilityIndexTextBox
+        '
+        Me.AbilityIndexTextBox.Location = New System.Drawing.Point(94, 237)
+        Me.AbilityIndexTextBox.Name = "AbilityIndexTextBox"
+        Me.AbilityIndexTextBox.ReadOnly = True
+        Me.AbilityIndexTextBox.Size = New System.Drawing.Size(42, 20)
+        Me.AbilityIndexTextBox.TabIndex = 2
         '
         'ListBox1
         '
@@ -123,23 +141,6 @@ Partial Class AbilityEdit
         Me.TextBox2.Size = New System.Drawing.Size(90, 20)
         Me.TextBox2.TabIndex = 0
         '
-        'AbilityIndexTextBox
-        '
-        Me.AbilityIndexTextBox.Location = New System.Drawing.Point(94, 237)
-        Me.AbilityIndexTextBox.Name = "AbilityIndexTextBox"
-        Me.AbilityIndexTextBox.ReadOnly = True
-        Me.AbilityIndexTextBox.Size = New System.Drawing.Size(42, 20)
-        Me.AbilityIndexTextBox.TabIndex = 2
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(52, 240)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(36, 13)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Index:"
-        '
         'AbilityEdit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -149,6 +150,7 @@ Partial Class AbilityEdit
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "AbilityEdit"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

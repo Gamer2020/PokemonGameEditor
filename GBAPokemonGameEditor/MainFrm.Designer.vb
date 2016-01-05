@@ -169,6 +169,7 @@ Partial Class MainFrm
         Me.LinuxToolStripMenuItem.Name = "LinuxToolStripMenuItem"
         Me.LinuxToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
         Me.LinuxToolStripMenuItem.Text = "Linux Operating System"
+        Me.LinuxToolStripMenuItem.Visible = False
         '
         'HelpToolStripMenuItem
         '
@@ -190,7 +191,6 @@ Partial Class MainFrm
         '
         'AboutToolStripMenuItem
         '
-        Me.AboutToolStripMenuItem.Enabled = False
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.AboutToolStripMenuItem.Text = "About"
@@ -631,11 +631,11 @@ Partial Class MainFrm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(155, 16)
+        Me.Label1.Location = New System.Drawing.Point(87, 15)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(148, 13)
+        Me.Label1.Size = New System.Drawing.Size(250, 13)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Copyright © 2015 Gamer2020"
+        Me.Label1.Text = "Copyright © 2016 Gamer2020 All Rights Reserved. "
         '
         'MainFrm
         '

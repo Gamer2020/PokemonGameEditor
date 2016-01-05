@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("Gamer2020")> 
 <Assembly: AssemblyProduct("Pokemon Game Editor")>
-<Assembly: AssemblyCopyright("Copyright © Gamer2020 2015")>
+<Assembly: AssemblyCopyright("Copyright © 2016 Gamer2020 All Rights Reserved.")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

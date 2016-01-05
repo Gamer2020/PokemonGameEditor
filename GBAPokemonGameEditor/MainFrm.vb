@@ -372,10 +372,8 @@ Public Class MainFrm
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AboutToolStripMenuItem.Click
-        'AboutBox1.ShowDialog()
-        If System.IO.File.Exists(AppPath & "license.rtf") = True Then
-            Process.Start(AppPath & "license.rtf")
-        End If
+
+        AboutBox1.ShowDialog()
 
     End Sub
 

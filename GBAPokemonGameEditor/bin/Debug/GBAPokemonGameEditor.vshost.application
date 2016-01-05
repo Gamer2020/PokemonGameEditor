@@ -9,14 +9,14 @@
     <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="GBAPokemonGameEditor.exe.manifest" size="4675">
+    <dependentAssembly dependencyType="install" codebase="GBAPokemonGameEditor.exe.manifest" size="4678">
       <assemblyIdentity name="GBAPokemonGameEditor.exe" version="3.3.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>iaL+4Et5blrXK9ZDsOkMo7D0GCw=</dsig:DigestValue>
+        <dsig:DigestValue>n9vg2q2Nsi4oaQ4fg95axiAWzb4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
