@@ -26,7 +26,6 @@ Partial Class AbilityEdit
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.AbilityIndexTextBox = New System.Windows.Forms.TextBox()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -34,6 +33,7 @@ Partial Class AbilityEdit
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.AbilityList = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -41,12 +41,12 @@ Partial Class AbilityEdit
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.AbilityList)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.AbilityIndexTextBox)
-        Me.GroupBox1.Controls.Add(Me.ListBox1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 13)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(145, 277)
+        Me.GroupBox1.Size = New System.Drawing.Size(134, 89)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Ability Selection"
@@ -54,7 +54,7 @@ Partial Class AbilityEdit
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(52, 240)
+        Me.Label1.Location = New System.Drawing.Point(6, 60)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(36, 13)
         Me.Label1.TabIndex = 3
@@ -62,34 +62,26 @@ Partial Class AbilityEdit
         '
         'AbilityIndexTextBox
         '
-        Me.AbilityIndexTextBox.Location = New System.Drawing.Point(94, 237)
+        Me.AbilityIndexTextBox.Location = New System.Drawing.Point(48, 57)
         Me.AbilityIndexTextBox.Name = "AbilityIndexTextBox"
         Me.AbilityIndexTextBox.ReadOnly = True
         Me.AbilityIndexTextBox.Size = New System.Drawing.Size(42, 20)
         Me.AbilityIndexTextBox.TabIndex = 2
         '
-        'ListBox1
-        '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(6, 19)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(130, 212)
-        Me.ListBox1.TabIndex = 1
-        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Button1)
         Me.GroupBox2.Controls.Add(Me.TextBox1)
-        Me.GroupBox2.Location = New System.Drawing.Point(163, 189)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 108)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(210, 56)
+        Me.GroupBox2.Size = New System.Drawing.Size(134, 83)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Name"
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(115, 19)
+        Me.Button1.Location = New System.Drawing.Point(9, 47)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(71, 22)
         Me.Button1.TabIndex = 2
@@ -110,7 +102,7 @@ Partial Class AbilityEdit
         Me.GroupBox3.Controls.Add(Me.TextBox2)
         Me.GroupBox3.Location = New System.Drawing.Point(163, 13)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(210, 170)
+        Me.GroupBox3.Size = New System.Drawing.Size(210, 178)
         Me.GroupBox3.TabIndex = 4
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Description"
@@ -141,11 +133,21 @@ Partial Class AbilityEdit
         Me.TextBox2.Size = New System.Drawing.Size(90, 20)
         Me.TextBox2.TabIndex = 0
         '
+        'AbilityList
+        '
+        Me.AbilityList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.AbilityList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.AbilityList.FormattingEnabled = True
+        Me.AbilityList.Location = New System.Drawing.Point(6, 22)
+        Me.AbilityList.Name = "AbilityList"
+        Me.AbilityList.Size = New System.Drawing.Size(121, 21)
+        Me.AbilityList.TabIndex = 0
+        '
         'AbilityEdit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(385, 302)
+        Me.ClientSize = New System.Drawing.Size(385, 198)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -165,7 +167,6 @@ Partial Class AbilityEdit
 
     End Sub
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
@@ -175,4 +176,5 @@ Partial Class AbilityEdit
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents AbilityIndexTextBox As TextBox
+    Friend WithEvents AbilityList As ComboBox
 End Class

@@ -1574,8 +1574,8 @@ Partial Class Pokemonedit
         '
         'PKMNames
         '
+        Me.PKMNames.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.PKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.PKMNames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.PKMNames.FormattingEnabled = True
         Me.PKMNames.Location = New System.Drawing.Point(6, 28)
         Me.PKMNames.Name = "PKMNames"

@@ -515,4 +515,5 @@ Public Class AttackExpander
         MsgBox("Attacks expanded successfully!")
 
     End Sub
+
 End Class

@@ -1906,11 +1906,11 @@ Public Class Pokemonedit
         Dim binarytowrite As String
         Dim bytetowrite As String
 
-        Dim LoopVar As Integer
-        Dim binarythebitch As String
+        ' Dim LoopVar As Integer
+        ' Dim binarythebitch As String
         Dim emloop As Integer
-        Dim blah As Integer
-        Dim curchar As String
+        'Dim blah As Integer
+        'Dim curchar As String
 
         If header2 = "BPE" Then
             For emloop = 0 To 1
@@ -2007,7 +2007,7 @@ Public Class Pokemonedit
 
     Private Sub Button11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
         'Start of new function.
-        Dim holder As String
+        Dim holder As String = ""
         Dim bytetowrite As String
         Dim at As String
         Dim lvl As String

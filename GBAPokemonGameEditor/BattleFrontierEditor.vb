@@ -515,13 +515,13 @@ Public Class BattleFrontierEditor
 
         WriteHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "BattleFrontierPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox2.SelectedIndex * 16) + 12), Hex(ComboBox9.SelectedIndex))
 
-        Dim hpbit As String
-        Dim attackbit As String
-        Dim defensebit As String
-        Dim speedbit As String
-        Dim specialattackbit As String
-        Dim specialdefensebit As String
-        Dim evspreadwritevar As String
+        Dim hpbit As String = ""
+        Dim attackbit As String = ""
+        Dim defensebit As String = ""
+        Dim speedbit As String = ""
+        Dim specialattackbit As String = ""
+        Dim specialdefensebit As String = ""
+        Dim evspreadwritevar As String = ""
 
         If CheckedListBox1.GetItemCheckState(0) = CheckState.Unchecked Then
 
@@ -1246,13 +1246,13 @@ Public Class BattleFrontierEditor
 
         WriteHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "SlateportBattleTentPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox4.SelectedIndex * 16) + 12), Hex(ComboBox10.SelectedIndex))
 
-        Dim hpbit As String
-        Dim attackbit As String
-        Dim defensebit As String
-        Dim speedbit As String
-        Dim specialattackbit As String
-        Dim specialdefensebit As String
-        Dim evspreadwritevar As String
+        Dim hpbit As String = ""
+        Dim attackbit As String = ""
+        Dim defensebit As String = ""
+        Dim speedbit As String = ""
+        Dim specialattackbit As String = ""
+        Dim specialdefensebit As String = ""
+        Dim evspreadwritevar As String = ""
 
         If CheckedListBox2.GetItemCheckState(0) = CheckState.Unchecked Then
 
@@ -1380,13 +1380,13 @@ Public Class BattleFrontierEditor
 
         WriteHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "VerdanturfBattleTentPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox7.SelectedIndex * 16) + 12), Hex(ComboBox19.SelectedIndex))
 
-        Dim hpbit As String
-        Dim attackbit As String
-        Dim defensebit As String
-        Dim speedbit As String
-        Dim specialattackbit As String
-        Dim specialdefensebit As String
-        Dim evspreadwritevar As String
+        Dim hpbit As String = ""
+        Dim attackbit As String = ""
+        Dim defensebit As String = ""
+        Dim speedbit As String = ""
+        Dim specialattackbit As String = ""
+        Dim specialdefensebit As String = ""
+        Dim evspreadwritevar As String = ""
 
         If CheckedListBox3.GetItemCheckState(0) = CheckState.Unchecked Then
 
@@ -1514,13 +1514,13 @@ Public Class BattleFrontierEditor
 
         WriteHEX(LoadedROM, (Int32.Parse(((GetString(GetINIFileLocation(), header, "FallarborBattleTentPokemon", ""))), System.Globalization.NumberStyles.HexNumber) + (ListBox10.SelectedIndex * 16) + 12), Hex(ComboBox28.SelectedIndex))
 
-        Dim hpbit As String
-        Dim attackbit As String
-        Dim defensebit As String
-        Dim speedbit As String
-        Dim specialattackbit As String
-        Dim specialdefensebit As String
-        Dim evspreadwritevar As String
+        Dim hpbit As String = ""
+        Dim attackbit As String = ""
+        Dim defensebit As String = ""
+        Dim speedbit As String = ""
+        Dim specialattackbit As String = ""
+        Dim specialdefensebit As String = ""
+        Dim evspreadwritevar As String = ""
 
         If CheckedListBox4.GetItemCheckState(0) = CheckState.Unchecked Then
 

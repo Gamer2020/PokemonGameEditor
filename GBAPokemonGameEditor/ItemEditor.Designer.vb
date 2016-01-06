@@ -88,7 +88,8 @@ Partial Class ItemEditor
         '
         'ItemListComboBox
         '
-        Me.ItemListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ItemListComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ItemListComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ItemListComboBox.FormattingEnabled = True
         Me.ItemListComboBox.Location = New System.Drawing.Point(18, 19)
         Me.ItemListComboBox.Name = "ItemListComboBox"

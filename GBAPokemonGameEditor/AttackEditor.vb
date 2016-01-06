@@ -231,12 +231,12 @@
         WriteHEX(LoadedROM, ((AttackData) + 12 + 9) + (ComboBox3.SelectedIndex * 12), Hex(ComboBox7.SelectedIndex))
         WriteHEX(LoadedROM, ((AttackData) + 12 + 10) + (ComboBox3.SelectedIndex * 12), Hex(ComboBox8.SelectedIndex))
 
-        Dim bita As String
-        Dim bitb As String
-        Dim bitc As String
-        Dim bitd As String
-        Dim bite As String
-        Dim bitf As String
+        Dim bita As String = ""
+        Dim bitb As String = ""
+        Dim bitc As String = ""
+        Dim bitd As String = ""
+        Dim bite As String = ""
+        Dim bitf As String = ""
         Dim thingtowrite As String
 
         If CheckBox1.Checked = False Then
@@ -321,14 +321,14 @@
         ComboBox6.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ((ContestMoveEffectData) + 0) + (ComboBox4.SelectedIndex * 4), 1)))), System.Globalization.NumberStyles.HexNumber)
         TextBox11.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ((ContestMoveEffectData) + 1) + (ComboBox4.SelectedIndex * 4), 1)))), System.Globalization.NumberStyles.HexNumber)
         TextBox10.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ((ContestMoveEffectData) + 2) + (ComboBox4.SelectedIndex * 4), 1)))), System.Globalization.NumberStyles.HexNumber)
+
     End Sub
 
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
-        'WriteHEX(LoadedROM, ((ContestMoveEffectData) + 0) + (ComboBox4.SelectedIndex * 4), Hex(ComboBox6.SelectedIndex))
-        ' WriteHEX(LoadedROM, ((ContestMoveEffectData) + 1) + (ComboBox4.SelectedIndex * 4), Hex(TextBox11.Text))
-        'WriteHEX(LoadedROM, ((ContestMoveEffectData) + 2) + (ComboBox4.SelectedIndex * 4), Hex(TextBox10.Text))
-        MsgBox("disabled till I double check it works")
-     End Sub
+        WriteHEX(LoadedROM, ((ContestMoveEffectData) + 0) + (ComboBox4.SelectedIndex * 4), Hex(ComboBox6.SelectedIndex))
+        WriteHEX(LoadedROM, ((ContestMoveEffectData) + 1) + (ComboBox4.SelectedIndex * 4), Hex(TextBox11.Text))
+        WriteHEX(LoadedROM, ((ContestMoveEffectData) + 2) + (ComboBox4.SelectedIndex * 4), Hex(TextBox10.Text))
+    End Sub
 
     Private Sub TextBox7_TextChanged(sender As Object, e As EventArgs) Handles TextBox7.TextChanged
         Label21.Text = "Length: " & Len(TextBox7.Text) & "/" & CurrentAttackDescripLength
@@ -409,4 +409,6 @@
 
     End Sub
 
+    Private Sub ComboBox6_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox6.SelectedIndexChanged
+    End Sub
 End Class

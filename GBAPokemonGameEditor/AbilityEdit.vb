@@ -10,11 +10,11 @@
 
         loopvar = 0
 
-        ListBox1.Items.Clear()
+        AbilityList.Items.Clear()
 
         While loopvar < (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) = True
 
-            ListBox1.Items.Add(GetAbilityName(loopvar))
+            AbilityList.Items.Add(GetAbilityName(loopvar))
 
 
             loopvar = loopvar + 1
@@ -23,17 +23,32 @@
 
         End While
 
-        ListBox1.SelectedIndex = 0
+        AbilityList.SelectedIndex = 0
     End Sub
 
-    Private Sub ListBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox1.SelectedIndexChanged
-        AbilityIndexTextBox.Text = ListBox1.SelectedIndex
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        ChangeAbilityName(AbilityList.SelectedIndex, TextBox1.Text)
 
-        AbilityDesc = Int32.Parse((GetString(GetINIFileLocation(), header, "AbilityDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber)
+        Dim loopvar As Integer
 
-        TextBox1.Text = GetAbilityName(ListBox1.SelectedIndex)
+        loopvar = 0
 
-        TextBox2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AbilityDesc) + (ListBox1.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        AbilityList.Items.Clear()
+
+        While loopvar < (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) = True
+
+            AbilityList.Items.Add(GetAbilityName(loopvar))
+
+
+            loopvar = loopvar + 1
+
+
+
+        End While
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        WriteHEX(LoadedROM, (AbilityDesc) + (AbilityList.SelectedIndex * 4), ReverseHEX(Hex(Val("&H" & (TextBox2.Text)) + &H8000000)))
 
         FileNum = FreeFile()
         FileOpen(FileNum, LoadedROM, OpenMode.Binary)
@@ -48,32 +63,16 @@
         TextBox3.MaxLength = Len(DexDescp)
 
         FileClose(FileNum)
-
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        ChangeAbilityName(ListBox1.SelectedIndex, TextBox1.Text)
+    Private Sub AbilityList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles AbilityList.SelectedIndexChanged
+        AbilityIndexTextBox.Text = AbilityList.SelectedIndex
 
-        Dim loopvar As Integer
+        AbilityDesc = Int32.Parse((GetString(GetINIFileLocation(), header, "AbilityDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber)
 
-        loopvar = 0
+        TextBox1.Text = GetAbilityName(AbilityList.SelectedIndex)
 
-        ListBox1.Items.Clear()
-
-        While loopvar < (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) = True
-
-            ListBox1.Items.Add(GetAbilityName(loopvar))
-
-
-            loopvar = loopvar + 1
-
-
-
-        End While
-    End Sub
-
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        WriteHEX(LoadedROM, (AbilityDesc) + (ListBox1.SelectedIndex * 4), ReverseHEX(Hex(Val("&H" & (TextBox2.Text)) + &H8000000)))
+        TextBox2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AbilityDesc) + (AbilityList.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
         FileNum = FreeFile()
         FileOpen(FileNum, LoadedROM, OpenMode.Binary)

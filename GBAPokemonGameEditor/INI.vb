@@ -28,14 +28,16 @@
         Dim objResult As New System.Text.StringBuilder(256)
         intCharCount = GetPrivateProfileString(Section, Key, _
            [Default], objResult, objResult.Capacity, strFilename)
-        If intCharCount > 0 Then GetString = _
+        If intCharCount > 0 Then GetString =
            Left(objResult.ToString, intCharCount)
+
     End Function
 
     Public Function WriteString(ByVal strFilename As String, ByVal Section As String, _
       ByVal Key As String, ByVal Value As String)
         WritePrivateProfileString(Section, Key, Value, strFilename)
         Flush(strFilename)
+        WriteString = ""
     End Function
 
     Private Sub Flush(ByVal thing As String)

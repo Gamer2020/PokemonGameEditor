@@ -30,7 +30,7 @@ Module HexFunctions
 
     Public Function ReverseHEX(ByRef HEXData As String) As String
         Dim iNum As Integer
-        Dim HEXHolder As String
+        Dim HEXHolder As String = ""
         If Len(HEXData) / 2 <> Int(Len(HEXData) / 2) Then HEXData = "0" & HEXData
 
         For iNum = 0 To Len(HEXData) + 1

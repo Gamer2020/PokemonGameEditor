@@ -5,6 +5,7 @@ Module GetNameFunctions
 
     Public Function GetAbilityName(ByVal Index As Integer)
         Dim offvar As Integer
+        Dim b As String = ""
 
         offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "AbilityNames", "")), System.Globalization.NumberStyles.HexNumber)
 
@@ -16,19 +17,19 @@ Module GetNameFunctions
             FileOpen(FileNum, LoadedROM, OpenMode.Binary)
             Dim AbilityName As String = "xxxxxxxxxxxxxx"
             FileGet(FileNum, AbilityName, offvar + 1 + (13 * Index))
-            b$ = Sapp2Asc(AbilityName, False)
-            While InStr(1, b$, "\x") : b$ = LSet(b$, Len(b$) - 1) : End While
-            b$ = LSet(b$, Len(b$) - 1)
+            b = Sapp2Asc(AbilityName, False)
+            While InStr(1, b, "\x") : b = LSet(b, Len(b) - 1) : End While
+            b = LSet(b, Len(b) - 1)
 
 
         End If
         FileClose(FileNum)
-        GetAbilityName = b$
+        GetAbilityName = b
     End Function
 
     Public Function GetItemName(ByVal Index As Integer)
         Dim offvar As Integer
-
+        Dim b As String = ""
         offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "ItemData", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header3 = "J" Then
@@ -39,14 +40,14 @@ Module GetNameFunctions
             FileOpen(FileNum, LoadedROM, OpenMode.Binary)
             Dim ItemName As String = "xxxxxxxxxxxxxx"
             FileGet(FileNum, ItemName, offvar + 1 + (44 * Index))
-            b$ = Sapp2Asc(ItemName, False)
-            While InStr(1, b$, "\x") : b$ = LSet(b$, Len(b$) - 1) : End While
-            b$ = LSet(b$, Len(b$) - 1)
+            b = Sapp2Asc(ItemName, False)
+            While InStr(1, b, "\x") : b = LSet(b, Len(b) - 1) : End While
+            b = LSet(b, Len(b) - 1)
 
 
         End If
         FileClose(FileNum)
-        GetItemName = b$
+        GetItemName = b
     End Function
 
     Public Function GetPokemonName(ByVal Index As Integer)
@@ -118,6 +119,7 @@ Module GetNameFunctions
 
     Public Function GetAttackName(ByVal Index As Integer)
         Dim offvar As Integer
+        Dim b As String = ""
 
         offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "AttackNames", "")), System.Globalization.NumberStyles.HexNumber)
 
@@ -129,19 +131,19 @@ Module GetNameFunctions
             FileOpen(FileNum, LoadedROM, OpenMode.Binary)
             Dim AttackName As String = "xxxxxxxxxxxxx"
             FileGet(FileNum, AttackName, offvar + 1 + (13 * Index))
-            b$ = Sapp2Asc(AttackName, False)
-            While InStr(1, b$, "\x") : b$ = LSet(b$, Len(b$) - 1) : End While
-            b$ = LSet(b$, Len(b$) - 1)
+            b = Sapp2Asc(AttackName, False)
+            While InStr(1, b, "\x") : b = LSet(b, Len(b) - 1) : End While
+            b = LSet(b, Len(b) - 1)
 
 
         End If
         FileClose(FileNum)
-        GetAttackName = b$
+        GetAttackName = b
     End Function
 
     Public Function GetBattleFrontierTrainerName(ByVal Index As Integer) As String
         Dim offvar As Integer
-        Dim stringvar As String
+        Dim stringvar As String = ""
         offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "BattleFrontierTrainers", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header2 = "BPE" Then
@@ -174,7 +176,7 @@ Module GetNameFunctions
 
     Public Function GetSlateportBattleTentTrainerName(ByVal Index As Integer) As String
         Dim offvar As Integer
-        Dim stringvar As String
+        Dim stringvar As String = ""
         offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "SlateportBattleTentTrainers", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header2 = "BPE" Then
@@ -207,7 +209,7 @@ Module GetNameFunctions
 
     Public Function GetVerdanturfBattleTentTrainerName(ByVal Index As Integer) As String
         Dim offvar As Integer
-        Dim stringvar As String
+        Dim stringvar As String = ""
         offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "VerdanturfBattleTentTrainers", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header2 = "BPE" Then
@@ -240,7 +242,7 @@ Module GetNameFunctions
 
     Public Function GetFallarborBattleTentTrainerName(ByVal Index As Integer) As String
         Dim offvar As Integer
-        Dim stringvar As String
+        Dim stringvar As String = ""
         offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "FallarborBattleTentTrainers", "")), System.Globalization.NumberStyles.HexNumber)
 
         If header2 = "BPE" Then
@@ -273,6 +275,7 @@ Module GetNameFunctions
 
     Public Function GetTrainerClass(ByVal Index As Integer)
         Dim offvar As Integer
+        Dim b As String = ""
 
         offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerClasses", "")), System.Globalization.NumberStyles.HexNumber)
 
@@ -284,18 +287,19 @@ Module GetNameFunctions
             FileOpen(FileNum, LoadedROM, OpenMode.Binary)
             Dim Name As String = "xxxxxxxxxxxxx"
             FileGet(FileNum, Name, offvar + 1 + (13 * Index))
-            b$ = Sapp2Asc(Name, False)
-            While InStr(1, b$, "\x") : b$ = LSet(b$, Len(b$) - 1) : End While
-            b$ = LSet(b$, Len(b$) - 1)
+            b = Sapp2Asc(Name, False)
+            While InStr(1, b, "\x") : b = LSet(b, Len(b) - 1) : End While
+            b = LSet(b, Len(b) - 1)
 
 
         End If
         FileClose(FileNum)
-        GetTrainerClass = b$
+        GetTrainerClass = b
     End Function
 
     Public Function GetPokedexTypeName(ByVal Index As Integer)
         Dim offvar As Integer
+        Dim b As String = ""
 
         offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
 
@@ -329,13 +333,13 @@ Module GetNameFunctions
             FileOpen(FileNum, LoadedROM, OpenMode.Binary)
             Dim PokeType As String = "xxxxxxxxxxxx"
             FileGet(FileNum, PokeType, offvar + 1 + (SkipVar * Index))
-            b$ = Sapp2Asc(PokeType, False)
-            While InStr(1, b$, "\x") : b$ = LSet(b$, Len(b$) - 1) : End While
-            b$ = LSet(b$, Len(b$) - 1)
+            b = Sapp2Asc(PokeType, False)
+            While InStr(1, b, "\x") : b = LSet(b, Len(b) - 1) : End While
+            b = LSet(b, Len(b) - 1)
 
 
         End If
         FileClose(FileNum)
-        GetPokedexTypeName = b$
+        GetPokedexTypeName = b
     End Function
 End Module
