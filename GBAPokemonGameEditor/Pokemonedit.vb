@@ -35,8 +35,8 @@ Public Class Pokemonedit
         Type1.Items.Clear()
         Type2.Items.Clear()
 
-        Type1.Items.AddRange(IO.File.ReadAllLines(AppPath & "PGETypeList.txt"))
-        Type2.Items.AddRange(IO.File.ReadAllLines(AppPath & "PGETypeList.txt"))
+        Type1.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGETypeList.txt"))
+        Type2.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGETypeList.txt"))
 
         Dim LoopVar As Integer
 

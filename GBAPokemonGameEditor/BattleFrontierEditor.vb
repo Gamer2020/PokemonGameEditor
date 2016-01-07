@@ -11,22 +11,22 @@ Public Class BattleFrontierEditor
 
             ComboBox9.Items.Clear()
 
-            ComboBox9.Items.AddRange(IO.File.ReadAllLines(AppPath & "PGENatures.txt"))
+            ComboBox9.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGENatures.txt"))
 
 
             ComboBox10.Items.Clear()
 
-            ComboBox10.Items.AddRange(IO.File.ReadAllLines(AppPath & "PGENatures.txt"))
+            ComboBox10.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGENatures.txt"))
 
 
             ComboBox19.Items.Clear()
 
-            ComboBox19.Items.AddRange(IO.File.ReadAllLines(AppPath & "PGENatures.txt"))
+            ComboBox19.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGENatures.txt"))
 
 
             ComboBox28.Items.Clear()
 
-            ComboBox28.Items.AddRange(IO.File.ReadAllLines(AppPath & "PGENatures.txt"))
+            ComboBox28.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGENatures.txt"))
 
             bfload()
 

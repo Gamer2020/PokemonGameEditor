@@ -5,20 +5,20 @@ Imports VB = Microsoft.VisualBasic
 
 Public Class AttackExpander
     Private Sub AttackExpander_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If header2 = "BPE" Then
+        If header = "BPEE" Then
 
             TabControl1.TabPages(0).Enabled = False
             TabControl1.TabPages(1).Enabled = True
+            TabControl1.SelectedIndex = 1
+
+            Label4.Text = "Number of attacks in ROM: " & (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1
 
 
-            MsgBox("Not added yet!")
-
-            Me.Close()
-
-        ElseIf header2 = "BPR" Then
+        ElseIf header = "BPRE" Then
 
             TabControl1.TabPages(0).Enabled = True
             TabControl1.TabPages(1).Enabled = False
+            TabControl1.SelectedIndex = 0
 
             Label1.Text = "Number of attacks in ROM: " & (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1
 
@@ -514,6 +514,505 @@ Public Class AttackExpander
 
         MsgBox("Attacks expanded successfully!")
 
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        Dim countervar As Integer
+
+        Dim AttackDataBuffer As String
+        Dim AttackDataNewOffset As String
+
+        Dim AttackNamesBuffer As String
+        Dim AttackNamesNewOffset As String
+
+        Dim AttackAnimationTableBuffer As String
+        Dim AttackAnimationTableNewOffset As String
+
+        Dim AttackDescriptionTableBuffer As String
+        Dim AttackDescriptionTableNewOffset As String
+
+        If System.IO.File.Exists((LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini") = True Then
+
+            MsgBox("An INI for this ROM has been detected! Values will be updated as needed.")
+
+        Else
+
+            MsgBox("INI not found! One will now be created for this ROM in the same location as the ROM. Keep the ini with the ROM so that PGE can know the location of the data.")
+
+            File.Copy(AppPath & "ini\roms.ini", (LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini", True)
+
+
+        End If
+
+        Cursor = Cursors.WaitCursor
+
+        'Attack Data
+
+        AttackDataBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AttackData", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1) * 12)
+
+        'Deletes old data
+
+        If CheckBox3.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AttackData", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(AttackDataBuffer) / 2)))
+        End If
+
+
+
+        countervar = 0
+
+        While countervar < TextBox2.Text
+            countervar = countervar + 1
+
+            AttackDataBuffer = AttackDataBuffer & "000000000000000000000000"
+
+        End While
+
+        AttackDataNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(AttackDataBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, AttackDataNewOffset, AttackDataBuffer)
+
+        WriteString(GetINIFileLocation(), header, "AttackData", Hex(AttackDataNewOffset))
+
+        'Repoint Attack Data
+
+        WriteHEX(LoadedROM, &H0001CC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H033CE8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H03A3F0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H03A738, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H03D2A0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H03E3F4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H03E528, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H03E678, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H03E858, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H03FCF0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0400C0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H041CF4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H041FA0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0423D0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0429C0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H042FDC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H043034, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H043334, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H043400, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0434F4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0435D0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0436AC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H043780, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0438F0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H045784, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04591C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H045B20, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0461D0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04626C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04632C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04648C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H046508, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H046650, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H046798, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H046910, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0469B8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H046A98, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H046CE8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H046E70, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H046F58, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H046FE0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H047020, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H047100, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04728C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0472EC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H047520, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0475A4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0475D4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H047684, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0477B8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H047820, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0478B4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H047A48, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H047CF8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H047F90, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H049A08, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H049A40, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04BD08, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04BE4C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04C2F8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04C4D0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04C5DC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04C658, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04C828, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04CAD0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04E9F0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04EDFC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H04FE70, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H05028C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0514C0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H051564, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H051894, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H051974, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0521BC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H052434, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H05257C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H052F08, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H052F78, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H053004, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H053A88, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H053BA0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H053BD8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H054894, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H054C58, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H055478, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H055EE0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H057AA0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H057BE0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H057CB8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H059C1C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H05D454, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H05D4CC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0620B0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H062100, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H062EF4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H062F40, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H063154, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H063404, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H063E80, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0691DC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H069260, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0694CC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H069578, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0695D0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0695F4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H069A8C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H069BEC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H069D48, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H06B9A0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0DEAC8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H131CC8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H131D38, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H131E6C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H131F40, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H132090, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1323F8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H132A38, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H132A84, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H132CE8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H132DD0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H133088, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1330EC, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H133180, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1331D4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H13361C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H133648, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H133674, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H17E324, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H17F1A4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H17F264, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H18FFF8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H193FB4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1AE384, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1AE3D0, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1AE454, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1BDB60, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1C3C94, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1C3CD4, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1C4058, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1C4464, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1C453C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1D2A2C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000)))
+
+        WriteHEX(LoadedROM, &H38850, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000 + 4)))
+        WriteHEX(LoadedROM, &H389F8, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000 + 4)))
+        WriteHEX(LoadedROM, &H69188, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000 + 4)))
+        WriteHEX(LoadedROM, &H69230, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000 + 4)))
+        WriteHEX(LoadedROM, &H6B82C, ReverseHEX(Hex((AttackDataNewOffset) + &H8000000 + 4)))
+
+
+        'Attack Names
+
+        AttackNamesBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AttackNames", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1) * 13)
+
+        'Deletes old data
+
+        If CheckBox3.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AttackNames", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(AttackNamesBuffer) / 2)))
+        End If
+
+        countervar = 0
+
+        While countervar < TextBox2.Text
+            countervar = countervar + 1
+
+            AttackNamesBuffer = AttackNamesBuffer & "ACACACACACACACFF0000000000"
+
+        End While
+
+
+        AttackNamesNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(AttackNamesBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, AttackNamesNewOffset, AttackNamesBuffer)
+
+        WriteString(GetINIFileLocation(), header, "AttackNames", Hex(AttackNamesNewOffset))
+
+        'Repoint Attack Names
+
+        WriteHEX(LoadedROM, &H000148, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H059B14, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H079B54, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H09B18C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0D85F8, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0D8F34, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0D9A90, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0D9E50, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0D9F38, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0DD4CC, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0E0C1C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F1900, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F2F8C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F3260, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F3330, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F378C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F4278, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F457C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F4758, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F47E0, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F480C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F4830, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0F4870, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0FE014, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H11EB9C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H139908, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H13ACB4, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H13ACE4, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H14E554, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H14EF94, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H14F730, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H160B54, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H160DFC, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H161048, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H16136C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H16481C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1930B4, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1A0618, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1A10D8, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1A10F0, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1AB3F8, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B6AB0, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B6CB0, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B6E60, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B6F4C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B71C4, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B7280, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B7354, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B73D4, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B78FC, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B798C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B7EE8, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1B976C, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1C3BEC, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1C3FCC, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1C4050, ReverseHEX(Hex((AttackNamesNewOffset) + &H8000000)))
+
+        'Repoint Field Move names
+
+        WriteHEX(LoadedROM, &H615CA8, ReverseHEX(Hex((AttackNamesNewOffset + (148 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615CA0, ReverseHEX(Hex((AttackNamesNewOffset + (15 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615CC8, ReverseHEX(Hex((AttackNamesNewOffset + (19 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615CB8, ReverseHEX(Hex((AttackNamesNewOffset + (70 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615CC0, ReverseHEX(Hex((AttackNamesNewOffset + (57 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615CB0, ReverseHEX(Hex((AttackNamesNewOffset + (249 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615CD8, ReverseHEX(Hex((AttackNamesNewOffset + (127 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615CD0, ReverseHEX(Hex((AttackNamesNewOffset + (291 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615CE0, ReverseHEX(Hex((AttackNamesNewOffset + (100 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615CE8, ReverseHEX(Hex((AttackNamesNewOffset + (91 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615CF0, ReverseHEX(Hex((AttackNamesNewOffset + (290 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615CF8, ReverseHEX(Hex((AttackNamesNewOffset + (208 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615D00, ReverseHEX(Hex((AttackNamesNewOffset + (135 * 13)) + &H8000000)))
+        WriteHEX(LoadedROM, &H615D08, ReverseHEX(Hex((AttackNamesNewOffset + (230 * 13)) + &H8000000)))
+
+
+        'Attack Animations
+
+
+        AttackAnimationTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AttackAnimationTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1) * 4)
+
+        'Deletes old data
+
+        If CheckBox3.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AttackAnimationTable", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(AttackAnimationTableBuffer) / 2)))
+        End If
+
+        countervar = 0
+
+        While countervar < TextBox2.Text
+            countervar = countervar + 1
+
+            AttackAnimationTableBuffer = AttackAnimationTableBuffer & "98932C08"
+
+        End While
+
+
+        AttackAnimationTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(AttackAnimationTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, AttackAnimationTableNewOffset, AttackAnimationTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "AttackAnimationTable", Hex(AttackAnimationTableNewOffset))
+
+        'Repoint Attack Animation Table
+
+        WriteHEX(LoadedROM, &HA3A44, ReverseHEX(Hex((AttackAnimationTableNewOffset) + &H8000000)))
+
+        'Attack Descriptions
+
+        AttackDescriptionTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AttackDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfAttacks", ""))) * 4)
+
+        'Deletes old data
+
+        If CheckBox3.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AttackDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(AttackDescriptionTableBuffer) / 2)))
+        End If
+
+        countervar = 0
+
+        While countervar < TextBox2.Text
+            countervar = countervar + 1
+
+            AttackDescriptionTableBuffer = AttackDescriptionTableBuffer & "C1816108"
+
+        End While
+
+
+        AttackDescriptionTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(AttackDescriptionTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, AttackDescriptionTableNewOffset, AttackDescriptionTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "AttackDescriptionTable", Hex(AttackDescriptionTableNewOffset))
+
+        'Repoint Attack Description Table
+
+        WriteHEX(LoadedROM, &H1C3EFC, ReverseHEX(Hex((AttackDescriptionTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1D2AC8, ReverseHEX(Hex((AttackDescriptionTableNewOffset) + &H8000000)))
+
+
+        'Only limiter in ROM patch
+
+        WriteHEX(LoadedROM, &HD14E504, "000000000000")
+
+        'Move Table hack stuff
+        If CheckBox4.Checked And GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+
+            'Converts the table to the new format
+
+            '    Dim pokeloopcounter As Integer = 1
+            '    Dim AttackTable As Integer = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
+            '    Dim CurLvlUpAttPointer As String = ""
+            '    Dim newmovesoffset As String = ""
+
+            '    Dim CurAttacksLooper As Integer
+
+            '    Dim TempLoadBuff As Integer
+            '    Dim binarybuffer As String
+            '    Dim at As String
+            '    Dim lvl As String
+
+            '    Dim CurPokeAttacksBuff As String
+
+
+            '    MsgBox("Movesets will now be converted. This will take a while...")
+
+            '    While (pokeloopcounter < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")))
+
+            '        CurLvlUpAttPointer = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (pokeloopcounter * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
+            '        CurAttacksLooper = 0
+            '        CurPokeAttacksBuff = ""
+
+            '        While ReadHEX(LoadedROM, Int32.Parse((CurLvlUpAttPointer), System.Globalization.NumberStyles.HexNumber) + (CurAttacksLooper * 2), 2) = "FFFF" = False
+
+            '            TempLoadBuff = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((CurLvlUpAttPointer), System.Globalization.NumberStyles.HexNumber) + (CurAttacksLooper * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+
+            '            binarybuffer = Convert.ToString(TempLoadBuff, 2)
+
+            '            While Len(binarybuffer) < 16
+
+            '                binarybuffer = "0" & binarybuffer
+
+            '            End While
+
+            '            lvl = Mid(binarybuffer, 1, 7)
+
+            '            at = Mid(binarybuffer, 8, 9)
+
+            '            lvl = Convert.ToInt32(lvl, 2)
+
+            '            at = Convert.ToInt32(at, 2)
+
+            '            lvl = VB.Right("00" & Hex(lvl), 2)
+            '            at = ReverseHEX(VB.Right("0000" & Hex(at), 4))
+
+
+            '            CurPokeAttacksBuff = CurPokeAttacksBuff & at & lvl
+
+            '            CurAttacksLooper = CurAttacksLooper + 1
+            '        End While
+
+            '        'deletes the old moves
+
+            '        If CheckBox2.Checked Then
+            '            WriteHEX(LoadedROM, Int32.Parse(CurLvlUpAttPointer, System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((CurAttacksLooper * 2)))
+            '        End If
+
+            '        CurPokeAttacksBuff = CurPokeAttacksBuff & "0000FF00"
+
+            '        newmovesoffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(CurPokeAttacksBuff) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+            '        WriteHEX(LoadedROM, (AttackTable) + (pokeloopcounter * 4), ReverseHEX(Hex((newmovesoffset) + &H8000000)))
+
+            '        WriteHEX(LoadedROM, newmovesoffset, CurPokeAttacksBuff)
+
+            '        pokeloopcounter = pokeloopcounter + 1
+            '    End While
+
+            '    'Write the routines
+
+            '    Dim routine1 As String = "494689001148401800680F4E063637787900C9194318997854468C4203D0FF290BD00137F4E7084A01373770597809021878084310800249084702480047C04665EB030873EB030822400202" & ReverseHEX(Hex(AttackTable + &H8000000))
+            '    Dim routine2 As String = "8178FF22914225D01202FF32914600235800C0181949891909684718B8785446A04217DC7978387809020143404600930C1C00F017F8FF25009B484504D14046211C00F013F8009B0133032178188078A842DDD101B038BC9846A146AA46F0BC01BC0047F0B581B0024F3847F0B5024F3847C046B5E8030843EC0308" & ReverseHEX(Hex(AttackTable + &H8000000))
+            '    Dim routine3 As String = "6A0052190499501880780399171C0135AC46884249DC0024814214D00124644205982B4946186B46023B3D1C02330134032C08DC3068281802784078000210431A889042F2D1042C2FD1002454451CDA494608683818027841780902114302980288914211D00599194A8E18029B3D1C02330134544508DA3068281802784078000210431A889042F2D154450DD15046013082466200029952184C4620683818017840780002084310806546494608686900491909188878FF28A1D1504606B038BC9846A146AA46F0BC02BC0847C046" & ReverseHEX(Hex(AttackTable + &H8000000))
+
+            '    Dim routine1offset As String = ""
+            '    Dim routine2offset As String = ""
+            '    Dim routine3offset As String = ""
+
+            '    routine1offset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(routine1) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+            '    WriteHEX(LoadedROM, routine1offset, routine1)
+
+            '    WriteHEX(LoadedROM, &H3EB20, "18490847")
+            '    WriteHEX(LoadedROM, &H3EB84, ReverseHEX(Hex((routine1offset) + &H8000001)))
+
+            '    routine2offset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(routine2) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+            '    WriteHEX(LoadedROM, routine2offset, routine2)
+
+            '    WriteHEX(LoadedROM, &H3EA10, "00490847" & ReverseHEX(Hex((routine2offset) + &H8000001)))
+
+            '    routine3offset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(routine3) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+            '    WriteHEX(LoadedROM, routine3offset, routine3)
+
+            '    WriteHEX(LoadedROM, &H43CE8, "004A1047" & ReverseHEX(Hex((routine3offset) + &H8000001)))
+
+            '    'Enable the hack in the ini file.
+            '    WriteString(GetINIFileLocation(), header, "MoveTableHack", "True")
+
+        End If
+
+        'Updates the number of attacks
+        WriteString(GetINIFileLocation(), header, "NumberOfAttacks", CInt((GetString(GetINIFileLocation(), header, "NumberOfAttacks", ""))) + CInt(TextBox2.Text))
+
+        Label4.Text = "Number of attacks in ROM: " & (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1
+
+        Cursor = Cursors.Arrow
+
+        MsgBox("Attacks expanded successfully!")
     End Sub
 
 End Class
