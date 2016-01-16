@@ -654,7 +654,7 @@ Partial Class MainFrm
         Me.MaximizeBox = False
         Me.Name = "MainFrm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "GBA Pokémon Game Editor"
+        Me.Text = "Pokémon Game Editor"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)

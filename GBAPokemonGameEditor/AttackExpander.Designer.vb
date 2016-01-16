@@ -154,6 +154,7 @@ Partial Class AttackExpander
         'CheckBox4
         '
         Me.CheckBox4.AutoSize = True
+        Me.CheckBox4.Enabled = False
         Me.CheckBox4.Location = New System.Drawing.Point(20, 73)
         Me.CheckBox4.Name = "CheckBox4"
         Me.CheckBox4.Size = New System.Drawing.Size(141, 17)

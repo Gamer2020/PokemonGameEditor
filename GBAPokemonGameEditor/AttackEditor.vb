@@ -17,7 +17,7 @@
 
         ComboBox1.Items.Clear()
 
-        ComboBox1.Items.AddRange(IO.File.ReadAllLines(AppPath & "PGETypeList.txt"))
+        ComboBox1.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGETypeList.txt"))
 
         ComboBox3.Items.Clear()
 

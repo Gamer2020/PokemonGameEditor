@@ -2,21 +2,21 @@
 <doc>
 <assembly>
 <name>
-GBAPokemonGameEditor
+PokemonGameEditor
 </name>
 </assembly>
 <members>
-<member name="T:GBAPokemonGameEditor.My.Resources.Resources">
+<member name="T:PokemonGameEditor.My.Resources.Resources">
 <summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
 </member>
-<member name="P:GBAPokemonGameEditor.My.Resources.Resources.ResourceManager">
+<member name="P:PokemonGameEditor.My.Resources.Resources.ResourceManager">
 <summary>
   Returns the cached ResourceManager instance used by this class.
 </summary>
 </member>
-<member name="P:GBAPokemonGameEditor.My.Resources.Resources.Culture">
+<member name="P:PokemonGameEditor.My.Resources.Resources.Culture">
 <summary>
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
