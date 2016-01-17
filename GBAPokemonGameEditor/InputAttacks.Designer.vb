@@ -28,6 +28,7 @@ Partial Class InputAttacks
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -42,7 +43,7 @@ Partial Class InputAttacks
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(18, 49)
+        Me.Label2.Location = New System.Drawing.Point(18, 74)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(97, 13)
         Me.Label2.TabIndex = 1
@@ -58,7 +59,7 @@ Partial Class InputAttacks
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(121, 49)
+        Me.TextBox2.Location = New System.Drawing.Point(121, 71)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(24, 20)
         Me.TextBox2.TabIndex = 3
@@ -66,7 +67,7 @@ Partial Class InputAttacks
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(198, 68)
+        Me.Button1.Location = New System.Drawing.Point(193, 83)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(77, 25)
         Me.Button1.TabIndex = 4
@@ -76,18 +77,29 @@ Partial Class InputAttacks
         'CheckBox1
         '
         Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(21, 73)
+        Me.CheckBox1.Location = New System.Drawing.Point(21, 98)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(86, 17)
         Me.CheckBox1.TabIndex = 5
         Me.CheckBox1.Text = "Jambo Hack"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(21, 51)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(161, 17)
+        Me.CheckBox2.TabIndex = 6
+        Me.CheckBox2.Text = "Automatically find free space"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
         'InputAttacks
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(277, 98)
+        Me.ClientSize = New System.Drawing.Size(282, 137)
+        Me.Controls.Add(Me.CheckBox2)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox2)
@@ -109,4 +121,5 @@ Partial Class InputAttacks
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
 End Class
