@@ -1,5 +1,6 @@
 ﻿Public Class AbilityEdit
     Dim AbilityDesc As Integer
+    Dim CurrentAbilityDescripLength As Integer
 
     Private Sub AbilityEdit_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         MainFrm.Visible = True
@@ -83,9 +84,90 @@
         DexDescp = Mid$(DexDescp, 1, InStr(1, DexDescp, "\x"))
         DexDescp = Replace(DexDescp, "\n", vbCrLf)
         DexDescp = Replace(RTrim$(DexDescp), "\", "")
+        CurrentAbilityDescripLength = Len(DexDescp)
         TextBox3.Text = DexDescp
-        TextBox3.MaxLength = Len(DexDescp)
 
         FileClose(FileNum)
+
+
+
+    End Sub
+
+    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
+        Label21.Text = "Length: " & Len(TextBox3.Text) & "/" & CurrentAbilityDescripLength
+        Label21.ForeColor = Color.Black
+
+        If Len(TextBox3.Text) > CurrentAbilityDescripLength Then
+            Label21.Text = Label21.Text & " Requires repoint!"
+
+            Label21.ForeColor = Color.Red
+
+        End If
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim curdespoff As String
+
+        Dim destowrite As String
+
+        curdespoff = Hex(Val("&H" & ReverseHEX(ReadHEX(LoadedROM, (AbilityDesc) + (AbilityList.SelectedIndex * 4), 4))) - &H8000000)
+
+        destowrite = Asc2Sapp(Replace(TextBox3.Text, vbCrLf, "\n") & "\x")
+
+
+
+        If Len(TextBox3.Text) > CurrentAbilityDescripLength Then
+
+
+            Dim result As DialogResult = MessageBox.Show("The text will be written to free space and the pointer will be repointed. Would you like to do that?",
+                              "Repoint?",
+                              MessageBoxButtons.YesNo)
+
+            If (result = DialogResult.Yes) Then
+
+                Dim newtextoff As String
+
+                newtextoff = SearchFreeSpaceFourAligned(LoadedROM, &HFF, (Len(destowrite & " ")), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+                FileNum = FreeFile()
+
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                FilePut(FileNum, destowrite & " ", ("&H" & Hex(newtextoff)) + 1, False)
+
+                FileClose(FileNum)
+
+                TextBox2.Text = Hex(newtextoff)
+
+                Button2.PerformClick()
+
+                Label21.Text = "Length: " & Len(TextBox3.Text) & "/" & CurrentAbilityDescripLength
+                Label21.ForeColor = Color.Black
+
+                If Len(TextBox3.Text) > CurrentAbilityDescripLength Then
+                    Label21.Text = Label21.Text & " Requires repoint!"
+
+                    Label21.ForeColor = Color.Red
+
+                End If
+
+            Else
+
+            End If
+
+        Else
+
+
+            FileNum = FreeFile()
+
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+            FilePut(FileNum, destowrite, ("&H" & curdespoff) + 1, False)
+
+            FileClose(FileNum)
+
+            TextBox2.Text = curdespoff
+
+        End If
     End Sub
 End Class
