@@ -9,6 +9,7 @@ Public Class ItemEditor
 
     Dim ItemBaseOff As Integer
     Dim ItemPicDataOff As Integer
+    Dim CurrentItemDescripLength As Integer
 
     Private Sub ItemEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -76,8 +77,9 @@ Public Class ItemEditor
         ItemDescp = Mid$(ItemDescp, 1, InStr(1, ItemDescp, "\x"))
         ItemDescp = Replace(ItemDescp, "\n", vbCrLf)
         ItemDescp = Replace(RTrim$(ItemDescp), "\", "")
+
+        CurrentItemDescripLength = Len(ItemDescp)
         DsrptnTextBox.Text = ItemDescp
-        DsrptnTextBox.MaxLength = Len(ItemDescp)
 
         FileClose(FileNum)
 
@@ -165,9 +167,90 @@ Public Class ItemEditor
         ItemDescp = Mid$(ItemDescp, 1, InStr(1, ItemDescp, "\x"))
         ItemDescp = Replace(ItemDescp, "\n", vbCrLf)
         ItemDescp = Replace(RTrim$(ItemDescp), "\", "")
+        CurrentItemDescripLength = Len(DsrptnTextBox.Text)
         DsrptnTextBox.Text = ItemDescp
-        DsrptnTextBox.MaxLength = Len(ItemDescp)
+
 
         FileClose(FileNum)
+    End Sub
+
+    Private Sub DsrptnTextBox_TextChanged(sender As Object, e As EventArgs) Handles DsrptnTextBox.TextChanged
+        Label21.Text = "Length: " & Len(DsrptnTextBox.Text) & "/" & CurrentItemDescripLength
+        Label21.ForeColor = Color.Black
+
+        If Len(DsrptnTextBox.Text) > CurrentItemDescripLength Then
+            Label21.Text = Label21.Text & " Requires repoint!"
+
+            Label21.ForeColor = Color.Red
+
+        End If
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim curdespoff As String
+
+        Dim destowrite As String
+
+        curdespoff = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 20) + (ItemListComboBox.SelectedIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
+        destowrite = Asc2Sapp(Replace(DsrptnTextBox.Text, vbCrLf, "\n") & "\x")
+
+
+
+        If Len(DsrptnTextBox.Text) > CurrentItemDescripLength Then
+
+
+            Dim result As DialogResult = MessageBox.Show("The text will be written to free space and the pointer will be repointed. Would you like to do that?",
+                              "Repoint?",
+                              MessageBoxButtons.YesNo)
+
+            If (result = DialogResult.Yes) Then
+
+                Dim newtextoff As String
+
+                newtextoff = SearchFreeSpaceFourAligned(LoadedROM, &HFF, (Len(destowrite & " ")), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+                FileNum = FreeFile()
+
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                FilePut(FileNum, destowrite & " ", ("&H" & Hex(newtextoff)) + 1, False)
+
+                FileClose(FileNum)
+
+                DescribPointTextBox.Text = Hex(newtextoff)
+
+                DscrpRpntBttn.PerformClick()
+
+
+
+                Label21.Text = "Length: " & Len(DsrptnTextBox.Text) & "/" & CurrentItemDescripLength
+                Label21.ForeColor = Color.Black
+
+                If Len(DsrptnTextBox.Text) > CurrentItemDescripLength Then
+                    Label21.Text = Label21.Text & " Requires repoint!"
+
+                    Label21.ForeColor = Color.Red
+
+                End If
+
+            Else
+
+            End If
+
+        Else
+
+
+            FileNum = FreeFile()
+
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+            FilePut(FileNum, destowrite, ("&H" & curdespoff) + 1, False)
+
+            FileClose(FileNum)
+
+            DescribPointTextBox.Text = curdespoff
+
+        End If
     End Sub
 End Class

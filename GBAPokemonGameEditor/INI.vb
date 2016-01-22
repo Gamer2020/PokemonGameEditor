@@ -22,11 +22,14 @@
       ByVal lpKeyName As Integer, ByVal lpString As Integer, _
       ByVal lpFileName As String) As Integer
 
-    Public Function GetString(ByVal strFilename As String, ByVal Section As String, _
+    Public Function GetString(ByVal strFilename As String, ByVal Section As String,
       ByVal Key As String, ByVal [Default] As String) As String
+
+        GetString = ""
+
         Dim intCharCount As Integer
         Dim objResult As New System.Text.StringBuilder(256)
-        intCharCount = GetPrivateProfileString(Section, Key, _
+        intCharCount = GetPrivateProfileString(Section, Key,
            [Default], objResult, objResult.Capacity, strFilename)
         If intCharCount > 0 Then GetString =
            Left(objResult.ToString, intCharCount)

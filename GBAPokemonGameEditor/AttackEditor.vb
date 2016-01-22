@@ -305,7 +305,6 @@
         AttackDescp = Replace(RTrim$(AttackDescp), "\", "")
         CurrentAttackDescripLength = Len(AttackDescp)
         TextBox7.Text = AttackDescp
-        TextBox7.MaxLength = Len(AttackDescp)
 
         FileClose(FileNum)
 

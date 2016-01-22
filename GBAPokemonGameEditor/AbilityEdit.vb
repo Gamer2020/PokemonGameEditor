@@ -60,8 +60,9 @@
         DexDescp = Mid$(DexDescp, 1, InStr(1, DexDescp, "\x"))
         DexDescp = Replace(DexDescp, "\n", vbCrLf)
         DexDescp = Replace(RTrim$(DexDescp), "\", "")
+        CurrentAbilityDescripLength = Len(DexDescp)
         TextBox3.Text = DexDescp
-        TextBox3.MaxLength = Len(DexDescp)
+
 
         FileClose(FileNum)
     End Sub

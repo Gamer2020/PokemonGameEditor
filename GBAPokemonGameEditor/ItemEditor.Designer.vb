@@ -61,6 +61,8 @@ Partial Class ItemEditor
         Me.BattleUsagePTTextBox = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.BUTextBox = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.ItemImagePictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,7 +110,7 @@ Partial Class ItemEditor
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(183, 185)
+        Me.Label1.Location = New System.Drawing.Point(165, 209)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(36, 13)
         Me.Label1.TabIndex = 2
@@ -117,7 +119,7 @@ Partial Class ItemEditor
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(183, 210)
+        Me.Label2.Location = New System.Drawing.Point(165, 234)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(34, 13)
         Me.Label2.TabIndex = 3
@@ -125,14 +127,14 @@ Partial Class ItemEditor
         '
         'IndexTextBox
         '
-        Me.IndexTextBox.Location = New System.Drawing.Point(248, 182)
+        Me.IndexTextBox.Location = New System.Drawing.Point(230, 206)
         Me.IndexTextBox.Name = "IndexTextBox"
         Me.IndexTextBox.Size = New System.Drawing.Size(40, 20)
         Me.IndexTextBox.TabIndex = 4
         '
         'PriceTextBox
         '
-        Me.PriceTextBox.Location = New System.Drawing.Point(248, 207)
+        Me.PriceTextBox.Location = New System.Drawing.Point(230, 231)
         Me.PriceTextBox.Name = "PriceTextBox"
         Me.PriceTextBox.Size = New System.Drawing.Size(40, 20)
         Me.PriceTextBox.TabIndex = 5
@@ -224,8 +226,7 @@ Partial Class ItemEditor
         Me.DsrptnTextBox.Location = New System.Drawing.Point(15, 72)
         Me.DsrptnTextBox.Multiline = True
         Me.DsrptnTextBox.Name = "DsrptnTextBox"
-        Me.DsrptnTextBox.ReadOnly = True
-        Me.DsrptnTextBox.Size = New System.Drawing.Size(147, 74)
+        Me.DsrptnTextBox.Size = New System.Drawing.Size(156, 74)
         Me.DsrptnTextBox.TabIndex = 29
         '
         'DescribPointTextBox
@@ -237,13 +238,15 @@ Partial Class ItemEditor
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.Label21)
+        Me.GroupBox3.Controls.Add(Me.Button6)
         Me.GroupBox3.Controls.Add(Me.DescribPointTextBox)
         Me.GroupBox3.Controls.Add(Me.DscrpRpntBttn)
         Me.GroupBox3.Controls.Add(Me.DsrptnTextBox)
         Me.GroupBox3.Controls.Add(Me.Label10)
         Me.GroupBox3.Location = New System.Drawing.Point(168, 12)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(188, 153)
+        Me.GroupBox3.Size = New System.Drawing.Size(188, 188)
         Me.GroupBox3.TabIndex = 32
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Description Pointer:"
@@ -251,7 +254,7 @@ Partial Class ItemEditor
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(180, 236)
+        Me.Label5.Location = New System.Drawing.Point(162, 260)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(63, 13)
         Me.Label5.TabIndex = 33
@@ -259,7 +262,7 @@ Partial Class ItemEditor
         '
         'HoldEffectTextBox
         '
-        Me.HoldEffectTextBox.Location = New System.Drawing.Point(248, 233)
+        Me.HoldEffectTextBox.Location = New System.Drawing.Point(230, 257)
         Me.HoldEffectTextBox.Name = "HoldEffectTextBox"
         Me.HoldEffectTextBox.Size = New System.Drawing.Size(40, 20)
         Me.HoldEffectTextBox.TabIndex = 34
@@ -267,7 +270,7 @@ Partial Class ItemEditor
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(180, 262)
+        Me.Label6.Location = New System.Drawing.Point(162, 286)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(37, 13)
         Me.Label6.TabIndex = 35
@@ -275,7 +278,7 @@ Partial Class ItemEditor
         '
         'ValueTextBox
         '
-        Me.ValueTextBox.Location = New System.Drawing.Point(248, 259)
+        Me.ValueTextBox.Location = New System.Drawing.Point(230, 283)
         Me.ValueTextBox.Name = "ValueTextBox"
         Me.ValueTextBox.Size = New System.Drawing.Size(40, 20)
         Me.ValueTextBox.TabIndex = 36
@@ -283,7 +286,7 @@ Partial Class ItemEditor
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(300, 185)
+        Me.Label7.Location = New System.Drawing.Point(282, 209)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(78, 13)
         Me.Label7.TabIndex = 37
@@ -291,14 +294,14 @@ Partial Class ItemEditor
         '
         'MysteryValue2TextBox
         '
-        Me.MysteryValue2TextBox.Location = New System.Drawing.Point(396, 207)
+        Me.MysteryValue2TextBox.Location = New System.Drawing.Point(378, 231)
         Me.MysteryValue2TextBox.Name = "MysteryValue2TextBox"
         Me.MysteryValue2TextBox.Size = New System.Drawing.Size(40, 20)
         Me.MysteryValue2TextBox.TabIndex = 39
         '
         'MysteryValue1TextBox
         '
-        Me.MysteryValue1TextBox.Location = New System.Drawing.Point(396, 182)
+        Me.MysteryValue1TextBox.Location = New System.Drawing.Point(378, 206)
         Me.MysteryValue1TextBox.Name = "MysteryValue1TextBox"
         Me.MysteryValue1TextBox.Size = New System.Drawing.Size(40, 20)
         Me.MysteryValue1TextBox.TabIndex = 38
@@ -306,7 +309,7 @@ Partial Class ItemEditor
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(300, 236)
+        Me.Label8.Location = New System.Drawing.Point(282, 260)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(44, 13)
         Me.Label8.TabIndex = 40
@@ -317,14 +320,14 @@ Partial Class ItemEditor
         Me.PocketComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.PocketComboBox.FormattingEnabled = True
         Me.PocketComboBox.Items.AddRange(New Object() {"???", "Items", "Poke Balls", "TM/HM's", "Berries", "Key Items"})
-        Me.PocketComboBox.Location = New System.Drawing.Point(396, 233)
+        Me.PocketComboBox.Location = New System.Drawing.Point(378, 257)
         Me.PocketComboBox.Name = "PocketComboBox"
         Me.PocketComboBox.Size = New System.Drawing.Size(82, 21)
         Me.PocketComboBox.TabIndex = 41
         '
         'TypeTextBox
         '
-        Me.TypeTextBox.Location = New System.Drawing.Point(396, 259)
+        Me.TypeTextBox.Location = New System.Drawing.Point(378, 283)
         Me.TypeTextBox.Name = "TypeTextBox"
         Me.TypeTextBox.Size = New System.Drawing.Size(40, 20)
         Me.TypeTextBox.TabIndex = 43
@@ -332,7 +335,7 @@ Partial Class ItemEditor
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(300, 259)
+        Me.Label9.Location = New System.Drawing.Point(282, 283)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(34, 13)
         Me.Label9.TabIndex = 42
@@ -341,7 +344,7 @@ Partial Class ItemEditor
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(300, 210)
+        Me.Label11.Location = New System.Drawing.Point(282, 234)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(69, 13)
         Me.Label11.TabIndex = 44
@@ -395,11 +398,30 @@ Partial Class ItemEditor
         Me.BUTextBox.Size = New System.Drawing.Size(25, 20)
         Me.BUTextBox.TabIndex = 50
         '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label21.Location = New System.Drawing.Point(14, 149)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(43, 13)
+        Me.Label21.TabIndex = 33
+        Me.Label21.Text = "Length:"
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(104, 162)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(67, 20)
+        Me.Button6.TabIndex = 32
+        Me.Button6.Text = "Save"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
         'ItemEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(496, 318)
+        Me.ClientSize = New System.Drawing.Size(496, 316)
         Me.Controls.Add(Me.BUTextBox)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label13)
@@ -482,4 +504,6 @@ Partial Class ItemEditor
     Friend WithEvents BattleUsagePTTextBox As TextBox
     Friend WithEvents Label14 As Label
     Friend WithEvents BUTextBox As TextBox
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Button6 As Button
 End Class

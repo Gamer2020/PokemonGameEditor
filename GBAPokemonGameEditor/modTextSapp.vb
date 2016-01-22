@@ -4,6 +4,7 @@ Option Explicit Off
 Module modTextSapp
     Public Function Asc2Sapp(ByVal asciistring As String) As String
         o = ""
+        Y = ""
 
         Dim m As Boolean
         For i = 1 To Len(asciistring)
@@ -784,6 +785,7 @@ Module modTextSapp
 
     Public Function NameAsc2Sapp(ByVal asciistring As String) As String
         o = ""
+        Y = ""
 
         Dim m As Boolean
         For i = 1 To Len(asciistring)
