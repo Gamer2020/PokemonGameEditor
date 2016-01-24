@@ -61,16 +61,15 @@ TM/HM Editor
 
 Ability to use a seperate ini
 
+Ability to add more attacks.
+
 Planned Features
 =================
 
 Ability to add more Pokemon.
 
-Ability to add more attacks.
-
 Ability to add more items.
 
-Attack effect and animation database?
 
 Program Requirements
 ====================
@@ -138,6 +137,8 @@ Kawa
 Bulbapedia
 
 Agastya
+
+Wichu
 
 Downloads
 ================================

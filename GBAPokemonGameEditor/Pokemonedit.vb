@@ -1809,7 +1809,7 @@ Public Class Pokemonedit
             MTattacks = Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
 
             MTCom.Enabled = True
-            While LoopVar < 32
+            While LoopVar < (Val(GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", "")))
                 MTCom.Items.Add(GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, MTattacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
                 LoopVar = LoopVar + 1
 
@@ -1819,7 +1819,7 @@ Public Class Pokemonedit
 
             MTCom.Enabled = True
 
-            While LoopVar < 16
+            While LoopVar < (Val(GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", "")))
                 MTCom.Items.Add(GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, MTattacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
                 LoopVar = LoopVar + 1
 
@@ -1837,12 +1837,13 @@ Public Class Pokemonedit
         Dim blah As Integer
         Dim curchar As String
 
-        If header2 = "BPE" Then
+        'If header2 = "BPE" Then
+        If header2 = "BPE" Or header2 = "BPR" Or header2 = "BPG" Then
             MTCompoLoc = Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
 
 
-            For emloop = 0 To 1
-                blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, MTCompoLoc + 4 + (PKMNames.SelectedIndex * 4) + (emloop * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+            For emloop = 0 To (((Val(GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", ""))) / 16) - 1)
+                blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, MTCompoLoc + (((Val(GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", ""))) / 8)) + (PKMNames.SelectedIndex * (((Val(GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", ""))) / 8))) + (emloop * 2), 2))), System.Globalization.NumberStyles.HexNumber)
                 binarythebitch = (Convert.ToString(blah, 2))
                 While Len(binarythebitch) < 16
 
@@ -1868,33 +1869,33 @@ Public Class Pokemonedit
                 End While
             Next emloop
 
-        ElseIf header2 = "BPR" Or header2 = "BPG" Then
-            MTCompoLoc = Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
+            'ElseIf header2 = "BPR" Or header2 = "BPG" Then
+            '    MTCompoLoc = Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber)
 
-            blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, MTCompoLoc + 2 + (PKMNames.SelectedIndex * 2), 2))), System.Globalization.NumberStyles.HexNumber)
-            binarythebitch = (Convert.ToString(blah, 2))
-            While Len(binarythebitch) < 16
+            '    blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, MTCompoLoc + 2 + (PKMNames.SelectedIndex * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+            '    binarythebitch = (Convert.ToString(blah, 2))
+            '    While Len(binarythebitch) < 16
 
-                binarythebitch = "0" & binarythebitch
+            '        binarythebitch = "0" & binarythebitch
 
-            End While
-            LoopVar = 0
+            '    End While
+            '    LoopVar = 0
 
-            While LoopVar < 16
-                curchar = GetChar(binarythebitch, LoopVar + 1)
-
-
-                If curchar = "1" Then
-                    MTCom.SetItemChecked(15 - LoopVar, True)
+            '    While LoopVar < 16
+            '        curchar = GetChar(binarythebitch, LoopVar + 1)
 
 
-                ElseIf curchar = "0" Then
+            '        If curchar = "1" Then
+            '            MTCom.SetItemChecked(15 - LoopVar, True)
 
-                    MTCom.SetItemChecked(15 - LoopVar, False)
-                End If
 
-                LoopVar = LoopVar + 1
-            End While
+            '        ElseIf curchar = "0" Then
+
+            '            MTCom.SetItemChecked(15 - LoopVar, False)
+            '        End If
+
+            '        LoopVar = LoopVar + 1
+            '    End While
         Else
         End If
 
@@ -1912,8 +1913,9 @@ Public Class Pokemonedit
         'Dim blah As Integer
         'Dim curchar As String
 
-        If header2 = "BPE" Then
-            For emloop = 0 To 1
+        'If header2 = "BPE" Then
+        If header2 = "BPE" Or header2 = "BPR" Or header2 = "BPG" Then
+            For emloop = 0 To (((Val(GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", ""))) / 16) - 1)
                 binarytowrite = ""
                 For looper = 0 To 15
 
@@ -1928,25 +1930,25 @@ Public Class Pokemonedit
                 Next looper
 
                 bytetowrite = Hex(Convert.ToInt32(binarytowrite, 2))
-                WriteHEX(LoadedROM, MTCompoLoc + 4 + (PKMNames.SelectedIndex * 4) + (emloop * 2), ReverseHEX(bytetowrite))
+                WriteHEX(LoadedROM, MTCompoLoc + (((Val(GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", ""))) / 8)) + (PKMNames.SelectedIndex * (((Val(GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", ""))) / 8))) + (emloop * 2), ReverseHEX(VB.Right("0000" & bytetowrite, 4)))
             Next emloop
 
-        ElseIf header2 = "BPR" Or header2 = "BPG" Then
-            binarytowrite = ""
-                For looper = 0 To 15
+            'ElseIf header2 = "BPR" Or header2 = "BPG" Then
+            '    binarytowrite = ""
+            '        For looper = 0 To 15
 
-                If MTCom.GetItemChecked((0 * 16) + 15 - looper) = True Then
-                    binarytowrite = binarytowrite & "1"
+            '        If MTCom.GetItemChecked((0 * 16) + 15 - looper) = True Then
+            '            binarytowrite = binarytowrite & "1"
 
-                ElseIf MTCom.GetItemChecked((0 * 16) + 15 - looper) = False Then
-                    binarytowrite = binarytowrite & "0"
+            '        ElseIf MTCom.GetItemChecked((0 * 16) + 15 - looper) = False Then
+            '            binarytowrite = binarytowrite & "0"
 
-                End If
+            '        End If
 
-                Next looper
+            '        Next looper
 
-                bytetowrite = Hex(Convert.ToInt32(binarytowrite, 2))
-            WriteHEX(LoadedROM, MTCompoLoc + 2 + (PKMNames.SelectedIndex * 2) + (0 * 2), ReverseHEX(bytetowrite))
+            '        bytetowrite = Hex(Convert.ToInt32(binarytowrite, 2))
+            '    WriteHEX(LoadedROM, MTCompoLoc + 2 + (PKMNames.SelectedIndex * 2) + (0 * 2), ReverseHEX(bytetowrite))
 
         Else
         End If
