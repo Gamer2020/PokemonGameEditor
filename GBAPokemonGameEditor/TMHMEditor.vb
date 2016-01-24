@@ -15,37 +15,30 @@ Public Class TMHMEditor
         TMHMList.Items.Clear()
 
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 0 Then
+        LoopVar = 0
 
-            LoopVar = 0
+        While LoopVar < (Val(GetString(GetINIFileLocation(), header, "TotalTMsPlusHMs", ""))) = True
 
-            While LoopVar < 58 = True
+            If LoopVar > ((Val(GetString(GetINIFileLocation(), header, "TotalTMs", ""))) - 1) Then
+                TMHMList.Items.Add("HM" & LoopVar - 49 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
-                If LoopVar > 49 Then
-                    TMHMList.Items.Add("HM" & LoopVar - 49 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
+                LoopVar = LoopVar + 1
 
-                    LoopVar = LoopVar + 1
+            ElseIf LoopVar < 9 Then
 
-                ElseIf LoopVar < 9 Then
+                TMHMList.Items.Add("TM" & "0" & LoopVar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
-                    TMHMList.Items.Add("TM" & "0" & LoopVar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
+                LoopVar = LoopVar + 1
+            Else
 
-                    LoopVar = LoopVar + 1
-                Else
-
-                    TMHMList.Items.Add("TM" & LoopVar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
+                TMHMList.Items.Add("TM" & LoopVar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
                     LoopVar = LoopVar + 1
                 End If
             End While
-        End If
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 1 Then
-            MsgBox("I'm sorry but this does not support Jambo51's TM/HM hack yet.")
 
-        End If
-
-        AttackList.Items.Clear()
+            AttackList.Items.Clear()
 
         LoopVar = 0
 
@@ -77,30 +70,28 @@ Public Class TMHMEditor
 
         TMHMList.Items.Clear()
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 0 Then
+        loopvar = 0
 
-            loopvar = 0
+        While loopvar < (Val(GetString(GetINIFileLocation(), header, "TotalTMsPlusHMs", ""))) = True
 
-            While loopvar < 58 = True
+            If loopvar > ((Val(GetString(GetINIFileLocation(), header, "TotalTMs", ""))) - 1) Then
+                TMHMList.Items.Add("HM" & loopvar - 49 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((loopvar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
-                If loopvar > 49 Then
-                    TMHMList.Items.Add("HM" & loopvar - 49 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((loopvar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
+                loopvar = loopvar + 1
 
-                    loopvar = loopvar + 1
+            ElseIf loopvar < 9 Then
 
-                ElseIf loopvar < 9 Then
+                TMHMList.Items.Add("TM" & "0" & loopvar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((loopvar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
-                    TMHMList.Items.Add("TM" & "0" & loopvar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((loopvar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
+                loopvar = loopvar + 1
+            Else
 
-                    loopvar = loopvar + 1
-                Else
+                TMHMList.Items.Add("TM" & loopvar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((loopvar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
-                    TMHMList.Items.Add("TM" & loopvar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((loopvar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
+                loopvar = loopvar + 1
+            End If
+        End While
 
-                    loopvar = loopvar + 1
-                End If
-            End While
-        End If
 
         TMHMList.SelectedIndex = indexbuf
 

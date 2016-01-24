@@ -1245,57 +1245,29 @@ Public Class Pokemonedit
 
         TMHMCom.Items.Clear()
 
+        LoopVar = 0
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 0 Then
+        While LoopVar < (Val(GetString(GetINIFileLocation(), header, "TotalTMsPlusHMs", ""))) = True
 
-            LoopVar = 0
+            If LoopVar > ((Val(GetString(GetINIFileLocation(), header, "TotalTMs", ""))) - 1) Then
+                TMHMCom.Items.Add("HM" & LoopVar - 49 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
-            While LoopVar < 58 = True
+                LoopVar = LoopVar + 1
 
-                If LoopVar > 49 Then
-                    TMHMCom.Items.Add("HM" & LoopVar - 49 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
+            ElseIf LoopVar < 9 Then
 
-                    LoopVar = LoopVar + 1
+                TMHMCom.Items.Add("TM" & "0" & LoopVar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
-                ElseIf LoopVar < 9 Then
+                LoopVar = LoopVar + 1
+            Else
 
-                    TMHMCom.Items.Add("TM" & "0" & LoopVar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
-
-                    LoopVar = LoopVar + 1
-                Else
-
-                    TMHMCom.Items.Add("TM" & LoopVar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
-
-                    LoopVar = LoopVar + 1
-                End If
-            End While
-        End If
-
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 1 Then
-
-            LoopVar = 0
-
-            While LoopVar < 104 = True
-
-                If LoopVar > 94 Then
-                    TMHMCom.Items.Add("HM" & LoopVar - 94)
-
-                    LoopVar = LoopVar + 1
-
-                ElseIf LoopVar < 9 Then
-
-                    TMHMCom.Items.Add("TM" & "0" & LoopVar + 1)
-
-                    LoopVar = LoopVar + 1
-                Else
-
-                    TMHMCom.Items.Add("TM" & LoopVar + 1)
+                TMHMCom.Items.Add("TM" & LoopVar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
                     LoopVar = LoopVar + 1
                 End If
             End While
 
-        End If
+
     End Sub
 
     Public Sub TMHMCOMLoad()
@@ -1313,104 +1285,104 @@ Public Class Pokemonedit
         Dim binarythebitch As String
         Dim curchar As String
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 0 Then
-            whichtmbyte = 0
+        'If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 0 Then
+        '    whichtmbyte = 0
 
-            While whichtmbyte < 8
+        '    While whichtmbyte < 8
 
-                blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMCompoLoc + 8 + (i * 8) + whichtmbyte, 1))), System.Globalization.NumberStyles.HexNumber)
-                binarythebitch = (Convert.ToString(blah, 2))
+        '        blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMCompoLoc + 8 + (i * 8) + whichtmbyte, 1))), System.Globalization.NumberStyles.HexNumber)
+        '        binarythebitch = (Convert.ToString(blah, 2))
 
-                If whichtmbyte = 7 Then
+        '        If whichtmbyte = 7 Then
 
-                    howmanytmschecked = 0
-
-
-                    ' MsgBox((Convert.ToString(blah, 2)))
-
-                    If Len(binarythebitch) > 2 Then
-                        MsgBox("Did you mess with the TM/HM data? Contact Gamer2020!")
-                    ElseIf Len(binarythebitch) = 2 Then
+        '            howmanytmschecked = 0
 
 
-                        curchar = GetChar(binarythebitch, 1)
+        '            ' MsgBox((Convert.ToString(blah, 2)))
 
-                        If curchar = "1" Then
-                            TMHMCom.SetItemChecked(57, True)
-
-                        ElseIf curchar = "0" Then
-                            TMHMCom.SetItemChecked(57, False)
-
-                        End If
-
-                        curchar = GetChar(binarythebitch, 2)
-
-                        If curchar = "1" Then
-                            TMHMCom.SetItemChecked(56, True)
-
-                        ElseIf curchar = "0" Then
-                            TMHMCom.SetItemChecked(56, False)
-
-                        End If
+        '            If Len(binarythebitch) > 2 Then
+        '                MsgBox("Did you mess with the TM/HM data? Contact Gamer2020!")
+        '            ElseIf Len(binarythebitch) = 2 Then
 
 
-                    ElseIf Len(binarythebitch) < 2 Then
+        '                curchar = GetChar(binarythebitch, 1)
 
-                        TMHMCom.SetItemChecked(57, False)
+        '                If curchar = "1" Then
+        '                    TMHMCom.SetItemChecked(57, True)
 
-                        curchar = GetChar(binarythebitch, 1)
+        '                ElseIf curchar = "0" Then
+        '                    TMHMCom.SetItemChecked(57, False)
 
-                        If curchar = "1" Then
-                            TMHMCom.SetItemChecked(56, True)
+        '                End If
 
-                        ElseIf curchar = "0" Then
-                            TMHMCom.SetItemChecked(56, False)
+        '                curchar = GetChar(binarythebitch, 2)
 
-                        End If
+        '                If curchar = "1" Then
+        '                    TMHMCom.SetItemChecked(56, True)
 
+        '                ElseIf curchar = "0" Then
+        '                    TMHMCom.SetItemChecked(56, False)
 
-                    End If
-
-
-
-                    whichtmbyte = whichtmbyte + 1
-                Else
-                    howmanytmschecked = 0
+        '                End If
 
 
-                    ' MsgBox((Convert.ToString(blah, 2)))
+        '            ElseIf Len(binarythebitch) < 2 Then
 
-                    howmanyzeros = (8 - Len(binarythebitch))
+        '                TMHMCom.SetItemChecked(57, False)
 
-                    For looper = 1 To howmanyzeros
-                        TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, False)
+        '                curchar = GetChar(binarythebitch, 1)
 
-                        howmanytmschecked = howmanytmschecked + 1
+        '                If curchar = "1" Then
+        '                    TMHMCom.SetItemChecked(56, True)
 
-                    Next looper
+        '                ElseIf curchar = "0" Then
+        '                    TMHMCom.SetItemChecked(56, False)
 
-                    For curposition = 1 To Len(Convert.ToString(blah, 2))
+        '                End If
 
-                        ' Len(Convert.ToString(blah, 2))
 
-                        curchar = GetChar(binarythebitch, curposition)
+        '            End If
 
-                        If curchar = "1" Then
-                            TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, True)
 
-                            howmanytmschecked = howmanytmschecked + 1
 
-                        ElseIf curchar = "0" Then
-                            TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, False)
+        '            whichtmbyte = whichtmbyte + 1
+        '        Else
+        '            howmanytmschecked = 0
 
-                            howmanytmschecked = howmanytmschecked + 1
 
-                        End If
-                    Next curposition
-                    whichtmbyte = whichtmbyte + 1
-                End If
-            End While
-        End If
+        '            ' MsgBox((Convert.ToString(blah, 2)))
+
+        '            howmanyzeros = (8 - Len(binarythebitch))
+
+        '            For looper = 1 To howmanyzeros
+        '                TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, False)
+
+        '                howmanytmschecked = howmanytmschecked + 1
+
+        '            Next looper
+
+        '            For curposition = 1 To Len(Convert.ToString(blah, 2))
+
+        '                ' Len(Convert.ToString(blah, 2))
+
+        '                curchar = GetChar(binarythebitch, curposition)
+
+        '                If curchar = "1" Then
+        '                    TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, True)
+
+        '                    howmanytmschecked = howmanytmschecked + 1
+
+        '                ElseIf curchar = "0" Then
+        '                    TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, False)
+
+        '                    howmanytmschecked = howmanytmschecked + 1
+
+        '                End If
+        '            Next curposition
+        '            whichtmbyte = whichtmbyte + 1
+        '        End If
+        '    End While
+        'End If
 
 
         'seperate
@@ -1418,14 +1390,14 @@ Public Class Pokemonedit
         'seperate
         'seperate
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 1 Then
+        '  If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 1 Then
 
-            whichtmbyte = 0
+        whichtmbyte = 0
 
-            While whichtmbyte < 13
+        While whichtmbyte < (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", "")))
 
-                blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMCompoLoc + 13 + (i * 13) + whichtmbyte, 1))), System.Globalization.NumberStyles.HexNumber)
-                binarythebitch = (Convert.ToString(blah, 2))
+            blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMCompoLoc + (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", ""))) + (i * (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", "")))) + whichtmbyte, 1))), System.Globalization.NumberStyles.HexNumber)
+            binarythebitch = (Convert.ToString(blah, 2))
 
                 howmanytmschecked = 0
 
@@ -1435,35 +1407,41 @@ Public Class Pokemonedit
                 howmanyzeros = (8 - Len(binarythebitch))
 
                 For looper = 1 To howmanyzeros
-                    TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, False)
+                'TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, False)
 
+                'howmanytmschecked = howmanytmschecked + 1
+                binarythebitch = "0" & binarythebitch
+
+            Next looper
+
+            For curposition = 1 To Len(binarythebitch)
+
+                ' Len(Convert.ToString(blah, 2))
+
+                curchar = GetChar(binarythebitch, curposition)
+
+                If curchar = "1" Then
+
+
+                    If (((7 + (8 * whichtmbyte)) - howmanytmschecked) < (Val(GetString(GetINIFileLocation(), header, "TotalTMsPlusHMs", "")))) Then
+                        TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, True)
+                    End If
                     howmanytmschecked = howmanytmschecked + 1
 
-                Next looper
+                ElseIf curchar = "0" Then
 
-                For curposition = 1 To Len(Convert.ToString(blah, 2))
-
-                    ' Len(Convert.ToString(blah, 2))
-
-                    curchar = GetChar(binarythebitch, curposition)
-
-                    If curchar = "1" Then
-                        TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, True)
-
-                        howmanytmschecked = howmanytmschecked + 1
-
-                    ElseIf curchar = "0" Then
+                    If (((7 + (8 * whichtmbyte)) - howmanytmschecked) < (Val(GetString(GetINIFileLocation(), header, "TotalTMsPlusHMs", "")))) Then
                         TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, False)
-
-                        howmanytmschecked = howmanytmschecked + 1
+                    End If
+                    howmanytmschecked = howmanytmschecked + 1
 
                     End If
-                Next curposition
-                whichtmbyte = whichtmbyte + 1
+            Next curposition
+            whichtmbyte = whichtmbyte + 1
 
             End While
 
-        End If
+       ' End If
 
     End Sub
 
@@ -1476,83 +1454,91 @@ Public Class Pokemonedit
         Dim binarytowrite As String
         Dim bytetowrite As String
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 0 Then
+        'If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 0 Then
 
-            whichtmbyte = 0
+        '    whichtmbyte = 0
 
-            While whichtmbyte < 8
+        '    While whichtmbyte < 8
 
-                If whichtmbyte = 7 Then
+        '        If whichtmbyte = 7 Then
 
-                    binarytowrite = ""
-                    For looper = 0 To 1
+        '            binarytowrite = ""
+        '            For looper = 0 To 1
 
-                        If TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = True Then
-                            binarytowrite = "1" & binarytowrite
+        '                If TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = True Then
+        '                    binarytowrite = "1" & binarytowrite
 
-                        ElseIf TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = False Then
-                            binarytowrite = "0" & binarytowrite
+        '                ElseIf TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = False Then
+        '                    binarytowrite = "0" & binarytowrite
 
-                        End If
+        '                End If
 
-                    Next looper
-                    bytetowrite = Hex(Convert.ToInt32(binarytowrite, 2))
-                    WriteHEX(LoadedROM, TMHMCompoLoc + 8 + (i * 8) + whichtmbyte, bytetowrite)
+        '            Next looper
+        '            bytetowrite = Hex(Convert.ToInt32(binarytowrite, 2))
+        '            WriteHEX(LoadedROM, TMHMCompoLoc + 8 + (i * 8) + whichtmbyte, bytetowrite)
 
-                    whichtmbyte = whichtmbyte + 1
+        '            whichtmbyte = whichtmbyte + 1
+        '        Else
+
+        '            binarytowrite = ""
+        '            For looper = 0 To 7
+
+        '                If TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = True Then
+        '                    binarytowrite = "1" & binarytowrite
+
+        '                ElseIf TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = False Then
+        '                    binarytowrite = "0" & binarytowrite
+
+        '                End If
+
+        '            Next looper
+        '            bytetowrite = Hex(Convert.ToInt32(binarytowrite, 2))
+        '            WriteHEX(LoadedROM, TMHMCompoLoc + 8 + (i * 8) + whichtmbyte, bytetowrite)
+
+        '            whichtmbyte = whichtmbyte + 1
+        '        End If
+        '    End While
+        'End If
+
+
+        'separate
+        'separate
+        'separate
+
+        ' If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 1 Then
+
+        whichtmbyte = 0
+
+        While whichtmbyte < (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", "")))
+
+            binarytowrite = ""
+                    For looper = 0 To 7
+
+
+
+                If (((8 * whichtmbyte) + looper) < TMHMCom.Items.Count) Then
+
+                    If TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = True Then
+                        binarytowrite = "1" & binarytowrite
+
+                    ElseIf TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = False Then
+                        binarytowrite = "0" & binarytowrite
+
+                    End If
                 Else
 
-                    binarytowrite = ""
-                    For looper = 0 To 7
+                    binarytowrite = "0" & binarytowrite
 
-                        If TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = True Then
-                            binarytowrite = "1" & binarytowrite
-
-                        ElseIf TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = False Then
-                            binarytowrite = "0" & binarytowrite
-
-                        End If
-
-                    Next looper
-                    bytetowrite = Hex(Convert.ToInt32(binarytowrite, 2))
-                    WriteHEX(LoadedROM, TMHMCompoLoc + 8 + (i * 8) + whichtmbyte, bytetowrite)
-
-                    whichtmbyte = whichtmbyte + 1
                 End If
-            End While
-        End If
-
-
-        'separate
-        'separate
-        'separate
-
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = 1 Then
-
-             whichtmbyte = 0
-
-            While whichtmbyte < 13
-
-                binarytowrite = ""
-                    For looper = 0 To 7
-
-                        If TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = True Then
-                            binarytowrite = "1" & binarytowrite
-
-                        ElseIf TMHMCom.GetItemChecked((8 * whichtmbyte) + looper) = False Then
-                            binarytowrite = "0" & binarytowrite
-
-                        End If
-
-                    Next looper
+            Next looper
                     bytetowrite = Hex(Convert.ToInt32(binarytowrite, 2))
-                WriteHEX(LoadedROM, TMHMCompoLoc + 13 + (i * 13) + whichtmbyte, bytetowrite)
+            WriteHEX(LoadedROM, TMHMCompoLoc + (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", ""))) + (i * (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", "")))) + whichtmbyte, bytetowrite)
 
-                    whichtmbyte = whichtmbyte + 1
+            whichtmbyte = whichtmbyte + 1
 
             End While
 
-        End If
+      '  End If
     End Sub
 
     Private Sub Button9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button9.Click

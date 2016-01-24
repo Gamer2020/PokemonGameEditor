@@ -159,10 +159,12 @@ Partial Class MainFrm
         '
         'UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem
         '
+        Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Enabled = False
         Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Name = "UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem"
         Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
         Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Text = "Use Jambo51's TM/HM extension hack. (If you don't know what this is don't use it." &
     ")"
+        Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Visible = False
         '
         'LinuxToolStripMenuItem
         '
