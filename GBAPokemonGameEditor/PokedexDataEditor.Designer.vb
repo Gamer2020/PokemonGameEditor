@@ -59,6 +59,8 @@ Partial Class PokedexDataEditor
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -104,6 +106,8 @@ Partial Class PokedexDataEditor
         '
         'GroupBox6
         '
+        Me.GroupBox6.Controls.Add(Me.Label2)
+        Me.GroupBox6.Controls.Add(Me.Label1)
         Me.GroupBox6.Controls.Add(Me.Button4)
         Me.GroupBox6.Controls.Add(Me.Description2)
         Me.GroupBox6.Controls.Add(Me.Description1)
@@ -113,13 +117,12 @@ Partial Class PokedexDataEditor
         Me.GroupBox6.Controls.Add(Me.Label6)
         Me.GroupBox6.Location = New System.Drawing.Point(237, 170)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(348, 157)
+        Me.GroupBox6.Size = New System.Drawing.Size(387, 262)
         Me.GroupBox6.TabIndex = 17
         Me.GroupBox6.TabStop = False
         '
         'Button4
         '
-        Me.Button4.Enabled = False
         Me.Button4.Location = New System.Drawing.Point(9, 123)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(95, 24)
@@ -129,11 +132,11 @@ Partial Class PokedexDataEditor
         '
         'Description2
         '
-        Me.Description2.Location = New System.Drawing.Point(110, 86)
+        Me.Description2.Location = New System.Drawing.Point(110, 144)
         Me.Description2.Multiline = True
         Me.Description2.Name = "Description2"
         Me.Description2.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.Description2.Size = New System.Drawing.Size(217, 61)
+        Me.Description2.Size = New System.Drawing.Size(261, 81)
         Me.Description2.TabIndex = 5
         Me.Description2.WordWrap = False
         '
@@ -143,13 +146,12 @@ Partial Class PokedexDataEditor
         Me.Description1.Multiline = True
         Me.Description1.Name = "Description1"
         Me.Description1.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.Description1.Size = New System.Drawing.Size(217, 61)
+        Me.Description1.Size = New System.Drawing.Size(261, 81)
         Me.Description1.TabIndex = 4
         Me.Description1.WordWrap = False
         '
         'Button1
         '
-        Me.Button1.Enabled = False
         Me.Button1.Location = New System.Drawing.Point(9, 93)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(95, 24)
@@ -404,11 +406,29 @@ Partial Class PokedexDataEditor
         Me.Button3.Text = "Save"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(110, 104)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(43, 13)
+        Me.Label1.TabIndex = 7
+        Me.Label1.Text = "Length:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(110, 228)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(43, 13)
+        Me.Label2.TabIndex = 8
+        Me.Label2.Text = "Length:"
+        '
         'PokedexDataEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(597, 347)
+        Me.ClientSize = New System.Drawing.Size(633, 444)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.GroupBox6)
         Me.Controls.Add(Me.GroupBox3)
@@ -467,4 +487,6 @@ Partial Class PokedexDataEditor
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Offset_1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
 End Class
