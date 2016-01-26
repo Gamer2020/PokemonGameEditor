@@ -6,7 +6,7 @@
 
     Private Sub SplashScreen1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        My.Application.MinimumSplashScreenDisplayTime = 10000
+        My.Application.MinimumSplashScreenDisplayTime = 12000
 
         '    'Set up the dialog text at runtime according to the application's assembly information.  
 
