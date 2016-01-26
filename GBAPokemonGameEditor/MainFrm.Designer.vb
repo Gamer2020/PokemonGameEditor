@@ -386,7 +386,7 @@ Partial Class MainFrm
         Me.Button36.Name = "Button36"
         Me.Button36.Size = New System.Drawing.Size(80, 55)
         Me.Button36.TabIndex = 46
-        Me.Button36.Text = "Button36"
+        Me.Button36.Text = "Egg Move Editor"
         Me.Button36.UseVisualStyleBackColor = True
         '
         'TabControl1

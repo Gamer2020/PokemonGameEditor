@@ -153,6 +153,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ChangeNameFunctions.vb" />
+    <Compile Include="EggMoveEditor.Designer.vb">
+      <DependentUpon>EggMoveEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EggMoveEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GetImageFunctions.vb" />
     <Compile Include="GetNameFunctions.vb" />
     <Compile Include="HexFunctions.vb" />
@@ -258,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BattleFrontierEditor.resx">
       <DependentUpon>BattleFrontierEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EggMoveEditor.resx">
+      <DependentUpon>EggMoveEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputAttacks.resx">
       <DependentUpon>InputAttacks.vb</DependentUpon>

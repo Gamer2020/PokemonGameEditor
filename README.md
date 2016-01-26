@@ -63,6 +63,8 @@ Ability to use a seperate ini
 
 Ability to add more attacks.
 
+Egg move editor.
+
 Planned Features
 =================
 
