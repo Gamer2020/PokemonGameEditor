@@ -161,6 +161,12 @@
     </Compile>
     <Compile Include="GetImageFunctions.vb" />
     <Compile Include="GetNameFunctions.vb" />
+    <Compile Include="HabitatEditor.Designer.vb">
+      <DependentUpon>HabitatEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HabitatEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HexFunctions.vb" />
     <Compile Include="InputAttacks.Designer.vb">
       <DependentUpon>InputAttacks.vb</DependentUpon>
@@ -267,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EggMoveEditor.resx">
       <DependentUpon>EggMoveEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HabitatEditor.resx">
+      <DependentUpon>HabitatEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputAttacks.resx">
       <DependentUpon>InputAttacks.vb</DependentUpon>

@@ -1,0 +1,9 @@
+Grassland
+Forest
+Water's-edge
+Sea
+Cave
+Mountain
+Rough-terrain
+Urban
+Rare
