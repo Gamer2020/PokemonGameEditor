@@ -651,6 +651,7 @@ Public Class Pokemonedit
             GetAndDrawBackPokemonPic(BckPic, i + 1)
             GetAndDrawFrontPokemonPic(EvoBasePokePic, i + 1)
             GetAndDrawPokemonIconPic(IconPicBox, i, IconPal.SelectedIndex)
+            GetAndDrawPokemonFootPrint(PictureBox1, i + 1)
         End If
     End Sub
 
@@ -1640,7 +1641,7 @@ Public Class Pokemonedit
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
         i = PKMNames.SelectedIndex
         WriteHEX(LoadedROM, (FootPrintTable) + (4) + (i * 4), ReverseHEX(Hex(Int32.Parse(((FootPrintPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
-
+        GetAndDrawPokemonFootPrint(PictureBox1, i + 1)
     End Sub
 
     Private Sub LearnableMoveLoad()

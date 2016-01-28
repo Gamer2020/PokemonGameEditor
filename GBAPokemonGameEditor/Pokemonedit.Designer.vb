@@ -33,6 +33,7 @@ Partial Class Pokemonedit
         Me.Button6 = New System.Windows.Forms.Button()
         Me.CryPointer = New System.Windows.Forms.TextBox()
         Me.GroupBox20 = New System.Windows.Forms.GroupBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.FootPrintPointer = New System.Windows.Forms.TextBox()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
@@ -174,6 +175,7 @@ Partial Class Pokemonedit
         Me.TabPage1.SuspendLayout()
         Me.GroupBox21.SuspendLayout()
         Me.GroupBox20.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox16.SuspendLayout()
         CType(Me.IconPicBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox15.SuspendLayout()
@@ -309,14 +311,24 @@ Partial Class Pokemonedit
         '
         'GroupBox20
         '
+        Me.GroupBox20.Controls.Add(Me.PictureBox1)
         Me.GroupBox20.Controls.Add(Me.Button5)
         Me.GroupBox20.Controls.Add(Me.FootPrintPointer)
         Me.GroupBox20.Location = New System.Drawing.Point(112, 236)
         Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(99, 74)
+        Me.GroupBox20.Size = New System.Drawing.Size(147, 74)
         Me.GroupBox20.TabIndex = 4
         Me.GroupBox20.TabStop = False
         Me.GroupBox20.Text = "FootPrint"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(102, 25)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 13
+        Me.PictureBox1.TabStop = False
         '
         'Button5
         '
@@ -1646,6 +1658,7 @@ Partial Class Pokemonedit
         Me.GroupBox21.PerformLayout()
         Me.GroupBox20.ResumeLayout(False)
         Me.GroupBox20.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox16.ResumeLayout(False)
         Me.GroupBox16.PerformLayout()
         CType(Me.IconPicBox, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1847,4 +1860,5 @@ Partial Class Pokemonedit
     Friend WithEvents EggType1 As System.Windows.Forms.ComboBox
     Friend WithEvents PokemonListIndex As TextBox
     Friend WithEvents Label24 As Label
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

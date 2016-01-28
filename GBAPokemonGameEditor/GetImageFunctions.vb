@@ -465,4 +465,143 @@ ErrorHandle:
         picBox.Refresh()
 
     End Sub
+
+    Public Function Load2BPSprite16By16(ByRef Bits() As Byte, ByVal Palette() As Color) As Bitmap
+        On Error GoTo ErrorHandle
+        Dim x1 As Integer, y1 As Integer
+        Dim x2 As Integer, y2 As Integer
+        Dim bmpTiles As New Bitmap(16, 16)
+        Dim Temp As Byte
+        Dim i As Integer
+
+        Dim sideways As Integer = 0
+        Dim updown As Integer = 0
+        Dim bittrack As Integer = 0
+        Dim bytetrack As Integer = 0
+        Dim curbit As String
+        Dim bitsarray As BitArray
+        Dim CurSquare As Integer = 0
+
+        While updown < 16
+            While sideways < 8
+
+                bitsarray = New BitArray({Bits(bytetrack)})
+
+                curbit = bitsarray(bittrack)
+
+                If curbit = "False" Then
+
+                    If CurSquare = 0 Then
+
+                        bmpTiles.SetPixel(sideways, updown, Palette(0))
+
+                    End If
+
+                    If CurSquare = 1 Then
+
+                        bmpTiles.SetPixel((CurSquare * 8) + sideways, updown - (CurSquare * 8), Palette(0))
+
+                    End If
+
+                    If CurSquare = 2 Then
+
+                        bmpTiles.SetPixel(sideways, updown + (8), Palette(0))
+
+                    End If
+
+                    If CurSquare = 3 Then
+
+                        bmpTiles.SetPixel((8) + sideways, updown, Palette(0))
+
+                    End If
+
+                ElseIf curbit = "True"
+
+                    If CurSquare = 0 Then
+
+                        bmpTiles.SetPixel(sideways, updown, Palette(1))
+
+                    End If
+
+                    If CurSquare = 1 Then
+
+                        bmpTiles.SetPixel((CurSquare * 8) + sideways, updown - (CurSquare * 8), Palette(1))
+
+                    End If
+
+                    If CurSquare = 2 Then
+
+                        bmpTiles.SetPixel(sideways, updown + (8), Palette(1))
+
+                    End If
+
+                    If CurSquare = 3 Then
+
+                        bmpTiles.SetPixel((8) + sideways, updown, Palette(1))
+
+                    End If
+
+                End If
+                bittrack = bittrack + 1
+                If bittrack = 8 Then
+                    bittrack = 0
+                    bytetrack = bytetrack + 1
+                End If
+
+                sideways = sideways + 1
+            End While
+            sideways = 0
+
+            If updown = 7 And CurSquare = 0 Then
+                CurSquare = CurSquare + 1
+            End If
+
+            If updown = 15 And CurSquare = 1 Then
+                CurSquare = CurSquare + 1
+                updown = -1
+            End If
+
+            If updown = 7 And CurSquare = 2 Then
+                CurSquare = CurSquare + 1
+
+            End If
+
+            If updown = 15 And CurSquare = 3 Then
+                CurSquare = CurSquare + 1
+            End If
+
+            updown = updown + 1
+
+        End While
+
+        Load2BPSprite16By16 = bmpTiles
+ErrorHandle:
+    End Function
+
+    Public Sub GetAndDrawPokemonFootPrint(ByVal picBox As PictureBox, ByVal index As Integer)
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "FootPrintTable", ""), System.Globalization.NumberStyles.HexNumber) + ((index * 4))
+        Dim Temp(&HFF) As Byte
+        Dim Image(&HFF) As Byte
+        Dim Palette32(1) As Color
+        Dim bSprite As Bitmap
+
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFF)
+                Image = Temp
+            End Using
+        End Using
+
+        Palette32(0) = Color.White
+        Palette32(1) = Color.Black
+
+        bSprite = Load2BPSprite16By16(Image, Palette32)
+        picBox.Image = bSprite
+        picBox.Refresh()
+
+    End Sub
+
 End Module
