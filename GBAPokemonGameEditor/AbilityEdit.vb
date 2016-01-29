@@ -28,6 +28,11 @@
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+
+        Dim indexbuff As Integer
+
+        indexbuff = AbilityList.SelectedIndex
+
         ChangeAbilityName(AbilityList.SelectedIndex, TextBox1.Text)
 
         Dim loopvar As Integer
@@ -46,6 +51,10 @@
 
 
         End While
+
+        AbilityList.SelectedIndex = -1
+        AbilityList.SelectedIndex = indexbuff
+
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click

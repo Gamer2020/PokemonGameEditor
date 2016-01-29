@@ -115,6 +115,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbilityAdder.Designer.vb">
+      <DependentUpon>AbilityAdder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AbilityAdder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AbilityEdit.Designer.vb">
       <DependentUpon>AbilityEdit.vb</DependentUpon>
     </Compile>
@@ -140,10 +146,10 @@
     <Compile Include="AttackEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AttackExpander.Designer.vb">
-      <DependentUpon>AttackExpander.vb</DependentUpon>
+    <Compile Include="AttackAdder.Designer.vb">
+      <DependentUpon>AttackAdder.vb</DependentUpon>
     </Compile>
-    <Compile Include="AttackExpander.vb">
+    <Compile Include="AttackAdder.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BattleFrontierEditor.Designer.vb">
@@ -252,6 +258,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AbilityAdder.resx">
+      <DependentUpon>AbilityAdder.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbilityEdit.resx">
       <DependentUpon>AbilityEdit.vb</DependentUpon>
     </EmbeddedResource>
@@ -265,8 +274,8 @@
     <EmbeddedResource Include="AttackEditor.resx">
       <DependentUpon>AttackEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AttackExpander.resx">
-      <DependentUpon>AttackExpander.vb</DependentUpon>
+    <EmbeddedResource Include="AttackAdder.resx">
+      <DependentUpon>AttackAdder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BattleFrontierEditor.resx">
       <DependentUpon>BattleFrontierEditor.vb</DependentUpon>

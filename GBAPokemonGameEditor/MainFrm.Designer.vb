@@ -61,6 +61,7 @@ Partial Class MainFrm
         Me.Button36 = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.Button47 = New System.Windows.Forms.Button()
         Me.Button48 = New System.Windows.Forms.Button()
@@ -81,7 +82,7 @@ Partial Class MainFrm
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -110,18 +111,18 @@ Partial Class MainFrm
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(100, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'SettingsToolStripMenuItem
@@ -423,6 +424,16 @@ Partial Class MainFrm
         Me.TabPage2.Text = "Internal Programs"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'Button2
+        '
+        Me.Button2.Enabled = False
+        Me.Button2.Location = New System.Drawing.Point(90, 129)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(81, 55)
+        Me.Button2.TabIndex = 47
+        Me.Button2.Text = "Habitat Editor"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.Button47)
@@ -604,6 +615,7 @@ Partial Class MainFrm
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Button3)
         Me.TabPage1.Controls.Add(Me.Button1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
@@ -620,7 +632,7 @@ Partial Class MainFrm
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(81, 55)
         Me.Button1.TabIndex = 15
-        Me.Button1.Text = "Attack Expander"
+        Me.Button1.Text = "Attack Adder"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'GroupBox1
@@ -641,15 +653,15 @@ Partial Class MainFrm
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Copyright © 2016 Gamer2020 All Rights Reserved. "
         '
-        'Button2
+        'Button3
         '
-        Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(90, 129)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(81, 55)
-        Me.Button2.TabIndex = 47
-        Me.Button2.Text = "Habitat Editor"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Button3.Enabled = False
+        Me.Button3.Location = New System.Drawing.Point(90, 7)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(81, 55)
+        Me.Button3.TabIndex = 16
+        Me.Button3.Text = "Ability Adder"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'MainFrm
         '
@@ -741,4 +753,5 @@ Partial Class MainFrm
     Friend WithEvents LinuxToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class

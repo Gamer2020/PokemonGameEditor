@@ -3,7 +3,7 @@ Option Explicit On
 Imports System.IO
 Imports VB = Microsoft.VisualBasic
 
-Public Class AttackExpander
+Public Class AttackAdder
     Private Sub AttackExpander_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If header = "BPEE" Then
 
