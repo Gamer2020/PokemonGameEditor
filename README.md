@@ -21,57 +21,50 @@ Screenshots
 
 Features
 =================
-Editable INI that contains all the offsets
+Editable INI that contains all the offsets. Each ROM can have it's own INI.
 
-Pokemon Editor
+Pokemon Editor.
 
-Attack Editor
+Attack Editor.
 
-RSE Starter Editor
+RSE Starter Editor.
 
-Pokedex Order Editor
+Pokedex Order Editor.
 
-Ability Editor
+Ability Editor.
 
-Move Tutor Editor
-
-Linux Support - Runs with mono. *Please note that I currently can't test under Linux so some things may have become broken since PGE was able to run on Linux.*
+Move Tutor Editor.
 
 Multiple Windows open at once.
 
 Add up to 20 external programs.
 
-Windows RT support (On Jailbroken devices)
+Battle Frontier Editor.
 
-Windows XP support
+Pokedex Editor.
 
-Battle Frontier Editor
+Support for more than 5 evolutions per Pokemon.
 
-Pokedex Editor
-
-Support for more than 5 evolutions per Pokemon
-
-Support for more types
+Support for more types.
 
 Ability to define evolutions.
 
-Item editor
+Item editor.
 
-TM/HM Editor
-
-Ability to use a seperate ini
+TM/HM Editor.
 
 Ability to add more attacks.
 
 Egg move editor.
+
+Habitat editor.
 
 Planned Features
 =================
 
 Ability to add more Pokemon.
 
-Ability to add more items.
-
+Improved Pokemon data importing and exporting.
 
 Program Requirements
 ====================
@@ -143,6 +136,8 @@ Agastya
 Wichu
 
 colcolstyles
+
+RomHackersWorld
 
 Downloads
 ================================

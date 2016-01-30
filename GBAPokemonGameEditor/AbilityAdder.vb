@@ -132,4 +132,104 @@ Public Class AbilityAdder
         MsgBox("Abilities expanded successfully!")
 
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        Dim countervar As Integer
+
+        Dim AbilitiesNamesBuffer As String
+        Dim AbilitiesNamesNewOffset As String
+
+        Dim AbilitiesDescriptionTableBuffer As String
+        Dim AbilitiesDescriptionTableNewOffset As String
+
+        If System.IO.File.Exists((LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini") = True Then
+
+            MsgBox("An INI for this ROM has been detected! Values will be updated as needed.")
+
+        Else
+
+            MsgBox("INI not found! One will now be created for this ROM in the same location as the ROM. Keep the ini with the ROM so that PGE can know the location of the data.")
+
+            File.Copy(AppPath & "ini\roms.ini", (LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini", True)
+
+        End If
+
+        Cursor = Cursors.WaitCursor
+
+        'Ability Names
+
+        AbilitiesNamesBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AbilityNames", "")), System.Globalization.NumberStyles.HexNumber), (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) * 13)
+
+        'Deletes old data
+
+        If CheckBox1.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AbilityNames", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(AbilitiesNamesBuffer) / 2)))
+        End If
+
+        countervar = 0
+
+        While countervar < TextBox2.Text
+            countervar = countervar + 1
+
+            AbilitiesNamesBuffer = AbilitiesNamesBuffer & "ACACACACACACACFF0000000000"
+
+        End While
+
+
+        AbilitiesNamesNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(AbilitiesNamesBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, AbilitiesNamesNewOffset, AbilitiesNamesBuffer)
+
+        WriteString(GetINIFileLocation(), header, "AbilityNames", Hex(AbilitiesNamesNewOffset))
+
+        'Repoint ability Names
+
+        WriteHEX(LoadedROM, &H1C0, ReverseHEX(Hex((AbilitiesNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H14F0D4, ReverseHEX(Hex((AbilitiesNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H14F854, ReverseHEX(Hex((AbilitiesNamesNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1C3028, ReverseHEX(Hex((AbilitiesNamesNewOffset) + &H8000000)))
+
+        'ability Descriptions
+
+        AbilitiesDescriptionTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AbilityDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfAbilities", ""))) * 4)
+
+        'Deletes old data
+
+        If CheckBox1.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "AbilityDescriptionTable", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(AbilitiesDescriptionTableBuffer) / 2)))
+        End If
+
+        countervar = 0
+
+        While countervar < TextBox2.Text
+            countervar = countervar + 1
+
+            AbilitiesDescriptionTableBuffer = AbilitiesDescriptionTableBuffer & "98AF3108"
+
+        End While
+
+
+        AbilitiesDescriptionTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(AbilitiesDescriptionTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, AbilitiesDescriptionTableNewOffset, AbilitiesDescriptionTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "AbilityDescriptionTable", Hex(AbilitiesDescriptionTableNewOffset))
+
+        'Repoint Abilities Description Table
+
+        WriteHEX(LoadedROM, &H1C4, ReverseHEX(Hex((AbilitiesDescriptionTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1C3078, ReverseHEX(Hex((AbilitiesDescriptionTableNewOffset) + &H8000000)))
+
+
+        'Updates the number of Abilities
+        WriteString(GetINIFileLocation(), header, "NumberOfAbilities", CInt((GetString(GetINIFileLocation(), header, "NumberOfAbilities", ""))) + CInt(TextBox2.Text))
+
+        Label4.Text = "Number of abilities in ROM: " & (GetString(GetINIFileLocation(), header, "NumberOfAbilities", ""))
+
+        Cursor = Cursors.Arrow
+
+        MsgBox("Abilities expanded successfully!")
+
+    End Sub
 End Class
