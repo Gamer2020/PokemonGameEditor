@@ -238,6 +238,12 @@
     <Compile Include="Pokemonedit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="RomExpander.Designer.vb">
+      <DependentUpon>RomExpander.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RomExpander.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RSEStarterEditor.Designer.vb">
       <DependentUpon>RSEStarterEditor.vb</DependentUpon>
     </Compile>
@@ -312,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pokemonedit.resx">
       <DependentUpon>Pokemonedit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RomExpander.resx">
+      <DependentUpon>RomExpander.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RSEStarterEditor.resx">
       <DependentUpon>RSEStarterEditor.vb</DependentUpon>

@@ -79,10 +79,11 @@ Partial Class MainFrm
         Me.Button40 = New System.Windows.Forms.Button()
         Me.Button41 = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button8 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -615,6 +616,7 @@ Partial Class MainFrm
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Button8)
         Me.TabPage1.Controls.Add(Me.Button3)
         Me.TabPage1.Controls.Add(Me.Button1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
@@ -624,6 +626,16 @@ Partial Class MainFrm
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Patchers and Expanders"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Enabled = False
+        Me.Button3.Location = New System.Drawing.Point(90, 7)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(81, 55)
+        Me.Button3.TabIndex = 16
+        Me.Button3.Text = "Ability Adder"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -653,15 +665,16 @@ Partial Class MainFrm
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Copyright © 2016 Gamer2020 All Rights Reserved. "
         '
-        'Button3
+        'Button8
         '
-        Me.Button3.Enabled = False
-        Me.Button3.Location = New System.Drawing.Point(90, 7)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(81, 55)
-        Me.Button3.TabIndex = 16
-        Me.Button3.Text = "Ability Adder"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.Button8.Enabled = False
+        Me.Button8.Location = New System.Drawing.Point(3, 68)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(81, 55)
+        Me.Button8.TabIndex = 35
+        Me.Button8.Text = "ROM Expander"
+        Me.Button8.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        Me.Button8.UseVisualStyleBackColor = True
         '
         'MainFrm
         '
@@ -754,4 +767,5 @@ Partial Class MainFrm
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents Button8 As Button
 End Class

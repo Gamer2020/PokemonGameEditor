@@ -43,11 +43,9 @@ Battle Frontier Editor.
 
 Pokedex Editor.
 
-Support for more than 5 evolutions per Pokemon.
+Support for more than 5 evolutions per Pokemon. Ability to define evolutions.
 
 Support for more types.
-
-Ability to define evolutions.
 
 Item editor.
 
@@ -58,6 +56,8 @@ Ability to add more attacks.
 Egg move editor.
 
 Habitat editor.
+
+ROM expander.
 
 Planned Features
 =================
