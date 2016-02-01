@@ -40,7 +40,8 @@ Public Class RomExpander
 
         'Fill the initial array
         While index < length
-            array(System.Math.Max(System.Threading.Interlocked.Increment(index), index - 1)) = value
+
+            array(System.Math.Max(System.Threading.Interlocked.Increment(index), index - 1) - 1) = value
         End While
 
         length = array.Length
