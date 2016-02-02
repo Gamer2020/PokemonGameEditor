@@ -330,6 +330,7 @@ Public Class MainFrm
                 Button2.Enabled = False
                 Button3.Enabled = False
                 Button8.Enabled = False
+                Button9.Enabled = False
                 MessageBox.Show("I haven't added Jap support out of pure lazziness. I will though if it get's highly Demanded.")
             Else
 
@@ -350,6 +351,7 @@ Public Class MainFrm
                 Button2.Enabled = True
                 Button3.Enabled = True
                 Button8.Enabled = True
+                Button9.Enabled = True
             End If
         Else
             Label2.Text = ""
@@ -369,6 +371,7 @@ Public Class MainFrm
             Button2.Enabled = False
             Button3.Enabled = False
             Button8.Enabled = False
+            Button9.Enabled = False
             MessageBox.Show("Not one of the Pokemon games...")
 
         End If
@@ -839,6 +842,12 @@ Public Class MainFrm
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
         Me.Cursor = Cursors.WaitCursor
         RomExpander.Show()
+        Me.Cursor = Cursors.Arrow
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Me.Cursor = Cursors.WaitCursor
+        PokemonAdder.Show()
         Me.Cursor = Cursors.Arrow
     End Sub
 End Class

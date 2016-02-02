@@ -79,11 +79,12 @@ Partial Class MainFrm
         Me.Button40 = New System.Windows.Forms.Button()
         Me.Button41 = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Button8 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Button9 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -112,18 +113,18 @@ Partial Class MainFrm
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(100, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(149, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'SettingsToolStripMenuItem
@@ -616,6 +617,7 @@ Partial Class MainFrm
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Button9)
         Me.TabPage1.Controls.Add(Me.Button8)
         Me.TabPage1.Controls.Add(Me.Button3)
         Me.TabPage1.Controls.Add(Me.Button1)
@@ -627,10 +629,21 @@ Partial Class MainFrm
         Me.TabPage1.Text = "Patchers and Expanders"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'Button8
+        '
+        Me.Button8.Enabled = False
+        Me.Button8.Location = New System.Drawing.Point(3, 68)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(81, 55)
+        Me.Button8.TabIndex = 35
+        Me.Button8.Text = "ROM Expander"
+        Me.Button8.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        Me.Button8.UseVisualStyleBackColor = True
+        '
         'Button3
         '
         Me.Button3.Enabled = False
-        Me.Button3.Location = New System.Drawing.Point(90, 7)
+        Me.Button3.Location = New System.Drawing.Point(90, 6)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(81, 55)
         Me.Button3.TabIndex = 16
@@ -665,16 +678,15 @@ Partial Class MainFrm
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Copyright © 2016 Gamer2020 All Rights Reserved. "
         '
-        'Button8
+        'Button9
         '
-        Me.Button8.Enabled = False
-        Me.Button8.Location = New System.Drawing.Point(3, 68)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(81, 55)
-        Me.Button8.TabIndex = 35
-        Me.Button8.Text = "ROM Expander"
-        Me.Button8.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
-        Me.Button8.UseVisualStyleBackColor = True
+        Me.Button9.Enabled = False
+        Me.Button9.Location = New System.Drawing.Point(177, 6)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(81, 55)
+        Me.Button9.TabIndex = 36
+        Me.Button9.Text = "Pokemon Adder"
+        Me.Button9.UseVisualStyleBackColor = True
         '
         'MainFrm
         '
@@ -768,4 +780,5 @@ Partial Class MainFrm
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Button8 As Button
+    Friend WithEvents Button9 As Button
 End Class

@@ -232,6 +232,12 @@
     <Compile Include="PokedexOrderEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PokemonAdder.Designer.vb">
+      <DependentUpon>PokemonAdder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PokemonAdder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Pokemonedit.Designer.vb">
       <DependentUpon>Pokemonedit.vb</DependentUpon>
     </Compile>
@@ -315,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PokedexOrderEditor.resx">
       <DependentUpon>PokedexOrderEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PokemonAdder.resx">
+      <DependentUpon>PokemonAdder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pokemonedit.resx">
       <DependentUpon>Pokemonedit.vb</DependentUpon>
