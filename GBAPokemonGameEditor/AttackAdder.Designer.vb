@@ -96,7 +96,7 @@ Partial Class AttackAdder
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Expand"
+        Me.Button1.Text = "Add"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox1
@@ -168,7 +168,7 @@ Partial Class AttackAdder
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 9
-        Me.Button2.Text = "Expand"
+        Me.Button2.Text = "Add"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'TextBox2

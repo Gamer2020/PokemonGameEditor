@@ -512,7 +512,7 @@ Public Class AttackAdder
 
         Cursor = Cursors.Arrow
 
-        MsgBox("Attacks expanded successfully!")
+        MsgBox("Attacks added successfully!")
 
     End Sub
 
@@ -1073,7 +1073,7 @@ Public Class AttackAdder
 
         Cursor = Cursors.Arrow
 
-        MsgBox("Attacks expanded successfully!")
+        MsgBox("Attacks added successfully!")
     End Sub
 
 End Class

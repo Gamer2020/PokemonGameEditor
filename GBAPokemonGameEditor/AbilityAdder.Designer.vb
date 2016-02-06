@@ -82,7 +82,7 @@ Partial Class AbilityAdder
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(180, 45)
         Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Expand"
+        Me.Button1.Text = "Add"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox1
@@ -142,7 +142,7 @@ Partial Class AbilityAdder
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(180, 45)
         Me.Button2.TabIndex = 7
-        Me.Button2.Text = "Expand"
+        Me.Button2.Text = "Add"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'TextBox2
