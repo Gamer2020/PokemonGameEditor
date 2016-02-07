@@ -51,13 +51,15 @@ Item editor.
 
 TM/HM Editor.
 
-Ability to add more attacks.
+Attack adder.
 
 Egg move editor.
 
 Habitat editor.
 
 ROM expander.
+
+Ability adder.
 
 Planned Features
 =================
