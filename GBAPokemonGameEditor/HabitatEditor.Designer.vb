@@ -26,24 +26,24 @@ Partial Class HabitatEditor
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.FrntPic = New System.Windows.Forms.PictureBox()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.ListBox3 = New System.Windows.Forms.ListBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.FrntPic = New System.Windows.Forms.PictureBox()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -83,6 +83,24 @@ Partial Class HabitatEditor
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Pages"
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(107, 107)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(100, 23)
+        Me.Button2.TabIndex = 6
+        Me.Button2.Text = "Repoint"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(107, 52)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(100, 23)
+        Me.Button1.TabIndex = 5
+        Me.Button1.Text = "Save"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'ListBox2
         '
@@ -143,6 +161,51 @@ Partial Class HabitatEditor
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Pokemon"
         '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(122, 106)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(100, 23)
+        Me.Button5.TabIndex = 13
+        Me.Button5.Text = "Repoint"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(122, 52)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(100, 23)
+        Me.Button4.TabIndex = 12
+        Me.Button4.Text = "Save"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'FrntPic
+        '
+        Me.FrntPic.Location = New System.Drawing.Point(36, 292)
+        Me.FrntPic.Name = "FrntPic"
+        Me.FrntPic.Size = New System.Drawing.Size(64, 64)
+        Me.FrntPic.TabIndex = 11
+        Me.FrntPic.TabStop = False
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(132, 265)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 6
+        Me.Button3.Text = "Change"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(12, 265)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(114, 21)
+        Me.ComboBox1.TabIndex = 5
+        '
         'ListBox3
         '
         Me.ListBox3.FormattingEnabled = True
@@ -182,69 +245,6 @@ Partial Class HabitatEditor
         Me.Label4.Size = New System.Drawing.Size(107, 13)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Number of Pokemon:"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(107, 52)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(100, 23)
-        Me.Button1.TabIndex = 5
-        Me.Button1.Text = "Save"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(107, 107)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(100, 23)
-        Me.Button2.TabIndex = 6
-        Me.Button2.Text = "Repoint"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(12, 265)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(114, 21)
-        Me.ComboBox1.TabIndex = 5
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(132, 265)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 6
-        Me.Button3.Text = "Change"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'FrntPic
-        '
-        Me.FrntPic.Location = New System.Drawing.Point(36, 292)
-        Me.FrntPic.Name = "FrntPic"
-        Me.FrntPic.Size = New System.Drawing.Size(64, 64)
-        Me.FrntPic.TabIndex = 11
-        Me.FrntPic.TabStop = False
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(122, 52)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(100, 23)
-        Me.Button4.TabIndex = 12
-        Me.Button4.Text = "Save"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Button5
-        '
-        Me.Button5.Location = New System.Drawing.Point(122, 106)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(100, 23)
-        Me.Button5.TabIndex = 13
-        Me.Button5.Text = "Repoint"
-        Me.Button5.UseVisualStyleBackColor = True
         '
         'HabitatEditor
         '

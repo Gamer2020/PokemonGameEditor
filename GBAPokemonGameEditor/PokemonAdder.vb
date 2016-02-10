@@ -59,6 +59,35 @@ Public Class PokemonAdder
         Dim PokemonBackSpriteTableBuffer As String
         Dim PokemonBackSpriteTableNewOffset As String
 
+        Dim PokemonNormalPalTableBuffer As String
+        Dim PokemonNormalPalTableNewOffset As String
+
+        Dim PokemonShinyPalTableBuffer As String
+        Dim PokemonShinyPalTableNewOffset As String
+
+        Dim PokemonPlayerYTableBuffer As String
+        Dim PokemonPlayerYTableNewOffset As String
+
+        Dim PokemonEnemyYTableBuffer As String
+        Dim PokemonEnemyYTableNewOffset As String
+
+        Dim PokemonAltitudeTableBuffer As String
+        Dim PokemonAltitudeTableNewOffset As String
+
+        Dim PokemonIconTableBuffer As String
+        Dim PokemonIconTableNewOffset As String
+
+        Dim PokemonIconPalTableBuffer As String
+        Dim PokemonIconPalTableNewOffset As String
+
+        Dim PokemonNatDexTableBuffer As String
+        Dim PokemonNatDexTableNewOffset As String
+
+        Dim PokemonSecDexTableBuffer As String
+        Dim PokemonSecDexTableNewOffset As String
+
+        Dim PokedexDataBuffer As String
+        Dim PokedexDataNewOffset As String
 
         If System.IO.File.Exists((LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini") = True Then
 
@@ -366,17 +395,17 @@ Public Class PokemonAdder
 
         PokemonFrontSpriteTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonFrontSprites", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * 8)
 
-        'Deletes old data
-
-        If CheckBox2.Checked Then
-            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonFrontSprites", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonFrontSpriteTableBuffer) / 2)))
-        End If
-
         'Handles Unowns
 
         If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
             PokemonFrontSpriteTableBuffer = PokemonFrontSpriteTableBuffer & ReadHEX(LoadedROM, ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) * 8) + Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonFrontSprites", "")), System.Globalization.NumberStyles.HexNumber), (28 * 8))
 
+        End If
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonFrontSprites", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonFrontSpriteTableBuffer) / 2)))
         End If
 
         'Adds new data
@@ -431,16 +460,16 @@ Public Class PokemonAdder
 
         PokemonBackSpriteTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonBackSprites", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * 8)
 
-        'Deletes old data
-
-        If CheckBox2.Checked Then
-            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonBackSprites", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonBackSpriteTableBuffer) / 2)))
-        End If
-
         'Handles Unowns
 
         If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
             PokemonBackSpriteTableBuffer = PokemonBackSpriteTableBuffer & ReadHEX(LoadedROM, ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) * 8) + Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonBackSprites", "")), System.Globalization.NumberStyles.HexNumber), (28 * 8))
+        End If
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonBackSprites", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonBackSpriteTableBuffer) / 2)))
         End If
 
         'Adds new data
@@ -473,9 +502,459 @@ Public Class PokemonAdder
         WriteHEX(LoadedROM, &H10BC0C, ReverseHEX(Hex((PokemonBackSpriteTableNewOffset) + &H8000000)))
         WriteHEX(LoadedROM, &H10BC24, ReverseHEX(Hex((PokemonBackSpriteTableNewOffset) + &H8000000)))
 
+
         'These will break the limiters preventing sprites from showing up.
         WriteHEX(LoadedROM, &HED72, "07E0")
         WriteHEX(LoadedROM, &HF1B6, "07E0")
+
+        'Pokemon Normal Pal table
+
+        PokemonNormalPalTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonNormalPal", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * 8)
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+            PokemonNormalPalTableBuffer = PokemonNormalPalTableBuffer & ReadHEX(LoadedROM, ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) * 8) + Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonNormalPal", "")), System.Globalization.NumberStyles.HexNumber), (28 * 8))
+
+        End If
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonNormalPal", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonNormalPalTableBuffer) / 2)))
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            PokemonNormalPalTableBuffer = PokemonNormalPalTableBuffer & "D00BD00800000000"
+
+        End While
+
+        PokemonNormalPalTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PokemonNormalPalTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, PokemonNormalPalTableNewOffset, PokemonNormalPalTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "PokemonNormalPal", Hex(PokemonNormalPalTableNewOffset))
+
+        'Repoint Pokemon Normal Pal Table
+
+        WriteHEX(LoadedROM, &H00130, ReverseHEX(Hex((PokemonNormalPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H4410C, ReverseHEX(Hex((PokemonNormalPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H44130, ReverseHEX(Hex((PokemonNormalPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H441A4, ReverseHEX(Hex((PokemonNormalPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H839C0, ReverseHEX(Hex((PokemonNormalPalTableNewOffset) + &H8000000)))
+
+        'Pokemon Shiny Pal table
+
+        PokemonShinyPalTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonShinyPal", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * 8)
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+            PokemonShinyPalTableBuffer = PokemonShinyPalTableBuffer & ReadHEX(LoadedROM, ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) * 8) + Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonShinyPal", "")), System.Globalization.NumberStyles.HexNumber), (28 * 8))
+        End If
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonShinyPal", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonShinyPalTableBuffer) / 2)))
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            PokemonShinyPalTableBuffer = PokemonShinyPalTableBuffer & "E80BD008F4010000"
+
+        End While
+
+        PokemonShinyPalTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PokemonShinyPalTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, PokemonShinyPalTableNewOffset, PokemonShinyPalTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "PokemonShinyPal", Hex(PokemonShinyPalTableNewOffset))
+
+        'Repoint Pokemon Shiny Pal Table
+
+        WriteHEX(LoadedROM, &H00134, ReverseHEX(Hex((PokemonShinyPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H44144, ReverseHEX(Hex((PokemonShinyPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H441B4, ReverseHEX(Hex((PokemonShinyPalTableNewOffset) + &H8000000)))
+
+        'This breaks the limiter on the palette tables.
+        WriteHEX(LoadedROM, &H44104, "04E0")
+
+        'Pokemon Player Y table
+
+        PokemonPlayerYTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PlayerYTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * 4)
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+            PokemonPlayerYTableBuffer = PokemonPlayerYTableBuffer & ReadHEX(LoadedROM, ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) * 4) + Int32.Parse((GetString(GetINIFileLocation(), header, "PlayerYTable", "")), System.Globalization.NumberStyles.HexNumber), (28 * 4))
+
+        End If
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PlayerYTable", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonPlayerYTableBuffer) / 2)))
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            PokemonPlayerYTableBuffer = PokemonPlayerYTableBuffer & "88000000"
+
+        End While
+
+        PokemonPlayerYTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PokemonPlayerYTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, PokemonPlayerYTableNewOffset, PokemonPlayerYTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "PlayerYTable", Hex(PokemonPlayerYTableNewOffset))
+
+        'Repoint Pokemon Player Y Table
+
+        WriteHEX(LoadedROM, &H74634, ReverseHEX(Hex((PokemonPlayerYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H74664, ReverseHEX(Hex((PokemonPlayerYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H74670, ReverseHEX(Hex((PokemonPlayerYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H76564, ReverseHEX(Hex((PokemonPlayerYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H76B1C, ReverseHEX(Hex((PokemonPlayerYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H76BE8, ReverseHEX(Hex((PokemonPlayerYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H76BF8, ReverseHEX(Hex((PokemonPlayerYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H76C04, ReverseHEX(Hex((PokemonPlayerYTableNewOffset) + &H8000000)))
+
+        'Pokemon Enemy Y table
+
+        PokemonEnemyYTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "EnemyYTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * 4)
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+            PokemonEnemyYTableBuffer = PokemonEnemyYTableBuffer & ReadHEX(LoadedROM, ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) * 4) + Int32.Parse((GetString(GetINIFileLocation(), header, "EnemyYTable", "")), System.Globalization.NumberStyles.HexNumber), (28 * 4))
+        End If
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "EnemyYTable", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonEnemyYTableBuffer) / 2)))
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            PokemonEnemyYTableBuffer = PokemonEnemyYTableBuffer & "88000000"
+
+        End While
+
+        PokemonEnemyYTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PokemonEnemyYTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, PokemonEnemyYTableNewOffset, PokemonEnemyYTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "EnemyYTable", Hex(PokemonEnemyYTableNewOffset))
+
+        'Repoint Pokemon Enemy Y Table
+
+        WriteHEX(LoadedROM, &H011F4C, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H011F80, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H011FAC, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0477E0, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H051410, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H052120, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H052800, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H05357C, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H074700, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H074734, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H074748, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H0765A8, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H076AD8, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H076CD4, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H076CF0, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H14A938, ReverseHEX(Hex((PokemonEnemyYTableNewOffset) + &H8000000)))
+
+        'Pokemon Altitude table
+
+        PokemonAltitudeTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "EnemyAltitudeTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * 1)
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "EnemyAltitudeTable", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonAltitudeTableBuffer) / 2)))
+        End If
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+            PokemonAltitudeTableBuffer = PokemonAltitudeTableBuffer & "00000000000000000000000000000000000000000000000000000000"
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            PokemonAltitudeTableBuffer = PokemonAltitudeTableBuffer & "00"
+
+        End While
+
+        PokemonAltitudeTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PokemonAltitudeTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, PokemonAltitudeTableNewOffset, PokemonAltitudeTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "EnemyAltitudeTable", Hex(PokemonAltitudeTableNewOffset))
+
+        'Repoint Pokemon Altitude Table
+
+        WriteHEX(LoadedROM, &H356F8, ReverseHEX(Hex((PokemonAltitudeTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H3575C, ReverseHEX(Hex((PokemonAltitudeTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H74794, ReverseHEX(Hex((PokemonAltitudeTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H747A8, ReverseHEX(Hex((PokemonAltitudeTableNewOffset) + &H8000000)))
+
+        'These break limiters, allowing these tables to be read.
+        WriteHEX(LoadedROM, &H7472E, "03E0")
+        WriteHEX(LoadedROM, &H7465E, "03E0")
+        WriteHEX(LoadedROM, &H74788, "06E0")
+
+        'Pokemon Icon table
+
+        PokemonIconTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * 4)
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+            PokemonIconTableBuffer = PokemonIconTableBuffer & ReadHEX(LoadedROM, ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) * 4) + Int32.Parse((GetString(GetINIFileLocation(), header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber), (28 * 4))
+
+        End If
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonIconTableBuffer) / 2)))
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            PokemonIconTableBuffer = PokemonIconTableBuffer & "5C6FE708"
+
+        End While
+
+        PokemonIconTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PokemonIconTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, PokemonIconTableNewOffset, PokemonIconTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "IconPointerTable", Hex(PokemonIconTableNewOffset))
+
+        'Repoint Pokemon Icon Table
+
+        WriteHEX(LoadedROM, &H000138, ReverseHEX(Hex((PokemonIconTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H097050, ReverseHEX(Hex((PokemonIconTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H3D4050, ReverseHEX(Hex((PokemonIconTableNewOffset) + &H8000000)))
+
+        'Pokemon Icon Pal table
+
+        PokemonIconPalTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * 1)
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+            PokemonIconPalTableBuffer = PokemonIconPalTableBuffer & ReadHEX(LoadedROM, ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) * 1) + Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber), (28 * 1))
+
+        End If
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonIconPalTableBuffer) / 2)))
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            PokemonIconPalTableBuffer = PokemonIconPalTableBuffer & "00"
+
+        End While
+
+        PokemonIconPalTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PokemonIconPalTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, PokemonIconPalTableNewOffset, PokemonIconPalTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "IconPalTable", Hex(PokemonIconPalTableNewOffset))
+
+        'Repoint Pokemon Icon Pal Table
+
+        WriteHEX(LoadedROM, &H0013C, ReverseHEX(Hex((PokemonIconPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H91394, ReverseHEX(Hex((PokemonIconPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H96EC0, ReverseHEX(Hex((PokemonIconPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H96F50, ReverseHEX(Hex((PokemonIconPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H970D8, ReverseHEX(Hex((PokemonIconPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H9710C, ReverseHEX(Hex((PokemonIconPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H97160, ReverseHEX(Hex((PokemonIconPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H97184, ReverseHEX(Hex((PokemonIconPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H971F4, ReverseHEX(Hex((PokemonIconPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H97214, ReverseHEX(Hex((PokemonIconPalTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H97224, ReverseHEX(Hex((PokemonIconPalTableNewOffset) + &H8000000)))
+
+        'This should make the icon show up, but with the wrong palette.
+        WriteHEX(LoadedROM, &H96F90, "0000")
+        'This fixes the palette reads for extended mons in the party menu.
+        WriteHEX(LoadedROM, &H96E7A, "00000000")
+        'This will fix the palette reads for extended mons in the dex once we get there.
+        WriteHEX(LoadedROM, &H971DA, "0000")
+
+        'Pokemon National Pokedex table
+
+        PokemonNatDexTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1) * 2)
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            ' WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonNatDexTableBuffer) / 2)))
+        End If
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+
+            PokemonNatDexTableBuffer = ""
+
+            PokemonNatDexTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber), (251) * 2)
+            PokemonNatDexTableBuffer = PokemonNatDexTableBuffer & "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            PokemonNatDexTableBuffer = PokemonNatDexTableBuffer & ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (276 * 2), (411 - 276) * 2)
+            PokemonNatDexTableBuffer = PokemonNatDexTableBuffer & "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            PokemonNatDexTableBuffer = PokemonNatDexTableBuffer & ReverseHEX(VB.Right("0000" & Hex(GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "") + countervar - 1), 4))
+
+        End While
+
+        PokemonNatDexTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PokemonNatDexTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, PokemonNatDexTableNewOffset, PokemonNatDexTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "NationalDexTable", Hex(PokemonNatDexTableNewOffset))
+
+        'Repoint Pokemon National Pokedex Table
+
+        WriteHEX(LoadedROM, &H4323C, ReverseHEX(Hex((PokemonNatDexTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H432B0, ReverseHEX(Hex((PokemonNatDexTableNewOffset) + &H8000000)))
+
+        'Pokemon Second Pokedex table
+
+        PokemonSecDexTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "SecondDexTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1) * 2)
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            ' WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "SecondDexTable", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokemonSecDexTableBuffer) / 2)))
+        End If
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+
+            PokemonSecDexTableBuffer = ""
+
+            PokemonSecDexTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "SecondDexTable", "")), System.Globalization.NumberStyles.HexNumber), (251) * 2)
+            PokemonSecDexTableBuffer = PokemonSecDexTableBuffer & "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            PokemonSecDexTableBuffer = PokemonSecDexTableBuffer & ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "SecondDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (276 * 2), (411 - 276) * 2)
+            PokemonSecDexTableBuffer = PokemonSecDexTableBuffer & "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            PokemonSecDexTableBuffer = PokemonSecDexTableBuffer & ReverseHEX(VB.Right("0000" & Hex(GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "") + countervar - 1), 4))
+
+        End While
+
+        PokemonSecDexTableNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PokemonSecDexTableBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, PokemonSecDexTableNewOffset, PokemonSecDexTableBuffer)
+
+        WriteString(GetINIFileLocation(), header, "SecondDexTable", Hex(PokemonSecDexTableNewOffset))
+
+        'Repoint Pokemon Second Pokedex Table
+
+        WriteHEX(LoadedROM, &H431F0, ReverseHEX(Hex((PokemonSecDexTableNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H432D4, ReverseHEX(Hex((PokemonSecDexTableNewOffset) + &H8000000)))
+
+        'PokedexData
+
+        PokedexDataBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "")) + 0) * 36)
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(PokedexDataBuffer) / 2)))
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox2.Text
+            countervar = countervar + 1
+
+            PokedexDataBuffer = PokedexDataBuffer & "CFC8C5C8C9D1C8FF0000000000000000354C4408B14C4408000000010000000100000000"
+
+        End While
+
+        PokedexDataNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PokedexDataBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, PokedexDataNewOffset, PokedexDataBuffer)
+
+        WriteString(GetINIFileLocation(), header, "PokedexData", Hex(PokedexDataNewOffset))
+
+        'Repoint Pokedex Data
+
+        WriteHEX(LoadedROM, &H088E34, ReverseHEX(Hex((PokedexDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H088E5C, ReverseHEX(Hex((PokedexDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H088E70, ReverseHEX(Hex((PokedexDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H105860, ReverseHEX(Hex((PokedexDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H105974, ReverseHEX(Hex((PokedexDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H105ACC, ReverseHEX(Hex((PokedexDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H105D44, ReverseHEX(Hex((PokedexDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H1066C8, ReverseHEX(Hex((PokedexDataNewOffset) + &H8000000)))
 
         'Updates the number of Pokemon
         If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
@@ -483,6 +962,10 @@ Public Class PokemonAdder
         Else
             WriteString(GetINIFileLocation(), header, "NumberOfPokemon", CInt((GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) + CInt(TextBox1.Text))
         End If
+
+        'Updates the number of Pokedex Entries
+
+        WriteString(GetINIFileLocation(), header, "NumberOfDexEntries", CInt((GetString(GetINIFileLocation(), header, "NumberOfDexEntries", ""))) + CInt(TextBox2.Text))
 
         Cursor = Cursors.WaitCursor
 
