@@ -89,6 +89,12 @@ Public Class PokemonAdder
         Dim PokedexDataBuffer As String
         Dim PokedexDataNewOffset As String
 
+        Dim TMCompatabilityBuffer As String
+        Dim TMCompatabilityBufferNewOffset As String
+
+        Dim MoveTutorCompatabilityBuffer As String
+        Dim MoveTutorCompatabilityBufferNewOffset As String
+
         If System.IO.File.Exists((LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini") = True Then
 
             MsgBox("An INI for this ROM has been detected! Values will be updated as needed.")
@@ -101,6 +107,8 @@ Public Class PokemonAdder
 
 
         End If
+
+        Cursor = Cursors.WaitCursor
 
         'Install's JPAN's save hack.
 
@@ -456,6 +464,10 @@ Public Class PokemonAdder
         WriteHEX(LoadedROM, &H11D900, ReverseHEX(Hex((PokemonFrontSpriteTableNewOffset) + &H8000000)))
         WriteHEX(LoadedROM, &H14AED8, ReverseHEX(Hex((PokemonFrontSpriteTableNewOffset) + &H8000000)))
 
+        'Repoint Intro Pokemon
+
+        WriteHEX(LoadedROM, &H130FA0, ReverseHEX(Hex((PokemonFrontSpriteTableNewOffset + (29 * 8)) + &H8000000)))
+
         'Pokemon Back Sprite table
 
         PokemonBackSpriteTableBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonBackSprites", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * 8)
@@ -548,6 +560,10 @@ Public Class PokemonAdder
         WriteHEX(LoadedROM, &H44130, ReverseHEX(Hex((PokemonNormalPalTableNewOffset) + &H8000000)))
         WriteHEX(LoadedROM, &H441A4, ReverseHEX(Hex((PokemonNormalPalTableNewOffset) + &H8000000)))
         WriteHEX(LoadedROM, &H839C0, ReverseHEX(Hex((PokemonNormalPalTableNewOffset) + &H8000000)))
+
+        'Repoint Intro Pokemon
+
+        WriteHEX(LoadedROM, &H130FA4, ReverseHEX(Hex((PokemonNormalPalTableNewOffset + (29 * 8)) + &H8000000)))
 
         'Pokemon Shiny Pal table
 
@@ -956,6 +972,124 @@ Public Class PokemonAdder
         WriteHEX(LoadedROM, &H105D44, ReverseHEX(Hex((PokedexDataNewOffset) + &H8000000)))
         WriteHEX(LoadedROM, &H1066C8, ReverseHEX(Hex((PokedexDataNewOffset) + &H8000000)))
 
+        'At x1025ec, you'll find a byte. This byte times eight is the amount of memory allocated for the pokedex.
+        'If you Then have less than 510 mons, replace the Byte With 1/2 your dex length.
+        'If you Then have less than 1020 mons, Set it To 1/4 your dex length And put 40 01 at x1025EE.
+        'If you Then have more than 1020 mons, you should probably rethink what you're doing since 4-digit numbers aren't going to get along with the FR interface unless you do adjustments outside the scope of this tutorial.
+
+        Dim FRLimiterFixRoutine As String = "286804700248001C00490847F1251008"
+        Dim FRLimiterFixRoutineOffset As String
+
+        If (ReadHEX(LoadedROM, &H1025E8, 4) = "00480047") Then
+
+            FRLimiterFixRoutineOffset = ("&H" & ReverseHEX(ReadHEX(LoadedROM, &H1025E8 + 4, 4))) - &H8000001
+
+            WriteHEX(LoadedROM, FRLimiterFixRoutineOffset + (Len(FRLimiterFixRoutine) / 2), ReverseHEX(VB.Right("00000000" & Hex((CInt((GetString(GetINIFileLocation(), header, "NumberOfDexEntries", ""))) + CInt(TextBox2.Text) - 1) * 8), 8)))
+
+        Else
+
+            FRLimiterFixRoutine = FRLimiterFixRoutine & ReverseHEX(VB.Right("00000000" & Hex((CInt((GetString(GetINIFileLocation(), header, "NumberOfDexEntries", ""))) + CInt(TextBox2.Text) - 1) * 8), 8))
+
+            FRLimiterFixRoutineOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(FRLimiterFixRoutine) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+            WriteHEX(LoadedROM, FRLimiterFixRoutineOffset, FRLimiterFixRoutine)
+            WriteHEX(LoadedROM, &H1025E8, "00480047" & ReverseHEX(Hex((FRLimiterFixRoutineOffset) + &H8000001)))
+
+        End If
+
+        'At x103920, put the number of dex entries you have minus one.
+        'If this Is more Then than what got malloc'd, the game will crash.
+        WriteHEX(LoadedROM, &H103920, ReverseHEX(VB.Right("00000000" & Hex(CInt((GetString(GetINIFileLocation(), header, "NumberOfDexEntries", ""))) + CInt(TextBox2.Text) - 2), 8)))
+
+        'At x43220, put 00 00.
+        'Your dex should now load the full length
+        WriteHEX(LoadedROM, &H43220, "0000")
+
+        'Change x88ea4 to the number of dex entries minus one.
+        'This fixes the dex count on the title screen & trainer card.
+        WriteHEX(LoadedROM, &H88EA4, ReverseHEX(VB.Right("00000000" & Hex(CInt((GetString(GetINIFileLocation(), header, "NumberOfDexEntries", ""))) + CInt(TextBox2.Text) - 2), 8)))
+
+
+        'Change x104c28 to the number of dex entries minus one.
+        'This fixes the dex count on the pokedex menu.
+        WriteHEX(LoadedROM, &H104C28, ReverseHEX(VB.Right("00000000" & Hex(CInt((GetString(GetINIFileLocation(), header, "NumberOfDexEntries", ""))) + CInt(TextBox2.Text) - 2), 8)))
+
+        'TM Compatability
+
+        TMCompatabilityBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "TMHMCompatibility", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * (GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", "")))
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "TMHMCompatibility", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(TMCompatabilityBuffer) / 2)))
+        End If
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+            TMCompatabilityBuffer = TMCompatabilityBuffer & MakeFreeSpaceString(((GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", "")) * 28), "00")
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            TMCompatabilityBuffer = TMCompatabilityBuffer & MakeFreeSpaceString((GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", "")), "00")
+
+        End While
+
+        TMCompatabilityBufferNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(TMCompatabilityBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, TMCompatabilityBufferNewOffset, TMCompatabilityBuffer)
+
+        WriteString(GetINIFileLocation(), header, "TMHMCompatibility", Hex(TMCompatabilityBufferNewOffset))
+
+        'Repoint TM Compatability
+
+        WriteHEX(LoadedROM, &H43C68, ReverseHEX(Hex((TMCompatabilityBufferNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H43C80, ReverseHEX(Hex((TMCompatabilityBufferNewOffset) + &H8000000)))
+
+        'Move Tutor Compatability
+
+        MoveTutorCompatabilityBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * ((GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", "")) / 8))
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorCompatibility", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(MoveTutorCompatabilityBuffer) / 2)))
+        End If
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+            TMCompatabilityBuffer = TMCompatabilityBuffer & MakeFreeSpaceString(((GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", "") / 8) * 28), "00")
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            MoveTutorCompatabilityBuffer = MoveTutorCompatabilityBuffer & MakeFreeSpaceString((GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", "") / 8), "00")
+
+        End While
+
+        MoveTutorCompatabilityBufferNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(MoveTutorCompatabilityBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, MoveTutorCompatabilityBufferNewOffset, MoveTutorCompatabilityBuffer)
+
+        WriteString(GetINIFileLocation(), header, "MoveTutorCompatibility", Hex(MoveTutorCompatabilityBufferNewOffset))
+
+        'Repoint Move Tutor Compatability
+
+        WriteHEX(LoadedROM, &H120C30, ReverseHEX(Hex((MoveTutorCompatabilityBufferNewOffset) + &H8000000)))
+
+
         'Updates the number of Pokemon
         If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
             WriteString(GetINIFileLocation(), header, "NumberOfPokemon", CInt((GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) + 28 + CInt(TextBox1.Text))
@@ -966,8 +1100,6 @@ Public Class PokemonAdder
         'Updates the number of Pokedex Entries
 
         WriteString(GetINIFileLocation(), header, "NumberOfDexEntries", CInt((GetString(GetINIFileLocation(), header, "NumberOfDexEntries", ""))) + CInt(TextBox2.Text))
-
-        Cursor = Cursors.WaitCursor
 
         Cursor = Cursors.Arrow
 
