@@ -100,6 +100,9 @@ Public Class PokemonAdder
         Dim EvolutionDataBuffer As String
         Dim EvolutionDataNewOffset As String
 
+        Dim PokemonItemAnimationTableBuffer As String
+        Dim PokemonItemAnimationTableNewOffset As String
+
         If System.IO.File.Exists((LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini") = True Then
 
             MsgBox("An INI for this ROM has been detected! Values will be updated as needed.")
@@ -1135,6 +1138,18 @@ Public Class PokemonAdder
         WriteHEX(LoadedROM, &H4599C, ReverseHEX(Hex((EvolutionDataNewOffset) + &H8000000)))
         WriteHEX(LoadedROM, &HCE8C4, ReverseHEX(Hex((EvolutionDataNewOffset) + &H8000000)))
 
+        'Repoint the item animation table.
+        'This Is at x45FD50.
+        'Each entry Is 5 bytes long. Entire thing Is x811 bytes.
+
+        'This fixes the evolution animation.
+        WriteHEX(LoadedROM, &HEC9A, "07E0")
+
+        'This fixes the stamps on the back of the trainer card.
+        WriteHEX(LoadedROM, &H97011, "E0")
+
+        'This will enable cries past #511 to function.
+        WriteHEX(LoadedROM, &H720CA, "011C11E0")
 
         'Updates the number of Pokemon
         If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
