@@ -19,6 +19,8 @@ Public Class PokemonAdder
             TabControl1.TabPages(1).Enabled = False
             TabControl1.SelectedIndex = 0
 
+            MsgBox("This is a beta. It is currently missing things.")
+
             Label1.Text = "Number of Pokemon in ROM: " & (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1
             Label2.Text = "Number of Dex entries in ROM: " & (GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "")) - 1
 
@@ -94,6 +96,9 @@ Public Class PokemonAdder
 
         Dim MoveTutorCompatabilityBuffer As String
         Dim MoveTutorCompatabilityBufferNewOffset As String
+
+        Dim EvolutionDataBuffer As String
+        Dim EvolutionDataNewOffset As String
 
         If System.IO.File.Exists((LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini") = True Then
 
@@ -1088,6 +1093,47 @@ Public Class PokemonAdder
         'Repoint Move Tutor Compatability
 
         WriteHEX(LoadedROM, &H120C30, ReverseHEX(Hex((MoveTutorCompatabilityBufferNewOffset) + &H8000000)))
+
+        'Evolution Data
+
+        EvolutionDataBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonEvolutions", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))))
+
+        'Deletes old data
+
+        If CheckBox2.Checked Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonEvolutions", "")), System.Globalization.NumberStyles.HexNumber), MakeFreeSpaceString((Len(EvolutionDataBuffer) / 2)))
+        End If
+
+        'Handles Unowns
+
+        If (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) = "412" Then
+            EvolutionDataBuffer = EvolutionDataBuffer & MakeFreeSpaceString(((8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) * 28), "00")
+        End If
+
+        'Adds new data
+
+        countervar = 0
+
+        While countervar < TextBox1.Text
+            countervar = countervar + 1
+
+            EvolutionDataBuffer = EvolutionDataBuffer & MakeFreeSpaceString((8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))), "00")
+
+        End While
+
+        EvolutionDataNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(EvolutionDataBuffer) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, EvolutionDataNewOffset, EvolutionDataBuffer)
+
+        WriteString(GetINIFileLocation(), header, "PokemonEvolutions", Hex(EvolutionDataNewOffset))
+
+        'Repoint Evolution Data
+
+        WriteHEX(LoadedROM, &H42F6C, ReverseHEX(Hex((EvolutionDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H42FBC, ReverseHEX(Hex((EvolutionDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H43138, ReverseHEX(Hex((EvolutionDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &H4599C, ReverseHEX(Hex((EvolutionDataNewOffset) + &H8000000)))
+        WriteHEX(LoadedROM, &HCE8C4, ReverseHEX(Hex((EvolutionDataNewOffset) + &H8000000)))
 
 
         'Updates the number of Pokemon

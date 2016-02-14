@@ -20,6 +20,8 @@ Public Class AttackAdder
             TabControl1.TabPages(1).Enabled = False
             TabControl1.SelectedIndex = 0
 
+            MsgBox("I've recently realized that Jambo51's move hack is incomplete. It works in it's current state but needs 3 more routines. - Gamer2020")
+
             Label1.Text = "Number of attacks in ROM: " & (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1
 
         Else
