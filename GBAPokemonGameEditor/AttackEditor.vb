@@ -1,4 +1,6 @@
-﻿Public Class AttackEditor
+﻿Imports System.IO.Directory
+
+Public Class AttackEditor
     Dim AttackDesc As Integer
     Dim AttackData As Integer
     Dim AttackAni As Integer
@@ -76,8 +78,9 @@
         TextBox4.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ((AttackData) + 12 + 5) + (ComboBox3.SelectedIndex * 12), 1)))), System.Globalization.NumberStyles.HexNumber)
         ComboBox2.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ((AttackData) + 12 + 6) + (ComboBox3.SelectedIndex * 12), 1)))), System.Globalization.NumberStyles.HexNumber)
         TextBox5.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ((AttackData) + 12 + 7) + (ComboBox3.SelectedIndex * 12), 1)))), System.Globalization.NumberStyles.HexNumber)
-        ComboBox7.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ((AttackData) + 12 + 9) + (ComboBox3.SelectedIndex * 12), 1)))), System.Globalization.NumberStyles.HexNumber)
+        TextBox14.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ((AttackData) + 12 + 9) + (ComboBox3.SelectedIndex * 12), 1)))), System.Globalization.NumberStyles.HexNumber)
         ComboBox8.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ((AttackData) + 12 + 10) + (ComboBox3.SelectedIndex * 12), 1)))), System.Globalization.NumberStyles.HexNumber)
+        TextBox15.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ((AttackData) + 12 + 11) + (ComboBox3.SelectedIndex * 12), 1)))), System.Globalization.NumberStyles.HexNumber)
 
         Dim bita As String
         Dim bitb As String
@@ -221,15 +224,16 @@
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
         WriteHEX(LoadedROM, ((AttackData) + 12) + (ComboBox3.SelectedIndex * 12), Hex(Effects.SelectedIndex))
-       WriteHEX(LoadedROM, ((AttackData) + 12 + 1) + (ComboBox3.SelectedIndex * 12), Hex(BasePower.Text))
+        WriteHEX(LoadedROM, ((AttackData) + 12 + 1) + (ComboBox3.SelectedIndex * 12), Hex(BasePower.Text))
         WriteHEX(LoadedROM, ((AttackData) + 12 + 2) + (ComboBox3.SelectedIndex * 12), Hex(ComboBox1.SelectedIndex))
         WriteHEX(LoadedROM, ((AttackData) + 12 + 3) + (ComboBox3.SelectedIndex * 12), Hex(TextBox2.Text))
         WriteHEX(LoadedROM, ((AttackData) + 12 + 4) + (ComboBox3.SelectedIndex * 12), Hex(TextBox3.Text))
-       WriteHEX(LoadedROM, ((AttackData) + 12 + 5) + (ComboBox3.SelectedIndex * 12), Hex(TextBox4.Text))
+        WriteHEX(LoadedROM, ((AttackData) + 12 + 5) + (ComboBox3.SelectedIndex * 12), Hex(TextBox4.Text))
         WriteHEX(LoadedROM, ((AttackData) + 12 + 6) + (ComboBox3.SelectedIndex * 12), Hex(ComboBox2.SelectedIndex))
         WriteHEX(LoadedROM, ((AttackData) + 12 + 7) + (ComboBox3.SelectedIndex * 12), Hex(TextBox5.Text))
-        WriteHEX(LoadedROM, ((AttackData) + 12 + 9) + (ComboBox3.SelectedIndex * 12), Hex(ComboBox7.SelectedIndex))
+        WriteHEX(LoadedROM, ((AttackData) + 12 + 9) + (ComboBox3.SelectedIndex * 12), Hex(TextBox14.Text))
         WriteHEX(LoadedROM, ((AttackData) + 12 + 10) + (ComboBox3.SelectedIndex * 12), Hex(ComboBox8.SelectedIndex))
+        WriteHEX(LoadedROM, ((AttackData) + 12 + 11) + (ComboBox3.SelectedIndex * 12), Hex(TextBox15.Text))
 
         Dim bita As String = ""
         Dim bitb As String = ""
@@ -409,5 +413,269 @@
     End Sub
 
     Private Sub ComboBox6_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox6.SelectedIndexChanged
+    End Sub
+
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        Me.Text = "Please wait..."
+        Me.UseWaitCursor = True
+        ProgressBar.Value = 0
+        ProgressBar.Visible = True
+
+        Dim LoopVar As Integer
+
+        LoopVar = 0
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) = True
+
+            ComboBox3.SelectedIndex = LoopVar
+
+            LoopVar = LoopVar + 1
+            Me.Refresh()
+            Me.Enabled = False
+
+            ChangeAttackName(LoopVar, DecapString(GetAttackName(LoopVar)))
+
+            ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfAttacks", ""))) * 100
+
+        End While
+
+        LoopVar = 1
+
+        ComboBox3.Items.Clear()
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1 = True
+
+
+            ComboBox3.Items.Add(GetAttackName(LoopVar))
+
+
+            LoopVar = LoopVar + 1
+
+        End While
+
+        ComboBox3.SelectedIndex = 0
+
+        Me.Text = "Attack Editor"
+        Me.UseWaitCursor = False
+        Me.Enabled = True
+        ProgressBar.Visible = False
+        Me.BringToFront()
+
+    End Sub
+
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+        SaveFileDialog.FileName = (ComboBox3.SelectedIndex + 1) & ".ini"
+        'SaveFileDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        SaveFileDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        SaveFileDialog.DefaultExt = "ini"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        SaveFileDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        SaveFileDialog.Filter =
+            "(*.ini)|*.ini*"
+
+        'SaveFileDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        SaveFileDialog.ShowHelp = False
+        'SaveFileDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        'SaveFileDialog.ReadOnlyChecked = False
+
+        SaveFileDialog.Title = "Save as"
+
+        ' Only accept valid Win32 file names?
+        SaveFileDialog.ValidateNames = True
+
+
+        If SaveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            ExportAttackINI(SaveFileDialog.FileName, (ComboBox3.SelectedIndex + 1))
+
+        End If
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        FolderBrowserDialog.Description = "Select folder to export all Attacks to:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            If System.IO.Directory.Exists(FolderBrowserDialog.SelectedPath & "\Attacks") = False Then
+                CreateDirectory(FolderBrowserDialog.SelectedPath & "\Attacks")
+            End If
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) = True
+
+                ComboBox3.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+
+                Me.Refresh()
+                Me.Enabled = False
+
+                ExportAttackINI(FolderBrowserDialog.SelectedPath & "\Attacks\" & LoopVar & ".ini", LoopVar)
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfAttacks", ""))) * 100
+            End While
+
+            Me.Text = "Attack Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        fileOpenDialog.FileName = ""
+        fileOpenDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        fileOpenDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        fileOpenDialog.DefaultExt = "ini"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        fileOpenDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        fileOpenDialog.Filter =
+            "(*.ini)|*.ini*"
+
+        fileOpenDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        fileOpenDialog.ShowHelp = False
+        fileOpenDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        fileOpenDialog.ReadOnlyChecked = False
+
+        fileOpenDialog.Title = "Select ini file to import"
+
+        ' Only accept valid Win32 file names?
+        fileOpenDialog.ValidateNames = True
+
+
+        If fileOpenDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            ImportAttackINI(fileOpenDialog.FileName, (ComboBox3.SelectedIndex + 1))
+
+            Dim refreshvar As Integer
+
+            refreshvar = ComboBox3.SelectedIndex
+
+            If ComboBox3.SelectedIndex = 0 Then
+                ComboBox3.SelectedIndex = ComboBox3.SelectedIndex + 1
+            Else
+                ComboBox3.SelectedIndex = ComboBox3.SelectedIndex - 1
+            End If
+
+            ComboBox3.Items.Insert(refreshvar, GetAttackName(refreshvar + 1))
+
+            ComboBox3.Items.RemoveAt(refreshvar + 1)
+
+            ComboBox3.SelectedIndex = refreshvar
+
+        End If
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        FolderBrowserDialog.Description = "Select folder to import Pokemon from:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) = True
+                ComboBox3.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+                Me.Refresh()
+                Me.Enabled = False
+
+                If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini") Then
+                    ImportAttackINI(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini", LoopVar)
+                End If
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfAttacks", ""))) * 100
+            End While
+
+            LoopVar = 1
+
+            ComboBox3.Items.Clear()
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1 = True
+
+
+                ComboBox3.Items.Add(GetAttackName(LoopVar))
+
+
+                LoopVar = LoopVar + 1
+
+            End While
+
+            ComboBox3.SelectedIndex = 0
+
+            Me.Text = "Attack Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub ComboBox5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox5.SelectedIndexChanged
+
     End Sub
 End Class

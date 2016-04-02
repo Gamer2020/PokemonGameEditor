@@ -46,7 +46,7 @@ Module mMain
     'These are arrays that keep track of which tiles go where.
     'There are two because I am using two picture boxes.
     'I do not know how to draw two images and over lay them to the same picturebox.
-    'I figured it would be easier to just overlay to pictureboxes.
+    'I figured it would be easier to just overlay two pictureboxes.
     'I just noticed that pictureboxes have a background image... Hmm...
     Public TilesetBottomLayer As Integer(,)
     Public TilesetTopLayer As Integer(,)
@@ -99,5 +99,104 @@ Module mMain
         MakeFreeSpaceString = OutBuffThing
     End Function
 
+    Public Function DecapString(input As String) As String
+
+        Dim LoopVar As Integer
+        Dim outputstring As String = ""
+        Dim capflag As Boolean = True
+
+        LoopVar = 0
+
+        While LoopVar < Len(input)
+
+            LoopVar = LoopVar + 1
+
+            If GetChar(input, LoopVar) = " " Then
+                outputstring = outputstring & " "
+                capflag = True
+            Else
+                If capflag = True Then
+
+                    outputstring = outputstring & UCase(GetChar(input, LoopVar))
+                    capflag = False
+
+                ElseIf capflag = False
+
+                    outputstring = outputstring & LCase(GetChar(input, LoopVar))
+
+                End If
+            End If
+
+        End While
+
+        DecapString = outputstring
+    End Function
+
+    Public Sub OutPutError(message As String)
+
+        Dim errorfile As String = AppPath & "errors.txt"
+
+        System.IO.File.AppendAllText(errorfile, message & vbCrLf)
+
+    End Sub
+
+    Public Function ByteToSignedInt(InputByte As Byte) As Integer
+        Dim ReturnVar As Integer
+
+
+        If InputByte > &H7F Then
+            Dim BinaryVar As String = (Convert.ToString(InputByte, 2))
+            ReturnVar = ((Convert.ToInt32(Mid(BinaryVar, 2, 7), 2)) - 128)
+        Else
+            ReturnVar = InputByte
+        End If
+
+        ByteToSignedInt = ReturnVar
+
+    End Function
+
+    Public Function SignedIntToHex(InputInt As Integer) As String
+
+        Dim ReturnVar As String
+
+
+        If InputInt < 0 Then
+
+            Dim BinaryVar As String = (Convert.ToString(InputInt + 128, 2))
+            BinaryVar = "1" & BinaryVar
+            ReturnVar = Hex((Convert.ToInt32(BinaryVar, 2)))
+
+        Else
+            ReturnVar = Hex(InputInt)
+        End If
+
+        SignedIntToHex = ReturnVar
+
+    End Function
+
+    Public Function ByteArrayToHexString(inputarray As Byte()) As String
+
+        Dim HexString As String = ""
+
+        For Each b As Byte In inputarray
+            HexString = HexString & MakeProperByte(b)
+        Next
+
+        ByteArrayToHexString = HexString
+    End Function
+
+    Public Function MakeProperByte(DaByte As Byte) As String
+        Dim OutputByte As String
+
+
+        If Len(Hex(DaByte)) = 1 Then
+            OutputByte = "0" & Hex(DaByte)
+        Else
+            OutputByte = Hex(DaByte)
+        End If
+
+        MakeProperByte = OutputByte
+
+    End Function
 
 End Module

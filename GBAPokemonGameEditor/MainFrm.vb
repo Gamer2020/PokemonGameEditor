@@ -18,18 +18,6 @@ Public Class MainFrm
 
         End If
 
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0") = "1" Then
-
-            Jambo51MoveTableHackToolStripMenuItem.CheckState = CheckState.Checked
-
-        End If
-
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0") = "1" Then
-
-            UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.CheckState = CheckState.Checked
-
-        End If
-
 
         If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "0") = "1" Then
 
@@ -439,22 +427,6 @@ Public Class MainFrm
         Me.Cursor = Cursors.Arrow
     End Sub
 
-    Private Sub Jambo51MoveTableHackToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Jambo51MoveTableHackToolStripMenuItem.Click
-        If Jambo51MoveTableHackToolStripMenuItem.CheckState = CheckState.Checked Then
-
-            Jambo51MoveTableHackToolStripMenuItem.CheckState = CheckState.Unchecked
-
-            WriteString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "0")
-
-        ElseIf Jambo51MoveTableHackToolStripMenuItem.CheckState = CheckState.Unchecked Then
-
-            Jambo51MoveTableHackToolStripMenuItem.CheckState = CheckState.Checked
-
-            WriteString(AppPath & "GBAPGESettings.ini", "Settings", "MoveTableHack", "1")
-
-        End If
-    End Sub
-
 
 
     Private Sub Button26_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button26.Click
@@ -476,22 +448,6 @@ Public Class MainFrm
             DisablePokemonImageLoadingToolStripMenuItem.CheckState = CheckState.Checked
 
             WriteString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "1")
-
-        End If
-    End Sub
-
-    Private Sub UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Click
-        If UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.CheckState = CheckState.Checked Then
-
-            UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.CheckState = CheckState.Unchecked
-
-            WriteString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "0")
-
-        ElseIf UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.CheckState = CheckState.Unchecked Then
-
-            UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.CheckState = CheckState.Checked
-
-            WriteString(AppPath & "GBAPGESettings.ini", "Settings", "jamboTMextensionHack", "1")
 
         End If
     End Sub

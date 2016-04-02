@@ -37,7 +37,7 @@
 
                 looper = looper + 1
             End While
-            WriteHEX(LoadedROM, ("&H" & offsettowrite) + (looper * 2), "FFFF00")
+            WriteHEX(LoadedROM, ("&H" & offsettowrite) + (looper * 2), "FFFF0000")
 
         End If
 

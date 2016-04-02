@@ -21,8 +21,12 @@ Public Class Pokemonedit
     Dim FootPrintTable As Integer
     Dim CryTable As Integer
     Dim CryTable2 As Integer
+    Dim CryTable3 As Integer
     Dim MTattacks As Integer
     Dim MTCompoLoc As Integer
+
+    Dim DexDescripLength1 As Integer
+    Dim DexDescripLength2 As Integer
 
     Private Sub Pokemonedit_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         MainFrm.Visible = True
@@ -37,6 +41,8 @@ Public Class Pokemonedit
 
         Type1.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGETypeList.txt"))
         Type2.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGETypeList.txt"))
+
+        BackgroundBox.Image = Image.FromFile(AppPath & "img\BattlePreviewBackground.png")
 
         Dim LoopVar As Integer
 
@@ -82,6 +88,7 @@ Public Class Pokemonedit
 
         PKMNames.Items.Clear()
         EvoPKMNames.Items.Clear()
+        ComboBox1.Items.Clear()
 
         While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
 
@@ -90,6 +97,7 @@ Public Class Pokemonedit
 
             PKMNames.Items.Add(GetPokemonName(LoopVar))
             EvoPKMNames.Items.Add(GetPokemonName(LoopVar))
+            ComboBox1.Items.Add(GetPokemonName(LoopVar))
 
         End While
 
@@ -126,6 +134,23 @@ Public Class Pokemonedit
 
         End While
 
+        If header2 = "BPR" Or header2 = "BPG" Then
+            ItmAnmtn.Enabled = True
+            ItmAnmtn.Text = ""
+        Else
+            ItmAnmtn.Enabled = False
+            ItmAnmtn.Text = ""
+        End If
+
+
+        If header2 = "AXP" Or header2 = "AXV" Then
+            Pointer2.Enabled = True
+            Description2.Enabled = True
+        Else
+            Pointer2.Enabled = False
+            Description2.Enabled = False
+        End If
+
         TMHMLoad()
         MTLoad()
 
@@ -159,6 +184,7 @@ Public Class Pokemonedit
         EggType2.SelectedIndex = (Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 21) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber))
         Bexp.Text = Int32.Parse(((ReadHEX(LoadedROM, ((baseoff) + 28 + 9) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
         Grate.SelectedIndex = (Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 19) + 28 + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber))
+        PadBase.Text = ((ReadHEX(LoadedROM, ((baseoff) + 28 + 26) + (i * 28), 2)))
 
         If ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "00" Then
 
@@ -418,6 +444,7 @@ Public Class Pokemonedit
         WriteHEX(LoadedROM, ((baseoff) + 28 + 21) + (i * 28), Hex(EggType2.SelectedIndex))
         WriteHEX(LoadedROM, ((baseoff) + 28 + 9) + (i * 28), Hex(Bexp.Text))
         WriteHEX(LoadedROM, ((baseoff) + 28 + 19) + (i * 28), Hex(Grate.SelectedIndex))
+        WriteHEX(LoadedROM, ((baseoff) + 28 + 26) + (i * 28), (PadBase.Text))
 
         If SH1.Checked = True Then
 
@@ -573,16 +600,34 @@ Public Class Pokemonedit
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+
         i = PKMNames.SelectedIndex
         BaseSave()
         EvoSave()
         TMHMCOMSave()
         MTComSave()
+        DexDataSave()
+        SaveSpritePosition()
+
+        If header2 = "BPR" Or header2 = "BPG" Then
+
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "ItemAnimationTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 5), ItmAnmtn.Text)
+            ItmAnmtn.Text = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "ItemAnimationTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 5), 5)
+
+        Else
+
+            ItmAnmtn.Enabled = False
+
+        End If
+
     End Sub
 
 
 
     Private Sub MediaLoad()
+
+        i = PKMNames.SelectedIndex
+
         FrontSpritePointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonFrontSprites", "")), System.Globalization.NumberStyles.HexNumber)
         BackSpritePointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonBackSprites", "")), System.Globalization.NumberStyles.HexNumber)
         NormalPalPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonNormalPal", "")), System.Globalization.NumberStyles.HexNumber)
@@ -592,6 +637,7 @@ Public Class Pokemonedit
         FootPrintTable = Int32.Parse((GetString(GetINIFileLocation(), header, "FootPrintTable", "")), System.Globalization.NumberStyles.HexNumber)
         CryTable = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable", "")), System.Globalization.NumberStyles.HexNumber)
         CryTable2 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
+        CryTable3 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable2", "")), System.Globalization.NumberStyles.HexNumber)
 
         FrontPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (FrontSpritePointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
         BackPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (BackSpritePointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
@@ -605,10 +651,12 @@ Public Class Pokemonedit
 
 
         'cry stuff with conversion table support
-        If (i + 1) < 251 Then
+        If (i + 1) < 252 Then
             GroupBox21.Enabled = True
             CryPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (CryTable) + (4) + (i * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
             CryConver.Text = ""
+            CryPointer2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (CryTable3) + (4) + (i * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
 
             CryConver.Enabled = False
             Button13.Enabled = False
@@ -616,6 +664,7 @@ Public Class Pokemonedit
 
             GroupBox21.Enabled = False
             CryPointer.Text = ""
+            CryPointer2.Text = ""
             CryConver.Text = ""
         End If
         If (i + 1) > 276 Then
@@ -627,6 +676,8 @@ Public Class Pokemonedit
             CryConver.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
 
             CryPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable) + (4)) + ((CryConver.Text) * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
+            CryPointer2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable3) + (4)) + ((CryConver.Text) * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
         End If
 
@@ -646,11 +697,15 @@ Public Class Pokemonedit
                 AnimationPointer.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AnimationPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
 
                 GetAndDrawAnimationPokemonPic(AniPic, i + 1)
+                GetAndDrawAnimationPokemonPicShiny(AniPic2, i + 1)
             End If
             GetAndDrawFrontPokemonPic(FrntPic, i + 1)
-            GetAndDrawBackPokemonPic(BckPic, i + 1)
-            GetAndDrawFrontPokemonPic(EvoBasePokePic, i + 1)
-            GetAndDrawPokemonIconPic(IconPicBox, i, IconPal.SelectedIndex)
+            GetAndDrawBackPokemonPic(BckPic2, i + 1)
+            GetAndDrawFrontPokemonPicShiny(FrntPic2, i + 1)
+            GetAndDrawBackPokemonPicNormal(BckPic, i + 1)
+
+            'GetAndDrawFrontPokemonPic(EvoBasePokePic, i + 1)
+            GetAndDrawPokemonIconPic(IconPicBox, i + 1, IconPal.SelectedIndex)
             GetAndDrawPokemonFootPrint(PictureBox1, i + 1)
         End If
     End Sub
@@ -662,6 +717,7 @@ Public Class Pokemonedit
             If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "0") = "0" Then
 
                 GetAndDrawAnimationPokemonPic(AniPic, i + 1)
+                GetAndDrawAnimationPokemonPicShiny(AniPic2, i + 1)
             End If
         End If
     End Sub
@@ -675,9 +731,10 @@ Public Class Pokemonedit
         WriteHEX(LoadedROM, (NormalPalPointers) + (8) + (i * 8), ReverseHEX(Hex(Int32.Parse(((NormalPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
 
         If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "0") = "0" Then
-
             GetAndDrawFrontPokemonPic(FrntPic, i + 1)
-            GetAndDrawBackPokemonPic(BckPic, i + 1)
+            GetAndDrawBackPokemonPic(BckPic2, i + 1)
+            GetAndDrawFrontPokemonPicShiny(FrntPic2, i + 1)
+            GetAndDrawBackPokemonPicNormal(BckPic, i + 1)
         End If
 
     End Sub
@@ -688,7 +745,7 @@ Public Class Pokemonedit
 
         WriteHEX(LoadedROM, (IconPalTable) + (1) + (i), (Hex(Val(IconPal.SelectedIndex))))
 
-        GetAndDrawPokemonIconPic(IconPicBox, i, IconPal.SelectedIndex)
+        GetAndDrawPokemonIconPic(IconPicBox, i + 1, IconPal.SelectedIndex)
     End Sub
 
     Private Sub EvoSlots_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EvoSlots.SelectedIndexChanged
@@ -723,6 +780,9 @@ Public Class Pokemonedit
         'species
         ComboBox1.Enabled = False
         ComboBox1.SelectedIndex = -1
+        'value
+        TextBox6.Text = ""
+        TextBox6.Enabled = False
 
 
         EvoTypes.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
@@ -794,7 +854,7 @@ Public Class Pokemonedit
             EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (4) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
             EvoPKMNames.Enabled = True
 
-            ComboBox1.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (2) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
+            ComboBox1.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (2) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
             ComboBox1.Enabled = True
 
         ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
@@ -807,6 +867,16 @@ Public Class Pokemonedit
 
             TextBox1.Enabled = True
             TextBox2.Enabled = True
+
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbasedonvalue" Then
+
+            EvoPKMNames.SelectedIndex = -1
+            EvoPKMNames.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (4) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber) - 1
+            EvoPKMNames.Enabled = True
+            EvoLevel.Enabled = False
+
+            TextBox6.Enabled = True
+            TextBox6.Text = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (2) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
 
         End If
     End Sub
@@ -890,7 +960,7 @@ Public Class Pokemonedit
 
             WriteHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (0) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
             WriteHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (4) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
-            WriteHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (2) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(ComboBox1.SelectedIndex)), 4)))
+            WriteHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (2) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(ComboBox1.SelectedIndex) + 1), 4)))
 
         ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
 
@@ -898,6 +968,13 @@ Public Class Pokemonedit
             WriteHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (4) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
             WriteHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (2) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), ReverseHEX(Hex(TextBox1.Text)))
             WriteHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (3) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), ReverseHEX(Hex(TextBox2.Text)))
+
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbasedonvalue" Then
+
+            WriteHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (0) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), Hex(EvoTypes.SelectedIndex))
+            WriteHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (4) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(EvoPKMNames.SelectedIndex) + 1), 4)))
+
+            WriteHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + (2) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), ReverseHEX(VB.Right("0000" & Hex(Val(TextBox6.Text)), 4)))
 
         End If
 
@@ -972,6 +1049,8 @@ Public Class Pokemonedit
 
     Private Sub PKMNames_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PKMNames.SelectedIndexChanged
 
+        Me.Enabled = False
+
         i = PKMNames.SelectedIndex
         PokemonListIndex.Text = PKMNames.SelectedIndex + 1
 
@@ -986,15 +1065,29 @@ Public Class Pokemonedit
 
         MTComLoad()
 
+        LoadDexData()
+
+        LoadSpritePosition()
+
         CurPKMName.Text = GetPokemonName(PKMNames.SelectedIndex + 1)
+
+        If header2 = "BPR" Or header2 = "BPG" Then
+
+            ItmAnmtn.Text = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "ItemAnimationTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 5), 5)
+        Else
+            ItmAnmtn.Enabled = False
+        End If
 
         EvoSlots.SelectedIndex = -1
         EvoSlots.SelectedIndex = 0
         lvlupattacks.SelectedIndex = 0
+
+        Me.Enabled = True
+
     End Sub
 
     Private Sub Button8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button8.Click
-        SaveFileDialog.FileName = ""
+        SaveFileDialog.FileName = (PKMNames.SelectedIndex + 1) & ".ini"
         'SaveFileDialog.CheckFileExists = True
 
         ' Check to ensure that the selected path exists.  Dialog box displays 
@@ -1002,7 +1095,7 @@ Public Class Pokemonedit
         SaveFileDialog.CheckPathExists = True
 
         ' Get or set default extension. Doesn't include the leading ".".
-        SaveFileDialog.DefaultExt = "PGEPKM"
+        SaveFileDialog.DefaultExt = "ini"
 
         ' Return the file referenced by a link? If False, simply returns the selected link
         ' file. If True, returns the file linked to the LNK file.
@@ -1012,8 +1105,8 @@ Public Class Pokemonedit
         ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
         ' trailing "|". You can set the FilterIndex property as well, to select the default
         ' filter. The first filter is numbered 1 (not 0). The default is 1. 
-        SaveFileDialog.Filter = _
-            "(*.pgepkm)|*.pgepkm*"
+        SaveFileDialog.Filter =
+            "(*.ini)|*.ini*"
 
         'SaveFileDialog.Multiselect = False
 
@@ -1041,71 +1134,8 @@ Public Class Pokemonedit
 
         If SaveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
 
-            'MsgBox(SaveFileDialog.FileName)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "Name", CurPKMName.Text)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "HP", HpBase.Text)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "Attack", AtBase.Text)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "Defense", DefBase.Text)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "Speed", SpeedBase.Text)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "Sp.Attack", SpAttBase.Text)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "Sp.Defense", SpDefBase.Text)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "CatchRate", CatchBase.Text)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "RunRate", RunBase.Text)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "BaseEXP", Bexp.Text)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "Ability1", Ab1.SelectedIndex)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "Ability2", Ab2.SelectedIndex)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "HeldItem1", Item1.SelectedIndex)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "HeldItem2", Item2.SelectedIndex)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "Type1", Type1.SelectedIndex)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "Type2", Type2.SelectedIndex)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "GrowthRate", Grate.SelectedIndex)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "EV1", Ev1.SelectedIndex)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "EV2", Ev2.SelectedIndex)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "Color", Clr1.SelectedIndex)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "EggType1", EggType1.SelectedIndex)
-            WriteString(SaveFileDialog.FileName, "Pokemon", "EggType2", EggType2.SelectedIndex)
+            ExportPokemonINI(SaveFileDialog.FileName, (PKMNames.SelectedIndex + 1))
 
-            If SH1.Checked = True Then
-                WriteString(SaveFileDialog.FileName, "Pokemon", "SHcheck", "0")
-                WriteString(SaveFileDialog.FileName, "Pokemon", "StepsToHatch", SHCombo1.SelectedIndex)
-            ElseIf SH2.Checked = True Then
-                WriteString(SaveFileDialog.FileName, "Pokemon", "SHcheck", "1")
-                WriteString(SaveFileDialog.FileName, "Pokemon", "StepsToHatch", SHVal.Text)
-            End If
-
-            If HP1.Checked = True Then
-                WriteString(SaveFileDialog.FileName, "Pokemon", "HPcheck", "0")
-                WriteString(SaveFileDialog.FileName, "Pokemon", "Happiness", HPCombo1.SelectedIndex)
-            ElseIf HP2.Checked = True Then
-                WriteString(SaveFileDialog.FileName, "Pokemon", "HPcheck", "1")
-                WriteString(SaveFileDialog.FileName, "Pokemon", "Happiness", HPVal.Text)
-            End If
-            If G1.Checked = True Then
-                WriteString(SaveFileDialog.FileName, "Pokemon", "Gcheck", "0")
-                WriteString(SaveFileDialog.FileName, "Pokemon", "Gender", GCombo1.SelectedIndex)
-            ElseIf G2.Checked = True Then
-                WriteString(SaveFileDialog.FileName, "Pokemon", "Gcheck", "1")
-                WriteString(SaveFileDialog.FileName, "Pokemon", "Gender", GVal.Text)
-            End If
-
-            If Rght1.Checked = True Then
-                WriteString(SaveFileDialog.FileName, "Pokemon", "Face", "0")
-
-            ElseIf Lft1.Checked = True Then
-                WriteString(SaveFileDialog.FileName, "Pokemon", "Face", "1")
-
-            End If
-
-            Dim LoopVar As Integer
-
-            LoopVar = 0
-
-            While LoopVar < 58 = True
-                WriteString(SaveFileDialog.FileName, "Pokemon", "TMHM" & (LoopVar + 1), TMHMCom.GetItemChecked(LoopVar))
-                LoopVar = LoopVar + 1
-            End While
-
-            'MsgBox("Exported!")
         End If
     End Sub
 
@@ -1118,7 +1148,7 @@ Public Class Pokemonedit
         fileOpenDialog.CheckPathExists = True
 
         ' Get or set default extension. Doesn't include the leading ".".
-        fileOpenDialog.DefaultExt = "PGEPKM"
+        fileOpenDialog.DefaultExt = "ini"
 
         ' Return the file referenced by a link? If False, simply returns the selected link
         ' file. If True, returns the file linked to the LNK file.
@@ -1128,8 +1158,8 @@ Public Class Pokemonedit
         ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
         ' trailing "|". You can set the FilterIndex property as well, to select the default
         ' filter. The first filter is numbered 1 (not 0). The default is 1. 
-        fileOpenDialog.Filter = _
-            "(*.pgepkm)|*.pgepkm*"
+        fileOpenDialog.Filter =
+            "(*.ini)|*.ini*"
 
         fileOpenDialog.Multiselect = False
 
@@ -1149,7 +1179,7 @@ Public Class Pokemonedit
         ' This only make sense if ShowReadOnly is True.
         fileOpenDialog.ReadOnlyChecked = False
 
-        fileOpenDialog.Title = "Select PGEPKM file to import"
+        fileOpenDialog.Title = "Select ini file to import"
 
         ' Only accept valid Win32 file names?
         fileOpenDialog.ValidateNames = True
@@ -1157,85 +1187,28 @@ Public Class Pokemonedit
 
         If fileOpenDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
 
-            ' MsgBox(fileOpenDialog.FileName)
-            'GetString(AppPath & "GBAPGESettings.ini", "Settings", "FirstRun", "Yes")
+            ImportPokemonINI(fileOpenDialog.FileName, (PKMNames.SelectedIndex + 1))
 
-            CurPKMName.Text = GetString(fileOpenDialog.FileName, "Pokemon", "Name", "")
-            HpBase.Text = GetString(fileOpenDialog.FileName, "Pokemon", "HP", "")
-            AtBase.Text = GetString(fileOpenDialog.FileName, "Pokemon", "Attack", "")
-            DefBase.Text = GetString(fileOpenDialog.FileName, "Pokemon", "Defense", "")
-            SpeedBase.Text = GetString(fileOpenDialog.FileName, "Pokemon", "Speed", "")
-            SpAttBase.Text = GetString(fileOpenDialog.FileName, "Pokemon", "Sp.Attack", "")
-            SpDefBase.Text = GetString(fileOpenDialog.FileName, "Pokemon", "Sp.Defense", "")
-            CatchBase.Text = GetString(fileOpenDialog.FileName, "Pokemon", "CatchRate", "")
-            RunBase.Text = GetString(fileOpenDialog.FileName, "Pokemon", "RunRate", "")
-            Bexp.Text = GetString(fileOpenDialog.FileName, "Pokemon", "BaseEXP", "")
-            Ab1.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "Ability1", "")
-            Ab2.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "Ability2", "")
-            Item1.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "HeldItem1", "")
-            Item2.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "HeldItem2", "")
-            Type1.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "Type1", "")
-            Type2.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "Type2", "")
-            Grate.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "GrowthRate", "")
-            Ev1.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "EV1", "")
-            Ev2.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "EV2", "")
-            Clr1.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "Color", "")
-            EggType1.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "EggType1", "")
-            EggType2.SelectedIndex = GetString(fileOpenDialog.FileName, "Pokemon", "EggType2", "")
+            Dim refreshvar As Integer
 
-            If GetString(fileOpenDialog.FileName, "Pokemon", "SHcheck", "0") = "0" Then
+            refreshvar = PKMNames.SelectedIndex
 
-                GetString(fileOpenDialog.FileName, "Pokemon", "StepsToHatch", SHCombo1.SelectedIndex)
-                SH1.Checked = True
-                SH2.Checked = False
-            ElseIf GetString(fileOpenDialog.FileName, "Pokemon", "SHcheck", "0") = "1" Then
-
-                GetString(fileOpenDialog.FileName, "Pokemon", "StepsToHatch", SHVal.Text)
-                SH1.Checked = False
-                SH2.Checked = True
+            If PKMNames.SelectedIndex = 0 Then
+                PKMNames.SelectedIndex = PKMNames.SelectedIndex + 1
+            Else
+                PKMNames.SelectedIndex = PKMNames.SelectedIndex - 1
             End If
 
-            If GetString(fileOpenDialog.FileName, "Pokemon", "HPcheck", "0") = "0" Then
-                GetString(fileOpenDialog.FileName, "Pokemon", "Happiness", HPCombo1.SelectedIndex)
-                HP1.Checked = True
-                HP2.Checked = False
-            ElseIf GetString(fileOpenDialog.FileName, "Pokemon", "HPcheck", "0") = "1" Then
-                GetString(fileOpenDialog.FileName, "Pokemon", "Happiness", HPVal.Text)
-                HP1.Checked = False
-                HP2.Checked = True
-            End If
+            PKMNames.Items.Insert(refreshvar, GetPokemonName(refreshvar + 1))
+            EvoPKMNames.Items.Insert(refreshvar, GetPokemonName(refreshvar + 1))
+            ComboBox1.Items.Insert(refreshvar, GetPokemonName(refreshvar + 1))
 
-            If GetString(fileOpenDialog.FileName, "Pokemon", "Gcheck", "0") = "0" Then
-                GetString(fileOpenDialog.FileName, "Pokemon", "Gender", GCombo1.SelectedIndex)
-                G1.Checked = True
-                G2.Checked = False
-            ElseIf GetString(fileOpenDialog.FileName, "Pokemon", "Gcheck", "0") = "1" Then
-                GetString(fileOpenDialog.FileName, "Pokemon", "Gender", GVal.Text)
-                G1.Checked = False
-                G2.Checked = True
-            End If
+            PKMNames.Items.RemoveAt(refreshvar + 1)
+            EvoPKMNames.Items.RemoveAt(refreshvar + 1)
+            ComboBox1.Items.RemoveAt(refreshvar + 1)
 
-            If GetString(fileOpenDialog.FileName, "Pokemon", "Face", "0") = 0 Then
+            PKMNames.SelectedIndex = refreshvar
 
-                Rght1.Checked = True
-                Lft1.Checked = False
-
-            ElseIf GetString(fileOpenDialog.FileName, "Pokemon", "Face", "1") = 1 Then
-
-                Rght1.Checked = False
-                Lft1.Checked = True
-
-            End If
-
-
-            Dim LoopVar As Integer
-
-            LoopVar = 0
-
-            While LoopVar < 58 = True
-                TMHMCom.SetItemChecked(LoopVar, GetString(fileOpenDialog.FileName, "Pokemon", "TMHM" & (LoopVar + 1), "1"))
-                LoopVar = LoopVar + 1
-            End While
         End If
     End Sub
 
@@ -1264,9 +1237,9 @@ Public Class Pokemonedit
 
                 TMHMCom.Items.Add("TM" & LoopVar + 1 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
-                    LoopVar = LoopVar + 1
-                End If
-            End While
+                LoopVar = LoopVar + 1
+            End If
+        End While
 
 
     End Sub
@@ -1400,14 +1373,14 @@ Public Class Pokemonedit
             blah = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMCompoLoc + (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", ""))) + (i * (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", "")))) + whichtmbyte, 1))), System.Globalization.NumberStyles.HexNumber)
             binarythebitch = (Convert.ToString(blah, 2))
 
-                howmanytmschecked = 0
+            howmanytmschecked = 0
 
 
 
 
-                howmanyzeros = (8 - Len(binarythebitch))
+            howmanyzeros = (8 - Len(binarythebitch))
 
-                For looper = 1 To howmanyzeros
+            For looper = 1 To howmanyzeros
                 'TMHMCom.SetItemChecked((7 + (8 * whichtmbyte)) - howmanytmschecked, False)
 
                 'howmanytmschecked = howmanytmschecked + 1
@@ -1436,13 +1409,13 @@ Public Class Pokemonedit
                     End If
                     howmanytmschecked = howmanytmschecked + 1
 
-                    End If
+                End If
             Next curposition
             whichtmbyte = whichtmbyte + 1
 
-            End While
+        End While
 
-       ' End If
+        ' End If
 
     End Sub
 
@@ -1513,7 +1486,7 @@ Public Class Pokemonedit
         While whichtmbyte < (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", "")))
 
             binarytowrite = ""
-                    For looper = 0 To 7
+            For looper = 0 To 7
 
 
 
@@ -1532,109 +1505,52 @@ Public Class Pokemonedit
 
                 End If
             Next looper
-                    bytetowrite = Hex(Convert.ToInt32(binarytowrite, 2))
+            bytetowrite = Hex(Convert.ToInt32(binarytowrite, 2))
             WriteHEX(LoadedROM, TMHMCompoLoc + (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", ""))) + (i * (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", "")))) + whichtmbyte, bytetowrite)
 
             whichtmbyte = whichtmbyte + 1
 
-            End While
+        End While
 
-      '  End If
+        '  End If
     End Sub
 
     Private Sub Button9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button9.Click
-        FolderBrowserDialog.Description = "Select folder to export all this games Pokemon as PGEPKM to:"
+        FolderBrowserDialog.Description = "Select folder to export all Pokemon to:"
 
         If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
             Me.Text = "Please wait..."
             Me.UseWaitCursor = True
             ProgressBar.Value = 0
             ProgressBar.Visible = True
-            'MsgBox(FolderBrowserDialog.SelectedPath)
-            CreateDirectory(FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs")
+
+            If System.IO.Directory.Exists(FolderBrowserDialog.SelectedPath & "\Pokemon") = False Then
+                CreateDirectory(FolderBrowserDialog.SelectedPath & "\Pokemon")
+            End If
+
             Dim LoopVar As Integer
 
             LoopVar = 0
+            Me.Enabled = False
 
             While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
-                PKMNames.SelectedIndex = LoopVar
+                '  PKMNames.SelectedIndex = LoopVar
 
                 LoopVar = LoopVar + 1
-                Me.Refresh()
-                Me.Enabled = False
-                'TabControl1.Refresh()
-                'CurPKMName.Refresh()
 
 
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Name", CurPKMName.Text)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "HP", HpBase.Text)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Attack", AtBase.Text)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Defense", DefBase.Text)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Speed", SpeedBase.Text)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Sp.Attack", SpAttBase.Text)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Sp.Defense", SpDefBase.Text)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "CatchRate", CatchBase.Text)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "RunRate", RunBase.Text)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "BaseEXP", Bexp.Text)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Ability1", Ab1.SelectedIndex)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Ability2", Ab2.SelectedIndex)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "HeldItem1", Item1.SelectedIndex)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "HeldItem2", Item2.SelectedIndex)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Type1", Type1.SelectedIndex)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Type2", Type2.SelectedIndex)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "GrowthRate", Grate.SelectedIndex)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "EV1", Ev1.SelectedIndex)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "EV2", Ev2.SelectedIndex)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Color", Clr1.SelectedIndex)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "EggType1", EggType1.SelectedIndex)
-                WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "EggType2", EggType2.SelectedIndex)
 
-                If SH1.Checked = True Then
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "SHcheck", "0")
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "StepsToHatch", SHCombo1.SelectedIndex)
-                ElseIf SH2.Checked = True Then
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "SHcheck", "1")
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "StepsToHatch", SHVal.Text)
-                End If
+                ExportPokemonINI(FolderBrowserDialog.SelectedPath & "\Pokemon\" & LoopVar & ".ini", LoopVar)
 
-                If HP1.Checked = True Then
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "HPcheck", "0")
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Happiness", HPCombo1.SelectedIndex)
-                ElseIf HP2.Checked = True Then
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "HPcheck", "1")
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Happiness", HPVal.Text)
-                End If
-                If G1.Checked = True Then
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Gcheck", "0")
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Gender", GCombo1.SelectedIndex)
-                ElseIf G2.Checked = True Then
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Gcheck", "1")
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Gender", GVal.Text)
-                End If
-
-                If Rght1.Checked = True Then
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Face", "0")
-
-                ElseIf Lft1.Checked = True Then
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "Face", "1")
-
-                End If
-
-                Dim LoopVarthing As Integer
-
-                LoopVarthing = 0
-
-                While LoopVarthing < 58 = True
-                    WriteString((FolderBrowserDialog.SelectedPath & "\ExportedPGEPKMs\" & (LoopVar) & " - " & GetPokemonName(LoopVar) & ".pgepkm"), "Pokemon", "TMHM" & (LoopVarthing + 1), TMHMCom.GetItemChecked(LoopVarthing))
-                    LoopVarthing = LoopVarthing + 1
-                End While
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                Me.Refresh()
             End While
 
             Me.Text = "Pokemon Editor"
             Me.UseWaitCursor = False
             Me.Enabled = True
             ProgressBar.Visible = False
+            Me.BringToFront()
         End If
     End Sub
 
@@ -1685,10 +1601,8 @@ Public Class Pokemonedit
                 lvlupattacks.Items.Add(lvl & " - " & GetAttackName(at))
                 Looper = Looper + 1
             End While
-        End If
 
-
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
+        ElseIf GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
             AttackTable = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
 
             LvlUpAttPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
@@ -1774,14 +1688,16 @@ Public Class Pokemonedit
 
 
 
-        If (i + 1) < 251 Then
+        If (i + 1) < 252 Then
             WriteHEX(LoadedROM, (CryTable) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+            WriteHEX(LoadedROM, (CryTable3) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
         ElseIf (i + 1) > 251 And (i + 1) < 276 Then
 
             MsgBox("This shoudln't be enabled! report it!")
         ElseIf (i + 1) > 276 Then
 
             WriteHEX(LoadedROM, (CryTable) + (4) + (((Int32.Parse(("&H" & ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+            WriteHEX(LoadedROM, (CryTable3) + (4) + (((Int32.Parse(("&H" & ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
 
         End If
     End Sub
@@ -2065,6 +1981,7 @@ Public Class Pokemonedit
 
         PKMNames.Items.Clear()
         EvoPKMNames.Items.Clear()
+        ComboBox1.Items.Clear()
 
         While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
 
@@ -2073,6 +1990,7 @@ Public Class Pokemonedit
 
             PKMNames.Items.Add(GetPokemonName(LoopVar))
             EvoPKMNames.Items.Add(GetPokemonName(LoopVar))
+            ComboBox1.Items.Add(GetPokemonName(LoopVar))
 
 
         End While
@@ -2082,7 +2000,7 @@ Public Class Pokemonedit
 
     Private Sub IconPal_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IconPal.SelectedIndexChanged
         i = PKMNames.SelectedIndex
-        GetAndDrawPokemonIconPic(IconPicBox, i, IconPal.SelectedIndex)
+        GetAndDrawPokemonIconPic(IconPicBox, i + 1, IconPal.SelectedIndex)
     End Sub
 
     Private Sub Button13_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button13.Click
@@ -2090,7 +2008,7 @@ Public Class Pokemonedit
 
 
 
-        If (i + 1) < 251 Then
+        If (i + 1) < 252 Then
             MsgBox("This shoudln't be enabled! report it!")
         ElseIf (i + 1) > 251 And (i + 1) < 276 Then
 
@@ -2100,6 +2018,7 @@ Public Class Pokemonedit
             WriteHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), ReverseHEX(VB.Right("0000" & Hex(CryConver.Text), 4)))
 
             CryPointer.Text = Hex(Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, ((CryTable) + (4)) + ((CryConver.Text) * 12), 4)), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+            CryPointer2.Text = Hex(Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, ((CryTable3) + (4)) + ((CryConver.Text) * 12), 4)), System.Globalization.NumberStyles.HexNumber) - &H8000000)
         End If
     End Sub
 
@@ -2111,11 +2030,10 @@ Public Class Pokemonedit
 
         EvoPKMNames.Enabled = False
         EvoItem.Enabled = False
-        EvoPKMNames.Enabled = False
         EvoLevel.Enabled = False
         EvoItem.SelectedIndex = -1
         EvoLevel.Text = ""
-        EvoPKMNames.SelectedIndex = -1
+        'EvoPKMNames.SelectedIndex = -1
         'attack
         ComboBox3.Enabled = False
         ComboBox3.SelectedIndex = -1
@@ -2130,20 +2048,22 @@ Public Class Pokemonedit
         'species
         ComboBox1.Enabled = False
         ComboBox1.SelectedIndex = -1
+        'value
+        TextBox6.Enabled = False
+        TextBox6.Text = ""
 
         If (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "none" Then
 
             EvoPKMNames.Enabled = False
             EvoItem.Enabled = False
-            EvoPKMNames.Enabled = False
             EvoLevel.Enabled = False
             EvoItem.SelectedIndex = -1
             EvoLevel.Text = ""
-            EvoPKMNames.SelectedIndex = -1
+            'EvoPKMNames.SelectedIndex = -1
 
         ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbutnoparms" Then
 
-            EvoPKMNames.SelectedIndex = 0
+            'EvoPKMNames.SelectedIndex = 0
             EvoPKMNames.Enabled = True
             EvoLevel.Enabled = False
 
@@ -2151,14 +2071,14 @@ Public Class Pokemonedit
 
             EvoLevel.Text = "1"
 
-            EvoPKMNames.SelectedIndex = 0
+            'EvoPKMNames.SelectedIndex = 0
             EvoPKMNames.Enabled = True
             EvoLevel.Enabled = True
 
         ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "item" Then
 
             EvoPKMNames.Enabled = True
-            EvoPKMNames.SelectedIndex = 0
+            'EvoPKMNames.SelectedIndex = 0
             EvoItem.SelectedIndex = 1
             EvoItem.Enabled = True
             EvoLevel.Enabled = False
@@ -2166,7 +2086,7 @@ Public Class Pokemonedit
         ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "attack" Then
 
             EvoPKMNames.Enabled = True
-            EvoPKMNames.SelectedIndex = 0
+            'EvoPKMNames.SelectedIndex = 0
 
             ComboBox3.SelectedIndex = 0
             ComboBox3.Enabled = True
@@ -2174,7 +2094,7 @@ Public Class Pokemonedit
         ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "mapname" Then
 
             EvoPKMNames.Enabled = True
-            EvoPKMNames.SelectedIndex = 0
+            'EvoPKMNames.SelectedIndex = 0
 
             ComboBox2.SelectedIndex = 0
             ComboBox2.Enabled = True
@@ -2182,7 +2102,7 @@ Public Class Pokemonedit
         ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "species" Then
 
             EvoPKMNames.Enabled = True
-            EvoPKMNames.SelectedIndex = 0
+            'EvoPKMNames.SelectedIndex = 0
 
             ComboBox1.SelectedIndex = 0
             ComboBox1.Enabled = True
@@ -2190,12 +2110,19 @@ Public Class Pokemonedit
         ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "bankandmap" Then
 
             EvoPKMNames.Enabled = True
-            EvoPKMNames.SelectedIndex = 0
+            'EvoPKMNames.SelectedIndex = 0
 
             TextBox1.Text = ""
             TextBox2.Text = ""
             TextBox1.Enabled = True
             TextBox2.Enabled = True
+
+        ElseIf (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "evolvesbasedonvalue" Then
+
+            'EvoPKMNames.SelectedIndex = 0
+            EvoPKMNames.Enabled = True
+            EvoLevel.Enabled = False
+            TextBox6.Enabled = True
 
         End If
     End Sub
@@ -2208,6 +2135,1391 @@ Public Class Pokemonedit
             Else
                 PictureBox2.Image = Nothing
             End If
+        End If
+    End Sub
+
+    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
+        FolderBrowserDialog.Description = "Select folder to import Pokemon from:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+
+            Me.Enabled = False
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+                'PKMNames.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+
+
+
+                If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini") Then
+                    ImportPokemonINI(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini", LoopVar)
+                End If
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                Me.Refresh()
+            End While
+
+            LoopVar = 0
+
+            PKMNames.Items.Clear()
+            EvoPKMNames.Items.Clear()
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+
+
+                LoopVar = LoopVar + 1
+
+                PKMNames.Items.Add(GetPokemonName(LoopVar))
+                EvoPKMNames.Items.Add(GetPokemonName(LoopVar))
+
+
+            End While
+
+            PKMNames.SelectedIndex = 0
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        Me.Text = "Please wait..."
+        Me.UseWaitCursor = True
+        ProgressBar.Value = 0
+        ProgressBar.Visible = True
+
+        Dim LoopVar As Integer
+
+        LoopVar = 0
+        Me.Enabled = False
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+            'PKMNames.SelectedIndex = LoopVar
+
+            LoopVar = LoopVar + 1
+            Me.Refresh()
+
+
+            ChangePokemonName(LoopVar, DecapString(GetPokemonName(LoopVar)))
+
+            ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+        End While
+
+        LoopVar = 0
+
+        PKMNames.Items.Clear()
+        EvoPKMNames.Items.Clear()
+        ComboBox1.Items.Clear()
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+
+
+            LoopVar = LoopVar + 1
+
+            PKMNames.Items.Add(GetPokemonName(LoopVar))
+            EvoPKMNames.Items.Add(GetPokemonName(LoopVar))
+            ComboBox1.Items.Add(GetPokemonName(LoopVar))
+
+
+        End While
+
+        PKMNames.SelectedIndex = 0
+
+        Me.Text = "Pokemon Editor"
+        Me.UseWaitCursor = False
+        Me.Enabled = True
+        ProgressBar.Visible = False
+        Me.BringToFront()
+    End Sub
+
+    Public Sub LoadDexData()
+
+        TextBox3.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+
+        TextBox4.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "SecondDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+
+        If TextBox3.Text < (GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "")) And TextBox3.Text <> 0 Then
+
+            GroupBox32.Enabled = True
+            GroupBox29.Enabled = True
+            GroupBox31.Enabled = True
+            GroupBox30.Enabled = True
+
+            If header3 = "J" Then
+
+                If header2 = "AXP" Or header2 = "AXV" Then
+                    SkipVar = "36"
+                ElseIf header2 = "BPR" Or header2 = "BPG" Then
+                    SkipVar = "36"
+                ElseIf header2 = "BPE" Then
+                    SkipVar = "32"
+                End If
+
+            Else
+                If header2 = "AXP" Or header2 = "AXV" Then
+                    SkipVar = "36"
+                ElseIf header2 = "BPR" Or header2 = "BPG" Then
+                    SkipVar = "36"
+                ElseIf header2 = "BPE" Then
+                    SkipVar = "32"
+                End If
+            End If
+
+            Pointer1.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 4 + +12 + (TextBox3.Text * SkipVar), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
+            Hght.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 12 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+            Wght.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 2 + 12 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+
+            Scale1.Text = ""
+            Scale2.Text = ""
+
+            If header2 = "AXP" Or header2 = "AXV" Then
+
+                Scale1.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 26 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+                Offset_1.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 28 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+                Scale2.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 30 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+                Offset_2.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 32 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+
+                Pointer2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 8 + +12 + (TextBox3.Text * SkipVar), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+                EnglishRSDescpLoad()
+            ElseIf header2 = "BPR" Or header2 = "BPG" Then
+
+                Scale1.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 26 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+                Offset_1.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 28 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+                Scale2.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 30 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+                Offset_2.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 32 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+
+
+                EnglishFRLGEDescpLoad()
+            ElseIf header2 = "BPE" Then
+
+                Scale1.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 22 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+                Offset_1.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 24 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+                Scale2.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 26 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+                Offset_2.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 28 + (TextBox3.Text * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+
+
+                EnglishFRLGEDescpLoad()
+            End If
+
+            TextBox5.Text = GetPokedexTypeName(TextBox3.Text)
+
+        Else
+
+                GroupBox32.Enabled = False
+                GroupBox29.Enabled = False
+                GroupBox31.Enabled = False
+                GroupBox30.Enabled = False
+
+        End If
+
+
+
+
+    End Sub
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
+        WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 2), ReverseHEX(VB.Right("0000" & Hex(TextBox3.Text), 4)))
+        WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "SecondDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 2), ReverseHEX(VB.Right("0000" & Hex(TextBox4.Text), 4)))
+
+        LoadDexData()
+
+    End Sub
+
+    Private Sub Hght_TextChanged(sender As Object, e As EventArgs) Handles Hght.TextChanged
+        If Val(Hght.Text) > 304 Then Hght.Text = 304
+        If Val(Hght.Text) < 0 Then Hght.Text = 0
+
+        Label30.Text = Val(Hght.Text) / 10
+
+        Label29.Text = Val(Label30.Text) * 3.281
+    End Sub
+
+    Private Sub Wght_TextChanged(sender As Object, e As EventArgs) Handles Wght.TextChanged
+        If Val(Wght.Text) > 21474 Then Wght.Text = 21474
+        If Val(Wght.Text) < 0 Then Wght.Text = 0
+
+        Label28.Text = Val(Wght.Text) / 10
+
+        Label27.Text = Val(Label28.Text) * 2.2
+    End Sub
+
+    Private Sub EnglishRSDescpLoad()
+        Description1.Text = ""
+        Description2.Text = ""
+
+        FileNum = FreeFile()
+        FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+        Dim DexDescp As String = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+        FileGet(FileNum, DexDescp, ("&H" & (Pointer1.Text)) + 1, True)
+        DexDescp = Sapp2Asc(DexDescp)
+        DexDescp = Mid$(DexDescp, 1, InStr(1, DexDescp, "\x"))
+        DexDescp = Replace(DexDescp, "\n", vbCrLf)
+        DexDescp = Replace(RTrim$(DexDescp), "\", "")
+
+        DexDescripLength1 = Len(DexDescp)
+
+        Description1.Text = DexDescp
+        ' Description1.MaxLength = Len(DexDescp)
+
+        DexDescp = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+        FileGet(FileNum, DexDescp, ("&H" & (Pointer2.Text)) + 1, True)
+        DexDescp = Sapp2Asc(DexDescp)
+        DexDescp = Mid$(DexDescp, 1, InStr(1, DexDescp, "\x"))
+        DexDescp = Replace(DexDescp, "\n", vbCrLf)
+        DexDescp = Replace(RTrim$(DexDescp), "\", "")
+
+        DexDescripLength2 = Len(DexDescp)
+
+        Description2.Text = DexDescp
+        'Description2.MaxLength = Len(DexDescp)
+
+        FileClose(FileNum)
+    End Sub
+
+    Private Sub EnglishFRLGEDescpLoad()
+
+        Description1.Text = ""
+        Description2.Text = ""
+
+        FileNum = FreeFile()
+        FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+        Dim DexDescp As String = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+        FileGet(FileNum, DexDescp, ("&H" & (Pointer1.Text)) + 1, True)
+        DexDescp = Sapp2Asc(DexDescp)
+        DexDescp = Mid$(DexDescp, 1, InStr(1, DexDescp, "\x"))
+        DexDescp = Replace(DexDescp, "\n", vbCrLf)
+        DexDescp = Replace(RTrim$(DexDescp), "\", "")
+
+        DexDescripLength1 = Len(DexDescp)
+
+        Description1.Text = DexDescp
+        ' Description1.MaxLength = Len(DexDescp)
+
+        FileClose(FileNum)
+    End Sub
+
+    Private Sub Scale1_TextChanged(sender As Object, e As EventArgs) Handles Scale1.TextChanged
+
+        If Scale1.Text = "" Then
+
+        ElseIf Scale1.Text <> 0 Then
+
+            Dim PokePoint As Point
+
+            GetAndDrawFrontPokemonPicBLACK(RSEDexPoke, PKMNames.SelectedIndex + 1)
+            RSEDexPoke.Height = (64 * 256 / Scale1.Text)
+            RSEDexPoke.Width = (64 * 256 / Scale1.Text)
+
+            PokePoint.X = 15
+            If (64 - RSEDexPoke.Height) > 0 Then
+                PokePoint.Y = 123 + (64 - RSEDexPoke.Height)
+            Else
+                PokePoint.Y = 123
+            End If
+            RSEDexPoke.Location = PokePoint
+
+                RSEDexPoke.SizeMode = PictureBoxSizeMode.StretchImage
+
+            End If
+
+    End Sub
+
+    Private Sub Scale2_TextChanged(sender As Object, e As EventArgs) Handles Scale2.TextChanged
+
+        If Scale2.Text = "" Then
+        ElseIf Scale2.Text <> 0 Then
+
+            Dim TrainerPoint As Point
+
+            GetAndDrawTrainerPicBLACK(RSEDexTrainer, (GetString(GetINIFileLocation(), header, "DexSizeTrainerSprite", "")))
+            RSEDexTrainer.Height = (64 * 256 / Scale2.Text)
+            RSEDexTrainer.Width = (64 * 256 / Scale2.Text)
+
+            TrainerPoint.X = RSEDexPoke.Location.X + RSEDexPoke.Width
+            TrainerPoint.Y = 123 + (64 - RSEDexTrainer.Height)
+            RSEDexTrainer.Location = TrainerPoint
+
+            RSEDexTrainer.SizeMode = PictureBoxSizeMode.StretchImage
+
+        End If
+
+    End Sub
+
+    Private Sub RSEDexPoke_LocationChanged(sender As Object, e As EventArgs) Handles RSEDexPoke.LocationChanged
+        Dim TrainerPoint As Point
+        TrainerPoint.X = RSEDexPoke.Location.X + RSEDexPoke.Width
+        TrainerPoint.Y = 123 + (64 - RSEDexTrainer.Height)
+        RSEDexTrainer.Location = TrainerPoint
+    End Sub
+
+    Private Sub Description1_TextChanged(sender As Object, e As EventArgs) Handles Description1.TextChanged
+        Label38.Text = "Length: " & Len(Description1.Text) & "/" & DexDescripLength1
+        Label38.ForeColor = Color.Black
+
+        If Len(Description1.Text) > DexDescripLength1 Then
+            Label38.Text = Label38.Text & " Requires repoint!"
+
+            Label38.ForeColor = Color.Red
+
+        End If
+    End Sub
+
+    Private Sub Description2_TextChanged(sender As Object, e As EventArgs) Handles Description2.TextChanged
+        Label37.Text = "Length: " & Len(Description2.Text) & "/" & DexDescripLength2
+        Label37.ForeColor = Color.Black
+
+        If Len(Description2.Text) > DexDescripLength2 Then
+            Label37.Text = Label37.Text & " Requires repoint!"
+
+            Label37.ForeColor = Color.Red
+
+        End If
+    End Sub
+
+    Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
+        Dim indexbuff As Integer = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+
+        If header3 = "J" Then
+
+            If header2 = "AXP" Or header2 = "AXV" Then
+                MessageBox.Show("Support for this language has not been added yet!")
+                End
+
+            ElseIf header2 = "BPR" Or header2 = "BPG" Then
+                MessageBox.Show("Support for this language has not been added yet!")
+                End
+            ElseIf header2 = "BPE" Then
+                MessageBox.Show("Support for this language has not been added yet!")
+                End
+            End If
+
+        Else
+            If header2 = "AXP" Or header2 = "AXV" Then
+
+                WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 4 + 12 + (indexbuff * SkipVar), ReverseHEX(Hex(Val("&H" & ((Pointer1.Text))) + &H8000000)))
+                WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 8 + 12 + (indexbuff * SkipVar), ReverseHEX(Hex(Val("&H" & ((Pointer2.Text))) + &H8000000)))
+
+                EnglishRSDescpLoad()
+
+            ElseIf header2 = "BPR" Or header2 = "BPG" Then
+
+                WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 4 + 12 + (indexbuff * SkipVar), ReverseHEX(Hex(Val("&H" & ((Pointer1.Text))) + &H8000000)))
+
+                EnglishFRLGEDescpLoad()
+
+            ElseIf header2 = "BPE" Then
+                WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 4 + 12 + (indexbuff * SkipVar), ReverseHEX(Hex(Val("&H" & ((Pointer1.Text))) + &H8000000)))
+
+                EnglishFRLGEDescpLoad()
+
+            End If
+        End If
+    End Sub
+
+    Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click
+        Dim indexbuff As Integer = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+        Dim Y As String
+
+        Dim Var1 As String
+        Dim Var2 As String
+        Dim filler As Byte = &H0
+
+        If header2 = "AXP" Or header2 = "AXV" Then
+
+            If DexDescripLength1 < Len(Description1.Text) Then
+
+                Dim resultR As DialogResult = MessageBox.Show("The text for the first box will be written to free space and the pointer will be repointed. Would you like to do that?",
+                  "Repoint?",
+                  MessageBoxButtons.YesNo)
+
+                If (resultR = DialogResult.Yes) Then
+
+                    Y = Asc2Sapp(Replace(Description1.Text, vbCrLf, "\n") & "\x")
+
+                    Var1 = SearchFreeSpaceFourAligned(LoadedROM, &HFF, (Len(Y & " ")), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+
+                    FileNum = FreeFile()
+
+                    FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                    FilePut(FileNum, Y & " ", "&H" & Hex(Var1 + 1), False)
+
+                    FileClose(FileNum)
+
+                    Pointer1.Text = Hex(Var1)
+
+                    Label38.Text = "Length: " & Len(Description1.Text) & "/" & DexDescripLength1
+                    Label38.ForeColor = Color.Black
+
+                    If Len(Description1.Text) > DexDescripLength1 Then
+                        Label38.Text = Label38.Text & " Requires repoint!"
+
+                        Label38.ForeColor = Color.Red
+
+                    End If
+
+                End If
+
+            Else
+                FileNum = FreeFile()
+
+                Var1 = ("&H" & Hex(Val("&H" & ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 4 + 12 + (indexbuff * SkipVar), 4))) - &H8000000)) + 1
+
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                Y = Asc2Sapp(Replace(Description1.Text, vbCrLf, "\n") & "\x")
+
+                FilePut(FileNum, Y, Var1, False)
+
+                FileClose(FileNum)
+            End If
+
+
+            If DexDescripLength2 < Len(Description2.Text) Then
+
+                Dim resultR2 As DialogResult = MessageBox.Show("The text for the second box will be written to free space and the pointer will be repointed. Would you like to do that?",
+                  "Repoint?",
+                  MessageBoxButtons.YesNo)
+
+                If (resultR2 = DialogResult.Yes) Then
+
+                    Y = Asc2Sapp(Replace(Description2.Text, vbCrLf, "\n") & "\x")
+
+                    Var2 = SearchFreeSpaceFourAligned(LoadedROM, &HFF, (Len(Y & " ")), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+
+                    FileNum = FreeFile()
+
+                    FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                    FilePut(FileNum, Y & " ", "&H" & Hex(Var2 + 1), False)
+
+                    FileClose(FileNum)
+
+                    Pointer2.Text = Hex(Var2)
+
+                    Label37.Text = "Length: " & Len(Description2.Text) & "/" & DexDescripLength2
+                    Label37.ForeColor = Color.Black
+
+                    If Len(Description2.Text) > DexDescripLength2 Then
+                        Label37.Text = Label37.Text & " Requires repoint!"
+
+                        Label37.ForeColor = Color.Red
+
+                    End If
+
+                End If
+
+            Else
+
+                FileNum = FreeFile()
+
+                Var2 = ("&H" & Hex(Val("&H" & ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 8 + 12 + (indexbuff * SkipVar), 4))) - &H8000000)) + 1
+
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                Y = Asc2Sapp(Replace(Description2.Text, vbCrLf, "\n") & "\x")
+
+                FilePut(FileNum, Y, Var2, False)
+
+                FileClose(FileNum)
+
+            End If
+
+            Button18.PerformClick()
+
+        ElseIf header2 = "BPR" Or header2 = "BPG" Then
+
+            If DexDescripLength1 < Len(Description1.Text) Then
+
+                Dim resultBPR As DialogResult = MessageBox.Show("The text will be written to free space and the pointer will be repointed. Would you like to do that?",
+                  "Repoint?",
+                  MessageBoxButtons.YesNo)
+
+                If (resultBPR = DialogResult.Yes) Then
+
+                    Y = Asc2Sapp(Replace(Description1.Text, vbCrLf, "\n") & "\x")
+
+                    Var1 = SearchFreeSpaceFourAligned(LoadedROM, &HFF, (Len(Y & " ")), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+
+                    FileNum = FreeFile()
+
+                    FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                    FilePut(FileNum, Y & " ", "&H" & Hex(Var1 + 1), False)
+
+                    FileClose(FileNum)
+
+                    Pointer1.Text = Hex(Var1)
+
+                    Button18.PerformClick()
+
+                    Label38.Text = "Length: " & Len(Description1.Text) & "/" & DexDescripLength1
+                    Label38.ForeColor = Color.Black
+
+                    If Len(Description1.Text) > DexDescripLength1 Then
+                        Label38.Text = Label38.Text & " Requires repoint!"
+
+                        Label38.ForeColor = Color.Red
+
+                    End If
+
+                End If
+
+            Else
+                FileNum = FreeFile()
+
+                Var1 = ("&H" & Hex(Val("&H" & ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 4 + 12 + (indexbuff * SkipVar), 4))) - &H8000000)) + 1
+
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                Y = Asc2Sapp(Replace(Description1.Text, vbCrLf, "\n") & "\x")
+
+                FilePut(FileNum, Y, Var1, False)
+
+                FileClose(FileNum)
+
+            End If
+
+        ElseIf header2 = "BPE" Then
+
+            If DexDescripLength1 < Len(Description1.Text) Then
+
+                Dim resultBPE As DialogResult = MessageBox.Show("The text will be written to free space and the pointer will be repointed. Would you like to do that?",
+  "Repoint?",
+  MessageBoxButtons.YesNo)
+
+                If (resultBPE = DialogResult.Yes) Then
+
+                    Y = Asc2Sapp(Replace(Description1.Text, vbCrLf, "\n") & "\x")
+
+                    Var1 = SearchFreeSpaceFourAligned(LoadedROM, &HFF, (Len(Y & " ")), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+
+                    FileNum = FreeFile()
+
+                    FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                    FilePut(FileNum, Y & " ", "&H" & Hex(Var1 + 1), False)
+
+                    FileClose(FileNum)
+
+                    Pointer1.Text = Hex(Var1)
+
+                    Button18.PerformClick()
+
+                    Label38.Text = "Length: " & Len(Description1.Text) & "/" & DexDescripLength1
+                    Label38.ForeColor = Color.Black
+
+                    If Len(Description1.Text) > DexDescripLength1 Then
+                        Label38.Text = Label38.Text & " Requires repoint!"
+
+                        Label38.ForeColor = Color.Red
+
+                    End If
+
+                End If
+
+            Else
+
+                FileNum = FreeFile()
+
+                Var1 = ("&H" & Hex(Val("&H" & ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 4 + 12 + (indexbuff * SkipVar), 4))) - &H8000000)) + 1
+
+                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                Y = Asc2Sapp(Replace(Description1.Text, vbCrLf, "\n") & "\x")
+
+                FilePut(FileNum, Y, Var1, False)
+
+                FileClose(FileNum)
+
+            End If
+
+        End If
+
+
+
+    End Sub
+
+    Public Sub DexDataSave()
+
+        Dim indexbuff As Integer = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+
+        Dim offset1 As Integer = Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber)
+
+
+        If indexbuff < (GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "")) And indexbuff <> 0 Then
+
+            If header2 = "AXP" Or header2 = "AXV" Then
+
+                WriteHEX(LoadedROM, offset1 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Hght.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 2 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Wght.Text), 4)))
+
+                WriteHEX(LoadedROM, offset1 + 26 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 28 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 30 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 32 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
+
+            ElseIf header2 = "BPR" Or header2 = "BPG" Then
+
+                WriteHEX(LoadedROM, offset1 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Hght.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 2 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Wght.Text), 4)))
+
+                WriteHEX(LoadedROM, offset1 + 26 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 28 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 30 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 32 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
+
+            ElseIf header2 = "BPE" Then
+
+                WriteHEX(LoadedROM, offset1 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Hght.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 2 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Wght.Text), 4)))
+
+                WriteHEX(LoadedROM, offset1 + 22 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 24 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 26 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
+                WriteHEX(LoadedROM, offset1 + 28 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
+
+            End If
+
+            ChangePokedexTypeName(indexbuff, TextBox5.Text)
+
+        End If
+    End Sub
+
+    Public Sub LoadSpritePosition()
+
+        PlayerYSelect.Value = ByteToSignedInt("&H" & (ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "PlayerYTable", "")), System.Globalization.NumberStyles.HexNumber)) + 4 + 1 + (PKMNames.SelectedIndex * 4), 1)))
+        EnemyYSelect.Value = ByteToSignedInt("&H" & (ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "EnemyYTable", "")), System.Globalization.NumberStyles.HexNumber)) + 4 + 1 + (PKMNames.SelectedIndex * 4), 1)))
+        EnemyAltitudeSelect.Value = ByteToSignedInt("&H" & (ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "EnemyAltitudeTable", "")), System.Globalization.NumberStyles.HexNumber)) + 1 + (PKMNames.SelectedIndex * 1), 1)))
+
+        DrawBatttlePositionGraphics()
+
+    End Sub
+
+    Public Sub SaveSpritePosition()
+
+        WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "PlayerYTable", "")), System.Globalization.NumberStyles.HexNumber)) + 4 + 1 + (PKMNames.SelectedIndex * 4), SignedIntToHex(PlayerYSelect.Value))
+        WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "EnemyYTable", "")), System.Globalization.NumberStyles.HexNumber)) + 4 + 1 + (PKMNames.SelectedIndex * 4), SignedIntToHex(EnemyYSelect.Value))
+        WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "EnemyAltitudeTable", "")), System.Globalization.NumberStyles.HexNumber)) + 1 + (PKMNames.SelectedIndex * 1), SignedIntToHex(EnemyAltitudeSelect.Value))
+
+    End Sub
+
+    Public Sub DrawBatttlePositionGraphics()
+
+        BackgroundBox.Image.Dispose()
+        BackgroundBox.Image = Image.FromFile(AppPath & "img\BattlePreviewBackground.png")
+
+        Dim bgBox As PictureBox
+        Dim imagedraw As Bitmap
+        Dim height As Integer = (&H40 - PlayerYSelect.Value)
+        If (height > &H40) Then
+            height = &H40
+        End If
+
+        If (EnemyAltitudeSelect.Value <> 0) Then
+            bgBox = BackgroundBox
+            imagedraw = DirectCast(BackgroundBox.Image, Bitmap)
+            BitmapBLT(Image.FromFile(AppPath & "img\BattlePreviewShadow.png"), imagedraw, 160, &H41, 0, 0, &H20, 8)
+            BackgroundBox.Image = imagedraw
+        End If
+
+        bgBox = BackgroundBox
+        imagedraw = DirectCast(BackgroundBox.Image, Bitmap)
+        BitmapBLT(GetFrontPokemonPicToBitmap(PKMNames.SelectedIndex + 1, False), imagedraw, &H90, (8 + EnemyYSelect.Value - EnemyAltitudeSelect.Value), 0, 0, &H40, &H40)
+        BackgroundBox.Image = imagedraw
+        bgBox = BackgroundBox
+        imagedraw = DirectCast(BackgroundBox.Image, Bitmap)
+        BitmapBLT(GetNormalBackPokemonPicToBitmap(PKMNames.SelectedIndex + 1, False), imagedraw, 40, (&H30 + PlayerYSelect.Value), 0, 0, &H40, height)
+        BackgroundBox.Image = imagedraw
+
+    End Sub
+
+    Private Sub PlayerYSelect_ValueChanged(sender As Object, e As EventArgs) Handles PlayerYSelect.ValueChanged
+        DrawBatttlePositionGraphics()
+    End Sub
+
+    Private Sub EnemyYSelect_ValueChanged(sender As Object, e As EventArgs) Handles EnemyYSelect.ValueChanged
+        DrawBatttlePositionGraphics()
+    End Sub
+
+    Private Sub EnemyAltitudeSelect_ValueChanged(sender As Object, e As EventArgs) Handles EnemyAltitudeSelect.ValueChanged
+        DrawBatttlePositionGraphics()
+    End Sub
+
+    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
+        fileOpenDialog.FileName = ""
+        fileOpenDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        fileOpenDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        fileOpenDialog.DefaultExt = "png"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        fileOpenDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        fileOpenDialog.Filter =
+            "(*.png)|*.png*"
+
+        fileOpenDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        fileOpenDialog.ShowHelp = False
+        fileOpenDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        fileOpenDialog.ReadOnlyChecked = False
+
+        fileOpenDialog.Title = "Select Sprite Sheet to import"
+
+        ' Only accept valid Win32 file names?
+        fileOpenDialog.ValidateNames = True
+
+
+        If fileOpenDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            Me.Text = "Please wait..."
+            Me.Enabled = False
+
+            ImportAseriesSheet(fileOpenDialog.FileName, PKMNames.SelectedIndex + 1)
+
+            'Dim refreshvar As Integer
+
+            'refreshvar = PKMNames.SelectedIndex
+
+            'If PKMNames.SelectedIndex = 0 Then
+            '    PKMNames.SelectedIndex = PKMNames.SelectedIndex + 1
+            '    Me.Enabled = False
+            'Else
+            '    PKMNames.SelectedIndex = PKMNames.SelectedIndex - 1
+            '    Me.Enabled = False
+            'End If
+
+            'PKMNames.SelectedIndex = refreshvar
+
+            i = PKMNames.SelectedIndex
+
+            FrontSpritePointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonFrontSprites", "")), System.Globalization.NumberStyles.HexNumber)
+            BackSpritePointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonBackSprites", "")), System.Globalization.NumberStyles.HexNumber)
+            NormalPalPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonNormalPal", "")), System.Globalization.NumberStyles.HexNumber)
+            ShinyPalPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonShinyPal", "")), System.Globalization.NumberStyles.HexNumber)
+
+            FrontPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (FrontSpritePointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+            BackPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (BackSpritePointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+            ShinyPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (ShinyPalPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+            NormalPointer.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (NormalPalPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
+
+
+            GetAndDrawFrontPokemonPic(FrntPic, i + 1)
+            GetAndDrawBackPokemonPic(BckPic2, i + 1)
+            GetAndDrawFrontPokemonPicShiny(FrntPic2, i + 1)
+            GetAndDrawBackPokemonPicNormal(BckPic, i + 1)
+
+            DrawBatttlePositionGraphics()
+
+
+            If header2 = "BPE" Then
+                Button2.Enabled = True
+                AnimationPointer.Enabled = True
+
+                AnimationPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAnimations", "")), System.Globalization.NumberStyles.HexNumber)
+                AnimationPointer.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AnimationPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
+
+                GetAndDrawAnimationPokemonPic(AniPic, i + 1)
+                GetAndDrawAnimationPokemonPicShiny(AniPic2, i + 1)
+
+            End If
+
+            If Scale1.Text = "" Then
+
+            ElseIf Scale1.Text <> 0 Then
+
+                Dim PokePoint As Point
+
+                GetAndDrawFrontPokemonPicBLACK(RSEDexPoke, PKMNames.SelectedIndex + 1)
+                RSEDexPoke.Height = (64 * 256 / Scale1.Text)
+                RSEDexPoke.Width = (64 * 256 / Scale1.Text)
+
+                PokePoint.X = 15
+                If (64 - RSEDexPoke.Height) > 0 Then
+                    PokePoint.Y = 123 + (64 - RSEDexPoke.Height)
+                Else
+                    PokePoint.Y = 123
+                End If
+                RSEDexPoke.Location = PokePoint
+
+                RSEDexPoke.SizeMode = PictureBoxSizeMode.StretchImage
+
+            End If
+
+            Me.Text = "Pokemon Editor"
+            Me.Enabled = True
+        End If
+
+    End Sub
+
+    Private Sub Button20_Click(sender As Object, e As EventArgs) Handles Button20.Click
+        SaveFileDialog.FileName = (PKMNames.SelectedIndex + 1) & ".png"
+        'SaveFileDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        SaveFileDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        SaveFileDialog.DefaultExt = "png"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        SaveFileDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        SaveFileDialog.Filter =
+            "(*.png)|*.png*"
+
+        'SaveFileDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        SaveFileDialog.ShowHelp = False
+        'SaveFileDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        'SaveFileDialog.ReadOnlyChecked = False
+
+        SaveFileDialog.Title = "Save as"
+
+        ' Only accept valid Win32 file names?
+        SaveFileDialog.ValidateNames = True
+
+
+        If SaveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            ExportAseriesSheet(SaveFileDialog.FileName, PKMNames.SelectedIndex + 1)
+
+        End If
+
+    End Sub
+
+    Private Sub Button22_Click(sender As Object, e As EventArgs) Handles Button22.Click
+        SaveFileDialog.FileName = (PKMNames.SelectedIndex + 1) & ".png"
+        'SaveFileDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        SaveFileDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        SaveFileDialog.DefaultExt = "png"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        SaveFileDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        SaveFileDialog.Filter =
+            "(*.png)|*.png*"
+
+        'SaveFileDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        SaveFileDialog.ShowHelp = False
+        'SaveFileDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        'SaveFileDialog.ReadOnlyChecked = False
+
+        SaveFileDialog.Title = "Save as"
+
+        ' Only accept valid Win32 file names?
+        SaveFileDialog.ValidateNames = True
+
+
+        If SaveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            ExportPokemonIcon(SaveFileDialog.FileName, (PKMNames.SelectedIndex + 1))
+
+        End If
+
+    End Sub
+
+    Private Sub Button21_Click(sender As Object, e As EventArgs) Handles Button21.Click
+
+        fileOpenDialog.FileName = ""
+        fileOpenDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        fileOpenDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        fileOpenDialog.DefaultExt = "png"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        fileOpenDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        fileOpenDialog.Filter =
+                   "(*.png)|*.png*"
+
+        fileOpenDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        fileOpenDialog.ShowHelp = False
+        fileOpenDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        fileOpenDialog.ReadOnlyChecked = False
+
+        fileOpenDialog.Title = "Select Icon to import"
+
+        ' Only accept valid Win32 file names?
+        fileOpenDialog.ValidateNames = True
+
+
+        If fileOpenDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            Me.Text = "Please wait..."
+            Me.Enabled = False
+
+            ImportPokemonIcon(fileOpenDialog.FileName, PKMNames.SelectedIndex + 1)
+
+            i = PKMNames.SelectedIndex
+
+            IconPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber)
+            IconPalTable = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber)
+
+            IconPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (IconPointers) + (4) + (i * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+            IconPal.SelectedIndex = Int32.Parse(((ReadHEX(LoadedROM, (IconPalTable) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber)
+
+            GetAndDrawPokemonIconPic(IconPicBox, i + 1, IconPal.SelectedIndex)
+
+            Me.Text = "Pokemon Editor"
+            Me.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Button24_Click(sender As Object, e As EventArgs) Handles Button24.Click
+        SaveFileDialog.FileName = (PKMNames.SelectedIndex + 1) & ".png"
+        'SaveFileDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        SaveFileDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        SaveFileDialog.DefaultExt = "png"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        SaveFileDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        SaveFileDialog.Filter =
+            "(*.png)|*.png*"
+
+        'SaveFileDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        SaveFileDialog.ShowHelp = False
+        'SaveFileDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        'SaveFileDialog.ReadOnlyChecked = False
+
+        SaveFileDialog.Title = "Save as"
+
+        ' Only accept valid Win32 file names?
+        SaveFileDialog.ValidateNames = True
+
+
+        If SaveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            ExportPokemonFootprint(SaveFileDialog.FileName, (PKMNames.SelectedIndex + 1))
+
+        End If
+    End Sub
+
+    Private Sub Button23_Click(sender As Object, e As EventArgs) Handles Button23.Click
+        fileOpenDialog.FileName = ""
+        fileOpenDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        fileOpenDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        fileOpenDialog.DefaultExt = "png"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        fileOpenDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        fileOpenDialog.Filter =
+                   "(*.png)|*.png*"
+
+        fileOpenDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        fileOpenDialog.ShowHelp = False
+        fileOpenDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        fileOpenDialog.ReadOnlyChecked = False
+
+        fileOpenDialog.Title = "Select Footprint to import"
+
+        ' Only accept valid Win32 file names?
+        fileOpenDialog.ValidateNames = True
+
+
+        If fileOpenDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            Me.Text = "Please wait..."
+            Me.Enabled = False
+
+            ImportPokemonFootPrint(fileOpenDialog.FileName, PKMNames.SelectedIndex + 1)
+
+            GetAndDrawPokemonFootPrint(PictureBox1, PKMNames.SelectedIndex + 1)
+
+            Me.Text = "Pokemon Editor"
+            Me.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Button26_Click(sender As Object, e As EventArgs) Handles Button26.Click
+        FolderBrowserDialog.Description = "Select folder to export all Sprite Sheets to:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            If System.IO.Directory.Exists(FolderBrowserDialog.SelectedPath & "\Sprites") = False Then
+                CreateDirectory(FolderBrowserDialog.SelectedPath & "\Sprites")
+            End If
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+            Me.Enabled = False
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+                '  PKMNames.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+
+
+                ExportAseriesSheet(FolderBrowserDialog.SelectedPath & "\Sprites\" & LoopVar & ".png", LoopVar)
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                Me.Refresh()
+            End While
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub Button25_Click(sender As Object, e As EventArgs) Handles Button25.Click
+        FolderBrowserDialog.Description = "Select folder to import Sprite Sheets from:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+
+            Me.Enabled = False
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+                'PKMNames.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+
+
+
+                If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png") Then
+                    ImportAseriesSheet(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png", LoopVar)
+                ElseIf System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & VB.Right("000" & LoopVar, 3) & ".png") Then
+                    ImportAseriesSheet(FolderBrowserDialog.SelectedPath & "\" & VB.Right("000" & LoopVar, 3) & ".png", LoopVar)
+                End If
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                Me.Refresh()
+            End While
+
+            PKMNames.SelectedIndex = 1
+            PKMNames.SelectedIndex = 0
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub Button27_Click(sender As Object, e As EventArgs) Handles Button27.Click
+        FolderBrowserDialog.Description = "Select folder to export all Icons to:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            If System.IO.Directory.Exists(FolderBrowserDialog.SelectedPath & "\Icons") = False Then
+                CreateDirectory(FolderBrowserDialog.SelectedPath & "\Icons")
+            End If
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+            Me.Enabled = False
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+                '  PKMNames.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+
+
+                ExportPokemonIcon(FolderBrowserDialog.SelectedPath & "\Icons\" & LoopVar & ".png", LoopVar)
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                Me.Refresh()
+            End While
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub Button28_Click(sender As Object, e As EventArgs) Handles Button28.Click
+        FolderBrowserDialog.Description = "Select folder to import Icons from:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+
+            Me.Enabled = False
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+                'PKMNames.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+
+
+
+                If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png") Then
+                    ImportPokemonIcon(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png", LoopVar)
+                ElseIf System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & VB.Right("000" & LoopVar, 3) & ".png") Then
+                    ImportPokemonIcon(FolderBrowserDialog.SelectedPath & "\" & VB.Right("000" & LoopVar, 3) & ".png", LoopVar)
+                End If
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                Me.Refresh()
+            End While
+
+            PKMNames.SelectedIndex = 1
+            PKMNames.SelectedIndex = 0
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub Button30_Click(sender As Object, e As EventArgs) Handles Button30.Click
+        FolderBrowserDialog.Description = "Select folder to import Footprints from:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+
+            Me.Enabled = False
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+                'PKMNames.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+
+
+
+                If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png") Then
+                    ImportPokemonFootPrint(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png", LoopVar)
+                End If
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                Me.Refresh()
+            End While
+
+            PKMNames.SelectedIndex = 1
+            PKMNames.SelectedIndex = 0
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub Button29_Click(sender As Object, e As EventArgs) Handles Button29.Click
+        FolderBrowserDialog.Description = "Select folder to export all Footprints to:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            If System.IO.Directory.Exists(FolderBrowserDialog.SelectedPath & "\Footprints") = False Then
+                CreateDirectory(FolderBrowserDialog.SelectedPath & "\Footprints")
+            End If
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+            Me.Enabled = False
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+                '  PKMNames.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+
+
+                ExportPokemonFootprint(FolderBrowserDialog.SelectedPath & "\Footprints\" & LoopVar & ".png", LoopVar)
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                Me.Refresh()
+            End While
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
         End If
     End Sub
 End Class

@@ -131,17 +131,33 @@ Public Class PokedexDataEditor
 
         Hght.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 12 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
         Wght.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 2 + 12 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
-        Scale1.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 14 + 12 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
-        Offset_1.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 16 + 12 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
-        Scale2.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 18 + 12 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
-        Offset_2.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 20 + 12 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
 
         If header2 = "AXP" Or header2 = "AXV" Then
+
+            Scale1.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 26 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+            Offset_1.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 28 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+            Scale2.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 30 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+            Offset_2.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 32 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+
             Pointer2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 8 + +12 + (ListBox1.SelectedIndex * SkipVar), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
             EnglishRSDescpLoad()
         ElseIf header2 = "BPR" Or header2 = "BPG" Then
+
+            Scale1.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 26 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+            Offset_1.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 28 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+            Scale2.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 30 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+            Offset_2.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 32 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+
+
             EnglishFRLGEDescpLoad()
         ElseIf header2 = "BPE" Then
+
+            Scale1.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 22 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+            Offset_1.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 24 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+            Scale2.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 26 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+            Offset_2.Text = Int16.Parse((ReverseHEX(ReadHEX(LoadedROM, offset1 + 28 + (ListBox1.SelectedIndex * SkipVar), 2))), System.Globalization.NumberStyles.HexNumber)
+
+
             EnglishFRLGEDescpLoad()
         End If
 
@@ -181,28 +197,31 @@ Public Class PokedexDataEditor
 
             WriteHEX(LoadedROM, offset1 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Hght.Text), 4)))
             WriteHEX(LoadedROM, offset1 + 2 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Wght.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 14 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 16 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 18 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 20 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
+
+            WriteHEX(LoadedROM, offset1 + 26 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 28 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 30 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 32 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
 
         ElseIf header2 = "BPR" Or header2 = "BPG" Then
 
             WriteHEX(LoadedROM, offset1 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Hght.Text), 4)))
             WriteHEX(LoadedROM, offset1 + 2 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Wght.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 14 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 16 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 18 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 20 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
+
+            WriteHEX(LoadedROM, offset1 + 26 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 28 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 30 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 32 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
 
         ElseIf header2 = "BPE" Then
 
             WriteHEX(LoadedROM, offset1 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Hght.Text), 4)))
             WriteHEX(LoadedROM, offset1 + 2 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Wght.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 10 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 12 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 14 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
-            WriteHEX(LoadedROM, offset1 + 16 + 12 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
+
+            WriteHEX(LoadedROM, offset1 + 22 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 24 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_1.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 26 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2.Text), 4)))
+            WriteHEX(LoadedROM, offset1 + 28 + (indexbuff * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2.Text), 4)))
 
         End If
 
@@ -517,4 +536,5 @@ Public Class PokedexDataEditor
         End If
 
     End Sub
+
 End Class

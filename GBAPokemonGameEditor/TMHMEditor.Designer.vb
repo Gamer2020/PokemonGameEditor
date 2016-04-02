@@ -58,7 +58,6 @@ Partial Class TMHMEditor
         '
         'AttackList
         '
-        Me.AttackList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.AttackList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.AttackList.FormattingEnabled = True
         Me.AttackList.Location = New System.Drawing.Point(59, 221)

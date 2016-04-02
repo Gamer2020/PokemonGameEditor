@@ -32,8 +32,6 @@ Partial Class MainFrm
         Me.AddOrRemoveProgramsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransparentBackgroundsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DisablePokemonImageLoadingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Jambo51MoveTableHackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LinuxToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditRomsiniToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -79,12 +77,12 @@ Partial Class MainFrm
         Me.Button40 = New System.Windows.Forms.Button()
         Me.Button41 = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Button9 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button9 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -113,23 +111,23 @@ Partial Class MainFrm
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(100, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'SettingsToolStripMenuItem
         '
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddOrRemoveProgramsToolStripMenuItem, Me.TransparentBackgroundsToolStripMenuItem, Me.DisablePokemonImageLoadingToolStripMenuItem, Me.Jambo51MoveTableHackToolStripMenuItem, Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem, Me.LinuxToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddOrRemoveProgramsToolStripMenuItem, Me.TransparentBackgroundsToolStripMenuItem, Me.DisablePokemonImageLoadingToolStripMenuItem, Me.LinuxToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.SettingsToolStripMenuItem.Text = "&Settings"
@@ -137,43 +135,27 @@ Partial Class MainFrm
         'AddOrRemoveProgramsToolStripMenuItem
         '
         Me.AddOrRemoveProgramsToolStripMenuItem.Name = "AddOrRemoveProgramsToolStripMenuItem"
-        Me.AddOrRemoveProgramsToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
+        Me.AddOrRemoveProgramsToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.AddOrRemoveProgramsToolStripMenuItem.Text = "Add or Remove Programs"
         '
         'TransparentBackgroundsToolStripMenuItem
         '
         Me.TransparentBackgroundsToolStripMenuItem.Name = "TransparentBackgroundsToolStripMenuItem"
-        Me.TransparentBackgroundsToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
+        Me.TransparentBackgroundsToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.TransparentBackgroundsToolStripMenuItem.Text = "Transparent backgrounded images"
+        Me.TransparentBackgroundsToolStripMenuItem.Visible = False
         '
         'DisablePokemonImageLoadingToolStripMenuItem
         '
         Me.DisablePokemonImageLoadingToolStripMenuItem.Name = "DisablePokemonImageLoadingToolStripMenuItem"
-        Me.DisablePokemonImageLoadingToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
+        Me.DisablePokemonImageLoadingToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.DisablePokemonImageLoadingToolStripMenuItem.Text = "Disable Pokemon Image loading"
-        '
-        'Jambo51MoveTableHackToolStripMenuItem
-        '
-        Me.Jambo51MoveTableHackToolStripMenuItem.Enabled = False
-        Me.Jambo51MoveTableHackToolStripMenuItem.Name = "Jambo51MoveTableHackToolStripMenuItem"
-        Me.Jambo51MoveTableHackToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
-        Me.Jambo51MoveTableHackToolStripMenuItem.Text = "Use Jambo51's move table hack (If you don't know what it is don't use it. Your RO" &
-    "M will break! I warned you...)"
-        Me.Jambo51MoveTableHackToolStripMenuItem.Visible = False
-        '
-        'UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem
-        '
-        Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Enabled = False
-        Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Name = "UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem"
-        Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
-        Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Text = "Use Jambo51's TM/HM extension hack. (If you don't know what this is don't use it." &
-    ")"
-        Me.UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem.Visible = False
+        Me.DisablePokemonImageLoadingToolStripMenuItem.Visible = False
         '
         'LinuxToolStripMenuItem
         '
         Me.LinuxToolStripMenuItem.Name = "LinuxToolStripMenuItem"
-        Me.LinuxToolStripMenuItem.Size = New System.Drawing.Size(654, 22)
+        Me.LinuxToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.LinuxToolStripMenuItem.Text = "Linux Operating System"
         Me.LinuxToolStripMenuItem.Visible = False
         '
@@ -433,7 +415,7 @@ Partial Class MainFrm
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(81, 55)
         Me.Button2.TabIndex = 47
-        Me.Button2.Text = "Habitat Editor"
+        Me.Button2.Text = "Habitat Editor (FR/LG)"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'TabPage3
@@ -629,6 +611,16 @@ Partial Class MainFrm
         Me.TabPage1.Text = "Patchers and Expanders"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'Button9
+        '
+        Me.Button9.Enabled = False
+        Me.Button9.Location = New System.Drawing.Point(177, 6)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(81, 55)
+        Me.Button9.TabIndex = 36
+        Me.Button9.Text = "Pokemon Adder"
+        Me.Button9.UseVisualStyleBackColor = True
+        '
         'Button8
         '
         Me.Button8.Enabled = False
@@ -677,16 +669,6 @@ Partial Class MainFrm
         Me.Label1.Size = New System.Drawing.Size(250, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Copyright © 2016 Gamer2020 All Rights Reserved. "
-        '
-        'Button9
-        '
-        Me.Button9.Enabled = False
-        Me.Button9.Location = New System.Drawing.Point(177, 6)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(81, 55)
-        Me.Button9.TabIndex = 36
-        Me.Button9.Text = "Pokemon Adder"
-        Me.Button9.UseVisualStyleBackColor = True
         '
         'MainFrm
         '
@@ -738,9 +720,7 @@ Partial Class MainFrm
     Friend WithEvents Button26 As System.Windows.Forms.Button
     Friend WithEvents SettingsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TransparentBackgroundsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Jambo51MoveTableHackToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DisablePokemonImageLoadingToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents UseJambo51sTMHMExtensionHackIfYouDontKnowWhatThisIsDontUseItToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Button27 As System.Windows.Forms.Button
     Friend WithEvents Button28 As System.Windows.Forms.Button
     Friend WithEvents Button29 As System.Windows.Forms.Button

@@ -34,6 +34,12 @@
         If intCharCount > 0 Then GetString =
            Left(objResult.ToString, intCharCount)
 
+
+        'This should probably be commented out if used for another program!
+        If GetString = "" And GetINIFileLocation() = strFilename Then
+            OutPutError("Error! " & Key & " is missing for ROM " & Section & "!")
+        End If
+
     End Function
 
     Public Function WriteString(ByVal strFilename As String, ByVal Section As String, _

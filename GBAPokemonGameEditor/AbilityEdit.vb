@@ -1,4 +1,5 @@
-﻿Public Class AbilityEdit
+﻿Imports System.IO.Directory
+Public Class AbilityEdit
     Dim AbilityDesc As Integer
     Dim CurrentAbilityDescripLength As Integer
 
@@ -178,6 +179,267 @@
 
             TextBox2.Text = curdespoff
 
+        End If
+    End Sub
+
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        Me.Text = "Please wait..."
+        Me.UseWaitCursor = True
+        ProgressBar.Value = 0
+        ProgressBar.Visible = True
+
+        Dim LoopVar As Integer
+
+        LoopVar = 0
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) - 1 = True
+            AbilityList.SelectedIndex = LoopVar
+
+            LoopVar = LoopVar + 1
+            Me.Refresh()
+            Me.Enabled = False
+
+            ChangeAbilityName(LoopVar, DecapString(GetAbilityName(LoopVar)))
+
+            ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfAbilities", ""))) * 100
+        End While
+
+
+        LoopVar = 0
+
+        AbilityList.Items.Clear()
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) = True
+
+            AbilityList.Items.Add(GetAbilityName(LoopVar))
+
+
+            LoopVar = LoopVar + 1
+
+
+
+        End While
+
+        AbilityList.SelectedIndex = 0
+
+        Me.Text = "Ability Editor"
+        Me.UseWaitCursor = False
+        Me.Enabled = True
+        ProgressBar.Visible = False
+        Me.BringToFront()
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        SaveFileDialog.FileName = (AbilityList.SelectedIndex) & ".ini"
+        'SaveFileDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        SaveFileDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        SaveFileDialog.DefaultExt = "ini"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        SaveFileDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        SaveFileDialog.Filter =
+            "(*.ini)|*.ini*"
+
+        'SaveFileDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        SaveFileDialog.ShowHelp = False
+        'SaveFileDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        'SaveFileDialog.ReadOnlyChecked = False
+
+        SaveFileDialog.Title = "Save as"
+
+        ' Only accept valid Win32 file names?
+        SaveFileDialog.ValidateNames = True
+
+
+        If SaveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            ExportAbilityINI(SaveFileDialog.FileName, (AbilityList.SelectedIndex))
+
+        End If
+
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        FolderBrowserDialog.Description = "Select folder to export all Abilities to:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            If System.IO.Directory.Exists(FolderBrowserDialog.SelectedPath & "\Abilities") = False Then
+                CreateDirectory(FolderBrowserDialog.SelectedPath & "\Abilities")
+            End If
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) - 1 = True
+                LoopVar = LoopVar + 1
+                AbilityList.SelectedIndex = LoopVar
+
+                Me.Refresh()
+                Me.Enabled = False
+
+                ExportAbilityINI(FolderBrowserDialog.SelectedPath & "\Abilities\" & LoopVar & ".ini", LoopVar)
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfAbilities", ""))) * 100
+            End While
+
+            Me.Text = "Ability Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+
+        End If
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        fileOpenDialog.FileName = ""
+        fileOpenDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        fileOpenDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        fileOpenDialog.DefaultExt = "ini"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        fileOpenDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        fileOpenDialog.Filter =
+            "(*.ini)|*.ini*"
+
+        fileOpenDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        fileOpenDialog.ShowHelp = False
+        fileOpenDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        fileOpenDialog.ReadOnlyChecked = False
+
+        fileOpenDialog.Title = "Select ini file to import"
+
+        ' Only accept valid Win32 file names?
+        fileOpenDialog.ValidateNames = True
+
+
+        If fileOpenDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            ImportAbilityINI(fileOpenDialog.FileName, (AbilityList.SelectedIndex))
+
+            Dim refreshvar As Integer
+
+            refreshvar = AbilityList.SelectedIndex
+
+            If AbilityList.SelectedIndex = 0 Then
+                AbilityList.SelectedIndex = AbilityList.SelectedIndex + 1
+            Else
+                AbilityList.SelectedIndex = AbilityList.SelectedIndex - 1
+            End If
+
+            AbilityList.Items.Insert(refreshvar, GetAbilityName(refreshvar))
+
+            AbilityList.Items.RemoveAt(refreshvar + 1)
+
+            AbilityList.SelectedIndex = refreshvar
+
+        End If
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        FolderBrowserDialog.Description = "Select folder to import Abilities from:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) - 1 = True
+                LoopVar = LoopVar + 1
+
+                AbilityList.SelectedIndex = LoopVar
+
+                Me.Refresh()
+                Me.Enabled = False
+
+                If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini") Then
+                    ImportAbilityINI(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini", LoopVar)
+                End If
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfAbilities", ""))) * 100
+            End While
+
+            LoopVar = 0
+
+            AbilityList.Items.Clear()
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAbilities", "")) = True
+
+                AbilityList.Items.Add(GetAbilityName(LoopVar))
+
+
+                LoopVar = LoopVar + 1
+
+
+
+            End While
+
+            AbilityList.SelectedIndex = 0
+
+            Me.Text = "Ability Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
         End If
     End Sub
 End Class

@@ -1,6 +1,6 @@
 ![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/PGEBANNER.png)
 
-Pokemon Game Editor, commonly know as PGE, is an all in one tool started in 2010 by Gamer2020 for hacking the Game Boy Advanced Pokemon games. The program continues to evolve over the years and has had 60,000+ downloads. The program is currently developed in VB.Net with Visual Studio 2015.
+Pokemon Game Editor, commonly know as PGE, is an all in one tool started in 2010 by Gamer2020 for hacking the Game Boy Advanced Pokemon games. The program continues to evolve over the years and has had 60,000+ downloads. It has even inspired several copycat programs hence the slogan "Accept no Imitations!" was adopted. The program is currently developed in VB.Net with Visual Studio 2015.
 
 Screenshots
 =================
@@ -19,19 +19,28 @@ Screenshots
 
 ![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/7.png)
 
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/8.png)
+
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/9.png)
+
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/10.png)
+
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/11.png)
+
 Features
 =================
+
 Editable INI that contains all the offsets. Each ROM can have it's own INI.
 
-Pokemon Editor.
+Pokemon Editor. Data can be imported/exported. 
 
-Attack Editor.
+Attack Editor. Data can be imported/exported. 
 
 RSE Starter Editor.
 
 Pokedex Order Editor.
 
-Ability Editor.
+Ability Editor. Data can be imported/exported. 
 
 Move Tutor Editor.
 
@@ -59,14 +68,32 @@ Habitat editor.
 
 ROM expander.
 
-Ability adder.
+Ability Adder.
 
-Planned Features
-=================
+Pokemon Adder.
 
-Ability to add more Pokemon.
+A-series Pokemon sprite sheet Importing/Exporting.
 
-Improved Pokemon data importing and exporting.
+Pokemon Icon Importing/Exporting.
+
+Pokemon Footprint Importing/Exporting.
+
+Planned Features A.K.A TODO List
+=========================
+
+Trade Editor
+
+Trainer Editor
+
+Pokemon Cry Importing/Exporting
+
+OW Editor
+
+Finish the Battle Frontier Editor
+
+Improved Item Editor
+
+Item Adder
 
 Program Requirements
 ====================
@@ -86,15 +113,19 @@ This is a list of recommended programs that should be used with PGE for the best
 
 MEH - https://github.com/shinyquagsire23/MEH
 
-SEA - https://github.com/shinyquagsire23/SEA
+Unofficial_XSE - https://github.com/Gamer2020/Unofficial_XSE/releases
 
 FSF - https://code.google.com/p/toolsfactory/downloads/detail?name=FreeSpaceFinder-2.0.1.0.zip&can=2&q=
+
+Unoffical-A-ptch - https://github.com/Gamer2020/Unofficial-A-ptch/releases
 
 BattleScriptPro - https://github.com/Jambo51/Battle_Script_Pro
 
 Trainer Editor - https://github.com/Jambo51/Trainer_Editor
 
 No$GBA - http://problemkaputt.de/gba.htm
+
+GBA Intro Manager - https://github.com/diegoisawesome/GBAIntroManager/releases
 
 Developers
 =================
@@ -129,7 +160,7 @@ Jambo51
 
 JPAN
 
-Kawa
+Kawa and the Elite Map team.
 
 Bulbapedia
 
@@ -146,6 +177,8 @@ DoesntKnowHowToPlay
 Downloads
 ================================
 https://github.com/Gamer2020/PokemonGameEditor/releases
+
+Please be aware that if you download the program from any other place that it may not be safe and it could possibly contain malware. Downloads from https://github.com/Gamer2020/PokemonGameEditor/releases are official and safe.
 
 Beta builds
 ================================

@@ -28,6 +28,8 @@ Partial Class PokedexDataEditor
         Me.Type1 = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Description2 = New System.Windows.Forms.TextBox()
         Me.Description1 = New System.Windows.Forms.TextBox()
@@ -59,8 +61,6 @@ Partial Class PokedexDataEditor
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -120,6 +120,25 @@ Partial Class PokedexDataEditor
         Me.GroupBox6.Size = New System.Drawing.Size(387, 262)
         Me.GroupBox6.TabIndex = 17
         Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Entry Text"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(110, 228)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(43, 13)
+        Me.Label2.TabIndex = 8
+        Me.Label2.Text = "Length:"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(110, 104)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(43, 13)
+        Me.Label1.TabIndex = 7
+        Me.Label1.Text = "Length:"
         '
         'Button4
         '
@@ -202,7 +221,7 @@ Partial Class PokedexDataEditor
         '
         'Offset_1
         '
-        Me.Offset_1.Location = New System.Drawing.Point(55, 92)
+        Me.Offset_1.Location = New System.Drawing.Point(55, 47)
         Me.Offset_1.Name = "Offset_1"
         Me.Offset_1.Size = New System.Drawing.Size(38, 20)
         Me.Offset_1.TabIndex = 9
@@ -210,7 +229,7 @@ Partial Class PokedexDataEditor
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(4, 92)
+        Me.Label11.Location = New System.Drawing.Point(12, 50)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(38, 13)
         Me.Label11.TabIndex = 8
@@ -219,7 +238,7 @@ Partial Class PokedexDataEditor
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(4, 47)
+        Me.Label10.Location = New System.Drawing.Point(12, 95)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(37, 13)
         Me.Label10.TabIndex = 7
@@ -227,7 +246,7 @@ Partial Class PokedexDataEditor
         '
         'Offset_2
         '
-        Me.Offset_2.Location = New System.Drawing.Point(120, 92)
+        Me.Offset_2.Location = New System.Drawing.Point(119, 47)
         Me.Offset_2.Name = "Offset_2"
         Me.Offset_2.Size = New System.Drawing.Size(38, 20)
         Me.Offset_2.TabIndex = 6
@@ -243,14 +262,14 @@ Partial Class PokedexDataEditor
         '
         'Scale2
         '
-        Me.Scale2.Location = New System.Drawing.Point(120, 47)
+        Me.Scale2.Location = New System.Drawing.Point(120, 91)
         Me.Scale2.Name = "Scale2"
         Me.Scale2.Size = New System.Drawing.Size(38, 20)
         Me.Scale2.TabIndex = 3
         '
         'Scale1
         '
-        Me.Scale1.Location = New System.Drawing.Point(55, 45)
+        Me.Scale1.Location = New System.Drawing.Point(55, 92)
         Me.Scale1.Name = "Scale1"
         Me.Scale1.Size = New System.Drawing.Size(39, 20)
         Me.Scale1.TabIndex = 2
@@ -405,24 +424,6 @@ Partial Class PokedexDataEditor
         Me.Button3.TabIndex = 18
         Me.Button3.Text = "Save"
         Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(110, 104)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(43, 13)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Length:"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(110, 228)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(43, 13)
-        Me.Label2.TabIndex = 8
-        Me.Label2.Text = "Length:"
         '
         'PokedexDataEditor
         '

@@ -88,6 +88,7 @@ ErrHandle:
         FileClose(iFile)
         Exit Function
 ErrHandle:
-        MsgBox(Err.Description, MsgBoxStyle.OKOnly, "Error: " & Err.Number)
+        MsgBox(Err.Description, MsgBoxStyle.OkOnly, "Error: " & Err.Number)
+
     End Function
 End Module

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Pokemonedit
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,12 +20,26 @@ Partial Class Pokemonedit
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pokemonedit))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.GroupBox26 = New System.Windows.Forms.GroupBox()
+        Me.ItmAnmtn = New System.Windows.Forms.TextBox()
+        Me.Button20 = New System.Windows.Forms.Button()
+        Me.Button19 = New System.Windows.Forms.Button()
+        Me.GroupBox33 = New System.Windows.Forms.GroupBox()
+        Me.BackgroundBox = New System.Windows.Forms.PictureBox()
+        Me.EnemyAltitudeSelect = New System.Windows.Forms.NumericUpDown()
+        Me.EnemyYSelect = New System.Windows.Forms.NumericUpDown()
+        Me.PlayerYSelect = New System.Windows.Forms.NumericUpDown()
+        Me.Label49 = New System.Windows.Forms.Label()
+        Me.Label48 = New System.Windows.Forms.Label()
+        Me.Label47 = New System.Windows.Forms.Label()
         Me.GroupBox21 = New System.Windows.Forms.GroupBox()
+        Me.Label46 = New System.Windows.Forms.Label()
+        Me.CryPointer2 = New System.Windows.Forms.TextBox()
         Me.Button13 = New System.Windows.Forms.Button()
         Me.CryConver = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -33,19 +47,26 @@ Partial Class Pokemonedit
         Me.Button6 = New System.Windows.Forms.Button()
         Me.CryPointer = New System.Windows.Forms.TextBox()
         Me.GroupBox20 = New System.Windows.Forms.GroupBox()
+        Me.Button24 = New System.Windows.Forms.Button()
+        Me.Button23 = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.FootPrintPointer = New System.Windows.Forms.TextBox()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.Button22 = New System.Windows.Forms.Button()
+        Me.Button21 = New System.Windows.Forms.Button()
         Me.IconPicBox = New System.Windows.Forms.PictureBox()
         Me.IconPal = New System.Windows.Forms.ComboBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.IconPointer = New System.Windows.Forms.TextBox()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
+        Me.AniPic2 = New System.Windows.Forms.PictureBox()
         Me.AniPic = New System.Windows.Forms.PictureBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.AnimationPointer = New System.Windows.Forms.TextBox()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
+        Me.BckPic2 = New System.Windows.Forms.PictureBox()
+        Me.FrntPic2 = New System.Windows.Forms.PictureBox()
         Me.BckPic = New System.Windows.Forms.PictureBox()
         Me.FrntPic = New System.Windows.Forms.PictureBox()
         Me.Button3 = New System.Windows.Forms.Button()
@@ -57,10 +78,17 @@ Partial Class Pokemonedit
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Lft1 = New System.Windows.Forms.RadioButton()
-        Me.Rght1 = New System.Windows.Forms.RadioButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.SHVal = New System.Windows.Forms.TextBox()
+        Me.SHCombo1 = New System.Windows.Forms.ComboBox()
+        Me.SH2 = New System.Windows.Forms.RadioButton()
+        Me.SH1 = New System.Windows.Forms.RadioButton()
+        Me.GroupBox27 = New System.Windows.Forms.GroupBox()
+        Me.PadBase = New System.Windows.Forms.TextBox()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.EggType2 = New System.Windows.Forms.ComboBox()
+        Me.EggType1 = New System.Windows.Forms.ComboBox()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
         Me.GVal = New System.Windows.Forms.TextBox()
         Me.GCombo1 = New System.Windows.Forms.ComboBox()
@@ -78,6 +106,9 @@ Partial Class Pokemonedit
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.Ev2 = New System.Windows.Forms.ComboBox()
         Me.Ev1 = New System.Windows.Forms.ComboBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Lft1 = New System.Windows.Forms.RadioButton()
+        Me.Rght1 = New System.Windows.Forms.RadioButton()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Ab2 = New System.Windows.Forms.ComboBox()
         Me.Ab1 = New System.Windows.Forms.ComboBox()
@@ -106,8 +137,6 @@ Partial Class Pokemonedit
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Clr1 = New System.Windows.Forms.ComboBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GroupBox17 = New System.Windows.Forms.GroupBox()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
@@ -147,17 +176,56 @@ Partial Class Pokemonedit
         Me.GroupBox22 = New System.Windows.Forms.GroupBox()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.LvlUpAttPointer = New System.Windows.Forms.TextBox()
-        Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
-        Me.SHVal = New System.Windows.Forms.TextBox()
-        Me.SHCombo1 = New System.Windows.Forms.ComboBox()
-        Me.SH2 = New System.Windows.Forms.RadioButton()
-        Me.SH1 = New System.Windows.Forms.RadioButton()
-        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
-        Me.EggType2 = New System.Windows.Forms.ComboBox()
-        Me.EggType1 = New System.Windows.Forms.ComboBox()
+        Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.GroupBox31 = New System.Windows.Forms.GroupBox()
+        Me.RSEDexTrainer = New System.Windows.Forms.PictureBox()
+        Me.RSEDexPoke = New System.Windows.Forms.PictureBox()
+        Me.Offset_1 = New System.Windows.Forms.TextBox()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.Offset_2 = New System.Windows.Forms.TextBox()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.Scale2 = New System.Windows.Forms.TextBox()
+        Me.Scale1 = New System.Windows.Forms.TextBox()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.GroupBox32 = New System.Windows.Forms.GroupBox()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.GroupBox30 = New System.Windows.Forms.GroupBox()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.Button17 = New System.Windows.Forms.Button()
+        Me.Description2 = New System.Windows.Forms.TextBox()
+        Me.Description1 = New System.Windows.Forms.TextBox()
+        Me.Button18 = New System.Windows.Forms.Button()
+        Me.Pointer2 = New System.Windows.Forms.TextBox()
+        Me.Pointer1 = New System.Windows.Forms.TextBox()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.GroupBox29 = New System.Windows.Forms.GroupBox()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Wght = New System.Windows.Forms.TextBox()
+        Me.Hght = New System.Windows.Forms.TextBox()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.GroupBox28 = New System.Windows.Forms.GroupBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Button16 = New System.Windows.Forms.Button()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Clr1 = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox18 = New System.Windows.Forms.GroupBox()
+        Me.Button15 = New System.Windows.Forms.Button()
         Me.ChangePKMName = New System.Windows.Forms.Button()
         Me.CurPKMName = New System.Windows.Forms.TextBox()
         Me.GroupBox19 = New System.Windows.Forms.GroupBox()
@@ -171,32 +239,52 @@ Partial Class Pokemonedit
         Me.Button9 = New System.Windows.Forms.Button()
         Me.FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.ProgressBar = New System.Windows.Forms.ProgressBar()
+        Me.Button14 = New System.Windows.Forms.Button()
+        Me.Button25 = New System.Windows.Forms.Button()
+        Me.Button26 = New System.Windows.Forms.Button()
+        Me.Button27 = New System.Windows.Forms.Button()
+        Me.Button28 = New System.Windows.Forms.Button()
+        Me.Button29 = New System.Windows.Forms.Button()
+        Me.Button30 = New System.Windows.Forms.Button()
+        Me.Label50 = New System.Windows.Forms.Label()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.GroupBox26.SuspendLayout()
+        Me.GroupBox33.SuspendLayout()
+        CType(Me.BackgroundBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EnemyAltitudeSelect, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EnemyYSelect, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PlayerYSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox21.SuspendLayout()
         Me.GroupBox20.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox16.SuspendLayout()
         CType(Me.IconPicBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox15.SuspendLayout()
+        CType(Me.AniPic2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AniPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox14.SuspendLayout()
+        CType(Me.BckPic2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FrntPic2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BckPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FrntPic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.GroupBox11.SuspendLayout()
+        Me.GroupBox27.SuspendLayout()
+        Me.GroupBox8.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.HeldItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HeldItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -208,9 +296,15 @@ Partial Class Pokemonedit
         Me.GroupBox24.SuspendLayout()
         Me.GroupBox23.SuspendLayout()
         Me.GroupBox22.SuspendLayout()
-        Me.TabPage5.SuspendLayout()
-        Me.GroupBox11.SuspendLayout()
-        Me.GroupBox8.SuspendLayout()
+        Me.TabPage6.SuspendLayout()
+        Me.GroupBox31.SuspendLayout()
+        CType(Me.RSEDexTrainer, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RSEDexPoke, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox32.SuspendLayout()
+        Me.GroupBox30.SuspendLayout()
+        Me.GroupBox29.SuspendLayout()
+        Me.GroupBox28.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.GroupBox18.SuspendLayout()
         Me.GroupBox19.SuspendLayout()
         Me.SuspendLayout()
@@ -221,47 +315,183 @@ Partial Class Pokemonedit
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
-        Me.TabControl1.Controls.Add(Me.TabPage5)
+        Me.TabControl1.Controls.Add(Me.TabPage6)
         Me.TabControl1.Location = New System.Drawing.Point(148, 27)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(600, 415)
+        Me.TabControl1.Size = New System.Drawing.Size(622, 500)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.GroupBox26)
+        Me.TabPage1.Controls.Add(Me.Button20)
+        Me.TabPage1.Controls.Add(Me.Button19)
+        Me.TabPage1.Controls.Add(Me.GroupBox33)
         Me.TabPage1.Controls.Add(Me.GroupBox21)
         Me.TabPage1.Controls.Add(Me.GroupBox20)
         Me.TabPage1.Controls.Add(Me.GroupBox16)
         Me.TabPage1.Controls.Add(Me.GroupBox15)
         Me.TabPage1.Controls.Add(Me.GroupBox14)
-        Me.TabPage1.Controls.Add(Me.GroupBox1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(592, 389)
+        Me.TabPage1.Size = New System.Drawing.Size(614, 474)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Media Data"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'GroupBox26
+        '
+        Me.GroupBox26.Controls.Add(Me.ItmAnmtn)
+        Me.GroupBox26.Location = New System.Drawing.Point(449, 202)
+        Me.GroupBox26.Name = "GroupBox26"
+        Me.GroupBox26.Size = New System.Drawing.Size(134, 50)
+        Me.GroupBox26.TabIndex = 6
+        Me.GroupBox26.TabStop = False
+        Me.GroupBox26.Text = "Item Animation (FR/LG)"
+        '
+        'ItmAnmtn
+        '
+        Me.ItmAnmtn.Location = New System.Drawing.Point(15, 19)
+        Me.ItmAnmtn.MaxLength = 10
+        Me.ItmAnmtn.Name = "ItmAnmtn"
+        Me.ItmAnmtn.Size = New System.Drawing.Size(95, 20)
+        Me.ItmAnmtn.TabIndex = 12
+        '
+        'Button20
+        '
+        Me.Button20.Location = New System.Drawing.Point(6, 35)
+        Me.Button20.Name = "Button20"
+        Me.Button20.Size = New System.Drawing.Size(178, 23)
+        Me.Button20.TabIndex = 9
+        Me.Button20.Text = "Export A-series Sprite Sheet"
+        Me.Button20.UseVisualStyleBackColor = True
+        '
+        'Button19
+        '
+        Me.Button19.Location = New System.Drawing.Point(6, 6)
+        Me.Button19.Name = "Button19"
+        Me.Button19.Size = New System.Drawing.Size(178, 23)
+        Me.Button19.TabIndex = 8
+        Me.Button19.Text = "Import A-series Sprite Sheet"
+        Me.Button19.UseVisualStyleBackColor = True
+        '
+        'GroupBox33
+        '
+        Me.GroupBox33.Controls.Add(Me.BackgroundBox)
+        Me.GroupBox33.Controls.Add(Me.EnemyAltitudeSelect)
+        Me.GroupBox33.Controls.Add(Me.EnemyYSelect)
+        Me.GroupBox33.Controls.Add(Me.PlayerYSelect)
+        Me.GroupBox33.Controls.Add(Me.Label49)
+        Me.GroupBox33.Controls.Add(Me.Label48)
+        Me.GroupBox33.Controls.Add(Me.Label47)
+        Me.GroupBox33.Location = New System.Drawing.Point(179, 202)
+        Me.GroupBox33.Name = "GroupBox33"
+        Me.GroupBox33.Size = New System.Drawing.Size(264, 245)
+        Me.GroupBox33.TabIndex = 7
+        Me.GroupBox33.TabStop = False
+        Me.GroupBox33.Text = "Battle Sprite Position"
+        '
+        'BackgroundBox
+        '
+        Me.BackgroundBox.BackColor = System.Drawing.Color.Transparent
+        Me.BackgroundBox.Location = New System.Drawing.Point(13, 73)
+        Me.BackgroundBox.Name = "BackgroundBox"
+        Me.BackgroundBox.Size = New System.Drawing.Size(240, 160)
+        Me.BackgroundBox.TabIndex = 6
+        Me.BackgroundBox.TabStop = False
+        '
+        'EnemyAltitudeSelect
+        '
+        Me.EnemyAltitudeSelect.Location = New System.Drawing.Point(111, 47)
+        Me.EnemyAltitudeSelect.Maximum = New Decimal(New Integer() {127, 0, 0, 0})
+        Me.EnemyAltitudeSelect.Minimum = New Decimal(New Integer() {127, 0, 0, -2147483648})
+        Me.EnemyAltitudeSelect.Name = "EnemyAltitudeSelect"
+        Me.EnemyAltitudeSelect.Size = New System.Drawing.Size(43, 20)
+        Me.EnemyAltitudeSelect.TabIndex = 5
+        '
+        'EnemyYSelect
+        '
+        Me.EnemyYSelect.Location = New System.Drawing.Point(62, 47)
+        Me.EnemyYSelect.Maximum = New Decimal(New Integer() {127, 0, 0, 0})
+        Me.EnemyYSelect.Minimum = New Decimal(New Integer() {127, 0, 0, -2147483648})
+        Me.EnemyYSelect.Name = "EnemyYSelect"
+        Me.EnemyYSelect.Size = New System.Drawing.Size(43, 20)
+        Me.EnemyYSelect.TabIndex = 4
+        '
+        'PlayerYSelect
+        '
+        Me.PlayerYSelect.Location = New System.Drawing.Point(13, 47)
+        Me.PlayerYSelect.Maximum = New Decimal(New Integer() {127, 0, 0, 0})
+        Me.PlayerYSelect.Minimum = New Decimal(New Integer() {127, 0, 0, -2147483648})
+        Me.PlayerYSelect.Name = "PlayerYSelect"
+        Me.PlayerYSelect.Size = New System.Drawing.Size(43, 20)
+        Me.PlayerYSelect.TabIndex = 3
+        '
+        'Label49
+        '
+        Me.Label49.AutoSize = True
+        Me.Label49.Location = New System.Drawing.Point(114, 22)
+        Me.Label49.Name = "Label49"
+        Me.Label49.Size = New System.Drawing.Size(77, 13)
+        Me.Label49.TabIndex = 2
+        Me.Label49.Text = "Enemy Altitude"
+        '
+        'Label48
+        '
+        Me.Label48.AutoSize = True
+        Me.Label48.Location = New System.Drawing.Point(62, 22)
+        Me.Label48.Name = "Label48"
+        Me.Label48.Size = New System.Drawing.Size(49, 13)
+        Me.Label48.TabIndex = 1
+        Me.Label48.Text = "Enemy Y"
+        '
+        'Label47
+        '
+        Me.Label47.AutoSize = True
+        Me.Label47.Location = New System.Drawing.Point(10, 22)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(46, 13)
+        Me.Label47.TabIndex = 0
+        Me.Label47.Text = "Player Y"
+        '
         'GroupBox21
         '
+        Me.GroupBox21.Controls.Add(Me.Label46)
+        Me.GroupBox21.Controls.Add(Me.CryPointer2)
         Me.GroupBox21.Controls.Add(Me.Button13)
         Me.GroupBox21.Controls.Add(Me.CryConver)
         Me.GroupBox21.Controls.Add(Me.Label18)
         Me.GroupBox21.Controls.Add(Me.Label17)
         Me.GroupBox21.Controls.Add(Me.Button6)
         Me.GroupBox21.Controls.Add(Me.CryPointer)
-        Me.GroupBox21.Location = New System.Drawing.Point(377, 201)
+        Me.GroupBox21.Location = New System.Drawing.Point(6, 253)
         Me.GroupBox21.Name = "GroupBox21"
-        Me.GroupBox21.Size = New System.Drawing.Size(167, 109)
+        Me.GroupBox21.Size = New System.Drawing.Size(167, 152)
         Me.GroupBox21.TabIndex = 5
         Me.GroupBox21.TabStop = False
         Me.GroupBox21.Text = "Cry"
         '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.Location = New System.Drawing.Point(7, 98)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(70, 13)
+        Me.Label46.TabIndex = 18
+        Me.Label46.Text = "Growl Pointer"
+        '
+        'CryPointer2
+        '
+        Me.CryPointer2.Location = New System.Drawing.Point(83, 95)
+        Me.CryPointer2.Name = "CryPointer2"
+        Me.CryPointer2.Size = New System.Drawing.Size(68, 20)
+        Me.CryPointer2.TabIndex = 17
+        '
         'Button13
         '
-        Me.Button13.Location = New System.Drawing.Point(9, 77)
+        Me.Button13.Location = New System.Drawing.Point(83, 43)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(68, 21)
         Me.Button13.TabIndex = 16
@@ -270,7 +500,7 @@ Partial Class Pokemonedit
         '
         'CryConver
         '
-        Me.CryConver.Location = New System.Drawing.Point(10, 51)
+        Me.CryConver.Location = New System.Drawing.Point(83, 18)
         Me.CryConver.Name = "CryConver"
         Me.CryConver.Size = New System.Drawing.Size(67, 20)
         Me.CryConver.TabIndex = 15
@@ -278,7 +508,7 @@ Partial Class Pokemonedit
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(7, 24)
+        Me.Label18.Location = New System.Drawing.Point(7, 21)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(60, 13)
         Me.Label18.TabIndex = 14
@@ -287,15 +517,15 @@ Partial Class Pokemonedit
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(80, 24)
+        Me.Label17.Location = New System.Drawing.Point(7, 72)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(40, 13)
+        Me.Label17.Size = New System.Drawing.Size(58, 13)
         Me.Label17.TabIndex = 13
-        Me.Label17.Text = "Pointer"
+        Me.Label17.Text = "Cry Pointer"
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(83, 77)
+        Me.Button6.Location = New System.Drawing.Point(83, 124)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(68, 21)
         Me.Button6.TabIndex = 12
@@ -304,22 +534,42 @@ Partial Class Pokemonedit
         '
         'CryPointer
         '
-        Me.CryPointer.Location = New System.Drawing.Point(83, 53)
+        Me.CryPointer.Location = New System.Drawing.Point(83, 69)
         Me.CryPointer.Name = "CryPointer"
         Me.CryPointer.Size = New System.Drawing.Size(68, 20)
         Me.CryPointer.TabIndex = 11
         '
         'GroupBox20
         '
+        Me.GroupBox20.Controls.Add(Me.Button24)
+        Me.GroupBox20.Controls.Add(Me.Button23)
         Me.GroupBox20.Controls.Add(Me.PictureBox1)
         Me.GroupBox20.Controls.Add(Me.Button5)
         Me.GroupBox20.Controls.Add(Me.FootPrintPointer)
-        Me.GroupBox20.Location = New System.Drawing.Point(112, 236)
+        Me.GroupBox20.Location = New System.Drawing.Point(449, 258)
         Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(147, 74)
+        Me.GroupBox20.Size = New System.Drawing.Size(147, 124)
         Me.GroupBox20.TabIndex = 4
         Me.GroupBox20.TabStop = False
         Me.GroupBox20.Text = "FootPrint"
+        '
+        'Button24
+        '
+        Me.Button24.Location = New System.Drawing.Point(15, 93)
+        Me.Button24.Name = "Button24"
+        Me.Button24.Size = New System.Drawing.Size(68, 21)
+        Me.Button24.TabIndex = 15
+        Me.Button24.Text = "Export"
+        Me.Button24.UseVisualStyleBackColor = True
+        '
+        'Button23
+        '
+        Me.Button23.Location = New System.Drawing.Point(15, 69)
+        Me.Button23.Name = "Button23"
+        Me.Button23.Size = New System.Drawing.Size(68, 21)
+        Me.Button23.TabIndex = 14
+        Me.Button23.Text = "Import"
+        Me.Button23.UseVisualStyleBackColor = True
         '
         'PictureBox1
         '
@@ -348,20 +598,40 @@ Partial Class Pokemonedit
         '
         'GroupBox16
         '
+        Me.GroupBox16.Controls.Add(Me.Button22)
+        Me.GroupBox16.Controls.Add(Me.Button21)
         Me.GroupBox16.Controls.Add(Me.IconPicBox)
         Me.GroupBox16.Controls.Add(Me.IconPal)
         Me.GroupBox16.Controls.Add(Me.Button4)
         Me.GroupBox16.Controls.Add(Me.IconPointer)
-        Me.GroupBox16.Location = New System.Drawing.Point(377, 6)
+        Me.GroupBox16.Location = New System.Drawing.Point(6, 60)
         Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(167, 187)
+        Me.GroupBox16.Size = New System.Drawing.Size(150, 187)
         Me.GroupBox16.TabIndex = 3
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "Icons"
         '
+        'Button22
+        '
+        Me.Button22.Location = New System.Drawing.Point(15, 156)
+        Me.Button22.Name = "Button22"
+        Me.Button22.Size = New System.Drawing.Size(122, 25)
+        Me.Button22.TabIndex = 14
+        Me.Button22.Text = "Export"
+        Me.Button22.UseVisualStyleBackColor = True
+        '
+        'Button21
+        '
+        Me.Button21.Location = New System.Drawing.Point(15, 126)
+        Me.Button21.Name = "Button21"
+        Me.Button21.Size = New System.Drawing.Size(122, 25)
+        Me.Button21.TabIndex = 13
+        Me.Button21.Text = "Import"
+        Me.Button21.UseVisualStyleBackColor = True
+        '
         'IconPicBox
         '
-        Me.IconPicBox.Location = New System.Drawing.Point(105, 41)
+        Me.IconPicBox.Location = New System.Drawing.Point(105, 18)
         Me.IconPicBox.Name = "IconPicBox"
         Me.IconPicBox.Size = New System.Drawing.Size(32, 64)
         Me.IconPicBox.TabIndex = 12
@@ -372,42 +642,51 @@ Partial Class Pokemonedit
         Me.IconPal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.IconPal.FormattingEnabled = True
         Me.IconPal.Items.AddRange(New Object() {"Pal 0", "Pal 1", "Pal 2"})
-        Me.IconPal.Location = New System.Drawing.Point(15, 79)
+        Me.IconPal.Location = New System.Drawing.Point(15, 56)
         Me.IconPal.Name = "IconPal"
         Me.IconPal.Size = New System.Drawing.Size(68, 21)
         Me.IconPal.TabIndex = 2
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(15, 118)
+        Me.Button4.Location = New System.Drawing.Point(15, 95)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(68, 37)
+        Me.Button4.Size = New System.Drawing.Size(122, 25)
         Me.Button4.TabIndex = 1
         Me.Button4.Text = "Repoint + Save"
         Me.Button4.UseVisualStyleBackColor = True
         '
         'IconPointer
         '
-        Me.IconPointer.Location = New System.Drawing.Point(15, 41)
+        Me.IconPointer.Location = New System.Drawing.Point(15, 18)
         Me.IconPointer.Name = "IconPointer"
         Me.IconPointer.Size = New System.Drawing.Size(68, 20)
         Me.IconPointer.TabIndex = 0
         '
         'GroupBox15
         '
+        Me.GroupBox15.Controls.Add(Me.AniPic2)
         Me.GroupBox15.Controls.Add(Me.AniPic)
         Me.GroupBox15.Controls.Add(Me.Button2)
         Me.GroupBox15.Controls.Add(Me.AnimationPointer)
-        Me.GroupBox15.Location = New System.Drawing.Point(190, 6)
+        Me.GroupBox15.Location = New System.Drawing.Point(449, 7)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(181, 224)
+        Me.GroupBox15.Size = New System.Drawing.Size(159, 189)
         Me.GroupBox15.TabIndex = 2
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "Animation (Emerald Only)"
         '
+        'AniPic2
+        '
+        Me.AniPic2.Location = New System.Drawing.Point(85, 49)
+        Me.AniPic2.Name = "AniPic2"
+        Me.AniPic2.Size = New System.Drawing.Size(64, 128)
+        Me.AniPic2.TabIndex = 13
+        Me.AniPic2.TabStop = False
+        '
         'AniPic
         '
-        Me.AniPic.Location = New System.Drawing.Point(99, 36)
+        Me.AniPic.Location = New System.Drawing.Point(12, 49)
         Me.AniPic.Name = "AniPic"
         Me.AniPic.Size = New System.Drawing.Size(64, 128)
         Me.AniPic.TabIndex = 12
@@ -416,7 +695,7 @@ Partial Class Pokemonedit
         'Button2
         '
         Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(15, 79)
+        Me.Button2.Location = New System.Drawing.Point(12, 22)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(68, 21)
         Me.Button2.TabIndex = 11
@@ -425,13 +704,15 @@ Partial Class Pokemonedit
         '
         'AnimationPointer
         '
-        Me.AnimationPointer.Location = New System.Drawing.Point(15, 41)
+        Me.AnimationPointer.Location = New System.Drawing.Point(85, 22)
         Me.AnimationPointer.Name = "AnimationPointer"
-        Me.AnimationPointer.Size = New System.Drawing.Size(68, 20)
+        Me.AnimationPointer.Size = New System.Drawing.Size(64, 20)
         Me.AnimationPointer.TabIndex = 10
         '
         'GroupBox14
         '
+        Me.GroupBox14.Controls.Add(Me.BckPic2)
+        Me.GroupBox14.Controls.Add(Me.FrntPic2)
         Me.GroupBox14.Controls.Add(Me.BckPic)
         Me.GroupBox14.Controls.Add(Me.FrntPic)
         Me.GroupBox14.Controls.Add(Me.Button3)
@@ -443,16 +724,32 @@ Partial Class Pokemonedit
         Me.GroupBox14.Controls.Add(Me.Label11)
         Me.GroupBox14.Controls.Add(Me.Label10)
         Me.GroupBox14.Controls.Add(Me.Label9)
-        Me.GroupBox14.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox14.Location = New System.Drawing.Point(194, 7)
         Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(178, 224)
+        Me.GroupBox14.Size = New System.Drawing.Size(249, 189)
         Me.GroupBox14.TabIndex = 1
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Sprite Pointers"
         '
+        'BckPic2
+        '
+        Me.BckPic2.Location = New System.Drawing.Point(175, 90)
+        Me.BckPic2.Name = "BckPic2"
+        Me.BckPic2.Size = New System.Drawing.Size(64, 64)
+        Me.BckPic2.TabIndex = 12
+        Me.BckPic2.TabStop = False
+        '
+        'FrntPic2
+        '
+        Me.FrntPic2.Location = New System.Drawing.Point(175, 13)
+        Me.FrntPic2.Name = "FrntPic2"
+        Me.FrntPic2.Size = New System.Drawing.Size(64, 64)
+        Me.FrntPic2.TabIndex = 11
+        Me.FrntPic2.TabStop = False
+        '
         'BckPic
         '
-        Me.BckPic.Location = New System.Drawing.Point(95, 118)
+        Me.BckPic.Location = New System.Drawing.Point(96, 90)
         Me.BckPic.Name = "BckPic"
         Me.BckPic.Size = New System.Drawing.Size(64, 64)
         Me.BckPic.TabIndex = 10
@@ -460,7 +757,7 @@ Partial Class Pokemonedit
         '
         'FrntPic
         '
-        Me.FrntPic.Location = New System.Drawing.Point(95, 41)
+        Me.FrntPic.Location = New System.Drawing.Point(96, 13)
         Me.FrntPic.Name = "FrntPic"
         Me.FrntPic.Size = New System.Drawing.Size(64, 64)
         Me.FrntPic.TabIndex = 9
@@ -468,9 +765,9 @@ Partial Class Pokemonedit
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(13, 184)
+        Me.Button3.Location = New System.Drawing.Point(96, 157)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(68, 21)
+        Me.Button3.Size = New System.Drawing.Size(142, 21)
         Me.Button3.TabIndex = 8
         Me.Button3.Text = "Repoint"
         Me.Button3.UseVisualStyleBackColor = True
@@ -539,58 +836,129 @@ Partial Class Pokemonedit
         Me.Label9.TabIndex = 0
         Me.Label9.Text = "Front Sprite:"
         '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.Lft1)
-        Me.GroupBox1.Controls.Add(Me.Rght1)
-        Me.GroupBox1.Location = New System.Drawing.Point(6, 236)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(100, 74)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Status Screen"
-        '
-        'Lft1
-        '
-        Me.Lft1.AutoSize = True
-        Me.Lft1.Location = New System.Drawing.Point(15, 42)
-        Me.Lft1.Name = "Lft1"
-        Me.Lft1.Size = New System.Drawing.Size(70, 17)
-        Me.Lft1.TabIndex = 1
-        Me.Lft1.TabStop = True
-        Me.Lft1.Text = "Face Left"
-        Me.Lft1.UseVisualStyleBackColor = True
-        '
-        'Rght1
-        '
-        Me.Rght1.AutoSize = True
-        Me.Rght1.Location = New System.Drawing.Point(15, 19)
-        Me.Rght1.Name = "Rght1"
-        Me.Rght1.Size = New System.Drawing.Size(77, 17)
-        Me.Rght1.TabIndex = 0
-        Me.Rght1.TabStop = True
-        Me.Rght1.Text = "Face Right"
-        Me.Rght1.UseVisualStyleBackColor = True
-        '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.GroupBox11)
+        Me.TabPage2.Controls.Add(Me.GroupBox27)
+        Me.TabPage2.Controls.Add(Me.GroupBox8)
         Me.TabPage2.Controls.Add(Me.GroupBox13)
         Me.TabPage2.Controls.Add(Me.GroupBox12)
         Me.TabPage2.Controls.Add(Me.GroupBox10)
         Me.TabPage2.Controls.Add(Me.GroupBox9)
         Me.TabPage2.Controls.Add(Me.GroupBox7)
+        Me.TabPage2.Controls.Add(Me.GroupBox1)
         Me.TabPage2.Controls.Add(Me.GroupBox6)
         Me.TabPage2.Controls.Add(Me.GroupBox5)
         Me.TabPage2.Controls.Add(Me.GroupBox4)
         Me.TabPage2.Controls.Add(Me.GroupBox3)
-        Me.TabPage2.Controls.Add(Me.GroupBox2)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(592, 389)
+        Me.TabPage2.Size = New System.Drawing.Size(614, 474)
         Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Stats"
+        Me.TabPage2.Text = "Base Stats"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'GroupBox11
+        '
+        Me.GroupBox11.Controls.Add(Me.SHVal)
+        Me.GroupBox11.Controls.Add(Me.SHCombo1)
+        Me.GroupBox11.Controls.Add(Me.SH2)
+        Me.GroupBox11.Controls.Add(Me.SH1)
+        Me.GroupBox11.Location = New System.Drawing.Point(379, 268)
+        Me.GroupBox11.Name = "GroupBox11"
+        Me.GroupBox11.Size = New System.Drawing.Size(189, 78)
+        Me.GroupBox11.TabIndex = 3
+        Me.GroupBox11.TabStop = False
+        Me.GroupBox11.Text = "Steps to hatch"
+        '
+        'SHVal
+        '
+        Me.SHVal.Location = New System.Drawing.Point(102, 50)
+        Me.SHVal.Name = "SHVal"
+        Me.SHVal.Size = New System.Drawing.Size(74, 20)
+        Me.SHVal.TabIndex = 3
+        '
+        'SHCombo1
+        '
+        Me.SHCombo1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.SHCombo1.FormattingEnabled = True
+        Me.SHCombo1.Items.AddRange(New Object() {"Instant", "1280 steps", "2560 steps", "3840 steps", "5120 steps", "6400 steps", "7680 steps", "8960 steps", "10240 steps", "20480 steps", "30720 steps"})
+        Me.SHCombo1.Location = New System.Drawing.Point(102, 15)
+        Me.SHCombo1.Name = "SHCombo1"
+        Me.SHCombo1.Size = New System.Drawing.Size(74, 21)
+        Me.SHCombo1.TabIndex = 2
+        '
+        'SH2
+        '
+        Me.SH2.AutoSize = True
+        Me.SH2.Location = New System.Drawing.Point(6, 51)
+        Me.SH2.Name = "SH2"
+        Me.SH2.Size = New System.Drawing.Size(63, 17)
+        Me.SH2.TabIndex = 1
+        Me.SH2.TabStop = True
+        Me.SH2.Text = "Custom:"
+        Me.SH2.UseVisualStyleBackColor = True
+        '
+        'SH1
+        '
+        Me.SH1.AutoSize = True
+        Me.SH1.Location = New System.Drawing.Point(6, 19)
+        Me.SH1.Name = "SH1"
+        Me.SH1.Size = New System.Drawing.Size(71, 17)
+        Me.SH1.TabIndex = 0
+        Me.SH1.TabStop = True
+        Me.SH1.Text = "Standard:"
+        Me.SH1.UseVisualStyleBackColor = True
+        '
+        'GroupBox27
+        '
+        Me.GroupBox27.Controls.Add(Me.PadBase)
+        Me.GroupBox27.Location = New System.Drawing.Point(232, 248)
+        Me.GroupBox27.Name = "GroupBox27"
+        Me.GroupBox27.Size = New System.Drawing.Size(72, 49)
+        Me.GroupBox27.TabIndex = 10
+        Me.GroupBox27.TabStop = False
+        Me.GroupBox27.Text = "Pad Bytes"
+        '
+        'PadBase
+        '
+        Me.PadBase.Location = New System.Drawing.Point(11, 19)
+        Me.PadBase.MaxLength = 4
+        Me.PadBase.Name = "PadBase"
+        Me.PadBase.Size = New System.Drawing.Size(51, 20)
+        Me.PadBase.TabIndex = 16
+        '
+        'GroupBox8
+        '
+        Me.GroupBox8.Controls.Add(Me.EggType2)
+        Me.GroupBox8.Controls.Add(Me.EggType1)
+        Me.GroupBox8.Location = New System.Drawing.Point(12, 354)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(139, 78)
+        Me.GroupBox8.TabIndex = 2
+        Me.GroupBox8.TabStop = False
+        Me.GroupBox8.Text = "Egg Groups"
+        '
+        'EggType2
+        '
+        Me.EggType2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.EggType2.FormattingEnabled = True
+        Me.EggType2.Items.AddRange(New Object() {"-------", "Monster", "Water 1", "Bug", "Flying", "Field", "Fairy", "Plant", "HumanShape", "Water 3", "Mineral", "Chaos", "Water 2", "Ditto", "Dragon", "Can't Breed"})
+        Me.EggType2.Location = New System.Drawing.Point(6, 46)
+        Me.EggType2.Name = "EggType2"
+        Me.EggType2.Size = New System.Drawing.Size(121, 21)
+        Me.EggType2.TabIndex = 1
+        '
+        'EggType1
+        '
+        Me.EggType1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.EggType1.FormattingEnabled = True
+        Me.EggType1.Items.AddRange(New Object() {"-------", "Monster", "Water 1", "Bug", "Flying", "Field", "Fairy", "Plant", "HumanShape", "Water 3", "Mineral", "Chaos", "Water 2", "Ditto", "Dragon", "Can't Breed"})
+        Me.EggType1.Location = New System.Drawing.Point(6, 19)
+        Me.EggType1.Name = "EggType1"
+        Me.EggType1.Size = New System.Drawing.Size(121, 21)
+        Me.EggType1.TabIndex = 0
         '
         'GroupBox13
         '
@@ -763,6 +1131,39 @@ Partial Class Pokemonedit
         Me.Ev1.Name = "Ev1"
         Me.Ev1.Size = New System.Drawing.Size(121, 21)
         Me.Ev1.TabIndex = 0
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Lft1)
+        Me.GroupBox1.Controls.Add(Me.Rght1)
+        Me.GroupBox1.Location = New System.Drawing.Point(243, 318)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(100, 74)
+        Me.GroupBox1.TabIndex = 0
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Status Screen"
+        '
+        'Lft1
+        '
+        Me.Lft1.AutoSize = True
+        Me.Lft1.Location = New System.Drawing.Point(15, 42)
+        Me.Lft1.Name = "Lft1"
+        Me.Lft1.Size = New System.Drawing.Size(70, 17)
+        Me.Lft1.TabIndex = 1
+        Me.Lft1.TabStop = True
+        Me.Lft1.Text = "Face Left"
+        Me.Lft1.UseVisualStyleBackColor = True
+        '
+        'Rght1
+        '
+        Me.Rght1.AutoSize = True
+        Me.Rght1.Location = New System.Drawing.Point(15, 19)
+        Me.Rght1.Name = "Rght1"
+        Me.Rght1.Size = New System.Drawing.Size(77, 17)
+        Me.Rght1.TabIndex = 0
+        Me.Rght1.TabStop = True
+        Me.Rght1.Text = "Face Right"
+        Me.Rght1.UseVisualStyleBackColor = True
         '
         'GroupBox6
         '
@@ -1028,39 +1429,21 @@ Partial Class Pokemonedit
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "HP:"
         '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.Clr1)
-        Me.GroupBox2.Location = New System.Drawing.Point(379, 104)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(131, 52)
-        Me.GroupBox2.TabIndex = 0
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Color"
-        '
-        'Clr1
-        '
-        Me.Clr1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.Clr1.FormattingEnabled = True
-        Me.Clr1.Items.AddRange(New Object() {"Red", "Blue", "Yellow", "Green", "Black", "Brown", "Purple", "Gray", "White", "Pink"})
-        Me.Clr1.Location = New System.Drawing.Point(6, 19)
-        Me.Clr1.Name = "Clr1"
-        Me.Clr1.Size = New System.Drawing.Size(121, 21)
-        Me.Clr1.TabIndex = 0
-        '
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.GroupBox17)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(592, 389)
+        Me.TabPage3.Size = New System.Drawing.Size(614, 474)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Evolution data"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
         'GroupBox17
         '
+        Me.GroupBox17.Controls.Add(Me.TextBox6)
+        Me.GroupBox17.Controls.Add(Me.Label50)
         Me.GroupBox17.Controls.Add(Me.ComboBox3)
         Me.GroupBox17.Controls.Add(Me.Label19)
         Me.GroupBox17.Controls.Add(Me.TextBox2)
@@ -1300,7 +1683,7 @@ Partial Class Pokemonedit
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(592, 389)
+        Me.TabPage4.Size = New System.Drawing.Size(614, 474)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Learnable attacks"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -1424,119 +1807,487 @@ Partial Class Pokemonedit
         Me.LvlUpAttPointer.Size = New System.Drawing.Size(68, 20)
         Me.LvlUpAttPointer.TabIndex = 11
         '
-        'TabPage5
+        'TabPage6
         '
-        Me.TabPage5.Controls.Add(Me.GroupBox11)
-        Me.TabPage5.Controls.Add(Me.GroupBox8)
-        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Size = New System.Drawing.Size(592, 389)
-        Me.TabPage5.TabIndex = 4
-        Me.TabPage5.Text = "Breed data"
-        Me.TabPage5.UseVisualStyleBackColor = True
+        Me.TabPage6.Controls.Add(Me.GroupBox31)
+        Me.TabPage6.Controls.Add(Me.GroupBox32)
+        Me.TabPage6.Controls.Add(Me.GroupBox30)
+        Me.TabPage6.Controls.Add(Me.GroupBox29)
+        Me.TabPage6.Controls.Add(Me.GroupBox28)
+        Me.TabPage6.Controls.Add(Me.GroupBox2)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage6.Name = "TabPage6"
+        Me.TabPage6.Size = New System.Drawing.Size(614, 474)
+        Me.TabPage6.TabIndex = 5
+        Me.TabPage6.Text = "Pokedex"
+        Me.TabPage6.UseVisualStyleBackColor = True
         '
-        'GroupBox11
+        'GroupBox31
         '
-        Me.GroupBox11.Controls.Add(Me.SHVal)
-        Me.GroupBox11.Controls.Add(Me.SHCombo1)
-        Me.GroupBox11.Controls.Add(Me.SH2)
-        Me.GroupBox11.Controls.Add(Me.SH1)
-        Me.GroupBox11.Location = New System.Drawing.Point(157, 15)
-        Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(189, 78)
-        Me.GroupBox11.TabIndex = 3
-        Me.GroupBox11.TabStop = False
-        Me.GroupBox11.Text = "Steps to hatch"
+        Me.GroupBox31.Controls.Add(Me.RSEDexTrainer)
+        Me.GroupBox31.Controls.Add(Me.RSEDexPoke)
+        Me.GroupBox31.Controls.Add(Me.Offset_1)
+        Me.GroupBox31.Controls.Add(Me.Label40)
+        Me.GroupBox31.Controls.Add(Me.Label41)
+        Me.GroupBox31.Controls.Add(Me.Offset_2)
+        Me.GroupBox31.Controls.Add(Me.Label42)
+        Me.GroupBox31.Controls.Add(Me.Scale2)
+        Me.GroupBox31.Controls.Add(Me.Scale1)
+        Me.GroupBox31.Controls.Add(Me.Label43)
+        Me.GroupBox31.Controls.Add(Me.Label44)
+        Me.GroupBox31.Location = New System.Drawing.Point(5, 123)
+        Me.GroupBox31.Name = "GroupBox31"
+        Me.GroupBox31.Size = New System.Drawing.Size(171, 209)
+        Me.GroupBox31.TabIndex = 21
+        Me.GroupBox31.TabStop = False
+        Me.GroupBox31.Text = "Size Comparison"
         '
-        'SHVal
+        'RSEDexTrainer
         '
-        Me.SHVal.Location = New System.Drawing.Point(102, 50)
-        Me.SHVal.Name = "SHVal"
-        Me.SHVal.Size = New System.Drawing.Size(74, 20)
-        Me.SHVal.TabIndex = 3
+        Me.RSEDexTrainer.BackColor = System.Drawing.Color.Transparent
+        Me.RSEDexTrainer.Location = New System.Drawing.Point(94, 123)
+        Me.RSEDexTrainer.Name = "RSEDexTrainer"
+        Me.RSEDexTrainer.Size = New System.Drawing.Size(64, 64)
+        Me.RSEDexTrainer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.RSEDexTrainer.TabIndex = 12
+        Me.RSEDexTrainer.TabStop = False
         '
-        'SHCombo1
+        'RSEDexPoke
         '
-        Me.SHCombo1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.SHCombo1.FormattingEnabled = True
-        Me.SHCombo1.Items.AddRange(New Object() {"Instant", "1280 steps", "2560 steps", "3840 steps", "5120 steps", "6400 steps", "7680 steps", "8960 steps", "10240 steps", "20480 steps", "30720 steps"})
-        Me.SHCombo1.Location = New System.Drawing.Point(102, 15)
-        Me.SHCombo1.Name = "SHCombo1"
-        Me.SHCombo1.Size = New System.Drawing.Size(74, 21)
-        Me.SHCombo1.TabIndex = 2
+        Me.RSEDexPoke.BackColor = System.Drawing.Color.Transparent
+        Me.RSEDexPoke.Location = New System.Drawing.Point(15, 123)
+        Me.RSEDexPoke.Name = "RSEDexPoke"
+        Me.RSEDexPoke.Size = New System.Drawing.Size(64, 64)
+        Me.RSEDexPoke.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.RSEDexPoke.TabIndex = 11
+        Me.RSEDexPoke.TabStop = False
         '
-        'SH2
+        'Offset_1
         '
-        Me.SH2.AutoSize = True
-        Me.SH2.Location = New System.Drawing.Point(6, 51)
-        Me.SH2.Name = "SH2"
-        Me.SH2.Size = New System.Drawing.Size(63, 17)
-        Me.SH2.TabIndex = 1
-        Me.SH2.TabStop = True
-        Me.SH2.Text = "Custom:"
-        Me.SH2.UseVisualStyleBackColor = True
+        Me.Offset_1.Location = New System.Drawing.Point(55, 47)
+        Me.Offset_1.Name = "Offset_1"
+        Me.Offset_1.Size = New System.Drawing.Size(38, 20)
+        Me.Offset_1.TabIndex = 9
         '
-        'SH1
+        'Label40
         '
-        Me.SH1.AutoSize = True
-        Me.SH1.Location = New System.Drawing.Point(6, 19)
-        Me.SH1.Name = "SH1"
-        Me.SH1.Size = New System.Drawing.Size(71, 17)
-        Me.SH1.TabIndex = 0
-        Me.SH1.TabStop = True
-        Me.SH1.Text = "Standard:"
-        Me.SH1.UseVisualStyleBackColor = True
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(12, 50)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(38, 13)
+        Me.Label40.TabIndex = 8
+        Me.Label40.Text = "Offset:"
         '
-        'GroupBox8
+        'Label41
         '
-        Me.GroupBox8.Controls.Add(Me.EggType2)
-        Me.GroupBox8.Controls.Add(Me.EggType1)
-        Me.GroupBox8.Location = New System.Drawing.Point(12, 15)
-        Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(139, 78)
-        Me.GroupBox8.TabIndex = 2
-        Me.GroupBox8.TabStop = False
-        Me.GroupBox8.Text = "Egg Groups"
+        Me.Label41.AutoSize = True
+        Me.Label41.Location = New System.Drawing.Point(12, 95)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(37, 13)
+        Me.Label41.TabIndex = 7
+        Me.Label41.Text = "Scale:"
         '
-        'EggType2
+        'Offset_2
         '
-        Me.EggType2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.EggType2.FormattingEnabled = True
-        Me.EggType2.Items.AddRange(New Object() {"-------", "Monster", "Water 1", "Bug", "Flying", "Field", "Fairy", "Plant", "HumanShape", "Water 3", "Mineral", "Chaos", "Water 2", "Ditto", "Dragon", "Can't Breed"})
-        Me.EggType2.Location = New System.Drawing.Point(6, 46)
-        Me.EggType2.Name = "EggType2"
-        Me.EggType2.Size = New System.Drawing.Size(121, 21)
-        Me.EggType2.TabIndex = 1
+        Me.Offset_2.Location = New System.Drawing.Point(119, 47)
+        Me.Offset_2.Name = "Offset_2"
+        Me.Offset_2.Size = New System.Drawing.Size(38, 20)
+        Me.Offset_2.TabIndex = 6
         '
-        'EggType1
+        'Label42
         '
-        Me.EggType1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.EggType1.FormattingEnabled = True
-        Me.EggType1.Items.AddRange(New Object() {"-------", "Monster", "Water 1", "Bug", "Flying", "Field", "Fairy", "Plant", "HumanShape", "Water 3", "Mineral", "Chaos", "Water 2", "Ditto", "Dragon", "Can't Breed"})
-        Me.EggType1.Location = New System.Drawing.Point(6, 19)
-        Me.EggType1.Name = "EggType1"
-        Me.EggType1.Size = New System.Drawing.Size(121, 21)
-        Me.EggType1.TabIndex = 0
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(85, 76)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(42, 13)
+        Me.Label42.TabIndex = 4
+        Me.Label42.Text = "Against"
+        '
+        'Scale2
+        '
+        Me.Scale2.Location = New System.Drawing.Point(120, 91)
+        Me.Scale2.Name = "Scale2"
+        Me.Scale2.Size = New System.Drawing.Size(38, 20)
+        Me.Scale2.TabIndex = 3
+        '
+        'Scale1
+        '
+        Me.Scale1.Location = New System.Drawing.Point(55, 92)
+        Me.Scale1.Name = "Scale1"
+        Me.Scale1.Size = New System.Drawing.Size(39, 20)
+        Me.Scale1.TabIndex = 2
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Location = New System.Drawing.Point(117, 29)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(40, 13)
+        Me.Label43.TabIndex = 1
+        Me.Label43.Text = "Trainer"
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(52, 29)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(52, 13)
+        Me.Label44.TabIndex = 0
+        Me.Label44.Text = "Pokémon"
+        '
+        'GroupBox32
+        '
+        Me.GroupBox32.Controls.Add(Me.TextBox5)
+        Me.GroupBox32.Controls.Add(Me.Label45)
+        Me.GroupBox32.Location = New System.Drawing.Point(149, 11)
+        Me.GroupBox32.Name = "GroupBox32"
+        Me.GroupBox32.Size = New System.Drawing.Size(138, 54)
+        Me.GroupBox32.TabIndex = 20
+        Me.GroupBox32.TabStop = False
+        Me.GroupBox32.Text = "Type"
+        '
+        'TextBox5
+        '
+        Me.TextBox5.Location = New System.Drawing.Point(46, 22)
+        Me.TextBox5.MaxLength = 11
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(81, 20)
+        Me.TextBox5.TabIndex = 14
+        '
+        'Label45
+        '
+        Me.Label45.AutoSize = True
+        Me.Label45.Location = New System.Drawing.Point(6, 22)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(34, 13)
+        Me.Label45.TabIndex = 13
+        Me.Label45.Text = "Type:"
+        '
+        'GroupBox30
+        '
+        Me.GroupBox30.Controls.Add(Me.Label37)
+        Me.GroupBox30.Controls.Add(Me.Label38)
+        Me.GroupBox30.Controls.Add(Me.Button17)
+        Me.GroupBox30.Controls.Add(Me.Description2)
+        Me.GroupBox30.Controls.Add(Me.Description1)
+        Me.GroupBox30.Controls.Add(Me.Button18)
+        Me.GroupBox30.Controls.Add(Me.Pointer2)
+        Me.GroupBox30.Controls.Add(Me.Pointer1)
+        Me.GroupBox30.Controls.Add(Me.Label39)
+        Me.GroupBox30.Location = New System.Drawing.Point(182, 153)
+        Me.GroupBox30.Name = "GroupBox30"
+        Me.GroupBox30.Size = New System.Drawing.Size(387, 262)
+        Me.GroupBox30.TabIndex = 19
+        Me.GroupBox30.TabStop = False
+        Me.GroupBox30.Text = "Entry Text"
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(110, 228)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(43, 13)
+        Me.Label37.TabIndex = 8
+        Me.Label37.Text = "Length:"
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(110, 104)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(43, 13)
+        Me.Label38.TabIndex = 7
+        Me.Label38.Text = "Length:"
+        '
+        'Button17
+        '
+        Me.Button17.Location = New System.Drawing.Point(9, 123)
+        Me.Button17.Name = "Button17"
+        Me.Button17.Size = New System.Drawing.Size(95, 24)
+        Me.Button17.TabIndex = 6
+        Me.Button17.Text = "Save"
+        Me.Button17.UseVisualStyleBackColor = True
+        '
+        'Description2
+        '
+        Me.Description2.Location = New System.Drawing.Point(110, 144)
+        Me.Description2.Multiline = True
+        Me.Description2.Name = "Description2"
+        Me.Description2.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.Description2.Size = New System.Drawing.Size(261, 81)
+        Me.Description2.TabIndex = 5
+        Me.Description2.WordWrap = False
+        '
+        'Description1
+        '
+        Me.Description1.Location = New System.Drawing.Point(110, 19)
+        Me.Description1.Multiline = True
+        Me.Description1.Name = "Description1"
+        Me.Description1.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.Description1.Size = New System.Drawing.Size(261, 81)
+        Me.Description1.TabIndex = 4
+        Me.Description1.WordWrap = False
+        '
+        'Button18
+        '
+        Me.Button18.Location = New System.Drawing.Point(9, 93)
+        Me.Button18.Name = "Button18"
+        Me.Button18.Size = New System.Drawing.Size(95, 24)
+        Me.Button18.TabIndex = 3
+        Me.Button18.Text = "Repoint"
+        Me.Button18.UseVisualStyleBackColor = True
+        '
+        'Pointer2
+        '
+        Me.Pointer2.Location = New System.Drawing.Point(11, 67)
+        Me.Pointer2.Name = "Pointer2"
+        Me.Pointer2.Size = New System.Drawing.Size(93, 20)
+        Me.Pointer2.TabIndex = 2
+        '
+        'Pointer1
+        '
+        Me.Pointer1.Location = New System.Drawing.Point(11, 41)
+        Me.Pointer1.Name = "Pointer1"
+        Me.Pointer1.Size = New System.Drawing.Size(93, 20)
+        Me.Pointer1.TabIndex = 1
+        '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(8, 19)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(48, 13)
+        Me.Label39.TabIndex = 0
+        Me.Label39.Text = "Pointers:"
+        '
+        'GroupBox29
+        '
+        Me.GroupBox29.Controls.Add(Me.Label27)
+        Me.GroupBox29.Controls.Add(Me.Label28)
+        Me.GroupBox29.Controls.Add(Me.Label29)
+        Me.GroupBox29.Controls.Add(Me.Label30)
+        Me.GroupBox29.Controls.Add(Me.Label31)
+        Me.GroupBox29.Controls.Add(Me.Label32)
+        Me.GroupBox29.Controls.Add(Me.Label33)
+        Me.GroupBox29.Controls.Add(Me.Label34)
+        Me.GroupBox29.Controls.Add(Me.Wght)
+        Me.GroupBox29.Controls.Add(Me.Hght)
+        Me.GroupBox29.Controls.Add(Me.Label35)
+        Me.GroupBox29.Controls.Add(Me.Label36)
+        Me.GroupBox29.Location = New System.Drawing.Point(293, 3)
+        Me.GroupBox29.Name = "GroupBox29"
+        Me.GroupBox29.Size = New System.Drawing.Size(144, 142)
+        Me.GroupBox29.TabIndex = 16
+        Me.GroupBox29.TabStop = False
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(77, 113)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(25, 13)
+        Me.Label27.TabIndex = 13
+        Me.Label27.Text = "      "
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(77, 98)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(28, 13)
+        Me.Label28.TabIndex = 12
+        Me.Label28.Text = "       "
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(77, 54)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(28, 13)
+        Me.Label29.TabIndex = 11
+        Me.Label29.Text = "       "
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(77, 39)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(22, 13)
+        Me.Label30.TabIndex = 10
+        Me.Label30.Text = "     "
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(13, 113)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(46, 13)
+        Me.Label31.TabIndex = 9
+        Me.Label31.Text = "Pounds:"
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(13, 99)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(55, 13)
+        Me.Label32.TabIndex = 8
+        Me.Label32.Text = "Kilograms:"
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(13, 54)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(31, 13)
+        Me.Label33.TabIndex = 7
+        Me.Label33.Text = "Feet:"
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(13, 39)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(42, 13)
+        Me.Label34.TabIndex = 6
+        Me.Label34.Text = "Meters:"
+        '
+        'Wght
+        '
+        Me.Wght.Location = New System.Drawing.Point(77, 75)
+        Me.Wght.Name = "Wght"
+        Me.Wght.Size = New System.Drawing.Size(42, 20)
+        Me.Wght.TabIndex = 5
+        '
+        'Hght
+        '
+        Me.Hght.Location = New System.Drawing.Point(77, 16)
+        Me.Hght.Name = "Hght"
+        Me.Hght.Size = New System.Drawing.Size(42, 20)
+        Me.Hght.TabIndex = 4
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(12, 78)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(44, 13)
+        Me.Label35.TabIndex = 2
+        Me.Label35.Text = "Weight:"
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(13, 16)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(41, 13)
+        Me.Label36.TabIndex = 1
+        Me.Label36.Text = "Height:"
+        '
+        'GroupBox28
+        '
+        Me.GroupBox28.Controls.Add(Me.TextBox4)
+        Me.GroupBox28.Controls.Add(Me.TextBox3)
+        Me.GroupBox28.Controls.Add(Me.Button16)
+        Me.GroupBox28.Controls.Add(Me.Label26)
+        Me.GroupBox28.Controls.Add(Me.Label25)
+        Me.GroupBox28.Location = New System.Drawing.Point(5, 11)
+        Me.GroupBox28.Name = "GroupBox28"
+        Me.GroupBox28.Size = New System.Drawing.Size(138, 106)
+        Me.GroupBox28.TabIndex = 1
+        Me.GroupBox28.TabStop = False
+        Me.GroupBox28.Text = "Pokedex Order"
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(94, 47)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(34, 20)
+        Me.TextBox4.TabIndex = 4
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(94, 19)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(34, 20)
+        Me.TextBox3.TabIndex = 3
+        '
+        'Button16
+        '
+        Me.Button16.Location = New System.Drawing.Point(20, 71)
+        Me.Button16.Name = "Button16"
+        Me.Button16.Size = New System.Drawing.Size(107, 23)
+        Me.Button16.TabIndex = 2
+        Me.Button16.Text = "Save"
+        Me.Button16.UseVisualStyleBackColor = True
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(17, 50)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(77, 13)
+        Me.Label26.TabIndex = 1
+        Me.Label26.Text = "Second Table:"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(17, 22)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(49, 13)
+        Me.Label25.TabIndex = 0
+        Me.Label25.Text = "National:"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.Clr1)
+        Me.GroupBox2.Location = New System.Drawing.Point(149, 71)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(131, 52)
+        Me.GroupBox2.TabIndex = 0
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Color (Base Stats)"
+        '
+        'Clr1
+        '
+        Me.Clr1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Clr1.FormattingEnabled = True
+        Me.Clr1.Items.AddRange(New Object() {"Red", "Blue", "Yellow", "Green", "Black", "Brown", "Purple", "Gray", "White", "Pink"})
+        Me.Clr1.Location = New System.Drawing.Point(6, 19)
+        Me.Clr1.Name = "Clr1"
+        Me.Clr1.Size = New System.Drawing.Size(121, 21)
+        Me.Clr1.TabIndex = 0
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(8, 235)
+        Me.Button1.Location = New System.Drawing.Point(6, 83)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(130, 41)
+        Me.Button1.Size = New System.Drawing.Size(118, 23)
         Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Save"
+        Me.Button1.Text = "Save Pokemon"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'GroupBox18
         '
+        Me.GroupBox18.Controls.Add(Me.Button15)
         Me.GroupBox18.Controls.Add(Me.ChangePKMName)
         Me.GroupBox18.Controls.Add(Me.CurPKMName)
-        Me.GroupBox18.Location = New System.Drawing.Point(8, 157)
+        Me.GroupBox18.Location = New System.Drawing.Point(8, 153)
         Me.GroupBox18.Name = "GroupBox18"
-        Me.GroupBox18.Size = New System.Drawing.Size(130, 72)
+        Me.GroupBox18.Size = New System.Drawing.Size(130, 100)
         Me.GroupBox18.TabIndex = 7
         Me.GroupBox18.TabStop = False
         Me.GroupBox18.Text = "Rename Pokemon"
+        '
+        'Button15
+        '
+        Me.Button15.Location = New System.Drawing.Point(6, 70)
+        Me.Button15.Name = "Button15"
+        Me.Button15.Size = New System.Drawing.Size(118, 23)
+        Me.Button15.TabIndex = 10
+        Me.Button15.Text = "Decap. all names!"
+        Me.Button15.UseVisualStyleBackColor = True
         '
         'ChangePKMName
         '
@@ -1560,16 +2311,17 @@ Partial Class Pokemonedit
         Me.GroupBox19.Controls.Add(Me.PokemonListIndex)
         Me.GroupBox19.Controls.Add(Me.Label24)
         Me.GroupBox19.Controls.Add(Me.PKMNames)
-        Me.GroupBox19.Location = New System.Drawing.Point(8, 49)
+        Me.GroupBox19.Controls.Add(Me.Button1)
+        Me.GroupBox19.Location = New System.Drawing.Point(8, 27)
         Me.GroupBox19.Name = "GroupBox19"
-        Me.GroupBox19.Size = New System.Drawing.Size(130, 98)
+        Me.GroupBox19.Size = New System.Drawing.Size(130, 120)
         Me.GroupBox19.TabIndex = 8
         Me.GroupBox19.TabStop = False
         Me.GroupBox19.Text = "Pokemon Selection"
         '
         'PokemonListIndex
         '
-        Me.PokemonListIndex.Location = New System.Drawing.Point(48, 66)
+        Me.PokemonListIndex.Location = New System.Drawing.Point(45, 50)
         Me.PokemonListIndex.Name = "PokemonListIndex"
         Me.PokemonListIndex.ReadOnly = True
         Me.PokemonListIndex.Size = New System.Drawing.Size(40, 20)
@@ -1578,7 +2330,7 @@ Partial Class Pokemonedit
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(6, 69)
+        Me.Label24.Location = New System.Drawing.Point(3, 53)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(36, 13)
         Me.Label24.TabIndex = 8
@@ -1586,28 +2338,27 @@ Partial Class Pokemonedit
         '
         'PKMNames
         '
-        Me.PKMNames.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.PKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.PKMNames.FormattingEnabled = True
-        Me.PKMNames.Location = New System.Drawing.Point(6, 28)
+        Me.PKMNames.Location = New System.Drawing.Point(6, 19)
         Me.PKMNames.Name = "PKMNames"
         Me.PKMNames.Size = New System.Drawing.Size(118, 21)
         Me.PKMNames.TabIndex = 7
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(8, 282)
+        Me.Button7.Location = New System.Drawing.Point(8, 260)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(130, 41)
+        Me.Button7.Size = New System.Drawing.Size(130, 20)
         Me.Button7.TabIndex = 9
         Me.Button7.Text = "Import Pokemon"
         Me.Button7.UseVisualStyleBackColor = True
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(8, 329)
+        Me.Button8.Location = New System.Drawing.Point(8, 307)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(130, 41)
+        Me.Button8.Size = New System.Drawing.Size(130, 20)
         Me.Button8.TabIndex = 10
         Me.Button8.Text = "Export Pokemon"
         Me.Button8.UseVisualStyleBackColor = True
@@ -1618,33 +2369,118 @@ Partial Class Pokemonedit
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(8, 376)
+        Me.Button9.Location = New System.Drawing.Point(8, 330)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(130, 41)
+        Me.Button9.Size = New System.Drawing.Size(130, 20)
         Me.Button9.TabIndex = 11
-        Me.Button9.Text = "Export All"
+        Me.Button9.Text = "Export All Pokemon"
         Me.Button9.UseVisualStyleBackColor = True
         '
         'ProgressBar
         '
-        Me.ProgressBar.Location = New System.Drawing.Point(148, 455)
+        Me.ProgressBar.Location = New System.Drawing.Point(8, 533)
         Me.ProgressBar.Name = "ProgressBar"
-        Me.ProgressBar.Size = New System.Drawing.Size(600, 16)
+        Me.ProgressBar.Size = New System.Drawing.Size(762, 16)
         Me.ProgressBar.TabIndex = 12
         Me.ProgressBar.Visible = False
+        '
+        'Button14
+        '
+        Me.Button14.Location = New System.Drawing.Point(8, 283)
+        Me.Button14.Name = "Button14"
+        Me.Button14.Size = New System.Drawing.Size(130, 20)
+        Me.Button14.TabIndex = 13
+        Me.Button14.Text = "Import All Pokemon"
+        Me.Button14.UseVisualStyleBackColor = True
+        '
+        'Button25
+        '
+        Me.Button25.Location = New System.Drawing.Point(8, 353)
+        Me.Button25.Name = "Button25"
+        Me.Button25.Size = New System.Drawing.Size(130, 20)
+        Me.Button25.TabIndex = 14
+        Me.Button25.Text = "Import All Sprite sheets"
+        Me.Button25.UseVisualStyleBackColor = True
+        '
+        'Button26
+        '
+        Me.Button26.Location = New System.Drawing.Point(8, 376)
+        Me.Button26.Name = "Button26"
+        Me.Button26.Size = New System.Drawing.Size(130, 20)
+        Me.Button26.TabIndex = 15
+        Me.Button26.Text = "Export All Sprite sheets"
+        Me.Button26.UseVisualStyleBackColor = True
+        '
+        'Button27
+        '
+        Me.Button27.Location = New System.Drawing.Point(8, 424)
+        Me.Button27.Name = "Button27"
+        Me.Button27.Size = New System.Drawing.Size(130, 20)
+        Me.Button27.TabIndex = 17
+        Me.Button27.Text = "Export All Icons"
+        Me.Button27.UseVisualStyleBackColor = True
+        '
+        'Button28
+        '
+        Me.Button28.Location = New System.Drawing.Point(8, 400)
+        Me.Button28.Name = "Button28"
+        Me.Button28.Size = New System.Drawing.Size(130, 20)
+        Me.Button28.TabIndex = 16
+        Me.Button28.Text = "Import All Icons"
+        Me.Button28.UseVisualStyleBackColor = True
+        '
+        'Button29
+        '
+        Me.Button29.Location = New System.Drawing.Point(8, 471)
+        Me.Button29.Name = "Button29"
+        Me.Button29.Size = New System.Drawing.Size(130, 20)
+        Me.Button29.TabIndex = 19
+        Me.Button29.Text = "Export All Footprints"
+        Me.Button29.UseVisualStyleBackColor = True
+        '
+        'Button30
+        '
+        Me.Button30.Location = New System.Drawing.Point(8, 448)
+        Me.Button30.Name = "Button30"
+        Me.Button30.Size = New System.Drawing.Size(130, 20)
+        Me.Button30.TabIndex = 18
+        Me.Button30.Text = "Import All Footprints"
+        Me.Button30.UseVisualStyleBackColor = True
+        '
+        'Label50
+        '
+        Me.Label50.AutoSize = True
+        Me.Label50.Location = New System.Drawing.Point(379, 244)
+        Me.Label50.Name = "Label50"
+        Me.Label50.Size = New System.Drawing.Size(37, 13)
+        Me.Label50.TabIndex = 33
+        Me.Label50.Text = "Value:"
+        '
+        'TextBox6
+        '
+        Me.TextBox6.Location = New System.Drawing.Point(422, 241)
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New System.Drawing.Size(40, 20)
+        Me.TextBox6.TabIndex = 34
         '
         'Pokemonedit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(754, 480)
+        Me.ClientSize = New System.Drawing.Size(782, 561)
+        Me.Controls.Add(Me.Button29)
+        Me.Controls.Add(Me.Button30)
+        Me.Controls.Add(Me.Button27)
+        Me.Controls.Add(Me.Button28)
+        Me.Controls.Add(Me.Button26)
+        Me.Controls.Add(Me.Button25)
+        Me.Controls.Add(Me.Button14)
         Me.Controls.Add(Me.ProgressBar)
         Me.Controls.Add(Me.Button9)
-        Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
+        Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.GroupBox19)
         Me.Controls.Add(Me.GroupBox18)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -1654,6 +2490,14 @@ Partial Class Pokemonedit
         Me.Text = "Pokemon Editor"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
+        Me.GroupBox26.ResumeLayout(False)
+        Me.GroupBox26.PerformLayout()
+        Me.GroupBox33.ResumeLayout(False)
+        Me.GroupBox33.PerformLayout()
+        CType(Me.BackgroundBox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EnemyAltitudeSelect, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EnemyYSelect, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PlayerYSelect, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox21.ResumeLayout(False)
         Me.GroupBox21.PerformLayout()
         Me.GroupBox20.ResumeLayout(False)
@@ -1664,14 +2508,20 @@ Partial Class Pokemonedit
         CType(Me.IconPicBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox15.PerformLayout()
+        CType(Me.AniPic2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AniPic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox14.ResumeLayout(False)
         Me.GroupBox14.PerformLayout()
+        CType(Me.BckPic2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FrntPic2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BckPic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FrntPic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
+        Me.GroupBox11.ResumeLayout(False)
+        Me.GroupBox11.PerformLayout()
+        Me.GroupBox27.ResumeLayout(False)
+        Me.GroupBox27.PerformLayout()
+        Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox13.ResumeLayout(False)
         Me.GroupBox13.PerformLayout()
         Me.GroupBox12.ResumeLayout(False)
@@ -1680,6 +2530,8 @@ Partial Class Pokemonedit
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox9.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox4.ResumeLayout(False)
@@ -1687,7 +2539,6 @@ Partial Class Pokemonedit
         CType(Me.HeldItem1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
         Me.GroupBox17.ResumeLayout(False)
         Me.GroupBox17.PerformLayout()
@@ -1702,10 +2553,20 @@ Partial Class Pokemonedit
         Me.GroupBox23.ResumeLayout(False)
         Me.GroupBox22.ResumeLayout(False)
         Me.GroupBox22.PerformLayout()
-        Me.TabPage5.ResumeLayout(False)
-        Me.GroupBox11.ResumeLayout(False)
-        Me.GroupBox11.PerformLayout()
-        Me.GroupBox8.ResumeLayout(False)
+        Me.TabPage6.ResumeLayout(False)
+        Me.GroupBox31.ResumeLayout(False)
+        Me.GroupBox31.PerformLayout()
+        CType(Me.RSEDexTrainer, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RSEDexPoke, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox32.ResumeLayout(False)
+        Me.GroupBox32.PerformLayout()
+        Me.GroupBox30.ResumeLayout(False)
+        Me.GroupBox30.PerformLayout()
+        Me.GroupBox29.ResumeLayout(False)
+        Me.GroupBox29.PerformLayout()
+        Me.GroupBox28.ResumeLayout(False)
+        Me.GroupBox28.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox18.ResumeLayout(False)
         Me.GroupBox18.PerformLayout()
         Me.GroupBox19.ResumeLayout(False)
@@ -1849,7 +2710,6 @@ Partial Class Pokemonedit
     Friend WithEvents Label23 As System.Windows.Forms.Label
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
-    Friend WithEvents TabPage5 As System.Windows.Forms.TabPage
     Friend WithEvents GroupBox11 As System.Windows.Forms.GroupBox
     Friend WithEvents SHVal As System.Windows.Forms.TextBox
     Friend WithEvents SHCombo1 As System.Windows.Forms.ComboBox
@@ -1861,4 +2721,82 @@ Partial Class Pokemonedit
     Friend WithEvents PokemonListIndex As TextBox
     Friend WithEvents Label24 As Label
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Button14 As Button
+    Friend WithEvents Button15 As Button
+    Friend WithEvents GroupBox26 As GroupBox
+    Friend WithEvents ItmAnmtn As TextBox
+    Friend WithEvents GroupBox27 As GroupBox
+    Friend WithEvents PadBase As TextBox
+    Friend WithEvents TabPage6 As TabPage
+    Friend WithEvents GroupBox28 As GroupBox
+    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents Button16 As Button
+    Friend WithEvents Label26 As Label
+    Friend WithEvents Label25 As Label
+    Friend WithEvents GroupBox29 As GroupBox
+    Friend WithEvents Label27 As Label
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Label29 As Label
+    Friend WithEvents Label30 As Label
+    Friend WithEvents Label31 As Label
+    Friend WithEvents Label32 As Label
+    Friend WithEvents Label33 As Label
+    Friend WithEvents Label34 As Label
+    Friend WithEvents Wght As TextBox
+    Friend WithEvents Hght As TextBox
+    Friend WithEvents Label35 As Label
+    Friend WithEvents Label36 As Label
+    Friend WithEvents GroupBox30 As GroupBox
+    Friend WithEvents Label37 As Label
+    Friend WithEvents Label38 As Label
+    Friend WithEvents Button17 As Button
+    Friend WithEvents Description2 As TextBox
+    Friend WithEvents Description1 As TextBox
+    Friend WithEvents Button18 As Button
+    Friend WithEvents Pointer2 As TextBox
+    Friend WithEvents Pointer1 As TextBox
+    Friend WithEvents Label39 As Label
+    Friend WithEvents GroupBox32 As GroupBox
+    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents Label45 As Label
+    Friend WithEvents GroupBox31 As GroupBox
+    Friend WithEvents Offset_1 As TextBox
+    Friend WithEvents Label40 As Label
+    Friend WithEvents Label41 As Label
+    Friend WithEvents Offset_2 As TextBox
+    Friend WithEvents Label42 As Label
+    Friend WithEvents Scale2 As TextBox
+    Friend WithEvents Scale1 As TextBox
+    Friend WithEvents Label43 As Label
+    Friend WithEvents Label44 As Label
+    Friend WithEvents RSEDexPoke As PictureBox
+    Friend WithEvents RSEDexTrainer As PictureBox
+    Friend WithEvents CryPointer2 As TextBox
+    Friend WithEvents Label46 As Label
+    Friend WithEvents GroupBox33 As GroupBox
+    Friend WithEvents Label49 As Label
+    Friend WithEvents Label48 As Label
+    Friend WithEvents Label47 As Label
+    Friend WithEvents EnemyAltitudeSelect As NumericUpDown
+    Friend WithEvents EnemyYSelect As NumericUpDown
+    Friend WithEvents PlayerYSelect As NumericUpDown
+    Friend WithEvents BackgroundBox As PictureBox
+    Friend WithEvents Button19 As Button
+    Friend WithEvents Button20 As Button
+    Friend WithEvents BckPic2 As PictureBox
+    Friend WithEvents FrntPic2 As PictureBox
+    Friend WithEvents AniPic2 As PictureBox
+    Friend WithEvents Button22 As Button
+    Friend WithEvents Button21 As Button
+    Friend WithEvents Button24 As Button
+    Friend WithEvents Button23 As Button
+    Friend WithEvents Button25 As Button
+    Friend WithEvents Button26 As Button
+    Friend WithEvents Button27 As Button
+    Friend WithEvents Button28 As Button
+    Friend WithEvents Button29 As Button
+    Friend WithEvents Button30 As Button
+    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents Label50 As Label
 End Class

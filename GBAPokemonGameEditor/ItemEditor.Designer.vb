@@ -43,6 +43,8 @@ Partial Class ItemEditor
         Me.DsrptnTextBox = New System.Windows.Forms.TextBox()
         Me.DescribPointTextBox = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.HoldEffectTextBox = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -61,8 +63,6 @@ Partial Class ItemEditor
         Me.BattleUsagePTTextBox = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.BUTextBox = New System.Windows.Forms.TextBox()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Button6 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.ItemImagePictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,7 +90,6 @@ Partial Class ItemEditor
         '
         'ItemListComboBox
         '
-        Me.ItemListComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.ItemListComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ItemListComboBox.FormattingEnabled = True
         Me.ItemListComboBox.Location = New System.Drawing.Point(18, 19)
@@ -251,6 +250,25 @@ Partial Class ItemEditor
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Description Pointer:"
         '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label21.Location = New System.Drawing.Point(14, 149)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(43, 13)
+        Me.Label21.TabIndex = 33
+        Me.Label21.Text = "Length:"
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(104, 162)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(67, 20)
+        Me.Button6.TabIndex = 32
+        Me.Button6.Text = "Save"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -397,25 +415,6 @@ Partial Class ItemEditor
         Me.BUTextBox.Name = "BUTextBox"
         Me.BUTextBox.Size = New System.Drawing.Size(25, 20)
         Me.BUTextBox.TabIndex = 50
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label21.Location = New System.Drawing.Point(14, 149)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(43, 13)
-        Me.Label21.TabIndex = 33
-        Me.Label21.Text = "Length:"
-        '
-        'Button6
-        '
-        Me.Button6.Location = New System.Drawing.Point(104, 162)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(67, 20)
-        Me.Button6.TabIndex = 32
-        Me.Button6.Text = "Save"
-        Me.Button6.UseVisualStyleBackColor = True
         '
         'ItemEditor
         '

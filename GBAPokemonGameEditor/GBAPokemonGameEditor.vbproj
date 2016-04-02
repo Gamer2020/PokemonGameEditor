@@ -159,6 +159,7 @@
     <Compile Include="BattleFrontierEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ChangeImageFunctions.vb" />
     <Compile Include="ChangeNameFunctions.vb" />
     <Compile Include="EggMoveEditor.Designer.vb">
       <DependentUpon>EggMoveEditor.vb</DependentUpon>
@@ -166,6 +167,7 @@
     <Compile Include="EggMoveEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ExportDataFunctions.vb" />
     <Compile Include="GetImageFunctions.vb" />
     <Compile Include="GetNameFunctions.vb" />
     <Compile Include="HabitatEditor.Designer.vb">
@@ -175,6 +177,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HexFunctions.vb" />
+    <Compile Include="ImportDataFunctions.vb" />
     <Compile Include="InputAttacks.Designer.vb">
       <DependentUpon>InputAttacks.vb</DependentUpon>
     </Compile>
@@ -269,6 +272,8 @@
     <Compile Include="TMHMEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="WichuRomFunctions.vb" />
+    <Compile Include="WichuSpriteFunctions.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AbilityAdder.resx">

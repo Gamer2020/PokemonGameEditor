@@ -39,7 +39,6 @@ Partial Class movetutor2
         '
         'Combo1
         '
-        Me.Combo1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.Combo1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.Combo1.FormattingEnabled = True
         Me.Combo1.Location = New System.Drawing.Point(54, 152)

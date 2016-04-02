@@ -61,7 +61,7 @@ Partial Class PokedexOrderEditor
         Me.GroupBox2.Size = New System.Drawing.Size(152, 105)
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "National/Regional"
+        Me.GroupBox2.Text = "National"
         '
         'ListBox2
         '
@@ -80,7 +80,7 @@ Partial Class PokedexOrderEditor
         Me.GroupBox3.Size = New System.Drawing.Size(152, 105)
         Me.GroupBox3.TabIndex = 3
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "????"
+        Me.GroupBox3.Text = "Second Table"
         '
         'ListBox3
         '

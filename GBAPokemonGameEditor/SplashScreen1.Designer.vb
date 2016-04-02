@@ -35,6 +35,7 @@ Partial Class SplashScreen1
         Me.PictureBox1.Size = New System.Drawing.Size(800, 300)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
+        Me.PictureBox1.WaitOnLoad = True
         '
         'SplashScreen1
         '
@@ -53,6 +54,5 @@ Partial Class SplashScreen1
         Me.ResumeLayout(False)
 
     End Sub
-
     Friend WithEvents PictureBox1 As PictureBox
 End Class

@@ -193,6 +193,188 @@ Module GetImageFunctions
 
     End Sub
 
+    Public Function GetFrontPokemonPicToBitmap(ByVal index As Integer, Optional ShowBackcolor As Boolean = True) As Bitmap
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonFrontSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 64, ShowBackcolor)
+        GetFrontPokemonPicToBitmap = bSprite
+
+    End Function
+
+    Public Function GetShinyFrontPokemonPicToBitmap(ByVal index As Integer, Optional ShowBackcolor As Boolean = True) As Bitmap
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonFrontSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonShinyPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 64, ShowBackcolor)
+        GetShinyFrontPokemonPicToBitmap = bSprite
+
+    End Function
+
+    Public Function GetFrontPokemonPicToByteArray(ByVal index As Integer) As Byte()
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonFrontSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+            End Using
+        End Using
+        bSprite = LoadSprite(Image, Palette32, 64, 64, 0)
+        LoadBitmapFromArray(Image, Palette32, bSprite, 64, 64)
+        'bSprite = LoadSprite(Image, Palette32, 64, 64, 0)
+        GetFrontPokemonPicToByteArray = SaveBitmapToArray(bSprite, Palette32)
+
+    End Function
+
+    Public Sub GetAndDrawFrontPokemonPicBLACK(ByVal picBox As PictureBox, ByVal index As Integer)
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonFrontSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+                Palette32(1) = Color.Black
+                Palette32(2) = Color.Black
+                Palette32(3) = Color.Black
+                Palette32(4) = Color.Black
+                Palette32(5) = Color.Black
+                Palette32(6) = Color.Black
+                Palette32(7) = Color.Black
+                Palette32(8) = Color.Black
+                Palette32(9) = Color.Black
+                Palette32(10) = Color.Black
+                Palette32(11) = Color.Black
+                Palette32(12) = Color.Black
+                Palette32(13) = Color.Black
+                Palette32(14) = Color.Black
+                Palette32(15) = Color.Black
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 64, GetString(AppPath & "GBAPGESettings.ini", "Settings", "TransparentImages", "0"))
+        picBox.Image = bSprite
+        picBox.Refresh()
+
+    End Sub
+
+    Public Sub GetAndDrawFrontPokemonPicShiny(ByVal picBox As PictureBox, ByVal index As Integer)
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonFrontSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonShinyPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 64, GetString(AppPath & "GBAPGESettings.ini", "Settings", "TransparentImages", "0"))
+        picBox.Image = bSprite
+        picBox.Refresh()
+
+    End Sub
+
     Public Sub GetAndDrawBackPokemonPic(ByVal picBox As PictureBox, ByVal index As Integer)
         Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonBackSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
         Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonShinyPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
@@ -227,9 +409,242 @@ Module GetImageFunctions
 
     End Sub
 
+    Public Function GetBackPokemonPicToBitmap(ByVal index As Integer, Optional ShowBackcolor As Boolean = True) As Bitmap
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonBackSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonShinyPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 64, ShowBackcolor)
+        GetBackPokemonPicToBitmap = bSprite
+
+    End Function
+
+    Public Function GetNormalBackPokemonPicToBitmap(ByVal index As Integer, Optional ShowBackcolor As Boolean = True) As Bitmap
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonBackSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 64, ShowBackcolor)
+        GetNormalBackPokemonPicToBitmap = bSprite
+
+    End Function
+
+    Public Sub GetAndDrawBackPokemonPicNormal(ByVal picBox As PictureBox, ByVal index As Integer)
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonBackSprites", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 64, GetString(AppPath & "GBAPGESettings.ini", "Settings", "TransparentImages", "0"))
+        picBox.Image = bSprite
+        picBox.Refresh()
+
+    End Sub
+
     Public Sub GetAndDrawAnimationPokemonPic(ByVal picBox As PictureBox, ByVal index As Integer)
         Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonAnimations", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
         Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 128, GetString(AppPath & "GBAPGESettings.ini", "Settings", "TransparentImages", "0"))
+        picBox.Image = bSprite
+        picBox.Refresh()
+
+    End Sub
+
+    Public Function GetNormalAnimationPokemonPicToBitmap(ByVal index As Integer, Optional ShowBackcolor As Boolean = True) As Bitmap
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonAnimations", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 128, ShowBackcolor)
+        GetNormalAnimationPokemonPicToBitmap = bSprite
+
+    End Function
+
+    Public Function GetShinyAnimationPokemonPicToBitmap(ByVal index As Integer, Optional ShowBackcolor As Boolean = True) As Bitmap
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonAnimations", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonShinyPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 128, ShowBackcolor)
+        GetShinyAnimationPokemonPicToBitmap = bSprite
+
+    End Function
+
+    Public Function GetAnimationPicToByteArray(ByVal index As Integer) As Byte()
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonAnimations", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonNormalPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+            End Using
+        End Using
+        bSprite = LoadSprite(Image, Palette32, 64, 128, 0)
+        LoadBitmapFromArray(Image, Palette32, bSprite, 64, 128)
+        'bSprite = LoadSprite(Image, Palette32, 64, 64, 0)
+        GetAnimationPicToByteArray = SaveBitmapToArray(bSprite, Palette32)
+
+    End Function
+
+    Public Sub GetAndDrawAnimationPokemonPicShiny(ByVal picBox As PictureBox, ByVal index As Integer)
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonAnimations", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon front sprites, + 8 = Bulbasaur.
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "PokemonShinyPal", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8) 'Pointer to Pokemon normal palettes, + 8 = Bulbasaur.
         Dim Temp(&HFFF) As Byte
         Dim Image(&HFFFF) As Byte
         Dim Palette15(&HFFF) As Byte
@@ -432,7 +847,7 @@ ErrorHandle:
     End Function
 
     Public Sub GetAndDrawPokemonIconPic(ByVal picBox As PictureBox, ByVal index As Integer, ByVal palindex As Integer)
-        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPointerTable", ""), System.Globalization.NumberStyles.HexNumber) + (4 + (index * 4))
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPointerTable", ""), System.Globalization.NumberStyles.HexNumber) + ((index * 4))
         Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPals", ""), System.Globalization.NumberStyles.HexNumber) + (palindex * 32)
         Dim Temp(&HFFF) As Byte
         Dim Image(&HFFFF) As Byte
@@ -466,13 +881,44 @@ ErrorHandle:
 
     End Sub
 
+    Public Function GetAndDrawPokemonIconToBitmap(ByVal index As Integer, ByVal palindex As Integer, Optional ShowBackColor As Boolean = False) As Bitmap
+
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPointerTable", ""), System.Globalization.NumberStyles.HexNumber) + ((index * 4))
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPals", ""), System.Globalization.NumberStyles.HexNumber) + (palindex * 32)
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                'LZ77UnComp(Temp, Image)
+                Image = Temp
+
+                ReDim Temp(&HFFF)
+                'fs.Position = pOffset
+                'pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                'LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Temp)
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 32, 64, ShowBackColor)
+        GetAndDrawPokemonIconToBitmap = bSprite
+
+    End Function
+
     Public Function Load2BPSprite16By16(ByRef Bits() As Byte, ByVal Palette() As Color) As Bitmap
-        On Error GoTo ErrorHandle
-        Dim x1 As Integer, y1 As Integer
-        Dim x2 As Integer, y2 As Integer
+
         Dim bmpTiles As New Bitmap(16, 16)
-        Dim Temp As Byte
-        Dim i As Integer
 
         Dim sideways As Integer = 0
         Dim updown As Integer = 0
@@ -595,10 +1041,84 @@ ErrorHandle:
             End Using
         End Using
 
-        Palette32(0) = Color.White
+        Palette32(0) = Color.Transparent
         Palette32(1) = Color.Black
 
         bSprite = Load2BPSprite16By16(Image, Palette32)
+        picBox.Image = bSprite
+        picBox.Refresh()
+
+    End Sub
+
+    Public Function GetPokemonFootPrintToBitmap(ByVal index As Integer) As Bitmap
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "FootPrintTable", ""), System.Globalization.NumberStyles.HexNumber) + ((index * 4))
+        Dim Temp(&HFF) As Byte
+        Dim Image(&HFF) As Byte
+        Dim Palette32(1) As Color
+        Dim bSprite As Bitmap
+
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFF)
+                Image = Temp
+            End Using
+        End Using
+
+        Palette32(0) = Color.Transparent
+        Palette32(1) = Color.Black
+
+        bSprite = Load2BPSprite16By16(Image, Palette32)
+        GetPokemonFootPrintToBitmap = bSprite
+
+    End Function
+
+    Public Sub GetAndDrawTrainerPicBLACK(ByVal picBox As PictureBox, ByVal index As Integer)
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "TrainerImageTable", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8)
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "TrainerPaletteTable", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8)
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+                Palette32(1) = Color.Black
+                Palette32(2) = Color.Black
+                Palette32(3) = Color.Black
+                Palette32(4) = Color.Black
+                Palette32(5) = Color.Black
+                Palette32(6) = Color.Black
+                Palette32(7) = Color.Black
+                Palette32(8) = Color.Black
+                Palette32(9) = Color.Black
+                Palette32(10) = Color.Black
+                Palette32(11) = Color.Black
+                Palette32(12) = Color.Black
+                Palette32(13) = Color.Black
+                Palette32(14) = Color.Black
+                Palette32(15) = Color.Black
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 64, GetString(AppPath & "GBAPGESettings.ini", "Settings", "TransparentImages", "0"))
         picBox.Image = bSprite
         picBox.Refresh()
 
