@@ -74,11 +74,13 @@ Public Class Pokemonedit
 
         NewAt.Items.Clear()
 
+        ComboBox3.Items.Clear()
+
         While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1 = True
 
 
             NewAt.Items.Add(GetAttackName(LoopVar))
-
+            ComboBox3.Items.Add(GetAttackName(LoopVar))
 
             LoopVar = LoopVar + 1
 
