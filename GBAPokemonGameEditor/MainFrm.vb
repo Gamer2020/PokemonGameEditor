@@ -8,7 +8,7 @@ Imports System.Net
 Public Class MainFrm
 
     Private Sub MainFrm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        On Error Resume Next
+        'On Error Resume Next
 
 
 

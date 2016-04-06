@@ -36,8 +36,10 @@
 
 
         'This should probably be commented out if used for another program!
-        If GetString = "" And GetINIFileLocation() = strFilename Then
-            OutPutError("Error! " & Key & " is missing for ROM " & Section & "!")
+        If LoadedROM <> "" Then
+            If GetString = "" And GetINIFileLocation() = strFilename Then
+                OutPutError("Error! " & Key & " is missing for ROM " & Section & "!")
+            End If
         End If
 
     End Function

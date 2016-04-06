@@ -95,6 +95,10 @@ Improved Item Editor
 
 Item Adder
 
+Port Move table hack to Emerald
+
+Code Pokemon Adder for Emerald
+
 Program Requirements
 ====================
 
