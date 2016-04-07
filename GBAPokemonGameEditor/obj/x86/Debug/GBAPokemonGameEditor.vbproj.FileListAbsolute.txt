@@ -181,3 +181,4 @@ C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x
 C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.AbilityAdder.resources
 C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.RomExpander.resources
 C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.PokemonAdder.resources
+C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.TradeEditor.resources

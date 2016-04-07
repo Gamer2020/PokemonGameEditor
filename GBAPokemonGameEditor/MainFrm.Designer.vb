@@ -83,6 +83,7 @@ Partial Class MainFrm
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button10 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -388,6 +389,7 @@ Partial Class MainFrm
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Button10)
         Me.TabPage2.Controls.Add(Me.Button2)
         Me.TabPage2.Controls.Add(Me.Button6)
         Me.TabPage2.Controls.Add(Me.Button36)
@@ -670,6 +672,16 @@ Partial Class MainFrm
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Copyright © 2016 Gamer2020 All Rights Reserved. "
         '
+        'Button10
+        '
+        Me.Button10.Enabled = False
+        Me.Button10.Location = New System.Drawing.Point(177, 129)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(81, 55)
+        Me.Button10.TabIndex = 48
+        Me.Button10.Text = "Trade Editor"
+        Me.Button10.UseVisualStyleBackColor = True
+        '
         'MainFrm
         '
         Me.AllowDrop = True
@@ -761,4 +773,5 @@ Partial Class MainFrm
     Friend WithEvents Button3 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Button9 As Button
+    Friend WithEvents Button10 As Button
 End Class

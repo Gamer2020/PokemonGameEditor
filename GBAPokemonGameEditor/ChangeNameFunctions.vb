@@ -244,4 +244,51 @@ Module ChangeNameFunctions
             End
         End If
     End Function
+
+    Public Function ChangeTradeNickName(ByVal Index As Integer, ByVal NewName As String)
+        Dim offvar As Integer
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TradeData", "")), System.Globalization.NumberStyles.HexNumber)
+
+        If header3 = "J" Then
+
+        Else
+
+            FileNum = FreeFile()
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+            Dim PokeName As String = "xxxxxxxxxxx"
+            Dim filler As Byte = "&HFF"
+            PokeName = NameAsc2Sapp(NewName)
+            FilePut(FileNum, PokeName, offvar + 1 + (60 * Index))
+            FilePut(FileNum, filler, offvar + 1 + (60 * Index) + Len(NewName))
+
+
+        End If
+        FileClose(FileNum)
+        ChangeTradeNickName = NewName
+    End Function
+
+    Public Function ChangeTradeOTName(ByVal Index As Integer, ByVal NewName As String)
+        Dim offvar As Integer
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TradeData", "")), System.Globalization.NumberStyles.HexNumber)
+
+        If header3 = "J" Then
+
+        Else
+
+            FileNum = FreeFile()
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+            Dim PokeName As String = "xxxxxxx"
+            Dim filler As Byte = "&HFF"
+            PokeName = NameAsc2Sapp(NewName)
+            FilePut(FileNum, PokeName, offvar + 43 + 1 + (60 * Index))
+            FilePut(FileNum, filler, offvar + 43 + 1 + (60 * Index) + Len(NewName))
+
+
+        End If
+        FileClose(FileNum)
+        ChangeTradeOTName = NewName
+    End Function
+
 End Module

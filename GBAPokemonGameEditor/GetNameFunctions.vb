@@ -342,4 +342,62 @@ Module GetNameFunctions
         FileClose(FileNum)
         GetPokedexTypeName = b
     End Function
+
+    Public Function GetTradeNickName(ByVal Index As Integer) As String
+        Dim offvar As Integer
+        Dim stringvar As String = ""
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TradeData", "")), System.Globalization.NumberStyles.HexNumber)
+
+
+        If header3 = "J" Then
+        Else
+            offvar = offvar + 0 + (Index * 60)
+            FileNum = FreeFile()
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+            Dim LabelName As String = "xxxxxxxxxxxx"
+
+
+
+            FileGet(FileNum, LabelName, offvar + 1)
+            stringvar = Sapp2Asc(LabelName, False)
+            While InStr(1, stringvar, "\x") : stringvar = LSet(stringvar, Len(stringvar) - 1) : End While
+            stringvar = LSet(stringvar, Len(stringvar) - 1)
+
+        End If
+
+        FileClose(FileNum)
+
+
+
+        GetTradeNickName = stringvar
+    End Function
+
+    Public Function GetTradeOTName(ByVal Index As Integer) As String
+        Dim offvar As Integer
+        Dim stringvar As String = ""
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TradeData", "")), System.Globalization.NumberStyles.HexNumber)
+
+
+        If header3 = "J" Then
+        Else
+            offvar = offvar + 43 + (Index * 60)
+            FileNum = FreeFile()
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+            Dim LabelName As String = "xxxxxxxx"
+
+
+
+            FileGet(FileNum, LabelName, offvar + 1)
+            stringvar = Sapp2Asc(LabelName, False)
+            While InStr(1, stringvar, "\x") : stringvar = LSet(stringvar, Len(stringvar) - 1) : End While
+            stringvar = LSet(stringvar, Len(stringvar) - 1)
+
+        End If
+
+        FileClose(FileNum)
+
+
+
+        GetTradeOTName = stringvar
+    End Function
 End Module
