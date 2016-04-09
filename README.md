@@ -29,6 +29,8 @@ Screenshots
 
 ![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/12.png)
 
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/13.png)
+
 Features
 =================
 
@@ -80,10 +82,12 @@ Pokemon Icon Importing/Exporting.
 
 Pokemon Footprint Importing/Exporting.
 
+Trade Editor.
+
+Pokedex List Editor.
+
 Planned Features A.K.A TODO List
 =========================
-
-Trade Editor
 
 Trainer Editor
 
@@ -179,6 +183,8 @@ colcolstyles
 RomHackersWorld
 
 DoesntKnowHowToPlay
+
+AkameTheBulbasaur
 
 Downloads
 ================================

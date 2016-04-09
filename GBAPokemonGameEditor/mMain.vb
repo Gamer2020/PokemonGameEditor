@@ -199,4 +199,38 @@ Module mMain
 
     End Function
 
+    Public Function PokedexNumbertoSpecies(DexNumber As Integer)
+        Dim curval As Integer = 0
+
+        Dim bytesloaded As Byte()
+
+        bytesloaded = IO.File.ReadAllBytes(LoadedROM)
+
+        ' If DexNumber = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + ((DexNumber - 1) * 2), 2))), System.Globalization.NumberStyles.HexNumber) Then
+        If DexNumber = Int32.Parse((ReverseHEX(Get2Bytes(bytesloaded, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + ((DexNumber - 1) * 2)))), System.Globalization.NumberStyles.HexNumber) Then
+
+            curval = DexNumber - 1
+
+        Else
+            '  While DexNumber <> Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (curval * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+            While DexNumber <> Int32.Parse((ReverseHEX(Get2Bytes(bytesloaded, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (curval * 2)))), System.Globalization.NumberStyles.HexNumber)
+
+                curval = curval + 1
+            End While
+        End If
+        PokedexNumbertoSpecies = curval + 1
+    End Function
+
+    Public Function Get2Bytes(bytesin As Byte(), local As Integer) As String
+
+        Get2Bytes = MakeProperByte(bytesin(local)) & MakeProperByte(bytesin(local + 1))
+
+    End Function
+
+    Public Function SpeciestoDexNum(species As Integer)
+
+
+        SpeciestoDexNum = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + ((species - 1) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+    End Function
+
 End Module

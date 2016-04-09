@@ -318,6 +318,7 @@ Public Class MainFrm
                 Button8.Enabled = False
                 Button9.Enabled = False
                 Button10.Enabled = False
+                Button11.Enabled = False
                 MessageBox.Show("I haven't added Jap support out of pure lazziness. I will though if it get's highly Demanded.")
             Else
 
@@ -340,6 +341,7 @@ Public Class MainFrm
                 Button8.Enabled = True
                 Button9.Enabled = True
                 Button10.Enabled = True
+                Button11.Enabled = True
             End If
         Else
             Label2.Text = ""
@@ -361,6 +363,7 @@ Public Class MainFrm
             Button8.Enabled = False
             Button9.Enabled = False
             Button10.Enabled = False
+            Button11.Enabled = False
             MessageBox.Show("Not one of the Pokemon games...")
 
         End If
@@ -811,6 +814,14 @@ Public Class MainFrm
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
         Me.Cursor = Cursors.WaitCursor
         TradeEditor.Show()
+        Me.Cursor = Cursors.Arrow
+    End Sub
+
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+        Me.Text = "Please wait... This will take a while..."
+        Me.Cursor = Cursors.WaitCursor
+        PokedexListEditor.Show()
+        Me.Text = "Pokémon Game Editor"
         Me.Cursor = Cursors.Arrow
     End Sub
 End Class
