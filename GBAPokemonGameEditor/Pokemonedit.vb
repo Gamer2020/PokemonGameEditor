@@ -2252,7 +2252,7 @@ Public Class Pokemonedit
 
         TextBox4.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "SecondDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 2), 2))), System.Globalization.NumberStyles.HexNumber)
 
-        If TextBox3.Text < (GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "")) And TextBox3.Text <> 0 Then
+        If Convert.ToInt32(TextBox3.Text) < Convert.ToInt32(GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "")) And Convert.ToInt32(TextBox3.Text) > 0 Then
 
             GroupBox32.Enabled = True
             GroupBox29.Enabled = True
@@ -2320,7 +2320,7 @@ Public Class Pokemonedit
 
         Else
 
-                GroupBox32.Enabled = False
+            GroupBox32.Enabled = False
                 GroupBox29.Enabled = False
                 GroupBox31.Enabled = False
                 GroupBox30.Enabled = False
