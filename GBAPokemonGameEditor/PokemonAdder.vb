@@ -336,7 +336,7 @@ Public Class PokemonAdder
 
             Dim FillerAttackTable As String
 
-            FillerAttackTable = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber) + (252 * 4), 4)
+            FillerAttackTable = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber) + (1 * 4), 4)
 
             PokemonAttackDataBuffer = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber), ((GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) + 0) * 4)
 
