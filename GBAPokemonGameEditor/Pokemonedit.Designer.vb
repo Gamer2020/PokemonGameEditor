@@ -139,6 +139,8 @@ Partial Class Pokemonedit
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GroupBox17 = New System.Windows.Forms.GroupBox()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.Label50 = New System.Windows.Forms.Label()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
@@ -246,8 +248,10 @@ Partial Class Pokemonedit
         Me.Button28 = New System.Windows.Forms.Button()
         Me.Button29 = New System.Windows.Forms.Button()
         Me.Button30 = New System.Windows.Forms.Button()
-        Me.Label50 = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.CryComp1 = New System.Windows.Forms.TextBox()
+        Me.Label51 = New System.Windows.Forms.Label()
+        Me.Label52 = New System.Windows.Forms.Label()
+        Me.CryComp2 = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox26.SuspendLayout()
@@ -458,6 +462,10 @@ Partial Class Pokemonedit
         '
         'GroupBox21
         '
+        Me.GroupBox21.Controls.Add(Me.Label52)
+        Me.GroupBox21.Controls.Add(Me.CryComp2)
+        Me.GroupBox21.Controls.Add(Me.Label51)
+        Me.GroupBox21.Controls.Add(Me.CryComp1)
         Me.GroupBox21.Controls.Add(Me.Label46)
         Me.GroupBox21.Controls.Add(Me.CryPointer2)
         Me.GroupBox21.Controls.Add(Me.Button13)
@@ -468,7 +476,7 @@ Partial Class Pokemonedit
         Me.GroupBox21.Controls.Add(Me.CryPointer)
         Me.GroupBox21.Location = New System.Drawing.Point(6, 253)
         Me.GroupBox21.Name = "GroupBox21"
-        Me.GroupBox21.Size = New System.Drawing.Size(167, 152)
+        Me.GroupBox21.Size = New System.Drawing.Size(167, 201)
         Me.GroupBox21.TabIndex = 5
         Me.GroupBox21.TabStop = False
         Me.GroupBox21.Text = "Cry"
@@ -476,15 +484,15 @@ Partial Class Pokemonedit
         'Label46
         '
         Me.Label46.AutoSize = True
-        Me.Label46.Location = New System.Drawing.Point(7, 98)
+        Me.Label46.Location = New System.Drawing.Point(7, 126)
         Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(70, 13)
+        Me.Label46.Size = New System.Drawing.Size(73, 13)
         Me.Label46.TabIndex = 18
-        Me.Label46.Text = "Growl Pointer"
+        Me.Label46.Text = "Growl Pointer:"
         '
         'CryPointer2
         '
-        Me.CryPointer2.Location = New System.Drawing.Point(83, 95)
+        Me.CryPointer2.Location = New System.Drawing.Point(83, 123)
         Me.CryPointer2.Name = "CryPointer2"
         Me.CryPointer2.Size = New System.Drawing.Size(68, 20)
         Me.CryPointer2.TabIndex = 17
@@ -502,7 +510,7 @@ Partial Class Pokemonedit
         '
         Me.CryConver.Location = New System.Drawing.Point(83, 18)
         Me.CryConver.Name = "CryConver"
-        Me.CryConver.Size = New System.Drawing.Size(67, 20)
+        Me.CryConver.Size = New System.Drawing.Size(68, 20)
         Me.CryConver.TabIndex = 15
         '
         'Label18
@@ -510,26 +518,26 @@ Partial Class Pokemonedit
         Me.Label18.AutoSize = True
         Me.Label18.Location = New System.Drawing.Point(7, 21)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(60, 13)
+        Me.Label18.Size = New System.Drawing.Size(63, 13)
         Me.Label18.TabIndex = 14
-        Me.Label18.Text = "Conversion"
+        Me.Label18.Text = "Conversion:"
         '
         'Label17
         '
         Me.Label17.AutoSize = True
         Me.Label17.Location = New System.Drawing.Point(7, 72)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(58, 13)
+        Me.Label17.Size = New System.Drawing.Size(61, 13)
         Me.Label17.TabIndex = 13
-        Me.Label17.Text = "Cry Pointer"
+        Me.Label17.Text = "Cry Pointer:"
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(83, 124)
+        Me.Button6.Location = New System.Drawing.Point(10, 169)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(68, 21)
+        Me.Button6.Size = New System.Drawing.Size(140, 21)
         Me.Button6.TabIndex = 12
-        Me.Button6.Text = "Repoint"
+        Me.Button6.Text = "Repoint + Save"
         Me.Button6.UseVisualStyleBackColor = True
         '
         'CryPointer
@@ -1473,6 +1481,22 @@ Partial Class Pokemonedit
         Me.GroupBox17.TabIndex = 2
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "Evolutions"
+        '
+        'TextBox6
+        '
+        Me.TextBox6.Location = New System.Drawing.Point(422, 241)
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New System.Drawing.Size(40, 20)
+        Me.TextBox6.TabIndex = 34
+        '
+        'Label50
+        '
+        Me.Label50.AutoSize = True
+        Me.Label50.Location = New System.Drawing.Point(379, 244)
+        Me.Label50.Name = "Label50"
+        Me.Label50.Size = New System.Drawing.Size(37, 13)
+        Me.Label50.TabIndex = 33
+        Me.Label50.Text = "Value:"
         '
         'ComboBox3
         '
@@ -2447,21 +2471,37 @@ Partial Class Pokemonedit
         Me.Button30.Text = "Import All Footprints"
         Me.Button30.UseVisualStyleBackColor = True
         '
-        'Label50
+        'CryComp1
         '
-        Me.Label50.AutoSize = True
-        Me.Label50.Location = New System.Drawing.Point(379, 244)
-        Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(37, 13)
-        Me.Label50.TabIndex = 33
-        Me.Label50.Text = "Value:"
+        Me.CryComp1.Location = New System.Drawing.Point(83, 95)
+        Me.CryComp1.Name = "CryComp1"
+        Me.CryComp1.Size = New System.Drawing.Size(33, 20)
+        Me.CryComp1.TabIndex = 19
         '
-        'TextBox6
+        'Label51
         '
-        Me.TextBox6.Location = New System.Drawing.Point(422, 241)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(40, 20)
-        Me.TextBox6.TabIndex = 34
+        Me.Label51.AutoSize = True
+        Me.Label51.Location = New System.Drawing.Point(7, 98)
+        Me.Label51.Name = "Label51"
+        Me.Label51.Size = New System.Drawing.Size(65, 13)
+        Me.Label51.TabIndex = 20
+        Me.Label51.Text = "Compresion:"
+        '
+        'Label52
+        '
+        Me.Label52.AutoSize = True
+        Me.Label52.Location = New System.Drawing.Point(7, 150)
+        Me.Label52.Name = "Label52"
+        Me.Label52.Size = New System.Drawing.Size(65, 13)
+        Me.Label52.TabIndex = 22
+        Me.Label52.Text = "Compresion:"
+        '
+        'CryComp2
+        '
+        Me.CryComp2.Location = New System.Drawing.Point(83, 147)
+        Me.CryComp2.Name = "CryComp2"
+        Me.CryComp2.Size = New System.Drawing.Size(33, 20)
+        Me.CryComp2.TabIndex = 21
         '
         'Pokemonedit
         '
@@ -2799,4 +2839,8 @@ Partial Class Pokemonedit
     Friend WithEvents Button30 As Button
     Friend WithEvents TextBox6 As TextBox
     Friend WithEvents Label50 As Label
+    Friend WithEvents Label52 As System.Windows.Forms.Label
+    Friend WithEvents CryComp2 As System.Windows.Forms.TextBox
+    Friend WithEvents Label51 As System.Windows.Forms.Label
+    Friend WithEvents CryComp1 As System.Windows.Forms.TextBox
 End Class

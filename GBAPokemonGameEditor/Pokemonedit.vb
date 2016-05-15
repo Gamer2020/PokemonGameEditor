@@ -659,6 +659,8 @@ Public Class Pokemonedit
             CryConver.Text = ""
             CryPointer2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (CryTable3) + (4) + (i * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
+            CryComp1.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable) + (i * 12), 1))), System.Globalization.NumberStyles.HexNumber))
+            CryComp2.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable3) + (i * 12), 1))), System.Globalization.NumberStyles.HexNumber))
 
             CryConver.Enabled = False
             Button13.Enabled = False
@@ -668,7 +670,13 @@ Public Class Pokemonedit
             CryPointer.Text = ""
             CryPointer2.Text = ""
             CryConver.Text = ""
+
+            CryComp1.Text = ""
+            CryComp2.Text = ""
+
         End If
+
+
         If (i + 1) > 276 Then
             GroupBox21.Enabled = True
             CryConver.Enabled = True
@@ -680,6 +688,9 @@ Public Class Pokemonedit
             CryPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable) + (4)) + ((CryConver.Text) * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
             CryPointer2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable3) + (4)) + ((CryConver.Text) * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
+            CryComp1.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, ((CryTable)) + ((CryConver.Text) * 12), 1))), System.Globalization.NumberStyles.HexNumber))
+            CryComp2.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, ((CryTable3)) + ((CryConver.Text) * 12), 1))), System.Globalization.NumberStyles.HexNumber))
 
         End If
 
@@ -1691,8 +1702,13 @@ Public Class Pokemonedit
 
 
         If (i + 1) < 252 Then
+
             WriteHEX(LoadedROM, (CryTable) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
             WriteHEX(LoadedROM, (CryTable3) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+
+            WriteHEX(LoadedROM, (CryTable) + (i * 12), (Hex(Int32.Parse(((CryComp1.Text)), System.Globalization.NumberStyles.HexNumber))))
+            WriteHEX(LoadedROM, (CryTable3) + (i * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
+
         ElseIf (i + 1) > 251 And (i + 1) < 276 Then
 
             MsgBox("This shoudln't be enabled! report it!")
@@ -1701,8 +1717,8 @@ Public Class Pokemonedit
             WriteHEX(LoadedROM, (CryTable) + (4) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
             WriteHEX(LoadedROM, (CryTable3) + (4) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
 
-            'WriteHEX(LoadedROM, (CryTable) + (4) + (((Int32.Parse(("&H" & ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
-            'WriteHEX(LoadedROM, (CryTable3) + (4) + (((Int32.Parse(("&H" & ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+            WriteHEX(LoadedROM, (CryTable) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), (Hex(Int32.Parse(((CryComp1.Text)), System.Globalization.NumberStyles.HexNumber))))
+            WriteHEX(LoadedROM, (CryTable3) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
 
         End If
     End Sub
@@ -3527,4 +3543,5 @@ Public Class Pokemonedit
             Me.BringToFront()
         End If
     End Sub
+
 End Class
