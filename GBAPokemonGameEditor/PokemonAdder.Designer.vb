@@ -40,8 +40,14 @@ Partial Class PokemonAdder
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -193,8 +199,8 @@ Partial Class PokemonAdder
         Me.LinkLabel1.Size = New System.Drawing.Size(265, 69)
         Me.LinkLabel1.TabIndex = 1
         Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "To remain consistent with what other people may have already done this tool uses " &
-    "the research from the folowing thread: http://www.pokecommunity.com/showthread.p" &
+        Me.LinkLabel1.Text = "To remain consistent with what other people may have already done this tool uses " & _
+    "the research from the folowing thread: http://www.pokecommunity.com/showthread.p" & _
     "hp?t=318569"
         '
         'CheckBox1
@@ -211,6 +217,11 @@ Partial Class PokemonAdder
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.CheckBox3)
+        Me.TabPage2.Controls.Add(Me.TextBox4)
+        Me.TabPage2.Controls.Add(Me.Label8)
+        Me.TabPage2.Controls.Add(Me.Label9)
+        Me.TabPage2.Controls.Add(Me.Button2)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -218,6 +229,53 @@ Partial Class PokemonAdder
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Emerald"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.Checked = True
+        Me.CheckBox3.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox3.Location = New System.Drawing.Point(18, 110)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(100, 17)
+        Me.CheckBox3.TabIndex = 18
+        Me.CheckBox3.Text = "Delete Old data"
+        Me.CheckBox3.UseVisualStyleBackColor = True
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(171, 38)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(48, 20)
+        Me.TextBox4.TabIndex = 17
+        Me.TextBox4.Text = "335"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(15, 41)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(140, 13)
+        Me.Label8.TabIndex = 16
+        Me.Label8.Text = "Number of Pokemon to add:"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(15, 16)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(146, 13)
+        Me.Label9.TabIndex = 15
+        Me.Label9.Text = "Number of Pokemon in ROM:"
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(206, 249)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 14
+        Me.Button2.Text = "Add"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'PokemonAdder
         '
@@ -234,6 +292,8 @@ Partial Class PokemonAdder
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -255,4 +315,9 @@ Partial Class PokemonAdder
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
+    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents Button2 As System.Windows.Forms.Button
 End Class

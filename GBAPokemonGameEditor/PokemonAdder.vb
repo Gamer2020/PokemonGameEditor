@@ -1592,4 +1592,97 @@ Public Class PokemonAdder
 
     End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        'Declare buffers I will use for adding stuff.
+
+        Dim countervar As Integer
+
+        Dim PokemonNamesBuffer As String
+        Dim PokemonNamesNewOffset As String
+
+        Dim PokemonDataBuffer As String
+        Dim PokemonDataNewOffset As String
+
+        Dim PokemonAttackDataBuffer As String
+        Dim PokemonAttackDataNewOffset As String
+
+        Dim PokemonFrontSpriteTableBuffer As String
+        Dim PokemonFrontSpriteTableNewOffset As String
+
+        Dim PokemonBackSpriteTableBuffer As String
+        Dim PokemonBackSpriteTableNewOffset As String
+
+        Dim PokemonNormalPalTableBuffer As String
+        Dim PokemonNormalPalTableNewOffset As String
+
+        Dim PokemonShinyPalTableBuffer As String
+        Dim PokemonShinyPalTableNewOffset As String
+
+        Dim PokemonPlayerYTableBuffer As String
+        Dim PokemonPlayerYTableNewOffset As String
+
+        Dim PokemonEnemyYTableBuffer As String
+        Dim PokemonEnemyYTableNewOffset As String
+
+        Dim PokemonAltitudeTableBuffer As String
+        Dim PokemonAltitudeTableNewOffset As String
+
+        Dim PokemonIconTableBuffer As String
+        Dim PokemonIconTableNewOffset As String
+
+        Dim PokemonIconPalTableBuffer As String
+        Dim PokemonIconPalTableNewOffset As String
+
+        Dim PokemonNatDexTableBuffer As String
+        Dim PokemonNatDexTableNewOffset As String
+
+        Dim PokemonSecDexTableBuffer As String
+        Dim PokemonSecDexTableNewOffset As String
+
+        Dim PokedexDataBuffer As String
+        Dim PokedexDataNewOffset As String
+
+        Dim TMCompatabilityBuffer As String
+        Dim TMCompatabilityBufferNewOffset As String
+
+        Dim MoveTutorCompatabilityBuffer As String
+        Dim MoveTutorCompatabilityBufferNewOffset As String
+
+        Dim EvolutionDataBuffer As String
+        Dim EvolutionDataNewOffset As String
+
+        Dim PokemonItemAnimationTableBuffer As String
+        Dim PokemonItemAnimationTableNewOffset As String
+
+        Dim CryTableBuffer As String
+        Dim CryTableNewOffset As String
+
+        Dim CryTable2Buffer As String
+        Dim CryTable2NewOffset As String
+
+        Dim CryConversionTableBuffer As String
+        Dim CryConversionTableNewOffset As String
+
+        Dim PokemonFootPrintTableBuffer As String
+        Dim PokemonFootPrintTableNewOffset As String
+
+        If System.IO.File.Exists((LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini") = True Then
+
+            MsgBox("An INI for this ROM has been detected! Values will be updated as needed.")
+
+        Else
+
+            MsgBox("INI not found! One will now be created for this ROM in the same location as the ROM. Keep the ini with the ROM so that PGE can know the location of the data.")
+
+            File.Copy(AppPath & "ini\roms.ini", (LoadedROM).Substring(0, LoadedROM.Length - 4) & ".ini", True)
+
+
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        Me.Text = "Please Wait..."
+        Me.Refresh()
+
+    End Sub
 End Class
