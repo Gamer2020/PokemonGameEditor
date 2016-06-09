@@ -17,9 +17,21 @@ Public Class AttackEditor
         Dim LoopVar As Integer
         LoopVar = 1
 
-        ComboBox1.Items.Clear()
+        If IO.File.Exists(AppPath & "txt\PGETypeList.txt") Then
 
-        ComboBox1.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGETypeList.txt"))
+            ComboBox1.Items.Clear()
+
+            ComboBox1.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGETypeList.txt"))
+
+        End If
+
+        If IO.File.Exists(AppPath & "txt\PGEAttackEffects.txt") Then
+
+            Effects.Items.Clear()
+
+            Effects.Items.AddRange(IO.File.ReadAllLines(AppPath & "txt\PGEAttackEffects.txt"))
+
+        End If
 
         ComboBox3.Items.Clear()
 

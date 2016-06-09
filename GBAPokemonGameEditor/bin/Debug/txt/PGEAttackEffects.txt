@@ -1,0 +1,256 @@
+No Effect
+Puts target to sleep
+Poisons target
+Absorbs half of inflicted damage
+Burns Targer
+Freezes target
+Paralyzes target
+User Faints
+Absorbs half damage on sleeping target
+Mirror Move
+Raises user's Attack
+Raises user's Defense
+Raises user's Speed
+Raises user's Special Attack
+Raises user's Special Defense
+15
+Raises user's Evasion
+Attack Never Misses
+Lowers opponent's Attack
+Lowers opponent's Defense
+Lowers opponent's Speed
+Lowers opponent's Special Attack
+Lowers opponent's Special Defense
+Lowers opponent's Accuracy
+Lowers opponent's Evasion
+Haze
+Bide
+Thrash/Petal Dance/Outrage
+Opponent's Pokemon forced out
+Happens 2-5 times
+Conversion
+May cause flinching
+Recover half of maximum HP
+Badly poison target
+Pay Day
+Light screen
+may freeze, paralyze, or burn
+Rest
+1-hit KO
+Two turns plus high critical hit ratio
+Cuts target's HP in half
+Always do 40
+Bind/Fire Spin/Clamp/Whirlpool effect
+High critical hit ratio
+Hits twice
+If miss, then user receives 1/8 of damage it would have dealt
+Stops stat changes
+Raises user's critical-hit ratio
+1/4 Recoil
+Confuses Target
+sharply raises users Attack
+sharply raises users Defense
+sharply raises users Speed
+sharply raises users Special Attack
+sharply raises users Special Defense
+55
+56
+Transform
+Sharply reduces foe's Attack
+Sharply reduces foe's Defense
+Sharply reduces foe's Speed
+Sharply reduces foe's Special Attack
+Sharply reduces fow's Special Defense
+63
+64
+Reflect
+Poisons target
+Paralyzes target
+Lower opponent's Attack
+Lower opponent's Defense
+Lower opponent's Speed
+Lower opponent's Special Attack
+Lower opponent's Special Defense
+Lower opponent's Accuracy
+74
+Two-Turn may cause Flinching
+May confuse target
+Two-Turn may cause Poison
+Doesn't miss, User goes second
+Substitute
+Immobile next turn
+Raises user attack everytime user is hit
+Mimic
+Metronome
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+Sharply lowers SP. ATK.
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
