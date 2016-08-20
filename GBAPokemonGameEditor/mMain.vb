@@ -5,6 +5,7 @@
 Module mMain
 
     Public LoadedROM As String
+    'Public ledrom As ROM
     Public AppPath As String = System.AppDomain.CurrentDomain.BaseDirectory() & IIf(Right(System.AppDomain.CurrentDomain.BaseDirectory(), 1) = "\", "", "\")
     Public i As Integer
     Public FileNum As Integer
@@ -14,6 +15,9 @@ Module mMain
     Public lwut As String
     Public SkipVar As Integer
     Public x As Integer
+
+    Public crynorm As New Cry()
+    Public crygrowl As New Cry()
 
     'For Map Edit
     Public Point2MapBankPointers As String

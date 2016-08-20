@@ -6,6 +6,7 @@ Imports System.Net
 Imports VB = Microsoft.VisualBasic
 
 Public Class Pokemonedit
+
     Dim baseoff As Integer
     Dim FrontSpritePointers As Integer
     Dim BackSpritePointers As Integer
@@ -35,6 +36,8 @@ Public Class Pokemonedit
 
 
     Private Sub Pokemonedit_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        ' ledrom = New ROM(LoadedROM)
 
         Type1.Items.Clear()
         Type2.Items.Clear()
@@ -655,6 +658,10 @@ Public Class Pokemonedit
         'cry stuff with conversion table support
         If (i + 1) < 252 Then
             GroupBox21.Enabled = True
+            GroupBox34.Enabled = True
+            GroupBox35.Enabled = True
+
+
             CryPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (CryTable) + (4) + (i * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
             CryConver.Text = ""
             CryPointer2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (CryTable3) + (4) + (i * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
@@ -662,17 +669,43 @@ Public Class Pokemonedit
             CryComp1.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable) + (i * 12), 1))), System.Globalization.NumberStyles.HexNumber))
             CryComp2.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable3) + (i * 12), 1))), System.Globalization.NumberStyles.HexNumber))
 
+            crynorm = LoadCry(i, CryTable)
+            crygrowl = LoadCry(i, CryTable3)
+
+            Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
+            Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
+
+
+            Label55.Text = "Size: " & crynorm.Size & " samples"
+            Label56.Text = "Size: " & crygrowl.Size & " samples"
+
+            'Label53.Text = "Sample Rate: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer.Text) + (4), 4)))), System.Globalization.NumberStyles.HexNumber)) >> 10) & " Hz"
+            'Label54.Text = "Sample Rate: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer2.Text) + (4), 4)))), System.Globalization.NumberStyles.HexNumber)) >> 10) & " Hz"
+
+            'Label55.Text = "Size: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer.Text) + (12), 4)))), System.Globalization.NumberStyles.HexNumber)) + 1) & " samples"
+            'Label56.Text = "Size: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer2.Text) + (12), 4)))), System.Globalization.NumberStyles.HexNumber)) + 1) & " samples"
+
             CryConver.Enabled = False
             Button13.Enabled = False
+
+
         ElseIf (i + 1) > 251 And (i + 1) <= 276 Then
 
             GroupBox21.Enabled = False
+            GroupBox34.Enabled = False
+            GroupBox35.Enabled = False
             CryPointer.Text = ""
             CryPointer2.Text = ""
             CryConver.Text = ""
 
             CryComp1.Text = ""
             CryComp2.Text = ""
+
+            Label53.Text = "Sample Rate: " & 0 & " Hz"
+            Label54.Text = "Sample Rate: " & 0 & " Hz"
+
+            Label55.Text = "Size: 0 samples"
+            Label56.Text = "Size: 0 samples"
 
         End If
 
@@ -681,6 +714,8 @@ Public Class Pokemonedit
             GroupBox21.Enabled = True
             CryConver.Enabled = True
             Button13.Enabled = True
+            GroupBox34.Enabled = True
+            GroupBox35.Enabled = True
 
             ' MsgBox((CryTable2) + ((i - 276) * 2))
             CryConver.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
@@ -689,8 +724,15 @@ Public Class Pokemonedit
 
             CryPointer2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable3) + (4)) + ((CryConver.Text) * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
-            CryComp1.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, ((CryTable)) + ((CryConver.Text) * 12), 1))), System.Globalization.NumberStyles.HexNumber))
-            CryComp2.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, ((CryTable3)) + ((CryConver.Text) * 12), 1))), System.Globalization.NumberStyles.HexNumber))
+            crynorm = LoadCry(CryConver.Text, CryTable)
+            crygrowl = LoadCry(CryConver.Text, CryTable3)
+
+            Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
+            Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
+
+
+            Label55.Text = "Size: " & crynorm.Size & " samples"
+            Label56.Text = "Size: " & crygrowl.Size & " samples"
 
         End If
 
@@ -991,7 +1033,7 @@ Public Class Pokemonedit
 
         End If
 
-  
+
     End Sub
 
     Private Sub EvoPKMNames_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EvoPKMNames.SelectedIndexChanged
@@ -1704,10 +1746,20 @@ Public Class Pokemonedit
         If (i + 1) < 252 Then
 
             WriteHEX(LoadedROM, (CryTable) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
-            WriteHEX(LoadedROM, (CryTable3) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+            ' WriteHEX(LoadedROM, (CryTable3) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
 
             WriteHEX(LoadedROM, (CryTable) + (i * 12), (Hex(Int32.Parse(((CryComp1.Text)), System.Globalization.NumberStyles.HexNumber))))
-            WriteHEX(LoadedROM, (CryTable3) + (i * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
+            'WriteHEX(LoadedROM, (CryTable3) + (i * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
+
+            crynorm = LoadCry(i, CryTable)
+            crygrowl = LoadCry(i, CryTable3)
+
+            Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
+            Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
+
+
+            Label55.Text = "Size: " & crynorm.Size & " samples"
+            Label56.Text = "Size: " & crygrowl.Size & " samples"
 
         ElseIf (i + 1) > 251 And (i + 1) < 276 Then
 
@@ -1715,10 +1767,20 @@ Public Class Pokemonedit
         ElseIf (i + 1) > 276 Then
 
             WriteHEX(LoadedROM, (CryTable) + (4) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
-            WriteHEX(LoadedROM, (CryTable3) + (4) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+            ' WriteHEX(LoadedROM, (CryTable3) + (4) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
 
             WriteHEX(LoadedROM, (CryTable) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), (Hex(Int32.Parse(((CryComp1.Text)), System.Globalization.NumberStyles.HexNumber))))
-            WriteHEX(LoadedROM, (CryTable3) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
+            'WriteHEX(LoadedROM, (CryTable3) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
+
+            crynorm = LoadCry(((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))), CryTable)
+            crygrowl = LoadCry(((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))), CryTable3)
+
+            Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
+            Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
+
+
+            Label55.Text = "Size: " & crynorm.Size & " samples"
+            Label56.Text = "Size: " & crygrowl.Size & " samples"
 
         End If
     End Sub
@@ -2040,10 +2102,24 @@ Public Class Pokemonedit
 
             CryPointer.Text = Hex(Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, ((CryTable) + (4)) + ((CryConver.Text) * 12), 4)), System.Globalization.NumberStyles.HexNumber) - &H8000000)
             CryPointer2.Text = Hex(Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, ((CryTable3) + (4)) + ((CryConver.Text) * 12), 4)), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
+            'Label53.Text = "Sample Rate: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer.Text) + (4), 4)))), System.Globalization.NumberStyles.HexNumber)) >> 10) & " Hz"
+            'Label54.Text = "Sample Rate: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer2.Text) + (4), 4)))), System.Globalization.NumberStyles.HexNumber)) >> 10) & " Hz"
+
+            crynorm = LoadCry(CryConver.Text, CryTable)
+            crygrowl = LoadCry(CryConver.Text, CryTable3)
+
+            Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
+            Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
+
+
+            Label55.Text = "Size: " & crynorm.Size & " samples"
+            Label56.Text = "Size: " & crygrowl.Size & " samples"
+
         End If
     End Sub
 
-    Private Sub CryPointer_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CryPointer.TextChanged
+    Private Sub CryPointer_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
     End Sub
 
@@ -2340,9 +2416,9 @@ Public Class Pokemonedit
         Else
 
             GroupBox32.Enabled = False
-                GroupBox29.Enabled = False
-                GroupBox31.Enabled = False
-                GroupBox30.Enabled = False
+            GroupBox29.Enabled = False
+            GroupBox31.Enabled = False
+            GroupBox30.Enabled = False
 
         End If
 
@@ -2456,9 +2532,9 @@ Public Class Pokemonedit
             End If
             RSEDexPoke.Location = PokePoint
 
-                RSEDexPoke.SizeMode = PictureBoxSizeMode.StretchImage
+            RSEDexPoke.SizeMode = PictureBoxSizeMode.StretchImage
 
-            End If
+        End If
 
     End Sub
 
@@ -3541,6 +3617,53 @@ Public Class Pokemonedit
             Me.Enabled = True
             ProgressBar.Visible = False
             Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub Button31_Click(sender As Object, e As EventArgs) Handles Button31.Click
+        i = PKMNames.SelectedIndex
+
+
+
+        If (i + 1) < 252 Then
+
+            'WriteHEX(LoadedROM, (CryTable) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+            WriteHEX(LoadedROM, (CryTable3) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+
+            'WriteHEX(LoadedROM, (CryTable) + (i * 12), (Hex(Int32.Parse(((CryComp1.Text)), System.Globalization.NumberStyles.HexNumber))))
+            WriteHEX(LoadedROM, (CryTable3) + (i * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
+
+            crynorm = LoadCry(i, CryTable)
+            crygrowl = LoadCry(i, CryTable3)
+
+            Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
+            Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
+
+
+            Label55.Text = "Size: " & crynorm.Size & " samples"
+            Label56.Text = "Size: " & crygrowl.Size & " samples"
+
+        ElseIf (i + 1) > 251 And (i + 1) < 276 Then
+
+            MsgBox("This shoudln't be enabled! report it!")
+        ElseIf (i + 1) > 276 Then
+
+            'WriteHEX(LoadedROM, (CryTable) + (4) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+            WriteHEX(LoadedROM, (CryTable3) + (4) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+
+            'WriteHEX(LoadedROM, (CryTable) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), (Hex(Int32.Parse(((CryComp1.Text)), System.Globalization.NumberStyles.HexNumber))))
+            WriteHEX(LoadedROM, (CryTable3) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
+
+            crynorm = LoadCry(((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))), CryTable)
+            crygrowl = LoadCry(((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))), CryTable3)
+
+            Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
+            Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
+
+
+            Label55.Text = "Size: " & crynorm.Size & " samples"
+            Label56.Text = "Size: " & crygrowl.Size & " samples"
+
         End If
     End Sub
 

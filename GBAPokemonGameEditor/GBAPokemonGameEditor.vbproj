@@ -161,6 +161,7 @@
     </Compile>
     <Compile Include="ChangeImageFunctions.vb" />
     <Compile Include="ChangeNameFunctions.vb" />
+    <Compile Include="CryFunctions.vb" />
     <Compile Include="EggMoveEditor.Designer.vb">
       <DependentUpon>EggMoveEditor.vb</DependentUpon>
     </Compile>
@@ -254,6 +255,7 @@
     <Compile Include="Pokemonedit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ROM.vb" />
     <Compile Include="RomExpander.Designer.vb">
       <DependentUpon>RomExpander.vb</DependentUpon>
     </Compile>
