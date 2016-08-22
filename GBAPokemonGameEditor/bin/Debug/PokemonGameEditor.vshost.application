@@ -6,17 +6,17 @@
     <deploymentProvider codebase="http://gamer2020.0xrh.net/programs/GBAPokemonGameEditor/PokemonGameEditor.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="PokemonGameEditor.exe.manifest" size="4660">
+    <dependentAssembly dependencyType="install" codebase="PokemonGameEditor.exe.manifest" size="4714">
       <assemblyIdentity name="PokemonGameEditor.exe" version="3.7.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>cEChvezvtmhv3eHbLmFCkRtITkk=</dsig:DigestValue>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>SBrRbZ8u/DVQqIBKdscjmLSX83CHGmDm8MT7Nzknq/4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -42,14 +42,17 @@ EndNow:
         ReverseHEX = HEXHolder
     End Function
 
-    Public Function ReadHEX(ByRef FilePath As String, ByRef Start As Integer, ByRef Length As Integer) As String
+    Public Function ReadHEX(ByRef FilePath As String, ByRef Start2 As Integer, ByRef Length As Integer) As String
         On Error GoTo ErrHandle
         Dim iFile As Integer
         Dim bytHex As Byte
         Dim sHex As String
         Dim i As Integer
-        Start = Start + 1
-        iFile = FreeFile
+        Dim Start As Integer
+
+        Start = Start2 + 1
+
+        iFile = FreeFile()
         sHex = ""
         i = 0
         FileOpen(iFile, FilePath, OpenMode.Binary)
@@ -62,7 +65,7 @@ EndNow:
         ReadHEX = sHex
         Exit Function
 ErrHandle:
-        MsgBox(Err.Description, MsgBoxStyle.OKOnly, "Error: " & Err.Number)
+        MsgBox(Err.Description, MsgBoxStyle.OkOnly, "Error: " & Err.Number)
     End Function
 
     Public Function WriteHEX(ByRef FilePath As String, ByRef Start As Integer, ByRef Data As String) As Object

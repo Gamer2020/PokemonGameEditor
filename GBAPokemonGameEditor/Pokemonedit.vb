@@ -676,8 +676,14 @@ Public Class Pokemonedit
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Size & " samples"
-            Label56.Text = "Size: " & crygrowl.Size & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+
+            chkCompressed1.Checked = crynorm.Compressed
+            chkCompressed2.Checked = crygrowl.Compressed
+
+            pSample.Image = GetCryImage(crynorm)
+            pSample2.Image = GetCryImage(crygrowl)
 
             'Label53.Text = "Sample Rate: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer.Text) + (4), 4)))), System.Globalization.NumberStyles.HexNumber)) >> 10) & " Hz"
             'Label54.Text = "Sample Rate: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer2.Text) + (4), 4)))), System.Globalization.NumberStyles.HexNumber)) >> 10) & " Hz"
@@ -707,6 +713,12 @@ Public Class Pokemonedit
             Label55.Text = "Size: 0 samples"
             Label56.Text = "Size: 0 samples"
 
+            chkCompressed1.Checked = False
+            chkCompressed2.Checked = False
+
+            pSample.Image.Dispose()
+            pSample2.Image.Dispose()
+
         End If
 
 
@@ -731,8 +743,14 @@ Public Class Pokemonedit
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Size & " samples"
-            Label56.Text = "Size: " & crygrowl.Size & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+
+            chkCompressed1.Checked = crynorm.Compressed
+            chkCompressed2.Checked = crygrowl.Compressed
+
+            pSample.Image = GetCryImage(crynorm)
+            pSample2.Image = GetCryImage(crygrowl)
 
         End If
 
@@ -1758,8 +1776,14 @@ Public Class Pokemonedit
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Size & " samples"
-            Label56.Text = "Size: " & crygrowl.Size & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+
+            chkCompressed1.Checked = crynorm.Compressed
+            chkCompressed2.Checked = crygrowl.Compressed
+
+            pSample.Image = GetCryImage(crynorm)
+            pSample2.Image = GetCryImage(crygrowl)
 
         ElseIf (i + 1) > 251 And (i + 1) < 276 Then
 
@@ -1779,8 +1803,14 @@ Public Class Pokemonedit
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Size & " samples"
-            Label56.Text = "Size: " & crygrowl.Size & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+
+            chkCompressed1.Checked = crynorm.Compressed
+            chkCompressed2.Checked = crygrowl.Compressed
+
+            pSample.Image = GetCryImage(crynorm)
+            pSample2.Image = GetCryImage(crygrowl)
 
         End If
     End Sub
@@ -2113,8 +2143,14 @@ Public Class Pokemonedit
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Size & " samples"
-            Label56.Text = "Size: " & crygrowl.Size & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+
+            chkCompressed1.Checked = crynorm.Compressed
+            chkCompressed2.Checked = crygrowl.Compressed
+
+            pSample.Image = GetCryImage(crynorm)
+            pSample2.Image = GetCryImage(crygrowl)
 
         End If
     End Sub
@@ -3640,8 +3676,14 @@ Public Class Pokemonedit
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Size & " samples"
-            Label56.Text = "Size: " & crygrowl.Size & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+
+            chkCompressed1.Checked = crynorm.Compressed
+            chkCompressed2.Checked = crygrowl.Compressed
+
+            pSample.Image = GetCryImage(crynorm)
+            pSample2.Image = GetCryImage(crygrowl)
 
         ElseIf (i + 1) > 251 And (i + 1) < 276 Then
 
@@ -3661,10 +3703,129 @@ Public Class Pokemonedit
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Size & " samples"
-            Label56.Text = "Size: " & crygrowl.Size & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+
+            chkCompressed1.Checked = crynorm.Compressed
+            chkCompressed2.Checked = crygrowl.Compressed
+
+            pSample.Image = GetCryImage(crynorm)
+            pSample2.Image = GetCryImage(crygrowl)
 
         End If
     End Sub
 
+    Private Sub Button32_Click(sender As Object, e As EventArgs) Handles Button32.Click
+        PlayCry(crynorm)
+    End Sub
+
+    Private Sub Button37_Click(sender As Object, e As EventArgs) Handles Button37.Click
+        PlayCry(crygrowl)
+    End Sub
+
+    Private Sub Button34_Click(sender As Object, e As EventArgs) Handles Button34.Click
+        SaveFileDialog.FileName = (PKMNames.SelectedIndex + 1) & ".wav"
+        'SaveFileDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        SaveFileDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        SaveFileDialog.DefaultExt = "wav"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        SaveFileDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        SaveFileDialog.Filter =
+            "(*.wav)|*.wav*"
+
+        'SaveFileDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        SaveFileDialog.ShowHelp = False
+        'SaveFileDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        'SaveFileDialog.ReadOnlyChecked = False
+
+        SaveFileDialog.Title = "Save as"
+
+        ' Only accept valid Win32 file names?
+        SaveFileDialog.ValidateNames = True
+
+
+        If SaveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            ExportCry(SaveFileDialog.FileName, crynorm)
+
+        End If
+    End Sub
+
+    Private Sub Button35_Click(sender As Object, e As EventArgs) Handles Button35.Click
+        SaveFileDialog.FileName = (PKMNames.SelectedIndex + 1) & ".wav"
+        'SaveFileDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        SaveFileDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        SaveFileDialog.DefaultExt = "wav"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        SaveFileDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        SaveFileDialog.Filter =
+            "(*.wav)|*.wav*"
+
+        'SaveFileDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        SaveFileDialog.ShowHelp = False
+        'SaveFileDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        'SaveFileDialog.ReadOnlyChecked = False
+
+        SaveFileDialog.Title = "Save as"
+
+        ' Only accept valid Win32 file names?
+        SaveFileDialog.ValidateNames = True
+
+
+        If SaveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            ExportCry(SaveFileDialog.FileName, crygrowl)
+
+        End If
+    End Sub
 End Class

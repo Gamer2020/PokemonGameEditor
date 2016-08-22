@@ -109,7 +109,7 @@ Code Pokemon Adder for Emerald
 Program Requirements
 ====================
 
-Windows: Install 4.0 .Net Framework
+Windows: Install 4.5 .Net Framework
 
 Windows RT: Have Jailbreak installed that allows unsigned programs.
 
