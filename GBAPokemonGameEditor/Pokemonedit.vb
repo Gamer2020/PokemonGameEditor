@@ -716,8 +716,8 @@ Public Class Pokemonedit
             chkCompressed1.Checked = False
             chkCompressed2.Checked = False
 
-            pSample.Image.Dispose()
-            pSample2.Image.Dispose()
+            'pSample.Image.Dispose()
+            'pSample2.Image.Dispose()
 
         End If
 
@@ -3827,5 +3827,111 @@ Public Class Pokemonedit
             ExportCry(SaveFileDialog.FileName, crygrowl)
 
         End If
+    End Sub
+
+    Private Sub Button33_Click(sender As Object, e As EventArgs) Handles Button33.Click
+        fileOpenDialog.FileName = ""
+        fileOpenDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        fileOpenDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        fileOpenDialog.DefaultExt = "wav"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        fileOpenDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        fileOpenDialog.Filter =
+                   "(*.wav)|*.wav*"
+
+        fileOpenDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        fileOpenDialog.ShowHelp = False
+        fileOpenDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        fileOpenDialog.ReadOnlyChecked = False
+
+        fileOpenDialog.Title = "Select Cry to import"
+
+        ' Only accept valid Win32 file names?
+        fileOpenDialog.ValidateNames = True
+
+
+        If fileOpenDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            Me.Text = "Please wait..."
+            Me.Enabled = False
+
+            crynorm = ImportCry(fileOpenDialog.FileName, crynorm)
+
+            'ImportPokemonFootPrint(fileOpenDialog.FileName, PKMNames.SelectedIndex + 1)
+
+            'GetAndDrawPokemonFootPrint(PictureBox1, PKMNames.SelectedIndex + 1)
+
+            Me.Text = "Pokemon Editor"
+            Me.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Button38_Click(sender As Object, e As EventArgs) Handles Button38.Click
+        FolderBrowserDialog.Description = "Select folder to export all Cries to:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            If System.IO.Directory.Exists(FolderBrowserDialog.SelectedPath & "\Cries") = False Then
+                CreateDirectory(FolderBrowserDialog.SelectedPath & "\Cries")
+            End If
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+            Me.Enabled = False
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+                PKMNames.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+
+                ExportCry(FolderBrowserDialog.SelectedPath & "\Cries\" & LoopVar & ".wav", crynorm)
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                Me.Refresh()
+            End While
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub Button36_Click(sender As Object, e As EventArgs) Handles Button36.Click
+
+    End Sub
+
+    Private Sub chkCompressed1_CheckedChanged(sender As Object, e As EventArgs) Handles chkCompressed1.CheckedChanged
+
     End Sub
 End Class

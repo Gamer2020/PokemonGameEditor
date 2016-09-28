@@ -184,15 +184,11 @@ C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x
 C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.TradeEditor.resources
 C:\Users\Gamer2020\Documents\GitHub\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.PokedexListEditor.resources
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\bin\Debug\PokemonGameEditor.exe.config
-D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.exe
-D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.xml
-D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.pdb
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\bin\Debug\PokemonGameEditor.exe.manifest
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\bin\Debug\PokemonGameEditor.application
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\bin\Debug\PokemonGameEditor.exe
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\bin\Debug\PokemonGameEditor.pdb
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\bin\Debug\PokemonGameEditor.xml
-D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.vbprojResolveAssemblyReference.cache
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.AbilityAdder.resources
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.AbilityEdit.resources
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.AboutBox1.resources
@@ -221,3 +217,6 @@ D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEdi
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.TrustInfo.xml
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.exe.manifest
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.application
+D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.exe
+D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.xml
+D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.pdb

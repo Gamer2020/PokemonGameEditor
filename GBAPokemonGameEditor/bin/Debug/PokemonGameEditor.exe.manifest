@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PokemonGameEditor.exe" size="2022400">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PokemonGameEditor.exe" size="2026496">
       <assemblyIdentity name="PokemonGameEditor" version="3.7.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ytlUc7etDRo6JcZECVTvZje22CeYY2nX3QpMB/xaPZY=</dsig:DigestValue>
+        <dsig:DigestValue>SgtvSUVRnm3JFoeP2ND79oI8uLUWRc7MQo+2mwipSts=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

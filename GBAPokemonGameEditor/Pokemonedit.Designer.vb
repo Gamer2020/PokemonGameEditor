@@ -218,6 +218,9 @@ Partial Class Pokemonedit
         Me.Clr1 = New System.Windows.Forms.ComboBox()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.GroupBox35 = New System.Windows.Forms.GroupBox()
+        Me.Button35 = New System.Windows.Forms.Button()
+        Me.Button36 = New System.Windows.Forms.Button()
+        Me.Button37 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.pSample2 = New System.Windows.Forms.PictureBox()
         Me.chkCompressed2 = New System.Windows.Forms.CheckBox()
@@ -229,6 +232,8 @@ Partial Class Pokemonedit
         Me.CryComp2 = New System.Windows.Forms.TextBox()
         Me.CryPointer2 = New System.Windows.Forms.TextBox()
         Me.GroupBox34 = New System.Windows.Forms.GroupBox()
+        Me.Button34 = New System.Windows.Forms.Button()
+        Me.Button33 = New System.Windows.Forms.Button()
         Me.Button32 = New System.Windows.Forms.Button()
         Me.chkCompressed1 = New System.Windows.Forms.CheckBox()
         Me.panel1 = New System.Windows.Forms.Panel()
@@ -267,11 +272,8 @@ Partial Class Pokemonedit
         Me.Button28 = New System.Windows.Forms.Button()
         Me.Button29 = New System.Windows.Forms.Button()
         Me.Button30 = New System.Windows.Forms.Button()
-        Me.Button33 = New System.Windows.Forms.Button()
-        Me.Button34 = New System.Windows.Forms.Button()
-        Me.Button35 = New System.Windows.Forms.Button()
-        Me.Button36 = New System.Windows.Forms.Button()
-        Me.Button37 = New System.Windows.Forms.Button()
+        Me.Button38 = New System.Windows.Forms.Button()
+        Me.Button39 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox26.SuspendLayout()
@@ -2482,6 +2484,33 @@ Partial Class Pokemonedit
         Me.GroupBox35.TabStop = False
         Me.GroupBox35.Text = "Growl Cry"
         '
+        'Button35
+        '
+        Me.Button35.Location = New System.Drawing.Point(380, 212)
+        Me.Button35.Name = "Button35"
+        Me.Button35.Size = New System.Drawing.Size(75, 33)
+        Me.Button35.TabIndex = 30
+        Me.Button35.Text = "Export"
+        Me.Button35.UseVisualStyleBackColor = True
+        '
+        'Button36
+        '
+        Me.Button36.Location = New System.Drawing.Point(299, 211)
+        Me.Button36.Name = "Button36"
+        Me.Button36.Size = New System.Drawing.Size(75, 33)
+        Me.Button36.TabIndex = 29
+        Me.Button36.Text = "Import"
+        Me.Button36.UseVisualStyleBackColor = True
+        '
+        'Button37
+        '
+        Me.Button37.Location = New System.Drawing.Point(218, 212)
+        Me.Button37.Name = "Button37"
+        Me.Button37.Size = New System.Drawing.Size(75, 33)
+        Me.Button37.TabIndex = 28
+        Me.Button37.Text = "Play"
+        Me.Button37.UseVisualStyleBackColor = True
+        '
         'Panel2
         '
         Me.Panel2.AutoScroll = True
@@ -2594,6 +2623,24 @@ Partial Class Pokemonedit
         Me.GroupBox34.TabIndex = 7
         Me.GroupBox34.TabStop = False
         Me.GroupBox34.Text = "Normal Cry"
+        '
+        'Button34
+        '
+        Me.Button34.Location = New System.Drawing.Point(380, 211)
+        Me.Button34.Name = "Button34"
+        Me.Button34.Size = New System.Drawing.Size(75, 33)
+        Me.Button34.TabIndex = 27
+        Me.Button34.Text = "Export"
+        Me.Button34.UseVisualStyleBackColor = True
+        '
+        'Button33
+        '
+        Me.Button33.Location = New System.Drawing.Point(299, 211)
+        Me.Button33.Name = "Button33"
+        Me.Button33.Size = New System.Drawing.Size(75, 33)
+        Me.Button33.TabIndex = 26
+        Me.Button33.Text = "Import"
+        Me.Button33.UseVisualStyleBackColor = True
         '
         'Button32
         '
@@ -2837,20 +2884,20 @@ Partial Class Pokemonedit
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(11, 320)
+        Me.Button7.Location = New System.Drawing.Point(11, 316)
         Me.Button7.Margin = New System.Windows.Forms.Padding(4)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(173, 25)
+        Me.Button7.Size = New System.Drawing.Size(173, 23)
         Me.Button7.TabIndex = 9
         Me.Button7.Text = "Import Pokemon"
         Me.Button7.UseVisualStyleBackColor = True
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(11, 378)
+        Me.Button8.Location = New System.Drawing.Point(11, 368)
         Me.Button8.Margin = New System.Windows.Forms.Padding(4)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(173, 25)
+        Me.Button8.Size = New System.Drawing.Size(173, 23)
         Me.Button8.TabIndex = 10
         Me.Button8.Text = "Export Pokemon"
         Me.Button8.UseVisualStyleBackColor = True
@@ -2861,10 +2908,10 @@ Partial Class Pokemonedit
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(11, 406)
+        Me.Button9.Location = New System.Drawing.Point(11, 395)
         Me.Button9.Margin = New System.Windows.Forms.Padding(4)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(173, 25)
+        Me.Button9.Size = New System.Drawing.Size(173, 23)
         Me.Button9.TabIndex = 11
         Me.Button9.Text = "Export All Pokemon"
         Me.Button9.UseVisualStyleBackColor = True
@@ -2880,124 +2927,101 @@ Partial Class Pokemonedit
         '
         'Button14
         '
-        Me.Button14.Location = New System.Drawing.Point(11, 348)
+        Me.Button14.Location = New System.Drawing.Point(11, 342)
         Me.Button14.Margin = New System.Windows.Forms.Padding(4)
         Me.Button14.Name = "Button14"
-        Me.Button14.Size = New System.Drawing.Size(173, 25)
+        Me.Button14.Size = New System.Drawing.Size(173, 23)
         Me.Button14.TabIndex = 13
         Me.Button14.Text = "Import All Pokemon"
         Me.Button14.UseVisualStyleBackColor = True
         '
         'Button25
         '
-        Me.Button25.Location = New System.Drawing.Point(11, 434)
+        Me.Button25.Location = New System.Drawing.Point(11, 422)
         Me.Button25.Margin = New System.Windows.Forms.Padding(4)
         Me.Button25.Name = "Button25"
-        Me.Button25.Size = New System.Drawing.Size(173, 25)
+        Me.Button25.Size = New System.Drawing.Size(173, 23)
         Me.Button25.TabIndex = 14
         Me.Button25.Text = "Import All Sprite sheets"
         Me.Button25.UseVisualStyleBackColor = True
         '
         'Button26
         '
-        Me.Button26.Location = New System.Drawing.Point(11, 463)
+        Me.Button26.Location = New System.Drawing.Point(11, 448)
         Me.Button26.Margin = New System.Windows.Forms.Padding(4)
         Me.Button26.Name = "Button26"
-        Me.Button26.Size = New System.Drawing.Size(173, 25)
+        Me.Button26.Size = New System.Drawing.Size(173, 23)
         Me.Button26.TabIndex = 15
         Me.Button26.Text = "Export All Sprite sheets"
         Me.Button26.UseVisualStyleBackColor = True
         '
         'Button27
         '
-        Me.Button27.Location = New System.Drawing.Point(11, 522)
+        Me.Button27.Location = New System.Drawing.Point(11, 500)
         Me.Button27.Margin = New System.Windows.Forms.Padding(4)
         Me.Button27.Name = "Button27"
-        Me.Button27.Size = New System.Drawing.Size(173, 25)
+        Me.Button27.Size = New System.Drawing.Size(173, 23)
         Me.Button27.TabIndex = 17
         Me.Button27.Text = "Export All Icons"
         Me.Button27.UseVisualStyleBackColor = True
         '
         'Button28
         '
-        Me.Button28.Location = New System.Drawing.Point(11, 492)
+        Me.Button28.Location = New System.Drawing.Point(11, 474)
         Me.Button28.Margin = New System.Windows.Forms.Padding(4)
         Me.Button28.Name = "Button28"
-        Me.Button28.Size = New System.Drawing.Size(173, 25)
+        Me.Button28.Size = New System.Drawing.Size(173, 23)
         Me.Button28.TabIndex = 16
         Me.Button28.Text = "Import All Icons"
         Me.Button28.UseVisualStyleBackColor = True
         '
         'Button29
         '
-        Me.Button29.Location = New System.Drawing.Point(11, 580)
+        Me.Button29.Location = New System.Drawing.Point(11, 551)
         Me.Button29.Margin = New System.Windows.Forms.Padding(4)
         Me.Button29.Name = "Button29"
-        Me.Button29.Size = New System.Drawing.Size(173, 25)
+        Me.Button29.Size = New System.Drawing.Size(173, 23)
         Me.Button29.TabIndex = 19
         Me.Button29.Text = "Export All Footprints"
         Me.Button29.UseVisualStyleBackColor = True
         '
         'Button30
         '
-        Me.Button30.Location = New System.Drawing.Point(11, 551)
+        Me.Button30.Location = New System.Drawing.Point(11, 525)
         Me.Button30.Margin = New System.Windows.Forms.Padding(4)
         Me.Button30.Name = "Button30"
-        Me.Button30.Size = New System.Drawing.Size(173, 25)
+        Me.Button30.Size = New System.Drawing.Size(173, 23)
         Me.Button30.TabIndex = 18
         Me.Button30.Text = "Import All Footprints"
         Me.Button30.UseVisualStyleBackColor = True
         '
-        'Button33
+        'Button38
         '
-        Me.Button33.Location = New System.Drawing.Point(299, 211)
-        Me.Button33.Name = "Button33"
-        Me.Button33.Size = New System.Drawing.Size(75, 33)
-        Me.Button33.TabIndex = 26
-        Me.Button33.Text = "Import"
-        Me.Button33.UseVisualStyleBackColor = True
+        Me.Button38.Location = New System.Drawing.Point(11, 602)
+        Me.Button38.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button38.Name = "Button38"
+        Me.Button38.Size = New System.Drawing.Size(173, 23)
+        Me.Button38.TabIndex = 21
+        Me.Button38.Text = "Export All Cries"
+        Me.Button38.UseVisualStyleBackColor = True
         '
-        'Button34
+        'Button39
         '
-        Me.Button34.Location = New System.Drawing.Point(380, 211)
-        Me.Button34.Name = "Button34"
-        Me.Button34.Size = New System.Drawing.Size(75, 33)
-        Me.Button34.TabIndex = 27
-        Me.Button34.Text = "Export"
-        Me.Button34.UseVisualStyleBackColor = True
-        '
-        'Button35
-        '
-        Me.Button35.Location = New System.Drawing.Point(380, 212)
-        Me.Button35.Name = "Button35"
-        Me.Button35.Size = New System.Drawing.Size(75, 33)
-        Me.Button35.TabIndex = 30
-        Me.Button35.Text = "Export"
-        Me.Button35.UseVisualStyleBackColor = True
-        '
-        'Button36
-        '
-        Me.Button36.Location = New System.Drawing.Point(299, 211)
-        Me.Button36.Name = "Button36"
-        Me.Button36.Size = New System.Drawing.Size(75, 33)
-        Me.Button36.TabIndex = 29
-        Me.Button36.Text = "Import"
-        Me.Button36.UseVisualStyleBackColor = True
-        '
-        'Button37
-        '
-        Me.Button37.Location = New System.Drawing.Point(218, 212)
-        Me.Button37.Name = "Button37"
-        Me.Button37.Size = New System.Drawing.Size(75, 33)
-        Me.Button37.TabIndex = 28
-        Me.Button37.Text = "Play"
-        Me.Button37.UseVisualStyleBackColor = True
+        Me.Button39.Location = New System.Drawing.Point(11, 576)
+        Me.Button39.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button39.Name = "Button39"
+        Me.Button39.Size = New System.Drawing.Size(173, 23)
+        Me.Button39.TabIndex = 20
+        Me.Button39.Text = "Import All Cries"
+        Me.Button39.UseVisualStyleBackColor = True
         '
         'Pokemonedit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1043, 690)
+        Me.Controls.Add(Me.Button38)
+        Me.Controls.Add(Me.Button39)
         Me.Controls.Add(Me.Button29)
         Me.Controls.Add(Me.Button30)
         Me.Controls.Add(Me.Button27)
@@ -3365,4 +3389,6 @@ Partial Class Pokemonedit
     Friend WithEvents Button37 As System.Windows.Forms.Button
     Friend WithEvents Button34 As System.Windows.Forms.Button
     Friend WithEvents Button33 As System.Windows.Forms.Button
+    Friend WithEvents Button38 As System.Windows.Forms.Button
+    Friend WithEvents Button39 As System.Windows.Forms.Button
 End Class
