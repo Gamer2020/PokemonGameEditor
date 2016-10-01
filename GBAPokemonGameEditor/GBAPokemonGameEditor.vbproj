@@ -410,16 +410,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).exe" "\\GAMER2020-PC\Users\Gamer2020\PGE\$(TargetName).exe"
-copy /Y "$(TargetDir)img\BattlePreviewBackground.png" "\\GAMER2020-PC\Users\Gamer2020\PGE\img\BattlePreviewBackground.png"
-copy /Y "$(TargetDir)img\BattlePreviewShadow.png" "\\GAMER2020-PC\Users\Gamer2020\PGE\img\BattlePreviewShadow.png"
-copy /Y "$(TargetDir)img\EMPokedexSize.png" "\\GAMER2020-PC\Users\Gamer2020\PGE\img\EMPokedexSize.png"
-copy /Y "$(TargetDir)img\FRPokedexSize.png" "\\GAMER2020-PC\Users\Gamer2020\PGE\img\FRPokedexSize.png"
-copy /Y "$(TargetDir)ini\roms.ini" "\\GAMER2020-PC\Users\Gamer2020\PGE\ini\roms.ini"
-copy /Y "$(TargetDir)txt\PGEAttackEffects.txt" "\\GAMER2020-PC\Users\Gamer2020\PGE\txt\PGEAttackEffects.txt"
-copy /Y "$(TargetDir)txt\PGEHabitats.txt" "\\GAMER2020-PC\Users\Gamer2020\PGE\txt\PGEHabitats.txt"
-copy /Y "$(TargetDir)txt\PGENatures.txt" "\\GAMER2020-PC\Users\Gamer2020\PGE\txt\PGENatures.txt"
-copy /Y "$(TargetDir)txt\PGETypeList.txt" "\\GAMER2020-PC\Users\Gamer2020\PGE\txt\PGETypeList.txt"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
