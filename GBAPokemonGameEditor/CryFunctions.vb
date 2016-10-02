@@ -412,46 +412,56 @@ Module CryFunctions
 
         ' determine if cry requires repointing
         If crytosave.Size < data.Count Then
-            ' find a new offset for our cry
 
-            ' overwrite old cry with FF bytes
-            'rom.Seek(Cry.Offset)
-            'For i As Integer = 0 To 15
-            '    ' header
-            '    rom.WriteByte(Byte.MaxValue)
-            'Next
-            'For i As Integer = 0 To Cry.Size - 1
-            '    ' cry data
-            '    rom.WriteByte(Byte.MaxValue)
-            'Next
+            Dim result As DialogResult = MessageBox.Show("The Cry will be written to free space and the pointer will be repointed. Would you like to do that?",
+                              "Repoint?",
+                              MessageBoxButtons.YesNo)
 
-            ' set new cry offset
-            crytosave.Offset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, (((data.Count) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+            If (result = DialogResult.Yes) Then
+
+                Dim result2 As DialogResult = MessageBox.Show("Fill the old cry with free space?",
+                  "Delete old cry?",
+                  MessageBoxButtons.YesNo)
+
+                If (result2 = DialogResult.Yes) Then
+
+                    WriteHEX(LoadedROM, crytosave.Offset, MakeFreeSpaceString(crytosave.Size + 16))
+
+                End If
+
+                ' set new cry offset
+                crytosave.Offset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, data.Count, "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+            Else
+
+                Return False
+
+            End If
 
         End If
 
-        '' write cry
-        'rom.Seek(Cry.Offset)
-        'rom.WriteUInt16(CUShort(If(Cry.Compressed, 1, 0)))
-        'rom.WriteUInt16(CUShort(If(Cry.Looped, &H4000, 0)))
-        'rom.WriteInt32(Cry.SampleRate << 10)
-        'rom.WriteInt32(Cry.LoopStart)
-        'rom.WriteInt32(Cry.Data.Length - 1)
-        'rom.WriteBytes(data.ToArray())
+            '' write cry
+            'rom.Seek(Cry.Offset)
+            'rom.WriteUInt16(CUShort(If(Cry.Compressed, 1, 0)))
+            'rom.WriteUInt16(CUShort(If(Cry.Looped, &H4000, 0)))
+            'rom.WriteInt32(Cry.SampleRate << 10)
+            'rom.WriteInt32(Cry.LoopStart)
+            'rom.WriteInt32(Cry.Data.Length - 1)
+            'rom.WriteBytes(data.ToArray())
 
-        '' write cry table entry
-        'rom.Seek(cryTable + Cry.Index * 12)
-        'rom.WriteUInt32(If(Cry.Compressed, &H3C20UI, &H3C00UI))
-        'rom.WritePointer(Cry.Offset)
-        'rom.WriteUInt32(&HFF00FFUI)
+            '' write cry table entry
+            'rom.Seek(cryTable + Cry.Index * 12)
+            'rom.WriteUInt32(If(Cry.Compressed, &H3C20UI, &H3C00UI))
+            'rom.WritePointer(Cry.Offset)
+            'rom.WriteUInt32(&HFF00FFUI)
 
-        '' write growl table entry
-        'rom.Seek(growlTable + Cry.Index * 12)
-        'rom.WriteUInt32(If(Cry.Compressed, &H3C30UI, &H3C00UI))
-        '' !!! not sure if 00 should be used for uncompressed
-        'rom.WritePointer(Cry.Offset)
-        'rom.WriteUInt32(&HFF00FFUI)
-        Return True
+            '' write growl table entry
+            'rom.Seek(growlTable + Cry.Index * 12)
+            'rom.WriteUInt32(If(Cry.Compressed, &H3C30UI, &H3C00UI))
+            '' !!! not sure if 00 should be used for uncompressed
+            'rom.WritePointer(Cry.Offset)
+            'rom.WriteUInt32(&HFF00FFUI)
+            Return True
     End Function
 
 End Module
