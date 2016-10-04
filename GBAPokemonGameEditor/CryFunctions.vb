@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Text
 Imports System.Media
+Imports VB = Microsoft.VisualBasic
 
 'These functions are based off the ones found in this project: https://github.com/doom-desire/Cry-Editor
 'Credit goes to doom-desire for these functions.
@@ -440,28 +441,34 @@ Module CryFunctions
 
         End If
 
-            '' write cry
-            'rom.Seek(Cry.Offset)
-            'rom.WriteUInt16(CUShort(If(Cry.Compressed, 1, 0)))
-            'rom.WriteUInt16(CUShort(If(Cry.Looped, &H4000, 0)))
-            'rom.WriteInt32(Cry.SampleRate << 10)
-            'rom.WriteInt32(Cry.LoopStart)
-            'rom.WriteInt32(Cry.Data.Length - 1)
-            'rom.WriteBytes(data.ToArray())
+        ' write cry
 
-            '' write cry table entry
-            'rom.Seek(cryTable + Cry.Index * 12)
-            'rom.WriteUInt32(If(Cry.Compressed, &H3C20UI, &H3C00UI))
-            'rom.WritePointer(Cry.Offset)
-            'rom.WriteUInt32(&HFF00FFUI)
 
-            '' write growl table entry
-            'rom.Seek(growlTable + Cry.Index * 12)
-            'rom.WriteUInt32(If(Cry.Compressed, &H3C30UI, &H3C00UI))
-            '' !!! not sure if 00 should be used for uncompressed
-            'rom.WritePointer(Cry.Offset)
-            'rom.WriteUInt32(&HFF00FFUI)
-            Return True
+        WriteHEX(LoadedROM, crytosave.Offset, ReverseHEX(VB.Right("0000" & CUShort(If(crytosave.Compressed, 1, 0)), 4)))
+        WriteHEX(LoadedROM, crytosave.Offset + 2, ReverseHEX(VB.Right("0000" & CUShort(If(crytosave.Looped, &H4000, 0)), 4)))
+        WriteHEX(LoadedROM, crytosave.Offset + 4, ReverseHEX(VB.Right("00000000" & (crytosave.SampleRate << 10), 8)))
+
+
+        'rom.WriteUInt16(CUShort(If(Cry.Compressed, 1, 0)))
+        'rom.WriteUInt16(CUShort(If(Cry.Looped, &H4000, 0)))
+        'rom.WriteInt32(Cry.SampleRate << 10)
+        'rom.WriteInt32(Cry.LoopStart)
+        'rom.WriteInt32(Cry.Data.Length - 1)
+        'rom.WriteBytes(data.ToArray())
+
+        '' write cry table entry
+        'rom.Seek(cryTable + Cry.Index * 12)
+        'rom.WriteUInt32(If(Cry.Compressed, &H3C20UI, &H3C00UI))
+        'rom.WritePointer(Cry.Offset)
+        'rom.WriteUInt32(&HFF00FFUI)
+
+        '' write growl table entry
+        'rom.Seek(growlTable + Cry.Index * 12)
+        'rom.WriteUInt32(If(Cry.Compressed, &H3C30UI, &H3C00UI))
+        '' !!! not sure if 00 should be used for uncompressed
+        'rom.WritePointer(Cry.Offset)
+        'rom.WriteUInt32(&HFF00FFUI)
+        Return True
     End Function
 
 End Module
