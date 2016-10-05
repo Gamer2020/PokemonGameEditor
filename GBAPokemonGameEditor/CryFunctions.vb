@@ -308,7 +308,7 @@ Module CryFunctions
     End Function
 
 
-    Public Function SaveCry(crytosave As Cry, index As Integer, cryTable As Integer) As Boolean
+    Public Function SaveCry(crytosave As Cry, cryTable As Integer) As Boolean
 
         If crytosave.Offset = 0 Then
             Return False
@@ -447,6 +447,18 @@ Module CryFunctions
         WriteHEX(LoadedROM, crytosave.Offset, ReverseHEX(VB.Right("0000" & CUShort(If(crytosave.Compressed, 1, 0)), 4)))
         WriteHEX(LoadedROM, crytosave.Offset + 2, ReverseHEX(VB.Right("0000" & CUShort(If(crytosave.Looped, &H4000, 0)), 4)))
         WriteHEX(LoadedROM, crytosave.Offset + 4, ReverseHEX(VB.Right("00000000" & (crytosave.SampleRate << 10), 8)))
+        WriteHEX(LoadedROM, crytosave.Offset + 8, ReverseHEX(VB.Right("00000000" & (crytosave.LoopStart), 8)))
+        WriteHEX(LoadedROM, crytosave.Offset + 12, ReverseHEX(VB.Right("00000000" & (crytosave.Data.Length - 1), 8)))
+
+        Dim tempbuff As String = ByteArrayToHexString(data.ToArray)
+
+        WriteHEX(LoadedROM, crytosave.Offset + 16, tempbuff)
+
+        ' write cry table entry
+
+        WriteHEX(LoadedROM, cryTable + (crytosave.Index * 12), ReverseHEX(If(crytosave.Compressed, "00003C20", "00003C00")))
+        WriteHEX(LoadedROM, cryTable + (crytosave.Index * 12) + 4, ReverseHEX(VB.Right("00000000" & Hex(crytosave.Offset), 8)))
+        WriteHEX(LoadedROM, cryTable + (crytosave.Index * 12) + 8, "FF00FF")
 
 
         'rom.WriteUInt16(CUShort(If(Cry.Compressed, 1, 0)))

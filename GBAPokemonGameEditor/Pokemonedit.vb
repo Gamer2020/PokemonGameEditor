@@ -3882,6 +3882,8 @@ Public Class Pokemonedit
 
             crynorm = ImportCry(fileOpenDialog.FileName, crynorm)
 
+            SaveCry(crynorm, CryTable)
+
             'ImportPokemonFootPrint(fileOpenDialog.FileName, PKMNames.SelectedIndex + 1)
 
             'GetAndDrawPokemonFootPrint(PictureBox1, PKMNames.SelectedIndex + 1)
