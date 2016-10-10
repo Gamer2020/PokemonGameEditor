@@ -354,17 +354,32 @@ Module CryFunctions
                 Dim i As Integer = n * &H40
                 Dim k As Integer = 0
 
-                ' set first value
-                blocks(n)(System.Math.Max(System.Threading.Interlocked.Increment(k), k - 1)) = CByte(crytosave.Data(i))
-                Dim pcm As SByte = crytosave.Data(System.Math.Max(System.Threading.Interlocked.Increment(i), i - 1))
+                If i < crytosave.Data.Length Then
+                    ' set first value
+                    blocks(n)(k) = BitConverter.GetBytes(crytosave.Data(i))(0)
+                End If
+
+                k = k + 1
+
+                Dim pcm As SByte
+
+                If i < crytosave.Data.Length Then
+
+                    pcm = crytosave.Data(i)
+
+                End If
+
+                i = i + 1
 
                 Dim j As Integer = 1
-                While j < &H40 AndAlso i < crytosave.Data.Length
+                While j < &H40 And i < crytosave.Data.Length
                     ' get current sample
-                    Dim sample = crytosave.Data(System.Math.Max(System.Threading.Interlocked.Increment(i), i - 1))
+                    Dim sample As SByte = crytosave.Data(i)
+
+                    i = i + 1
 
                     ' difference between previous sample and this
-                    Dim diff = sample - pcm
+                    Dim diff As Integer = sample - pcm
 
                     ' check for a perfect match in lookup table
                     Dim lookupI = -1
@@ -377,9 +392,9 @@ Module CryFunctions
 
                     ' search for the closest match in the table
                     If lookupI = -1 Then
-                        Dim bestDiff = 255
+                        Dim bestDiff As Integer = 255
                         For x As Integer = 0 To 15
-                            If Math.Abs(lookup(x) - diff) < bestDiff Then
+                            If Math.Abs(CInt(lookup(x)) - diff) < bestDiff Then
                                 lookupI = x
                                 bestDiff = Math.Abs(lookup(x) - diff)
                             End If
@@ -391,7 +406,10 @@ Module CryFunctions
                     If j Mod 2 = 0 Then
                         blocks(n)(k) = blocks(n)(k) Or CByte(lookupI << 4)
                     Else
-                        blocks(n)(System.Math.Max(System.Threading.Interlocked.Increment(k), k - 1)) = blocks(n)(System.Math.Max(System.Threading.Interlocked.Increment(k), k - 1)) Or CByte(lookupI)
+                        blocks(n)(k) = blocks(n)(k) Or CByte(lookupI)
+
+                        k = k + 1
+
                     End If
 
                     ' set previous

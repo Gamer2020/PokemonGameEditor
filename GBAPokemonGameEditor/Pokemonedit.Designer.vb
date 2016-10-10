@@ -2495,6 +2495,7 @@ Partial Class Pokemonedit
         '
         'Button36
         '
+        Me.Button36.Enabled = False
         Me.Button36.Location = New System.Drawing.Point(299, 211)
         Me.Button36.Name = "Button36"
         Me.Button36.Size = New System.Drawing.Size(75, 33)
@@ -2532,6 +2533,7 @@ Partial Class Pokemonedit
         'chkCompressed2
         '
         Me.chkCompressed2.AutoSize = True
+        Me.chkCompressed2.Enabled = False
         Me.chkCompressed2.Location = New System.Drawing.Point(25, 189)
         Me.chkCompressed2.Name = "chkCompressed2"
         Me.chkCompressed2.Size = New System.Drawing.Size(109, 21)
@@ -2635,6 +2637,7 @@ Partial Class Pokemonedit
         '
         'Button33
         '
+        Me.Button33.Enabled = False
         Me.Button33.Location = New System.Drawing.Point(299, 211)
         Me.Button33.Name = "Button33"
         Me.Button33.Size = New System.Drawing.Size(75, 33)
@@ -2654,6 +2657,7 @@ Partial Class Pokemonedit
         'chkCompressed1
         '
         Me.chkCompressed1.AutoSize = True
+        Me.chkCompressed1.Enabled = False
         Me.chkCompressed1.Location = New System.Drawing.Point(23, 184)
         Me.chkCompressed1.Name = "chkCompressed1"
         Me.chkCompressed1.Size = New System.Drawing.Size(109, 21)
@@ -3007,6 +3011,7 @@ Partial Class Pokemonedit
         '
         'Button39
         '
+        Me.Button39.Enabled = False
         Me.Button39.Location = New System.Drawing.Point(11, 576)
         Me.Button39.Margin = New System.Windows.Forms.Padding(4)
         Me.Button39.Name = "Button39"
