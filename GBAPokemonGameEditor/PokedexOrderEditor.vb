@@ -3,11 +3,18 @@
 Public Class PokedexOrderEditor
     Dim Offset1 As Integer
     Dim Offset2 As Integer
+    Dim Offset3 As Integer
     Private Sub PokedexOrderEditor_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Offset1 = Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber)
 
         Offset2 = Int32.Parse((GetString(GetINIFileLocation(), header, "SecondDexTable", "")), System.Globalization.NumberStyles.HexNumber)
+
+        If header = "BPEE" Then
+
+            Offset3 = Int32.Parse((GetString(GetINIFileLocation(), header, "HoenntoNationalDex", "")), System.Globalization.NumberStyles.HexNumber)
+
+        End If
 
         Dim LoopVar As Integer
 
@@ -23,6 +30,12 @@ Public Class PokedexOrderEditor
             ListBox1.Items.Add(GetPokemonName(LoopVar))
 
         End While
+
+        If header = "BPEE" Then
+            GroupBox4.Enabled = True
+        Else
+            GroupBox4.Enabled = False
+        End If
 
         ListBox1.SelectedIndex = 0
 
@@ -45,5 +58,19 @@ Public Class PokedexOrderEditor
         'makes i be the list index so that the location of the pokemon's dex number can be calculated
         WriteHEX(LoadedROM, Offset1 + (i * 2), ReverseHEX(VB.Right("0000" & Hex(ListBox2.SelectedIndex), 4)))
         WriteHEX(LoadedROM, Offset2 + (i * 2), ReverseHEX(VB.Right("0000" & Hex(ListBox3.SelectedIndex), 4)))
+        If header = "BPEE" Then
+            WriteHEX(LoadedROM, Offset3 + ((ListBox3.SelectedIndex - 1) * 2), ReverseHEX(VB.Right("0000" & Hex(ListBox4.SelectedIndex), 4)))
+        End If
+    End Sub
+
+    Private Sub ListBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox3.SelectedIndexChanged
+
+        If header = "BPEE" Then
+
+            ListBox4.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Offset3 + ((ListBox3.SelectedIndex - 1) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+        Else
+            GroupBox4.Enabled = False
+        End If
+
     End Sub
 End Class
