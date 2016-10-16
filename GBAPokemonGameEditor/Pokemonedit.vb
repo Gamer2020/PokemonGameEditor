@@ -2449,6 +2449,15 @@ Public Class Pokemonedit
 
             TextBox5.Text = GetPokedexTypeName(TextBox3.Text)
 
+            If header = "BPE" Then
+                TextBox7.Enabled = True
+
+                '  TextBox7.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Offset3 + ((TextBox4.Text - 1) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+
+            Else
+                TextBox7.Enabled = False
+            End If
+
         Else
 
             GroupBox32.Enabled = False
