@@ -2449,10 +2449,10 @@ Public Class Pokemonedit
 
             TextBox5.Text = GetPokedexTypeName(TextBox3.Text)
 
-            If header = "BPE" Then
+            If header2 = "BPE" And TextBox4.Text < (GetString(GetINIFileLocation(), header, "NumberOfRegionDex", "") + 1) Then
                 TextBox7.Enabled = True
 
-                '  TextBox7.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Offset3 + ((TextBox4.Text - 1) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+                TextBox7.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "HoenntoNationalDex", "")), System.Globalization.NumberStyles.HexNumber) + ((TextBox4.Text - 1) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
 
             Else
                 TextBox7.Enabled = False
@@ -2475,6 +2475,10 @@ Public Class Pokemonedit
     Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
         WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 2), ReverseHEX(VB.Right("0000" & Hex(TextBox3.Text), 4)))
         WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "SecondDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (PKMNames.SelectedIndex * 2), ReverseHEX(VB.Right("0000" & Hex(TextBox4.Text), 4)))
+
+        If header2 = "BPE" And TextBox4.Text < (GetString(GetINIFileLocation(), header, "NumberOfRegionDex", "") + 1) Then
+            WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "HoenntoNationalDex", "")), System.Globalization.NumberStyles.HexNumber) + ((TextBox4.Text - 1) * 2), ReverseHEX(VB.Right("0000" & Hex(TextBox7.Text), 4)))
+        End If
 
         LoadDexData()
 

@@ -58,16 +58,19 @@ Public Class PokedexOrderEditor
         'makes i be the list index so that the location of the pokemon's dex number can be calculated
         WriteHEX(LoadedROM, Offset1 + (i * 2), ReverseHEX(VB.Right("0000" & Hex(ListBox2.SelectedIndex), 4)))
         WriteHEX(LoadedROM, Offset2 + (i * 2), ReverseHEX(VB.Right("0000" & Hex(ListBox3.SelectedIndex), 4)))
-        If header2 = "BPE" Then
+        If header2 = "BPE" And ListBox3.SelectedIndex < (GetString(GetINIFileLocation(), header, "NumberOfRegionDex", "") + 1) Then
             WriteHEX(LoadedROM, Offset3 + ((ListBox3.SelectedIndex - 1) * 2), ReverseHEX(VB.Right("0000" & Hex(ListBox4.SelectedIndex), 4)))
         End If
     End Sub
 
     Private Sub ListBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox3.SelectedIndexChanged
 
-        If header2 = "BPE" Then
+        If header2 = "BPE" And ListBox3.SelectedIndex < (GetString(GetINIFileLocation(), header, "NumberOfRegionDex", "") + 1) Then
 
             ListBox4.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Offset3 + ((ListBox3.SelectedIndex - 1) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+
+            GroupBox4.Enabled = True
+
         Else
             GroupBox4.Enabled = False
         End If
