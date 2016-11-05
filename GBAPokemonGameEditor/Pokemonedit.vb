@@ -55,7 +55,7 @@ Public Class Pokemonedit
 
         While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfEvolutionTypes", "") + 1) = True
 
-            EvoTypes.Items.Add(GetString(GetINIFileLocation(), header, "EvolutionName" & LoopVar, ""))
+            EvoTypes.Items.Add(GetString(GetINIFileLocation(), header, "EvolutionName" & LoopVar, "Filler"))
 
             LoopVar = LoopVar + 1
 
@@ -2184,6 +2184,8 @@ Public Class Pokemonedit
         'value
         TextBox6.Enabled = False
         TextBox6.Text = ""
+
+        'MsgBox(GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0"))
 
         If (GetString(GetINIFileLocation(), header, "Evolution" & EvoTypes.SelectedIndex & "Param", "0")) = "none" Then
 

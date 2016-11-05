@@ -67,6 +67,7 @@ Public Class ItemEditor
         BattleUsagePTTextBox.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemListComboBox.SelectedIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
         BUTextBox.Text = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 32) + (ItemListComboBox.SelectedIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
 
+        ExtParTxt.Text = ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 40) + (ItemListComboBox.SelectedIndex * 44), 4))
 
         FileNum = FreeFile()
         FileOpen(FileNum, LoadedROM, OpenMode.Binary)
@@ -119,6 +120,8 @@ Public Class ItemEditor
         WriteHEX(LoadedROM, ((ItemBaseOff) + 28) + (ItemListComboBox.SelectedIndex * 44), ReverseHEX(Hex(Int32.Parse(((FieldUsagePTTextBox.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
         WriteHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemListComboBox.SelectedIndex * 44), ReverseHEX(Hex(Int32.Parse(((BattleUsagePTTextBox.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
         WriteHEX(LoadedROM, ((ItemBaseOff) + 32) + (listvar * 44), Hex(BUTextBox.Text))
+
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 40) + (ItemListComboBox.SelectedIndex * 44), ReverseHEX(ExtParTxt.Text))
 
         If header2 = "BPR" Or header2 = "BPG" Or header2 = "BPE" Then
 
