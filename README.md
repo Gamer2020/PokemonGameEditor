@@ -189,6 +189,8 @@ AkameTheBulbasaur
 
 doom-desire
 
+DizzyEggg
+
 Downloads
 ================================
 https://github.com/Gamer2020/PokemonGameEditor/releases

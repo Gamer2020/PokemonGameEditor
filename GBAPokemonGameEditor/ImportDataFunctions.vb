@@ -51,6 +51,10 @@ Module ImportDataFunctions
         Dim Offset_2 As String = ""
         Dim PokedexType As String = ""
 
+        Dim FrontAnimationTable As String = ""
+        Dim BackAnimTable As String = ""
+        Dim AnimDelayTable As String = ""
+
 
         'Load data
 
@@ -98,6 +102,11 @@ Module ImportDataFunctions
         ElseIf header2 = "BPR" Or header2 = "BPG" Then
             SkipVar = "36"
         ElseIf header2 = "BPE" Then
+
+            FrontAnimationTable = GetString(INIFileName, "Pokemon", "FrontAnimationTable", "1")
+            BackAnimTable = GetString(INIFileName, "Pokemon", "BackAnimTable", "1")
+            AnimDelayTable = GetString(INIFileName, "Pokemon", "AnimDelayTable", "1")
+
             SkipVar = "32"
         End If
 
@@ -200,6 +209,9 @@ Module ImportDataFunctions
 
                 WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 4 + 12 + (NationalDexNumber * SkipVar), ReverseHEX(Hex(Val("&H" & (Hex(PokedexDescriptionOff))) + &H8000000)))
 
+                WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "FrontAnimationTable", "")), System.Globalization.NumberStyles.HexNumber)) + (PokemonIndex - 1), (Hex(Val(FrontAnimationTable))))
+                WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "BackAnimTable", "")), System.Globalization.NumberStyles.HexNumber)) + (1) + (PokemonIndex - 1), (Hex(Val(BackAnimTable))))
+                WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "AnimDelayTable", "")), System.Globalization.NumberStyles.HexNumber)) + (PokemonIndex - 1), (Hex(Val(AnimDelayTable))))
 
             End If
 

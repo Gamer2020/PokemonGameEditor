@@ -43,6 +43,10 @@ Module ExportDataFunctions
         Dim Offset_2 As String = ""
         Dim PokedexType As String = ""
 
+        Dim FrontAnimationTable As String = ""
+        Dim BackAnimTable As String = ""
+        Dim AnimDelayTable As String = ""
+
         'Fill vars with proper data
 
         BaseStats = ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonData", "")), System.Globalization.NumberStyles.HexNumber)) + (PokemonIndex * 28), 28)
@@ -251,6 +255,13 @@ Module ExportDataFunctions
                 PokedexDescription = Pointer1Description
 
                 FileClose(FileNum)
+
+
+                FrontAnimationTable = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "FrontAnimationTable", "")), System.Globalization.NumberStyles.HexNumber)) + (PokemonIndex - 1), 1))), System.Globalization.NumberStyles.HexNumber))
+                BackAnimTable = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "BackAnimTable", "")), System.Globalization.NumberStyles.HexNumber)) + (1) + (PokemonIndex - 1), 1))), System.Globalization.NumberStyles.HexNumber))
+                AnimDelayTable = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "AnimDelayTable", "")), System.Globalization.NumberStyles.HexNumber)) + (PokemonIndex - 1), 1))), System.Globalization.NumberStyles.HexNumber))
+
+
             End If
 
             PokedexType = GetPokedexTypeName(NationalDexNumber)
@@ -277,6 +288,12 @@ Module ExportDataFunctions
 
         If header2 = "BPR" Or header2 = "BPG" Or header2 = "BPE" Then
             WriteString(INIFileName, "Pokemon", "MoveTutorCompatibility", MoveTutorCompatibility)
+        End If
+
+        If header2 = "BPE" Then
+            WriteString(INIFileName, "Pokemon", "FrontAnimationTable", FrontAnimationTable)
+            WriteString(INIFileName, "Pokemon", "BackAnimTable", BackAnimTable)
+            WriteString(INIFileName, "Pokemon", "AnimDelayTable", AnimDelayTable)
         End If
 
         WriteString(INIFileName, "Pokemon", "TMHMCompatibility", TMHMCompatibility)

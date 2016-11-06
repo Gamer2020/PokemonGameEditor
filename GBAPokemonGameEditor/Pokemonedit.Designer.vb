@@ -209,6 +209,8 @@ Partial Class Pokemonedit
         Me.Label35 = New System.Windows.Forms.Label()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.GroupBox28 = New System.Windows.Forms.GroupBox()
+        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.Label57 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Button16 = New System.Windows.Forms.Button()
@@ -274,8 +276,13 @@ Partial Class Pokemonedit
         Me.Button30 = New System.Windows.Forms.Button()
         Me.Button38 = New System.Windows.Forms.Button()
         Me.Button39 = New System.Windows.Forms.Button()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
-        Me.Label57 = New System.Windows.Forms.Label()
+        Me.Label58 = New System.Windows.Forms.Label()
+        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.Label59 = New System.Windows.Forms.Label()
+        Me.TextBox10 = New System.Windows.Forms.TextBox()
+        Me.Label60 = New System.Windows.Forms.Label()
+        Me.AniSavBttn = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox26.SuspendLayout()
@@ -381,7 +388,7 @@ Partial Class Pokemonedit
         'GroupBox26
         '
         Me.GroupBox26.Controls.Add(Me.ItmAnmtn)
-        Me.GroupBox26.Location = New System.Drawing.Point(599, 249)
+        Me.GroupBox26.Location = New System.Drawing.Point(599, 489)
         Me.GroupBox26.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox26.Name = "GroupBox26"
         Me.GroupBox26.Padding = New System.Windows.Forms.Padding(4)
@@ -514,11 +521,11 @@ Partial Class Pokemonedit
         Me.GroupBox20.Controls.Add(Me.PictureBox1)
         Me.GroupBox20.Controls.Add(Me.Button5)
         Me.GroupBox20.Controls.Add(Me.FootPrintPointer)
-        Me.GroupBox20.Location = New System.Drawing.Point(599, 318)
+        Me.GroupBox20.Location = New System.Drawing.Point(8, 322)
         Me.GroupBox20.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox20.Name = "GroupBox20"
         Me.GroupBox20.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox20.Size = New System.Drawing.Size(196, 153)
+        Me.GroupBox20.Size = New System.Drawing.Size(200, 153)
         Me.GroupBox20.TabIndex = 4
         Me.GroupBox20.TabStop = False
         Me.GroupBox20.Text = "FootPrint"
@@ -648,6 +655,13 @@ Partial Class Pokemonedit
         '
         'GroupBox15
         '
+        Me.GroupBox15.Controls.Add(Me.AniSavBttn)
+        Me.GroupBox15.Controls.Add(Me.TextBox10)
+        Me.GroupBox15.Controls.Add(Me.Label60)
+        Me.GroupBox15.Controls.Add(Me.TextBox9)
+        Me.GroupBox15.Controls.Add(Me.Label59)
+        Me.GroupBox15.Controls.Add(Me.TextBox8)
+        Me.GroupBox15.Controls.Add(Me.Label58)
         Me.GroupBox15.Controls.Add(Me.AniPic2)
         Me.GroupBox15.Controls.Add(Me.AniPic)
         Me.GroupBox15.Controls.Add(Me.Button2)
@@ -656,7 +670,7 @@ Partial Class Pokemonedit
         Me.GroupBox15.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox15.Name = "GroupBox15"
         Me.GroupBox15.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox15.Size = New System.Drawing.Size(212, 233)
+        Me.GroupBox15.Size = New System.Drawing.Size(212, 378)
         Me.GroupBox15.TabIndex = 2
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "Animation (Emerald Only)"
@@ -2385,6 +2399,24 @@ Partial Class Pokemonedit
         Me.GroupBox28.TabStop = False
         Me.GroupBox28.Text = "Pokedex Order"
         '
+        'TextBox7
+        '
+        Me.TextBox7.Location = New System.Drawing.Point(125, 91)
+        Me.TextBox7.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBox7.Name = "TextBox7"
+        Me.TextBox7.Size = New System.Drawing.Size(44, 22)
+        Me.TextBox7.TabIndex = 6
+        '
+        'Label57
+        '
+        Me.Label57.AutoSize = True
+        Me.Label57.Location = New System.Drawing.Point(24, 96)
+        Me.Label57.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label57.Name = "Label57"
+        Me.Label57.Size = New System.Drawing.Size(96, 17)
+        Me.Label57.TabIndex = 5
+        Me.Label57.Text = "Hoenn to Nat:"
+        '
         'TextBox4
         '
         Me.TextBox4.Location = New System.Drawing.Point(125, 58)
@@ -3024,23 +3056,62 @@ Partial Class Pokemonedit
         Me.Button39.Text = "Import All Cries"
         Me.Button39.UseVisualStyleBackColor = True
         '
-        'TextBox7
+        'Label58
         '
-        Me.TextBox7.Location = New System.Drawing.Point(125, 91)
-        Me.TextBox7.Margin = New System.Windows.Forms.Padding(4)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(44, 22)
-        Me.TextBox7.TabIndex = 6
+        Me.Label58.AutoSize = True
+        Me.Label58.Location = New System.Drawing.Point(17, 240)
+        Me.Label58.Name = "Label58"
+        Me.Label58.Size = New System.Drawing.Size(111, 17)
+        Me.Label58.TabIndex = 14
+        Me.Label58.Text = "Front Animation:"
         '
-        'Label57
+        'TextBox8
         '
-        Me.Label57.AutoSize = True
-        Me.Label57.Location = New System.Drawing.Point(24, 96)
-        Me.Label57.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label57.Name = "Label57"
-        Me.Label57.Size = New System.Drawing.Size(96, 17)
-        Me.Label57.TabIndex = 5
-        Me.Label57.Text = "Hoenn to Nat:"
+        Me.TextBox8.Location = New System.Drawing.Point(151, 235)
+        Me.TextBox8.Name = "TextBox8"
+        Me.TextBox8.Size = New System.Drawing.Size(46, 22)
+        Me.TextBox8.TabIndex = 15
+        '
+        'TextBox9
+        '
+        Me.TextBox9.Location = New System.Drawing.Point(151, 266)
+        Me.TextBox9.Name = "TextBox9"
+        Me.TextBox9.Size = New System.Drawing.Size(46, 22)
+        Me.TextBox9.TabIndex = 17
+        '
+        'Label59
+        '
+        Me.Label59.AutoSize = True
+        Me.Label59.Location = New System.Drawing.Point(17, 271)
+        Me.Label59.Name = "Label59"
+        Me.Label59.Size = New System.Drawing.Size(109, 17)
+        Me.Label59.TabIndex = 16
+        Me.Label59.Text = "Back Animation:"
+        '
+        'TextBox10
+        '
+        Me.TextBox10.Location = New System.Drawing.Point(151, 299)
+        Me.TextBox10.Name = "TextBox10"
+        Me.TextBox10.Size = New System.Drawing.Size(46, 22)
+        Me.TextBox10.TabIndex = 19
+        '
+        'Label60
+        '
+        Me.Label60.AutoSize = True
+        Me.Label60.Location = New System.Drawing.Point(17, 304)
+        Me.Label60.Name = "Label60"
+        Me.Label60.Size = New System.Drawing.Size(114, 17)
+        Me.Label60.TabIndex = 18
+        Me.Label60.Text = "Animation Delay:"
+        '
+        'AniSavBttn
+        '
+        Me.AniSavBttn.Location = New System.Drawing.Point(16, 330)
+        Me.AniSavBttn.Name = "AniSavBttn"
+        Me.AniSavBttn.Size = New System.Drawing.Size(182, 35)
+        Me.AniSavBttn.TabIndex = 20
+        Me.AniSavBttn.Text = "Save"
+        Me.AniSavBttn.UseVisualStyleBackColor = True
         '
         'Pokemonedit
         '
@@ -3420,4 +3491,11 @@ Partial Class Pokemonedit
     Friend WithEvents Button39 As System.Windows.Forms.Button
     Friend WithEvents TextBox7 As System.Windows.Forms.TextBox
     Friend WithEvents Label57 As System.Windows.Forms.Label
+    Friend WithEvents AniSavBttn As System.Windows.Forms.Button
+    Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
+    Friend WithEvents Label60 As System.Windows.Forms.Label
+    Friend WithEvents TextBox9 As System.Windows.Forms.TextBox
+    Friend WithEvents Label59 As System.Windows.Forms.Label
+    Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
+    Friend WithEvents Label58 As System.Windows.Forms.Label
 End Class

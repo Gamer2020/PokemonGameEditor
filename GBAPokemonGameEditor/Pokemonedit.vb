@@ -754,7 +754,7 @@ Public Class Pokemonedit
 
         End If
 
-
+        GroupBox15.Enabled = False
         Button2.Enabled = False
         AnimationPointer.Text = ""
         AnimationPointer.Enabled = False
@@ -765,12 +765,20 @@ Public Class Pokemonedit
             If header2 = "BPE" Then
                 Button2.Enabled = True
                 AnimationPointer.Enabled = True
+                GroupBox15.Enabled = True
 
                 AnimationPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAnimations", "")), System.Globalization.NumberStyles.HexNumber)
                 AnimationPointer.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AnimationPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
 
                 GetAndDrawAnimationPokemonPic(AniPic, i + 1)
                 GetAndDrawAnimationPokemonPicShiny(AniPic2, i + 1)
+
+
+                TextBox8.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "FrontAnimationTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
+                TextBox9.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "BackAnimTable", "")), System.Globalization.NumberStyles.HexNumber)) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
+                TextBox10.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "AnimDelayTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
+
+
             End If
             GetAndDrawFrontPokemonPic(FrntPic, i + 1)
             GetAndDrawBackPokemonPic(BckPic2, i + 1)
@@ -1763,6 +1771,8 @@ Public Class Pokemonedit
 
         If (i + 1) < 252 Then
 
+            'MsgBox(Val(CryPointer.Text) + &H8000000)
+
             WriteHEX(LoadedROM, (CryTable) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
             ' WriteHEX(LoadedROM, (CryTable3) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
 
@@ -2451,7 +2461,7 @@ Public Class Pokemonedit
 
             TextBox5.Text = GetPokedexTypeName(TextBox3.Text)
 
-            If header2 = "BPE" And TextBox4.Text < (GetString(GetINIFileLocation(), header, "NumberOfRegionDex", "") + 1) Then
+            If header2 = "BPE" And TextBox4.Text < (GetString(GetINIFileLocation(), header, "NumberOfRegionDex", "151") + 1) Then
                 TextBox7.Enabled = True
 
                 TextBox7.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "HoenntoNationalDex", "")), System.Globalization.NumberStyles.HexNumber) + ((TextBox4.Text - 1) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
@@ -3899,10 +3909,6 @@ Public Class Pokemonedit
 
             SaveCry(crynorm, CryTable)
 
-            'ImportPokemonFootPrint(fileOpenDialog.FileName, PKMNames.SelectedIndex + 1)
-
-            'GetAndDrawPokemonFootPrint(PictureBox1, PKMNames.SelectedIndex + 1)
-
             Me.Text = "Pokemon Editor"
             Me.Enabled = True
         End If
@@ -3949,6 +3955,19 @@ Public Class Pokemonedit
     End Sub
 
     Private Sub chkCompressed1_CheckedChanged(sender As Object, e As EventArgs) Handles chkCompressed1.CheckedChanged
+
+    End Sub
+
+    Private Sub AniSavBttn_Click(sender As Object, e As EventArgs) Handles AniSavBttn.Click
+
+        If header2 = "BPE" Then
+            i = PKMNames.SelectedIndex
+
+            WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "FrontAnimationTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), (Hex(Val(TextBox8.Text))))
+            WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "BackAnimTable", "")), System.Globalization.NumberStyles.HexNumber)) + (1) + (i), (Hex(Val(TextBox9.Text))))
+            WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "AnimDelayTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), (Hex(Val(TextBox10.Text))))
+
+        End If
 
     End Sub
 End Class

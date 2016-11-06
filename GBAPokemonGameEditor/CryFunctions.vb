@@ -318,114 +318,120 @@ Module CryFunctions
             36, 49, -64, -49, -36, -25, _
             -16, -9, -4, -1}
 
+        crytosave.Compressed = False
+
         ' copy cry data to be written
         Dim data = New List(Of Byte)()
         If crytosave.Compressed Then
-            ' data is compressed in blocks of 1 + 0x20 bytes at a time
-            ' first byte is normal signed PCM data
-            ' following 0x20 bytes are compressed based on previous value
-            ' (for a value not in lookup table, closest value will be chosen instead)
-            'Console.WriteLine("compressed");
 
-            ' each block has 0x40 samples
-            Dim blockCount = crytosave.Data.Length / &H40
-            If crytosave.Data.Length Mod &H40 > 0 Then
-                blockCount += 1
-            End If
+            MsgBox("This should not be enabled!")
+            End
 
-            ' truncates the length of the last block
-            ' so we don't waste space
-            Dim lastBlockSize = crytosave.Data.Length - crytosave.Data.Length / &H40 * &H40
-            If lastBlockSize = 0 Then
-                lastBlockSize = &H21
-            Else
-                lastBlockSize = 1 + (lastBlockSize / 2) + (If(lastBlockSize Mod 2 = 0, 0, 1))
-            End If
+            '' data is compressed in blocks of 1 + 0x20 bytes at a time
+            '' first byte is normal signed PCM data
+            '' following 0x20 bytes are compressed based on previous value
+            '' (for a value not in lookup table, closest value will be chosen instead)
+            ''Console.WriteLine("compressed");
 
-            Dim blocks = New Byte(blockCount - 1)() {}
-            For n As Integer = 0 To blockCount - 1
-                ' create new block
-                If n < blockCount - 1 Then
-                    blocks(n) = New Byte(32) {}
-                Else
-                    blocks(n) = New Byte(lastBlockSize - 1) {}
-                End If
+            '' each block has 0x40 samples
+            'Dim blockCount = crytosave.Data.Length / &H40
+            'If crytosave.Data.Length Mod &H40 > 0 Then
+            '    blockCount += 1
+            'End If
 
-                Dim i As Integer = n * &H40
-                Dim k As Integer = 0
+            '' truncates the length of the last block
+            '' so we don't waste space
+            'Dim lastBlockSize = crytosave.Data.Length - crytosave.Data.Length / &H40 * &H40
+            'If lastBlockSize = 0 Then
+            '    lastBlockSize = &H21
+            'Else
+            '    lastBlockSize = 1 + (lastBlockSize / 2) + (If(lastBlockSize Mod 2 = 0, 0, 1))
+            'End If
 
-                If i < crytosave.Data.Length Then
-                    ' set first value
-                    blocks(n)(k) = BitConverter.GetBytes(crytosave.Data(i))(0)
-                End If
+            'Dim blocks = New Byte(blockCount - 1)() {}
+            'For n As Integer = 0 To blockCount - 1
+            '    ' create new block
+            '    If n < blockCount - 1 Then
+            '        blocks(n) = New Byte(32) {}
+            '    Else
+            '        blocks(n) = New Byte(lastBlockSize - 1) {}
+            '    End If
 
-                k = k + 1
+            '    Dim i As Integer = n * &H40
+            '    Dim k As Integer = 0
 
-                Dim pcm As SByte
+            '    If i < crytosave.Data.Length Then
+            '        ' set first value
+            '        blocks(n)(k) = BitConverter.GetBytes(crytosave.Data(i))(0)
+            '    End If
 
-                If i < crytosave.Data.Length Then
+            '    k = k + 1
 
-                    pcm = crytosave.Data(i)
+            '    Dim pcm As SByte
 
-                End If
+            '    If i < crytosave.Data.Length Then
 
-                i = i + 1
+            '        pcm = crytosave.Data(i)
 
-                Dim j As Integer = 1
-                While j < &H40 And i < crytosave.Data.Length
-                    ' get current sample
-                    Dim sample As SByte = crytosave.Data(i)
+            '    End If
 
-                    i = i + 1
+            '    i = i + 1
 
-                    ' difference between previous sample and this
-                    Dim diff As Integer = sample - pcm
+            '    Dim j As Integer = 1
+            '    While j < &H40 And i < crytosave.Data.Length
+            '        ' get current sample
+            '        Dim sample As SByte = crytosave.Data(i)
 
-                    ' check for a perfect match in lookup table
-                    Dim lookupI = -1
-                    For x As Integer = 0 To 15
-                        If lookup(x) = diff Then
-                            lookupI = x
-                            Exit For
-                        End If
-                    Next
+            '        i = i + 1
 
-                    ' search for the closest match in the table
-                    If lookupI = -1 Then
-                        Dim bestDiff As Integer = 255
-                        For x As Integer = 0 To 15
-                            If Math.Abs(CInt(lookup(x)) - diff) < bestDiff Then
-                                lookupI = x
-                                bestDiff = Math.Abs(lookup(x) - diff)
-                            End If
-                        Next
-                    End If
+            '        ' difference between previous sample and this
+            '        Dim diff As Integer = sample - pcm
 
-                    ' set value in block
-                    ' on an odd value, increase position in block
-                    If j Mod 2 = 0 Then
-                        blocks(n)(k) = blocks(n)(k) Or CByte(lookupI << 4)
-                    Else
-                        blocks(n)(k) = blocks(n)(k) Or CByte(lookupI)
+            '        ' check for a perfect match in lookup table
+            '        Dim lookupI = -1
+            '        For x As Integer = 0 To 15
+            '            If lookup(x) = diff Then
+            '                lookupI = x
+            '                Exit For
+            '            End If
+            '        Next
 
-                        k = k + 1
+            '        ' search for the closest match in the table
+            '        If lookupI = -1 Then
+            '            Dim bestDiff As Integer = 255
+            '            For x As Integer = 0 To 15
+            '                If Math.Abs(CInt(lookup(x)) - diff) < bestDiff Then
+            '                    lookupI = x
+            '                    bestDiff = Math.Abs(lookup(x) - diff)
+            '                End If
+            '            Next
+            '        End If
 
-                    End If
+            '        ' set value in block
+            '        ' on an odd value, increase position in block
+            '        If j Mod 2 = 0 Then
+            '            blocks(n)(k) = blocks(n)(k) Or CByte(lookupI << 4)
+            '        Else
+            '            blocks(n)(k) = blocks(n)(k) Or CByte(lookupI)
 
-                    ' set previous
-                    pcm = sample
-                    j += 1
-                End While
-            Next
+            '            k = k + 1
 
-            For n As Integer = 0 To blockCount - 1
-                data.AddRange(blocks(n))
-            Next
+            '        End If
+
+            '        ' set previous
+            '        pcm = sample
+            '        j += 1
+            '    End While
+            'Next
+
+            'For n As Integer = 0 To blockCount - 1
+            '    data.AddRange(blocks(n))
+            'Next
         Else
             ' uncompressed, copy directly to data
             'Console.WriteLine("uncompressed");
             For Each s As SByte In crytosave.Data
-                data.Add(CByte(s))
+                data.Add(CByte(s And &HFF))
             Next
         End If
 
@@ -468,15 +474,21 @@ Module CryFunctions
         WriteHEX(LoadedROM, crytosave.Offset + 8, ReverseHEX(VB.Right("00000000" & (crytosave.LoopStart), 8)))
         WriteHEX(LoadedROM, crytosave.Offset + 12, ReverseHEX(VB.Right("00000000" & (crytosave.Data.Length - 1), 8)))
 
+        'WriteHEX(LoadedROM, crytosave.Offset, ReverseHEX(VB.Right("0000" & CUShort(If(crytosave.Compressed, 1, 0)), 4)))
+        'WriteHEX(LoadedROM, crytosave.Offset + 2, ReverseHEX(VB.Right("0000" & CUShort(If(crytosave.Looped, &H4000, 0)), 4)))
+        'WriteHEX(LoadedROM, crytosave.Offset + 4, ReverseHEX(VB.Right("00000000" & (crytosave.SampleRate << 10), 8)))
+        'WriteHEX(LoadedROM, crytosave.Offset + 8, ReverseHEX(VB.Right("00000000" & (crytosave.LoopStart), 8)))
+        'WriteHEX(LoadedROM, crytosave.Offset + 12, ReverseHEX(VB.Right("00000000" & (crytosave.Data.Length - 1), 8)))
+
         Dim tempbuff As String = ByteArrayToHexString(data.ToArray)
 
         WriteHEX(LoadedROM, crytosave.Offset + 16, tempbuff)
 
         ' write cry table entry
 
-        WriteHEX(LoadedROM, cryTable + (crytosave.Index * 12), ReverseHEX(If(crytosave.Compressed, "00003C20", "00003C00")))
-        WriteHEX(LoadedROM, cryTable + (crytosave.Index * 12) + 4, ReverseHEX(VB.Right("00000000" & Hex(crytosave.Offset), 8)))
-        WriteHEX(LoadedROM, cryTable + (crytosave.Index * 12) + 8, "FF00FF")
+        'WriteHEX(LoadedROM, cryTable + (crytosave.Index * 12), ReverseHEX(If(crytosave.Compressed, "00003C20", "00003C00")))
+        'WriteHEX(LoadedROM, cryTable + (crytosave.Index * 12) + 4, ReverseHEX(VB.Right("00000000" & Hex(crytosave.Offset), 8)))
+        'WriteHEX(LoadedROM, cryTable + (crytosave.Index * 12) + 8, "FF00FF")
 
 
         'rom.WriteUInt16(CUShort(If(Cry.Compressed, 1, 0)))
