@@ -51,6 +51,13 @@ Partial Class Pokemonedit
         Me.Button4 = New System.Windows.Forms.Button()
         Me.IconPointer = New System.Windows.Forms.TextBox()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
+        Me.AniSavBttn = New System.Windows.Forms.Button()
+        Me.TextBox10 = New System.Windows.Forms.TextBox()
+        Me.Label60 = New System.Windows.Forms.Label()
+        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.Label59 = New System.Windows.Forms.Label()
+        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.Label58 = New System.Windows.Forms.Label()
         Me.AniPic2 = New System.Windows.Forms.PictureBox()
         Me.AniPic = New System.Windows.Forms.PictureBox()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -276,13 +283,6 @@ Partial Class Pokemonedit
         Me.Button30 = New System.Windows.Forms.Button()
         Me.Button38 = New System.Windows.Forms.Button()
         Me.Button39 = New System.Windows.Forms.Button()
-        Me.Label58 = New System.Windows.Forms.Label()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
-        Me.Label59 = New System.Windows.Forms.Label()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.Label60 = New System.Windows.Forms.Label()
-        Me.AniSavBttn = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox26.SuspendLayout()
@@ -674,6 +674,63 @@ Partial Class Pokemonedit
         Me.GroupBox15.TabIndex = 2
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "Animation (Emerald Only)"
+        '
+        'AniSavBttn
+        '
+        Me.AniSavBttn.Location = New System.Drawing.Point(16, 330)
+        Me.AniSavBttn.Name = "AniSavBttn"
+        Me.AniSavBttn.Size = New System.Drawing.Size(182, 35)
+        Me.AniSavBttn.TabIndex = 20
+        Me.AniSavBttn.Text = "Save"
+        Me.AniSavBttn.UseVisualStyleBackColor = True
+        '
+        'TextBox10
+        '
+        Me.TextBox10.Location = New System.Drawing.Point(151, 299)
+        Me.TextBox10.Name = "TextBox10"
+        Me.TextBox10.Size = New System.Drawing.Size(46, 22)
+        Me.TextBox10.TabIndex = 19
+        '
+        'Label60
+        '
+        Me.Label60.AutoSize = True
+        Me.Label60.Location = New System.Drawing.Point(17, 304)
+        Me.Label60.Name = "Label60"
+        Me.Label60.Size = New System.Drawing.Size(114, 17)
+        Me.Label60.TabIndex = 18
+        Me.Label60.Text = "Animation Delay:"
+        '
+        'TextBox9
+        '
+        Me.TextBox9.Location = New System.Drawing.Point(151, 266)
+        Me.TextBox9.Name = "TextBox9"
+        Me.TextBox9.Size = New System.Drawing.Size(46, 22)
+        Me.TextBox9.TabIndex = 17
+        '
+        'Label59
+        '
+        Me.Label59.AutoSize = True
+        Me.Label59.Location = New System.Drawing.Point(17, 271)
+        Me.Label59.Name = "Label59"
+        Me.Label59.Size = New System.Drawing.Size(109, 17)
+        Me.Label59.TabIndex = 16
+        Me.Label59.Text = "Back Animation:"
+        '
+        'TextBox8
+        '
+        Me.TextBox8.Location = New System.Drawing.Point(151, 235)
+        Me.TextBox8.Name = "TextBox8"
+        Me.TextBox8.Size = New System.Drawing.Size(46, 22)
+        Me.TextBox8.TabIndex = 15
+        '
+        'Label58
+        '
+        Me.Label58.AutoSize = True
+        Me.Label58.Location = New System.Drawing.Point(17, 240)
+        Me.Label58.Name = "Label58"
+        Me.Label58.Size = New System.Drawing.Size(111, 17)
+        Me.Label58.TabIndex = 14
+        Me.Label58.Text = "Front Animation:"
         '
         'AniPic2
         '
@@ -1238,8 +1295,8 @@ Partial Class Pokemonedit
         '
         'Ab2
         '
+        Me.Ab2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.Ab2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.Ab2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.Ab2.FormattingEnabled = True
         Me.Ab2.Location = New System.Drawing.Point(8, 57)
         Me.Ab2.Margin = New System.Windows.Forms.Padding(4)
@@ -1249,8 +1306,8 @@ Partial Class Pokemonedit
         '
         'Ab1
         '
+        Me.Ab1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.Ab1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.Ab1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.Ab1.FormattingEnabled = True
         Me.Ab1.Location = New System.Drawing.Point(8, 23)
         Me.Ab1.Margin = New System.Windows.Forms.Padding(4)
@@ -1328,8 +1385,8 @@ Partial Class Pokemonedit
         '
         'Item2
         '
+        Me.Item2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.Item2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.Item2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.Item2.FormattingEnabled = True
         Me.Item2.Location = New System.Drawing.Point(84, 62)
         Me.Item2.Margin = New System.Windows.Forms.Padding(4)
@@ -1339,8 +1396,8 @@ Partial Class Pokemonedit
         '
         'Item1
         '
+        Me.Item1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.Item1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.Item1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.Item1.FormattingEnabled = True
         Me.Item1.Location = New System.Drawing.Point(84, 28)
         Me.Item1.Margin = New System.Windows.Forms.Padding(4)
@@ -1587,6 +1644,7 @@ Partial Class Pokemonedit
         '
         'ComboBox3
         '
+        Me.ComboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Location = New System.Drawing.Point(275, 229)
         Me.ComboBox3.Margin = New System.Windows.Forms.Padding(4)
@@ -1680,7 +1738,7 @@ Partial Class Pokemonedit
         '
         'ComboBox1
         '
-        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(509, 151)
@@ -1726,8 +1784,8 @@ Partial Class Pokemonedit
         '
         'EvoItem
         '
+        Me.EvoItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.EvoItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.EvoItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.EvoItem.FormattingEnabled = True
         Me.EvoItem.Location = New System.Drawing.Point(245, 155)
         Me.EvoItem.Margin = New System.Windows.Forms.Padding(4)
@@ -1799,8 +1857,8 @@ Partial Class Pokemonedit
         '
         'EvoPKMNames
         '
+        Me.EvoPKMNames.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.EvoPKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.EvoPKMNames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.EvoPKMNames.FormattingEnabled = True
         Me.EvoPKMNames.Location = New System.Drawing.Point(313, 39)
         Me.EvoPKMNames.Margin = New System.Windows.Forms.Padding(4)
@@ -1890,8 +1948,8 @@ Partial Class Pokemonedit
         '
         'NewAt
         '
+        Me.NewAt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.NewAt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.NewAt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.NewAt.FormattingEnabled = True
         Me.NewAt.Location = New System.Drawing.Point(48, 235)
         Me.NewAt.Margin = New System.Windows.Forms.Padding(4)
@@ -2914,6 +2972,7 @@ Partial Class Pokemonedit
         '
         'PKMNames
         '
+        Me.PKMNames.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.PKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.PKMNames.FormattingEnabled = True
         Me.PKMNames.Location = New System.Drawing.Point(8, 23)
@@ -3055,63 +3114,6 @@ Partial Class Pokemonedit
         Me.Button39.TabIndex = 20
         Me.Button39.Text = "Import All Cries"
         Me.Button39.UseVisualStyleBackColor = True
-        '
-        'Label58
-        '
-        Me.Label58.AutoSize = True
-        Me.Label58.Location = New System.Drawing.Point(17, 240)
-        Me.Label58.Name = "Label58"
-        Me.Label58.Size = New System.Drawing.Size(111, 17)
-        Me.Label58.TabIndex = 14
-        Me.Label58.Text = "Front Animation:"
-        '
-        'TextBox8
-        '
-        Me.TextBox8.Location = New System.Drawing.Point(151, 235)
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(46, 22)
-        Me.TextBox8.TabIndex = 15
-        '
-        'TextBox9
-        '
-        Me.TextBox9.Location = New System.Drawing.Point(151, 266)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(46, 22)
-        Me.TextBox9.TabIndex = 17
-        '
-        'Label59
-        '
-        Me.Label59.AutoSize = True
-        Me.Label59.Location = New System.Drawing.Point(17, 271)
-        Me.Label59.Name = "Label59"
-        Me.Label59.Size = New System.Drawing.Size(109, 17)
-        Me.Label59.TabIndex = 16
-        Me.Label59.Text = "Back Animation:"
-        '
-        'TextBox10
-        '
-        Me.TextBox10.Location = New System.Drawing.Point(151, 299)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(46, 22)
-        Me.TextBox10.TabIndex = 19
-        '
-        'Label60
-        '
-        Me.Label60.AutoSize = True
-        Me.Label60.Location = New System.Drawing.Point(17, 304)
-        Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(114, 17)
-        Me.Label60.TabIndex = 18
-        Me.Label60.Text = "Animation Delay:"
-        '
-        'AniSavBttn
-        '
-        Me.AniSavBttn.Location = New System.Drawing.Point(16, 330)
-        Me.AniSavBttn.Name = "AniSavBttn"
-        Me.AniSavBttn.Size = New System.Drawing.Size(182, 35)
-        Me.AniSavBttn.TabIndex = 20
-        Me.AniSavBttn.Text = "Save"
-        Me.AniSavBttn.UseVisualStyleBackColor = True
         '
         'Pokemonedit
         '
