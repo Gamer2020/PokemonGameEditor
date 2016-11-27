@@ -20,7 +20,7 @@ Public Class TMHMEditor
         While LoopVar < (Val(GetString(GetINIFileLocation(), header, "TotalTMsPlusHMs", ""))) = True
 
             If LoopVar > ((Val(GetString(GetINIFileLocation(), header, "TotalTMs", ""))) - 1) Then
-                TMHMList.Items.Add("HM" & LoopVar - 49 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
+                TMHMList.Items.Add("HM" & LoopVar - ((Val(GetString(GetINIFileLocation(), header, "TotalTMs", ""))) - 1) & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
                 LoopVar = LoopVar + 1
 

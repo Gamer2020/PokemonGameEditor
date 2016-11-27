@@ -1305,7 +1305,7 @@ Public Class Pokemonedit
         While LoopVar < (Val(GetString(GetINIFileLocation(), header, "TotalTMsPlusHMs", ""))) = True
 
             If LoopVar > ((Val(GetString(GetINIFileLocation(), header, "TotalTMs", ""))) - 1) Then
-                TMHMCom.Items.Add("HM" & LoopVar - 49 & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
+                TMHMCom.Items.Add("HM" & LoopVar - ((Val(GetString(GetINIFileLocation(), header, "TotalTMs", ""))) - 1) & " - " & GetAttackName(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, TMHMAttacks + ((LoopVar) * 2), 2))), System.Globalization.NumberStyles.HexNumber)))
 
                 LoopVar = LoopVar + 1
 
