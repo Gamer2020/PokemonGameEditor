@@ -59,6 +59,7 @@ Partial Class MainFrm
         Me.Button36 = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button11 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
@@ -84,7 +85,7 @@ Partial Class MainFrm
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button11 = New System.Windows.Forms.Button()
+        Me.Button12 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -96,10 +97,12 @@ Partial Class MainFrm
         '
         'MenuStrip1
         '
+        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(457, 24)
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(8, 2, 0, 2)
+        Me.MenuStrip1.Size = New System.Drawing.Size(609, 28)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -107,57 +110,57 @@ Partial Class MainFrm
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(44, 24)
         Me.FileToolStripMenuItem.Text = "&File"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(100, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(178, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'SettingsToolStripMenuItem
         '
         Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddOrRemoveProgramsToolStripMenuItem, Me.TransparentBackgroundsToolStripMenuItem, Me.DisablePokemonImageLoadingToolStripMenuItem, Me.LinuxToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
-        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(74, 24)
         Me.SettingsToolStripMenuItem.Text = "&Settings"
         '
         'AddOrRemoveProgramsToolStripMenuItem
         '
         Me.AddOrRemoveProgramsToolStripMenuItem.Name = "AddOrRemoveProgramsToolStripMenuItem"
-        Me.AddOrRemoveProgramsToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.AddOrRemoveProgramsToolStripMenuItem.Size = New System.Drawing.Size(313, 26)
         Me.AddOrRemoveProgramsToolStripMenuItem.Text = "Add or Remove Programs"
         '
         'TransparentBackgroundsToolStripMenuItem
         '
         Me.TransparentBackgroundsToolStripMenuItem.Name = "TransparentBackgroundsToolStripMenuItem"
-        Me.TransparentBackgroundsToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.TransparentBackgroundsToolStripMenuItem.Size = New System.Drawing.Size(313, 26)
         Me.TransparentBackgroundsToolStripMenuItem.Text = "Transparent backgrounded images"
         Me.TransparentBackgroundsToolStripMenuItem.Visible = False
         '
         'DisablePokemonImageLoadingToolStripMenuItem
         '
         Me.DisablePokemonImageLoadingToolStripMenuItem.Name = "DisablePokemonImageLoadingToolStripMenuItem"
-        Me.DisablePokemonImageLoadingToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.DisablePokemonImageLoadingToolStripMenuItem.Size = New System.Drawing.Size(313, 26)
         Me.DisablePokemonImageLoadingToolStripMenuItem.Text = "Disable Pokemon Image loading"
         Me.DisablePokemonImageLoadingToolStripMenuItem.Visible = False
         '
         'LinuxToolStripMenuItem
         '
         Me.LinuxToolStripMenuItem.Name = "LinuxToolStripMenuItem"
-        Me.LinuxToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.LinuxToolStripMenuItem.Size = New System.Drawing.Size(313, 26)
         Me.LinuxToolStripMenuItem.Text = "Linux Operating System"
         Me.LinuxToolStripMenuItem.Visible = False
         '
@@ -165,48 +168,52 @@ Partial Class MainFrm
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditRomsiniToolStripMenuItem, Me.ToolStripMenuItem6, Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(53, 24)
         Me.HelpToolStripMenuItem.Text = "&Help"
         '
         'EditRomsiniToolStripMenuItem
         '
         Me.EditRomsiniToolStripMenuItem.Name = "EditRomsiniToolStripMenuItem"
-        Me.EditRomsiniToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.EditRomsiniToolStripMenuItem.Size = New System.Drawing.Size(166, 26)
         Me.EditRomsiniToolStripMenuItem.Text = "Edit roms.ini"
         '
         'ToolStripMenuItem6
         '
         Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(137, 6)
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(163, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(166, 26)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.Label2)
-        Me.GroupBox4.Location = New System.Drawing.Point(12, 27)
+        Me.GroupBox4.Location = New System.Drawing.Point(16, 33)
+        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(253, 63)
+        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox4.Size = New System.Drawing.Size(337, 78)
         Me.GroupBox4.TabIndex = 10
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Game Loaded"
         '
         'Label2
         '
-        Me.Label2.Location = New System.Drawing.Point(6, 25)
+        Me.Label2.Location = New System.Drawing.Point(8, 31)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(241, 27)
+        Me.Label2.Size = New System.Drawing.Size(321, 33)
         Me.Label2.TabIndex = 0
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(271, 32)
+        Me.Button4.Location = New System.Drawing.Point(361, 39)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(166, 52)
+        Me.Button4.Size = New System.Drawing.Size(221, 64)
         Me.Button4.TabIndex = 1
         Me.Button4.Text = "Load ROM"
         Me.Button4.UseVisualStyleBackColor = True
@@ -218,9 +225,10 @@ Partial Class MainFrm
         'Button5
         '
         Me.Button5.Enabled = False
-        Me.Button5.Location = New System.Drawing.Point(2, 6)
+        Me.Button5.Location = New System.Drawing.Point(3, 7)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(81, 55)
+        Me.Button5.Size = New System.Drawing.Size(108, 68)
         Me.Button5.TabIndex = 14
         Me.Button5.Text = "Move Tutor Editor"
         Me.Button5.UseVisualStyleBackColor = True
@@ -228,9 +236,10 @@ Partial Class MainFrm
         'Button6
         '
         Me.Button6.Enabled = False
-        Me.Button6.Location = New System.Drawing.Point(90, 6)
+        Me.Button6.Location = New System.Drawing.Point(120, 7)
+        Me.Button6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(81, 55)
+        Me.Button6.Size = New System.Drawing.Size(108, 68)
         Me.Button6.TabIndex = 15
         Me.Button6.Text = "Pokedex Order Editor"
         Me.Button6.UseVisualStyleBackColor = True
@@ -238,9 +247,10 @@ Partial Class MainFrm
         'Button7
         '
         Me.Button7.Enabled = False
-        Me.Button7.Location = New System.Drawing.Point(177, 6)
+        Me.Button7.Location = New System.Drawing.Point(236, 7)
+        Me.Button7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(81, 55)
+        Me.Button7.Size = New System.Drawing.Size(108, 68)
         Me.Button7.TabIndex = 16
         Me.Button7.Text = "Pokemon Editor"
         Me.Button7.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
@@ -249,9 +259,10 @@ Partial Class MainFrm
         'Button24
         '
         Me.Button24.Enabled = False
-        Me.Button24.Location = New System.Drawing.Point(2, 68)
+        Me.Button24.Location = New System.Drawing.Point(3, 84)
+        Me.Button24.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button24.Name = "Button24"
-        Me.Button24.Size = New System.Drawing.Size(81, 55)
+        Me.Button24.Size = New System.Drawing.Size(108, 68)
         Me.Button24.TabIndex = 34
         Me.Button24.Text = "RSE Starter Editor"
         Me.Button24.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
@@ -260,9 +271,10 @@ Partial Class MainFrm
         'Button25
         '
         Me.Button25.Enabled = False
-        Me.Button25.Location = New System.Drawing.Point(264, 6)
+        Me.Button25.Location = New System.Drawing.Point(352, 7)
+        Me.Button25.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button25.Name = "Button25"
-        Me.Button25.Size = New System.Drawing.Size(81, 55)
+        Me.Button25.Size = New System.Drawing.Size(108, 68)
         Me.Button25.TabIndex = 35
         Me.Button25.Text = "Attack Editor"
         Me.Button25.UseVisualStyleBackColor = True
@@ -270,9 +282,10 @@ Partial Class MainFrm
         'Button26
         '
         Me.Button26.Enabled = False
-        Me.Button26.Location = New System.Drawing.Point(351, 6)
+        Me.Button26.Location = New System.Drawing.Point(468, 7)
+        Me.Button26.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button26.Name = "Button26"
-        Me.Button26.Size = New System.Drawing.Size(79, 55)
+        Me.Button26.Size = New System.Drawing.Size(105, 68)
         Me.Button26.TabIndex = 36
         Me.Button26.Text = "Ability Editor"
         Me.Button26.UseVisualStyleBackColor = True
@@ -280,9 +293,10 @@ Partial Class MainFrm
         'Button27
         '
         Me.Button27.Enabled = False
-        Me.Button27.Location = New System.Drawing.Point(3, 7)
+        Me.Button27.Location = New System.Drawing.Point(4, 9)
+        Me.Button27.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button27.Name = "Button27"
-        Me.Button27.Size = New System.Drawing.Size(81, 55)
+        Me.Button27.Size = New System.Drawing.Size(108, 68)
         Me.Button27.TabIndex = 37
         Me.Button27.Text = "Add Program"
         Me.Button27.UseVisualStyleBackColor = True
@@ -290,9 +304,10 @@ Partial Class MainFrm
         'Button28
         '
         Me.Button28.Enabled = False
-        Me.Button28.Location = New System.Drawing.Point(90, 7)
+        Me.Button28.Location = New System.Drawing.Point(120, 9)
+        Me.Button28.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button28.Name = "Button28"
-        Me.Button28.Size = New System.Drawing.Size(81, 55)
+        Me.Button28.Size = New System.Drawing.Size(108, 68)
         Me.Button28.TabIndex = 38
         Me.Button28.Text = "Add Program"
         Me.Button28.UseVisualStyleBackColor = True
@@ -300,9 +315,10 @@ Partial Class MainFrm
         'Button29
         '
         Me.Button29.Enabled = False
-        Me.Button29.Location = New System.Drawing.Point(177, 7)
+        Me.Button29.Location = New System.Drawing.Point(236, 9)
+        Me.Button29.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button29.Name = "Button29"
-        Me.Button29.Size = New System.Drawing.Size(81, 55)
+        Me.Button29.Size = New System.Drawing.Size(108, 68)
         Me.Button29.TabIndex = 39
         Me.Button29.Text = "Add Program"
         Me.Button29.UseVisualStyleBackColor = True
@@ -310,9 +326,10 @@ Partial Class MainFrm
         'Button30
         '
         Me.Button30.Enabled = False
-        Me.Button30.Location = New System.Drawing.Point(264, 7)
+        Me.Button30.Location = New System.Drawing.Point(352, 9)
+        Me.Button30.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button30.Name = "Button30"
-        Me.Button30.Size = New System.Drawing.Size(81, 55)
+        Me.Button30.Size = New System.Drawing.Size(108, 68)
         Me.Button30.TabIndex = 40
         Me.Button30.Text = "Add Program"
         Me.Button30.UseVisualStyleBackColor = True
@@ -320,9 +337,10 @@ Partial Class MainFrm
         'Button31
         '
         Me.Button31.Enabled = False
-        Me.Button31.Location = New System.Drawing.Point(351, 7)
+        Me.Button31.Location = New System.Drawing.Point(468, 9)
+        Me.Button31.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button31.Name = "Button31"
-        Me.Button31.Size = New System.Drawing.Size(79, 55)
+        Me.Button31.Size = New System.Drawing.Size(105, 68)
         Me.Button31.TabIndex = 41
         Me.Button31.Text = "Add Program"
         Me.Button31.UseVisualStyleBackColor = True
@@ -330,9 +348,10 @@ Partial Class MainFrm
         'Button32
         '
         Me.Button32.Enabled = False
-        Me.Button32.Location = New System.Drawing.Point(90, 68)
+        Me.Button32.Location = New System.Drawing.Point(120, 84)
+        Me.Button32.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button32.Name = "Button32"
-        Me.Button32.Size = New System.Drawing.Size(81, 55)
+        Me.Button32.Size = New System.Drawing.Size(108, 68)
         Me.Button32.TabIndex = 42
         Me.Button32.Text = "Pokedex Data Editor"
         Me.Button32.UseVisualStyleBackColor = True
@@ -340,9 +359,10 @@ Partial Class MainFrm
         'Button33
         '
         Me.Button33.Enabled = False
-        Me.Button33.Location = New System.Drawing.Point(177, 68)
+        Me.Button33.Location = New System.Drawing.Point(236, 84)
+        Me.Button33.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button33.Name = "Button33"
-        Me.Button33.Size = New System.Drawing.Size(81, 55)
+        Me.Button33.Size = New System.Drawing.Size(108, 68)
         Me.Button33.TabIndex = 43
         Me.Button33.Text = "Battle Frontier Editor (Emerald)"
         Me.Button33.UseVisualStyleBackColor = True
@@ -350,9 +370,10 @@ Partial Class MainFrm
         'Button34
         '
         Me.Button34.Enabled = False
-        Me.Button34.Location = New System.Drawing.Point(264, 68)
+        Me.Button34.Location = New System.Drawing.Point(352, 84)
+        Me.Button34.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button34.Name = "Button34"
-        Me.Button34.Size = New System.Drawing.Size(81, 55)
+        Me.Button34.Size = New System.Drawing.Size(108, 68)
         Me.Button34.TabIndex = 44
         Me.Button34.Text = "Item Editor"
         Me.Button34.UseVisualStyleBackColor = True
@@ -360,9 +381,10 @@ Partial Class MainFrm
         'Button35
         '
         Me.Button35.Enabled = False
-        Me.Button35.Location = New System.Drawing.Point(351, 68)
+        Me.Button35.Location = New System.Drawing.Point(468, 84)
+        Me.Button35.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button35.Name = "Button35"
-        Me.Button35.Size = New System.Drawing.Size(79, 55)
+        Me.Button35.Size = New System.Drawing.Size(105, 68)
         Me.Button35.TabIndex = 45
         Me.Button35.Text = "TM/HM Editor"
         Me.Button35.UseVisualStyleBackColor = True
@@ -370,9 +392,10 @@ Partial Class MainFrm
         'Button36
         '
         Me.Button36.Enabled = False
-        Me.Button36.Location = New System.Drawing.Point(2, 129)
+        Me.Button36.Location = New System.Drawing.Point(3, 159)
+        Me.Button36.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button36.Name = "Button36"
-        Me.Button36.Size = New System.Drawing.Size(80, 55)
+        Me.Button36.Size = New System.Drawing.Size(107, 68)
         Me.Button36.TabIndex = 46
         Me.Button36.Text = "Egg Move Editor"
         Me.Button36.UseVisualStyleBackColor = True
@@ -382,14 +405,16 @@ Partial Class MainFrm
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Location = New System.Drawing.Point(6, 96)
+        Me.TabControl1.Location = New System.Drawing.Point(8, 118)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(444, 279)
+        Me.TabControl1.Size = New System.Drawing.Size(592, 343)
         Me.TabControl1.TabIndex = 47
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Button12)
         Me.TabPage2.Controls.Add(Me.Button11)
         Me.TabPage2.Controls.Add(Me.Button10)
         Me.TabPage2.Controls.Add(Me.Button2)
@@ -404,20 +429,33 @@ Partial Class MainFrm
         Me.TabPage2.Controls.Add(Me.Button25)
         Me.TabPage2.Controls.Add(Me.Button32)
         Me.TabPage2.Controls.Add(Me.Button26)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(436, 253)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage2.Size = New System.Drawing.Size(584, 314)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Internal Programs"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'Button11
+        '
+        Me.Button11.Enabled = False
+        Me.Button11.Location = New System.Drawing.Point(352, 159)
+        Me.Button11.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button11.Name = "Button11"
+        Me.Button11.Size = New System.Drawing.Size(108, 68)
+        Me.Button11.TabIndex = 49
+        Me.Button11.Text = "Pokedex List Editor"
+        Me.Button11.UseVisualStyleBackColor = True
+        '
         'Button10
         '
         Me.Button10.Enabled = False
-        Me.Button10.Location = New System.Drawing.Point(177, 129)
+        Me.Button10.Location = New System.Drawing.Point(236, 159)
+        Me.Button10.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(81, 55)
+        Me.Button10.Size = New System.Drawing.Size(108, 68)
         Me.Button10.TabIndex = 48
         Me.Button10.Text = "Trade Editor"
         Me.Button10.UseVisualStyleBackColor = True
@@ -425,9 +463,10 @@ Partial Class MainFrm
         'Button2
         '
         Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(90, 129)
+        Me.Button2.Location = New System.Drawing.Point(120, 159)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(81, 55)
+        Me.Button2.Size = New System.Drawing.Size(108, 68)
         Me.Button2.TabIndex = 47
         Me.Button2.Text = "Habitat Editor (FR/LG)"
         Me.Button2.UseVisualStyleBackColor = True
@@ -454,9 +493,10 @@ Partial Class MainFrm
         Me.TabPage3.Controls.Add(Me.Button29)
         Me.TabPage3.Controls.Add(Me.Button30)
         Me.TabPage3.Controls.Add(Me.Button31)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(436, 253)
+        Me.TabPage3.Size = New System.Drawing.Size(584, 314)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "External Programs"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -464,9 +504,10 @@ Partial Class MainFrm
         'Button47
         '
         Me.Button47.Enabled = False
-        Me.Button47.Location = New System.Drawing.Point(3, 190)
+        Me.Button47.Location = New System.Drawing.Point(4, 234)
+        Me.Button47.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button47.Name = "Button47"
-        Me.Button47.Size = New System.Drawing.Size(81, 55)
+        Me.Button47.Size = New System.Drawing.Size(108, 68)
         Me.Button47.TabIndex = 52
         Me.Button47.Text = "Add Program"
         Me.Button47.UseVisualStyleBackColor = True
@@ -474,9 +515,10 @@ Partial Class MainFrm
         'Button48
         '
         Me.Button48.Enabled = False
-        Me.Button48.Location = New System.Drawing.Point(90, 190)
+        Me.Button48.Location = New System.Drawing.Point(120, 234)
+        Me.Button48.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button48.Name = "Button48"
-        Me.Button48.Size = New System.Drawing.Size(81, 55)
+        Me.Button48.Size = New System.Drawing.Size(108, 68)
         Me.Button48.TabIndex = 53
         Me.Button48.Text = "Add Program"
         Me.Button48.UseVisualStyleBackColor = True
@@ -484,9 +526,10 @@ Partial Class MainFrm
         'Button49
         '
         Me.Button49.Enabled = False
-        Me.Button49.Location = New System.Drawing.Point(177, 190)
+        Me.Button49.Location = New System.Drawing.Point(236, 234)
+        Me.Button49.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button49.Name = "Button49"
-        Me.Button49.Size = New System.Drawing.Size(81, 55)
+        Me.Button49.Size = New System.Drawing.Size(108, 68)
         Me.Button49.TabIndex = 54
         Me.Button49.Text = "Add Program"
         Me.Button49.UseVisualStyleBackColor = True
@@ -494,9 +537,10 @@ Partial Class MainFrm
         'Button50
         '
         Me.Button50.Enabled = False
-        Me.Button50.Location = New System.Drawing.Point(264, 190)
+        Me.Button50.Location = New System.Drawing.Point(352, 234)
+        Me.Button50.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button50.Name = "Button50"
-        Me.Button50.Size = New System.Drawing.Size(81, 55)
+        Me.Button50.Size = New System.Drawing.Size(108, 68)
         Me.Button50.TabIndex = 55
         Me.Button50.Text = "Add Program"
         Me.Button50.UseVisualStyleBackColor = True
@@ -504,9 +548,10 @@ Partial Class MainFrm
         'Button51
         '
         Me.Button51.Enabled = False
-        Me.Button51.Location = New System.Drawing.Point(351, 190)
+        Me.Button51.Location = New System.Drawing.Point(468, 234)
+        Me.Button51.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button51.Name = "Button51"
-        Me.Button51.Size = New System.Drawing.Size(79, 55)
+        Me.Button51.Size = New System.Drawing.Size(105, 68)
         Me.Button51.TabIndex = 56
         Me.Button51.Text = "Add Program"
         Me.Button51.UseVisualStyleBackColor = True
@@ -514,9 +559,10 @@ Partial Class MainFrm
         'Button42
         '
         Me.Button42.Enabled = False
-        Me.Button42.Location = New System.Drawing.Point(3, 129)
+        Me.Button42.Location = New System.Drawing.Point(4, 159)
+        Me.Button42.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button42.Name = "Button42"
-        Me.Button42.Size = New System.Drawing.Size(81, 55)
+        Me.Button42.Size = New System.Drawing.Size(108, 68)
         Me.Button42.TabIndex = 47
         Me.Button42.Text = "Add Program"
         Me.Button42.UseVisualStyleBackColor = True
@@ -524,9 +570,10 @@ Partial Class MainFrm
         'Button43
         '
         Me.Button43.Enabled = False
-        Me.Button43.Location = New System.Drawing.Point(90, 129)
+        Me.Button43.Location = New System.Drawing.Point(120, 159)
+        Me.Button43.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button43.Name = "Button43"
-        Me.Button43.Size = New System.Drawing.Size(81, 55)
+        Me.Button43.Size = New System.Drawing.Size(108, 68)
         Me.Button43.TabIndex = 48
         Me.Button43.Text = "Add Program"
         Me.Button43.UseVisualStyleBackColor = True
@@ -534,9 +581,10 @@ Partial Class MainFrm
         'Button44
         '
         Me.Button44.Enabled = False
-        Me.Button44.Location = New System.Drawing.Point(177, 129)
+        Me.Button44.Location = New System.Drawing.Point(236, 159)
+        Me.Button44.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button44.Name = "Button44"
-        Me.Button44.Size = New System.Drawing.Size(81, 55)
+        Me.Button44.Size = New System.Drawing.Size(108, 68)
         Me.Button44.TabIndex = 49
         Me.Button44.Text = "Add Program"
         Me.Button44.UseVisualStyleBackColor = True
@@ -544,9 +592,10 @@ Partial Class MainFrm
         'Button45
         '
         Me.Button45.Enabled = False
-        Me.Button45.Location = New System.Drawing.Point(264, 129)
+        Me.Button45.Location = New System.Drawing.Point(352, 159)
+        Me.Button45.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button45.Name = "Button45"
-        Me.Button45.Size = New System.Drawing.Size(81, 55)
+        Me.Button45.Size = New System.Drawing.Size(108, 68)
         Me.Button45.TabIndex = 50
         Me.Button45.Text = "Add Program"
         Me.Button45.UseVisualStyleBackColor = True
@@ -554,9 +603,10 @@ Partial Class MainFrm
         'Button46
         '
         Me.Button46.Enabled = False
-        Me.Button46.Location = New System.Drawing.Point(351, 129)
+        Me.Button46.Location = New System.Drawing.Point(468, 159)
+        Me.Button46.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button46.Name = "Button46"
-        Me.Button46.Size = New System.Drawing.Size(79, 55)
+        Me.Button46.Size = New System.Drawing.Size(105, 68)
         Me.Button46.TabIndex = 51
         Me.Button46.Text = "Add Program"
         Me.Button46.UseVisualStyleBackColor = True
@@ -564,9 +614,10 @@ Partial Class MainFrm
         'Button37
         '
         Me.Button37.Enabled = False
-        Me.Button37.Location = New System.Drawing.Point(3, 68)
+        Me.Button37.Location = New System.Drawing.Point(4, 84)
+        Me.Button37.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button37.Name = "Button37"
-        Me.Button37.Size = New System.Drawing.Size(81, 55)
+        Me.Button37.Size = New System.Drawing.Size(108, 68)
         Me.Button37.TabIndex = 42
         Me.Button37.Text = "Add Program"
         Me.Button37.UseVisualStyleBackColor = True
@@ -574,9 +625,10 @@ Partial Class MainFrm
         'Button38
         '
         Me.Button38.Enabled = False
-        Me.Button38.Location = New System.Drawing.Point(90, 68)
+        Me.Button38.Location = New System.Drawing.Point(120, 84)
+        Me.Button38.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button38.Name = "Button38"
-        Me.Button38.Size = New System.Drawing.Size(81, 55)
+        Me.Button38.Size = New System.Drawing.Size(108, 68)
         Me.Button38.TabIndex = 43
         Me.Button38.Text = "Add Program"
         Me.Button38.UseVisualStyleBackColor = True
@@ -584,9 +636,10 @@ Partial Class MainFrm
         'Button39
         '
         Me.Button39.Enabled = False
-        Me.Button39.Location = New System.Drawing.Point(177, 68)
+        Me.Button39.Location = New System.Drawing.Point(236, 84)
+        Me.Button39.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button39.Name = "Button39"
-        Me.Button39.Size = New System.Drawing.Size(81, 55)
+        Me.Button39.Size = New System.Drawing.Size(108, 68)
         Me.Button39.TabIndex = 44
         Me.Button39.Text = "Add Program"
         Me.Button39.UseVisualStyleBackColor = True
@@ -594,9 +647,10 @@ Partial Class MainFrm
         'Button40
         '
         Me.Button40.Enabled = False
-        Me.Button40.Location = New System.Drawing.Point(264, 68)
+        Me.Button40.Location = New System.Drawing.Point(352, 84)
+        Me.Button40.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button40.Name = "Button40"
-        Me.Button40.Size = New System.Drawing.Size(81, 55)
+        Me.Button40.Size = New System.Drawing.Size(108, 68)
         Me.Button40.TabIndex = 45
         Me.Button40.Text = "Add Program"
         Me.Button40.UseVisualStyleBackColor = True
@@ -604,9 +658,10 @@ Partial Class MainFrm
         'Button41
         '
         Me.Button41.Enabled = False
-        Me.Button41.Location = New System.Drawing.Point(351, 68)
+        Me.Button41.Location = New System.Drawing.Point(468, 84)
+        Me.Button41.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button41.Name = "Button41"
-        Me.Button41.Size = New System.Drawing.Size(79, 55)
+        Me.Button41.Size = New System.Drawing.Size(105, 68)
         Me.Button41.TabIndex = 46
         Me.Button41.Text = "Add Program"
         Me.Button41.UseVisualStyleBackColor = True
@@ -617,10 +672,11 @@ Partial Class MainFrm
         Me.TabPage1.Controls.Add(Me.Button8)
         Me.TabPage1.Controls.Add(Me.Button3)
         Me.TabPage1.Controls.Add(Me.Button1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(436, 253)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage1.Size = New System.Drawing.Size(584, 314)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Patchers and Expanders"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -628,9 +684,10 @@ Partial Class MainFrm
         'Button9
         '
         Me.Button9.Enabled = False
-        Me.Button9.Location = New System.Drawing.Point(177, 6)
+        Me.Button9.Location = New System.Drawing.Point(236, 7)
+        Me.Button9.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(81, 55)
+        Me.Button9.Size = New System.Drawing.Size(108, 68)
         Me.Button9.TabIndex = 36
         Me.Button9.Text = "Pokemon Adder"
         Me.Button9.UseVisualStyleBackColor = True
@@ -638,9 +695,10 @@ Partial Class MainFrm
         'Button8
         '
         Me.Button8.Enabled = False
-        Me.Button8.Location = New System.Drawing.Point(3, 68)
+        Me.Button8.Location = New System.Drawing.Point(4, 84)
+        Me.Button8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(81, 55)
+        Me.Button8.Size = New System.Drawing.Size(108, 68)
         Me.Button8.TabIndex = 35
         Me.Button8.Text = "ROM Expander"
         Me.Button8.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
@@ -649,9 +707,10 @@ Partial Class MainFrm
         'Button3
         '
         Me.Button3.Enabled = False
-        Me.Button3.Location = New System.Drawing.Point(90, 6)
+        Me.Button3.Location = New System.Drawing.Point(120, 7)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(81, 55)
+        Me.Button3.Size = New System.Drawing.Size(108, 68)
         Me.Button3.TabIndex = 16
         Me.Button3.Text = "Ability Adder"
         Me.Button3.UseVisualStyleBackColor = True
@@ -659,9 +718,10 @@ Partial Class MainFrm
         'Button1
         '
         Me.Button1.Enabled = False
-        Me.Button1.Location = New System.Drawing.Point(3, 6)
+        Me.Button1.Location = New System.Drawing.Point(4, 7)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(81, 55)
+        Me.Button1.Size = New System.Drawing.Size(108, 68)
         Me.Button1.TabIndex = 15
         Me.Button1.Text = "Attack Adder"
         Me.Button1.UseVisualStyleBackColor = True
@@ -669,37 +729,41 @@ Partial Class MainFrm
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 381)
+        Me.GroupBox1.Location = New System.Drawing.Point(16, 469)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(433, 37)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(577, 46)
         Me.GroupBox1.TabIndex = 48
         Me.GroupBox1.TabStop = False
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(87, 15)
+        Me.Label1.Location = New System.Drawing.Point(116, 18)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(250, 13)
+        Me.Label1.Size = New System.Drawing.Size(333, 17)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Copyright © 2016 Gamer2020 All Rights Reserved. "
         '
-        'Button11
+        'Button12
         '
-        Me.Button11.Enabled = False
-        Me.Button11.Location = New System.Drawing.Point(264, 129)
-        Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(81, 55)
-        Me.Button11.TabIndex = 49
-        Me.Button11.Text = "Pokedex List Editor"
-        Me.Button11.UseVisualStyleBackColor = True
+        Me.Button12.Enabled = False
+        Me.Button12.Location = New System.Drawing.Point(468, 159)
+        Me.Button12.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button12.Name = "Button12"
+        Me.Button12.Size = New System.Drawing.Size(105, 68)
+        Me.Button12.TabIndex = 50
+        Me.Button12.Text = "Trainer Editor"
+        Me.Button12.UseVisualStyleBackColor = True
         '
         'MainFrm
         '
         Me.AllowDrop = True
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(457, 422)
+        Me.ClientSize = New System.Drawing.Size(609, 519)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Button4)
@@ -708,6 +772,7 @@ Partial Class MainFrm
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.Name = "MainFrm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -787,4 +852,5 @@ Partial Class MainFrm
     Friend WithEvents Button9 As Button
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button
+    Friend WithEvents Button12 As System.Windows.Forms.Button
 End Class

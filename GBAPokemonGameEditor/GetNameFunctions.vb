@@ -400,4 +400,29 @@ Module GetNameFunctions
 
         GetTradeOTName = stringvar
     End Function
+
+    Public Function GetTrainerName(ByVal Index As Integer)
+        Dim offvar As Integer
+        Dim b As String = ""
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerTable", "")), System.Globalization.NumberStyles.HexNumber)
+
+        If header3 = "J" Then
+
+        Else
+
+            FileNum = FreeFile()
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+            Dim Name As String = "xxxxxxxxxxx"
+            FileGet(FileNum, Name, offvar + 1 + 4 + (40 * Index))
+            b = Sapp2Asc(Name, False)
+            While InStr(1, b, "\x") : b = LSet(b, Len(b) - 1) : End While
+            b = LSet(b, Len(b) - 1)
+
+
+        End If
+        FileClose(FileNum)
+        GetTrainerName = b
+    End Function
+
 End Module

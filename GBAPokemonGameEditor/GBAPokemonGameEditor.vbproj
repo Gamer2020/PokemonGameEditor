@@ -288,6 +288,12 @@
     <Compile Include="TradeEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="TrainerEditor.Designer.vb">
+      <DependentUpon>TrainerEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TrainerEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WichuRomFunctions.vb" />
     <Compile Include="WichuSpriteFunctions.vb" />
   </ItemGroup>
@@ -367,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TradeEditor.resx">
       <DependentUpon>TradeEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainerEditor.resx">
+      <DependentUpon>TrainerEditor.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
