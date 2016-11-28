@@ -70,6 +70,7 @@ ErrHandle:
 
     Public Function WriteHEX(ByRef FilePath As String, ByRef Start As Integer, ByRef Data As String) As Object
         On Error GoTo ErrHandle
+        WriteHEX = 0
         Dim iFile As Integer
         Dim sPost As Integer
         Dim bytHex As Byte
@@ -89,6 +90,7 @@ ErrHandle:
             sPost = sPost + 1
         Loop
         FileClose(iFile)
+        WriteHEX = 1
         Exit Function
 ErrHandle:
         MsgBox(Err.Description, MsgBoxStyle.OkOnly, "Error: " & Err.Number)

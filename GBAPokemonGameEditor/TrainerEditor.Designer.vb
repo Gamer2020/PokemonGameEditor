@@ -28,11 +28,11 @@ Partial Class TrainerEditor
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TrainerListComboBox = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.RnmBttn = New System.Windows.Forms.Button()
+        Me.TNameTextBox = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.PicNumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.TrainerPic = New System.Windows.Forms.PictureBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TNameTextBox = New System.Windows.Forms.TextBox()
-        Me.RnmBttn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,6 +91,31 @@ Partial Class TrainerEditor
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Trainer Data"
         '
+        'RnmBttn
+        '
+        Me.RnmBttn.Location = New System.Drawing.Point(269, 22)
+        Me.RnmBttn.Name = "RnmBttn"
+        Me.RnmBttn.Size = New System.Drawing.Size(75, 23)
+        Me.RnmBttn.TabIndex = 14
+        Me.RnmBttn.Text = "Rename"
+        Me.RnmBttn.UseVisualStyleBackColor = True
+        '
+        'TNameTextBox
+        '
+        Me.TNameTextBox.Location = New System.Drawing.Point(163, 21)
+        Me.TNameTextBox.Name = "TNameTextBox"
+        Me.TNameTextBox.Size = New System.Drawing.Size(100, 22)
+        Me.TNameTextBox.TabIndex = 13
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(108, 24)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(49, 17)
+        Me.Label2.TabIndex = 12
+        Me.Label2.Text = "Name:"
+        '
         'PicNumericUpDown
         '
         Me.PicNumericUpDown.Location = New System.Drawing.Point(16, 107)
@@ -106,31 +131,6 @@ Partial Class TrainerEditor
         Me.TrainerPic.Size = New System.Drawing.Size(85, 79)
         Me.TrainerPic.TabIndex = 10
         Me.TrainerPic.TabStop = False
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(108, 24)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(49, 17)
-        Me.Label2.TabIndex = 12
-        Me.Label2.Text = "Name:"
-        '
-        'TNameTextBox
-        '
-        Me.TNameTextBox.Location = New System.Drawing.Point(163, 21)
-        Me.TNameTextBox.Name = "TNameTextBox"
-        Me.TNameTextBox.Size = New System.Drawing.Size(100, 22)
-        Me.TNameTextBox.TabIndex = 13
-        '
-        'RnmBttn
-        '
-        Me.RnmBttn.Location = New System.Drawing.Point(269, 22)
-        Me.RnmBttn.Name = "RnmBttn"
-        Me.RnmBttn.Size = New System.Drawing.Size(75, 23)
-        Me.RnmBttn.TabIndex = 14
-        Me.RnmBttn.Text = "Rename"
-        Me.RnmBttn.UseVisualStyleBackColor = True
         '
         'TrainerEditor
         '

@@ -55,4 +55,29 @@
     Private Sub PicNumericUpDown_ValueChanged(sender As Object, e As EventArgs) Handles PicNumericUpDown.ValueChanged
         GetAndDrawTrainerPic(TrainerPic, PicNumericUpDown.Value)
     End Sub
+
+    Private Sub RnmBttn_Click(sender As Object, e As EventArgs) Handles RnmBttn.Click
+        Dim savevar As Integer = TrainerListComboBox.SelectedIndex
+
+        ChangeTrainerName(TrainerListComboBox.SelectedIndex + 1, TNameTextBox.Text)
+
+        Dim LoopVar As Integer
+
+        LoopVar = 0
+
+        TrainerListComboBox.Items.Clear()
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfTrainers", "")) = True
+
+            LoopVar = LoopVar + 1
+
+            TrainerListComboBox.Items.Add(GetTrainerName(LoopVar))
+
+
+
+        End While
+
+        TrainerListComboBox.SelectedIndex = savevar
+
+    End Sub
 End Class
