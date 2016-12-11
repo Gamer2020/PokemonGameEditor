@@ -202,3 +202,9 @@ Beta builds
 These are builds that are not recommended for regular use because they contain features that are still in development. These builds are sort of previews of what is currently being worked on.
 
 https://github.com/Gamer2020/PokemonGameEditor/tree/master/GBAPokemonGameEditor/bin/Debug
+
+Please note that you may get a SmartScreen notification when running the beta builds. Please click on what is shown in the following screenshots.
+
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/SCF.png)
+
+![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/ra.png)
