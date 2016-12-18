@@ -41,9 +41,11 @@ For Regular Stone Mega Evolution:
 		a. Open the item editor. Choose an item of your choice to be used as a Primal Orb. Set its Hold Effect to 141.
 		
 ![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/SettingUpEmEN/hold2.png)
+
 		b. In the extra section of item, put the index of the target Primal Pokemon (e.g index of Primal Groudon if want your item to behave like Red Orb). Note that you'll have to insert the ID in hex.
 		
 ![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/SettingUpEmEN/extra.png)
+
 		c. Set the Parameter to 1 for Alpha Reversion and 2 for Omega.
 		
 ![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/SettingUpEmEN/param.png)
