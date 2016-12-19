@@ -738,4 +738,30 @@ Module ImportDataFunctions
 
     End Sub
 
+    Public Sub ImportTrainerSprite(filename As String, Index As Integer)
+
+        Dim SpritePAl() As Color
+
+        Dim importimg As New Bitmap(filename)
+
+        Dim Loadedimg As Bitmap = New Bitmap(&H40, &H40)
+
+        If importimg.Height <> &H40 Or importimg.Width <> &H40 Then
+
+            MsgBox("Image dimensions must be 64 by 64! Aborting...")
+            Exit Sub
+        End If
+
+        Dim hexstring As String = ""
+
+        BitmapBLT(importimg, Loadedimg, 0, 0, 0, 0, &H40, &H40, Color.FromArgb(&HFF, 200, 200, &HA8))
+
+        SpritePAl = GetBitmapPalette(Loadedimg)
+
+        ConvertBitmapToPalette(Loadedimg, SpritePAl, True)
+
+        SaveTrainerSpriteToFreeSpace(Index, SaveBitmapToArray(Loadedimg, SpritePAl), SpritePAl)
+
+    End Sub
+
 End Module

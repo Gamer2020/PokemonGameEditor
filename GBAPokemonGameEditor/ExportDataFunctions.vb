@@ -436,4 +436,12 @@ Module ExportDataFunctions
 
     End Sub
 
+    Public Sub ExportTrainerSprite(filename As String, Index As Integer)
+
+        Dim bitout As Bitmap = GetAndDrawTrainerSpriteToBitmap(Index, Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber)) + (Index), 1))), System.Globalization.NumberStyles.HexNumber), True)
+
+        bitout.Save(filename)
+
+    End Sub
+
 End Module

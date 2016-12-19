@@ -1159,5 +1159,39 @@ ErrorHandle:
 
     End Sub
 
+    Public Function GetAndDrawTrainerSpriteToBitmap(ByVal index As Integer, ByVal palindex As Integer, Optional ShowBackColor As Boolean = False) As Bitmap
+
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "TrainerImageTable", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8)
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "TrainerPaletteTable", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8)
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+                fs.Position = sOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = pOffset
+                pOffset = r.ReadInt32 - &H8000000
+                fs.Position = pOffset
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 64, 64, ShowBackColor)
+        GetAndDrawTrainerSpriteToBitmap = bSprite
+
+    End Function
 
 End Module

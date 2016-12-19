@@ -206,4 +206,37 @@ Module ChangeImageFunctions
         ConvertFootPrintImageToHexString = OutPutBuffer1 & OutPutBuffer0 & OutPutBuffer3 & OutPutBuffer2
     End Function
 
+
+    Public Sub SaveTrainerSpriteToFreeSpace(index As Integer, Sprite As Byte(), pallete As Color())
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "TrainerImageTable", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8)
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "TrainerPaletteTable", ""), System.Globalization.NumberStyles.HexNumber) + (Index * 8)
+
+        Dim ImgString As String
+        Dim PalString As String
+
+        Dim ImgBytes As Byte()
+        Dim PalBytes As Byte()
+
+        Dim ImgNewOffset As String
+        Dim PalNewOffset As String
+
+        ImgBytes = ConvertStringToByteArray(CompressLz77String(ConvertByteArrayToString(Sprite)))
+        PalBytes = ConvertStringToByteArray(CompressLz77String(ConvertPaletteToString(pallete)))
+
+        ImgString = ByteArrayToHexString(ImgBytes)
+        PalString = ByteArrayToHexString(PalBytes)
+
+        ImgNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(ImgString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, ImgNewOffset, ImgString)
+
+        WriteHEX(LoadedROM, sOffset, ReverseHEX(Hex((ImgNewOffset) + &H8000000)))
+
+        PalNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PalString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+
+        WriteHEX(LoadedROM, PalNewOffset, PalString)
+
+        WriteHEX(LoadedROM, pOffset, ReverseHEX(Hex((PalNewOffset) + &H8000000)))
+
+    End Sub
 End Module
