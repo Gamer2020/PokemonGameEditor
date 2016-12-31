@@ -28,28 +28,30 @@ Partial Class TrainerEditor
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TrainerListComboBox = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Button22 = New System.Windows.Forms.Button()
+        Me.Button21 = New System.Windows.Forms.Button()
+        Me.MusicTextBox = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.ClassComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.RnmBttn = New System.Windows.Forms.Button()
         Me.TNameTextBox = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.PicNumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.TrainerPic = New System.Windows.Forms.PictureBox()
         Me.SaveBttn = New System.Windows.Forms.Button()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.ClassComboBox = New System.Windows.Forms.ComboBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.MusicTextBox = New System.Windows.Forms.TextBox()
-        Me.Button22 = New System.Windows.Forms.Button()
-        Me.Button21 = New System.Windows.Forms.Button()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.fileOpenDialog = New System.Windows.Forms.OpenFileDialog()
+        Me.ClssRnmBttn = New System.Windows.Forms.Button()
+        Me.ClssTxtBx = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TrainerPic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -92,6 +94,8 @@ Partial Class TrainerEditor
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.ClssRnmBttn)
+        Me.GroupBox2.Controls.Add(Me.ClssTxtBx)
         Me.GroupBox2.Controls.Add(Me.Button22)
         Me.GroupBox2.Controls.Add(Me.Button21)
         Me.GroupBox2.Controls.Add(Me.MusicTextBox)
@@ -111,11 +115,101 @@ Partial Class TrainerEditor
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Trainer Data"
         '
+        'Button22
+        '
+        Me.Button22.Location = New System.Drawing.Point(16, 185)
+        Me.Button22.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button22.Name = "Button22"
+        Me.Button22.Size = New System.Drawing.Size(85, 43)
+        Me.Button22.TabIndex = 21
+        Me.Button22.Text = "Export Sprite"
+        Me.Button22.UseVisualStyleBackColor = True
+        '
+        'Button21
+        '
+        Me.Button21.Location = New System.Drawing.Point(16, 136)
+        Me.Button21.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button21.Name = "Button21"
+        Me.Button21.Size = New System.Drawing.Size(85, 43)
+        Me.Button21.TabIndex = 20
+        Me.Button21.Text = "Import Sprite"
+        Me.Button21.UseVisualStyleBackColor = True
+        '
+        'MusicTextBox
+        '
+        Me.MusicTextBox.Location = New System.Drawing.Point(258, 148)
+        Me.MusicTextBox.Name = "MusicTextBox"
+        Me.MusicTextBox.Size = New System.Drawing.Size(86, 22)
+        Me.MusicTextBox.TabIndex = 19
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(204, 151)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(48, 17)
+        Me.Label4.TabIndex = 18
+        Me.Label4.Text = "Music:"
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.RadioButton2)
+        Me.GroupBox3.Controls.Add(Me.RadioButton1)
+        Me.GroupBox3.Location = New System.Drawing.Point(111, 146)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(87, 82)
+        Me.GroupBox3.TabIndex = 17
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Gender"
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.ForeColor = System.Drawing.Color.DeepPink
+        Me.RadioButton2.Location = New System.Drawing.Point(6, 48)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(75, 21)
+        Me.RadioButton2.TabIndex = 1
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "Female"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.RadioButton1.Location = New System.Drawing.Point(6, 21)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(59, 21)
+        Me.RadioButton1.TabIndex = 0
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "Male"
+        Me.RadioButton1.UseVisualStyleBackColor = True
+        '
+        'ClassComboBox
+        '
+        Me.ClassComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.ClassComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ClassComboBox.FormattingEnabled = True
+        Me.ClassComboBox.Location = New System.Drawing.Point(163, 51)
+        Me.ClassComboBox.Name = "ClassComboBox"
+        Me.ClassComboBox.Size = New System.Drawing.Size(181, 24)
+        Me.ClassComboBox.TabIndex = 16
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(108, 54)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(46, 17)
+        Me.Label3.TabIndex = 15
+        Me.Label3.Text = "Class:"
+        '
         'RnmBttn
         '
-        Me.RnmBttn.Location = New System.Drawing.Point(269, 22)
+        Me.RnmBttn.Location = New System.Drawing.Point(269, 21)
         Me.RnmBttn.Name = "RnmBttn"
-        Me.RnmBttn.Size = New System.Drawing.Size(75, 23)
+        Me.RnmBttn.Size = New System.Drawing.Size(75, 24)
         Me.RnmBttn.TabIndex = 14
         Me.RnmBttn.Text = "Rename"
         Me.RnmBttn.UseVisualStyleBackColor = True
@@ -162,99 +256,25 @@ Partial Class TrainerEditor
         Me.SaveBttn.Text = "Save"
         Me.SaveBttn.UseVisualStyleBackColor = True
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(108, 54)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(46, 17)
-        Me.Label3.TabIndex = 15
-        Me.Label3.Text = "Class:"
-        '
-        'ClassComboBox
-        '
-        Me.ClassComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
-        Me.ClassComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.ClassComboBox.FormattingEnabled = True
-        Me.ClassComboBox.Location = New System.Drawing.Point(163, 51)
-        Me.ClassComboBox.Name = "ClassComboBox"
-        Me.ClassComboBox.Size = New System.Drawing.Size(181, 24)
-        Me.ClassComboBox.TabIndex = 16
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.RadioButton2)
-        Me.GroupBox3.Controls.Add(Me.RadioButton1)
-        Me.GroupBox3.Location = New System.Drawing.Point(111, 78)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(87, 82)
-        Me.GroupBox3.TabIndex = 17
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Gender"
-        '
-        'RadioButton1
-        '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.RadioButton1.Location = New System.Drawing.Point(6, 21)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(59, 21)
-        Me.RadioButton1.TabIndex = 0
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Male"
-        Me.RadioButton1.UseVisualStyleBackColor = True
-        '
-        'RadioButton2
-        '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.ForeColor = System.Drawing.Color.DeepPink
-        Me.RadioButton2.Location = New System.Drawing.Point(6, 48)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(75, 21)
-        Me.RadioButton2.TabIndex = 1
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Female"
-        Me.RadioButton2.UseVisualStyleBackColor = True
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(204, 83)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(48, 17)
-        Me.Label4.TabIndex = 18
-        Me.Label4.Text = "Music:"
-        '
-        'MusicTextBox
-        '
-        Me.MusicTextBox.Location = New System.Drawing.Point(258, 80)
-        Me.MusicTextBox.Name = "MusicTextBox"
-        Me.MusicTextBox.Size = New System.Drawing.Size(86, 22)
-        Me.MusicTextBox.TabIndex = 19
-        '
-        'Button22
-        '
-        Me.Button22.Location = New System.Drawing.Point(16, 185)
-        Me.Button22.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button22.Name = "Button22"
-        Me.Button22.Size = New System.Drawing.Size(85, 43)
-        Me.Button22.TabIndex = 21
-        Me.Button22.Text = "Export Sprite"
-        Me.Button22.UseVisualStyleBackColor = True
-        '
-        'Button21
-        '
-        Me.Button21.Location = New System.Drawing.Point(16, 136)
-        Me.Button21.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button21.Name = "Button21"
-        Me.Button21.Size = New System.Drawing.Size(85, 43)
-        Me.Button21.TabIndex = 20
-        Me.Button21.Text = "Import Sprite"
-        Me.Button21.UseVisualStyleBackColor = True
-        '
         'fileOpenDialog
         '
         Me.fileOpenDialog.FileName = "OpenFileDialog1"
+        '
+        'ClssRnmBttn
+        '
+        Me.ClssRnmBttn.Location = New System.Drawing.Point(163, 106)
+        Me.ClssRnmBttn.Name = "ClssRnmBttn"
+        Me.ClssRnmBttn.Size = New System.Drawing.Size(181, 34)
+        Me.ClssRnmBttn.TabIndex = 23
+        Me.ClssRnmBttn.Text = "Rename Class"
+        Me.ClssRnmBttn.UseVisualStyleBackColor = True
+        '
+        'ClssTxtBx
+        '
+        Me.ClssTxtBx.Location = New System.Drawing.Point(163, 81)
+        Me.ClssTxtBx.Name = "ClssTxtBx"
+        Me.ClssTxtBx.Size = New System.Drawing.Size(181, 22)
+        Me.ClssTxtBx.TabIndex = 22
         '
         'TrainerEditor
         '
@@ -274,10 +294,10 @@ Partial Class TrainerEditor
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TrainerPic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TrainerPic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -303,4 +323,6 @@ Partial Class TrainerEditor
     Friend WithEvents Button21 As System.Windows.Forms.Button
     Friend WithEvents SaveFileDialog As System.Windows.Forms.SaveFileDialog
     Friend WithEvents fileOpenDialog As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents ClssRnmBttn As System.Windows.Forms.Button
+    Friend WithEvents ClssTxtBx As System.Windows.Forms.TextBox
 End Class

@@ -314,4 +314,29 @@ Module ChangeNameFunctions
             ChangeTrainerName = NewName
 
     End Function
+
+    Public Function ChangeTrainerClassName(ByVal Index As Integer, ByVal NewName As String)
+        Dim offvar As Long
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerClasses", "")), System.Globalization.NumberStyles.HexNumber)
+        If header3 = "J" Then
+
+        Else
+
+            FileNum = FreeFile()
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+            Dim PokeName As String = "xxxxxxxxxxxxx"
+            Dim filler As Byte = "&HFF"
+            PokeName = NameAsc2Sapp(NewName)
+            FilePut(FileNum, PokeName, offvar + 1 + (Index * 13))
+            FilePut(FileNum, filler, offvar + 1 + (Index * 13) + Len(NewName))
+
+
+        End If
+        FileClose(FileNum)
+        ChangeTrainerClassName = NewName
+
+    End Function
+
+
 End Module

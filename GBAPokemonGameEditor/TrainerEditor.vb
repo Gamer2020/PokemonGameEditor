@@ -240,4 +240,30 @@
             Me.Enabled = True
         End If
     End Sub
+
+    Private Sub ClassComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ClassComboBox.SelectedIndexChanged
+        ClssTxtBx.Text = ClassComboBox.SelectedItem
+    End Sub
+
+    Private Sub ClssRnmBttn_Click(sender As Object, e As EventArgs) Handles ClssRnmBttn.Click
+        Dim savevar As Integer = ClassComboBox.SelectedIndex
+
+        ChangeTrainerClassName(ClassComboBox.SelectedIndex, ClssTxtBx.Text)
+
+        Dim LoopVar As Integer
+
+        LoopVar = 0
+
+        ClassComboBox.Items.Clear()
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfTrainerClasses", "")) = True
+
+            ClassComboBox.Items.Add(GetTrainerClass(LoopVar))
+
+            LoopVar = LoopVar + 1
+
+        End While
+
+        ClassComboBox.SelectedIndex = savevar
+    End Sub
 End Class
