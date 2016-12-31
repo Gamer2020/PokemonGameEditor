@@ -113,7 +113,7 @@ Public Class ItemEditor
         WriteHEX(LoadedROM, ((ItemBaseOff) + 19) + (listvar * 44), Hex(ValueTextBox.Text))
 
         WriteHEX(LoadedROM, ((ItemBaseOff) + 24) + (listvar * 44), Hex(MysteryValue1TextBox.Text))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 25) + (listvar * 44), Hex(MysteryValue1TextBox.Text))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 25) + (listvar * 44), Hex(MysteryValue2TextBox.Text))
         WriteHEX(LoadedROM, ((ItemBaseOff) + 26) + (listvar * 44), Hex(PocketComboBox.SelectedIndex))
         WriteHEX(LoadedROM, ((ItemBaseOff) + 27) + (listvar * 44), Hex(TypeTextBox.Text))
 
