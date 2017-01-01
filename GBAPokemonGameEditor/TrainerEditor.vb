@@ -1,4 +1,5 @@
-﻿Public Class TrainerEditor
+﻿Imports VB = Microsoft.VisualBasic
+Public Class TrainerEditor
 
     Private Sub TrainerEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -58,17 +59,21 @@
 
         MusicGenBin = (Convert.ToString(MusicGen, 2))
 
-        While Len(MusicGenBin) < 8
+        'While Len(MusicGenBin) < 8
 
-            MusicGenBin = "0" & MusicGenBin
+        '    MusicGenBin = "0" & MusicGenBin
 
-        End While
+        'End While
+
+        MusicGenBin = VB.Right("00000000" & MusicGenBin, 8)
 
         If GetChar(MusicGenBin, 1) = "0" Then
             RadioButton1.Checked = True
         ElseIf GetChar(MusicGenBin, 1) = "1" Then
             RadioButton2.Checked = True
         End If
+
+        MusicTextBox.Text = Convert.ToInt32(MusicGenBin.Remove(0, 1), 2)
 
         TrainerIndexTextBox.Text = TrainerListComboBox.SelectedIndex + 1
     End Sub
@@ -115,6 +120,9 @@
     Private Sub SaveBttn_Click(sender As Object, e As EventArgs) Handles SaveBttn.Click
 
         Dim offvar As Integer
+        Dim MusicGen As Integer
+        Dim MusicGenBin As String = ""
+        Dim Musictextbx As Integer
 
         offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerTable", "")), System.Globalization.NumberStyles.HexNumber)
 
@@ -123,6 +131,22 @@
         WriteHEX(LoadedROM, offvar + 3, Hex(PicNumericUpDown.Value))
 
         WriteHEX(LoadedROM, offvar + 1, Hex(ClassComboBox.SelectedIndex))
+
+        Musictextbx = MusicTextBox.Text
+
+        If RadioButton1.Checked = True Then
+
+            MusicGenBin = "1" & VB.Right("0000000" & Convert.ToString(Musictextbx, 2), 7)
+
+        ElseIf RadioButton2.Checked = True Then
+
+            MusicGenBin = "0" & VB.Right("0000000" & Convert.ToString(Musictextbx, 2), 7)
+
+        End If
+
+        MusicGen = Convert.ToInt32(MusicGenBin, 2)
+
+        WriteHEX(LoadedROM, offvar + 2, Hex(MusicGen))
 
     End Sub
 

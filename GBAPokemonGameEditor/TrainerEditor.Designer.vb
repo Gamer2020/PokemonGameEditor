@@ -27,7 +27,8 @@ Partial Class TrainerEditor
         Me.TrainerIndexTextBox = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TrainerListComboBox = New System.Windows.Forms.ComboBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.ClssRnmBttn = New System.Windows.Forms.Button()
+        Me.ClssTxtBx = New System.Windows.Forms.TextBox()
         Me.Button22 = New System.Windows.Forms.Button()
         Me.Button21 = New System.Windows.Forms.Button()
         Me.MusicTextBox = New System.Windows.Forms.TextBox()
@@ -45,13 +46,17 @@ Partial Class TrainerEditor
         Me.SaveBttn = New System.Windows.Forms.Button()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.fileOpenDialog = New System.Windows.Forms.OpenFileDialog()
-        Me.ClssRnmBttn = New System.Windows.Forms.Button()
-        Me.ClssTxtBx = New System.Windows.Forms.TextBox()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TrainerPic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -84,7 +89,6 @@ Partial Class TrainerEditor
         '
         'TrainerListComboBox
         '
-        Me.TrainerListComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.TrainerListComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.TrainerListComboBox.FormattingEnabled = True
         Me.TrainerListComboBox.Location = New System.Drawing.Point(6, 21)
@@ -92,32 +96,25 @@ Partial Class TrainerEditor
         Me.TrainerListComboBox.Size = New System.Drawing.Size(142, 24)
         Me.TrainerListComboBox.TabIndex = 0
         '
-        'GroupBox2
+        'ClssRnmBttn
         '
-        Me.GroupBox2.Controls.Add(Me.ClssRnmBttn)
-        Me.GroupBox2.Controls.Add(Me.ClssTxtBx)
-        Me.GroupBox2.Controls.Add(Me.Button22)
-        Me.GroupBox2.Controls.Add(Me.Button21)
-        Me.GroupBox2.Controls.Add(Me.MusicTextBox)
-        Me.GroupBox2.Controls.Add(Me.Label4)
-        Me.GroupBox2.Controls.Add(Me.GroupBox3)
-        Me.GroupBox2.Controls.Add(Me.ClassComboBox)
-        Me.GroupBox2.Controls.Add(Me.Label3)
-        Me.GroupBox2.Controls.Add(Me.RnmBttn)
-        Me.GroupBox2.Controls.Add(Me.TNameTextBox)
-        Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.PicNumericUpDown)
-        Me.GroupBox2.Controls.Add(Me.TrainerPic)
-        Me.GroupBox2.Location = New System.Drawing.Point(189, 12)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(356, 273)
-        Me.GroupBox2.TabIndex = 1
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Trainer Data"
+        Me.ClssRnmBttn.Location = New System.Drawing.Point(64, 65)
+        Me.ClssRnmBttn.Name = "ClssRnmBttn"
+        Me.ClssRnmBttn.Size = New System.Drawing.Size(181, 34)
+        Me.ClssRnmBttn.TabIndex = 23
+        Me.ClssRnmBttn.Text = "Rename Class"
+        Me.ClssRnmBttn.UseVisualStyleBackColor = True
+        '
+        'ClssTxtBx
+        '
+        Me.ClssTxtBx.Location = New System.Drawing.Point(64, 40)
+        Me.ClssTxtBx.Name = "ClssTxtBx"
+        Me.ClssTxtBx.Size = New System.Drawing.Size(181, 22)
+        Me.ClssTxtBx.TabIndex = 22
         '
         'Button22
         '
-        Me.Button22.Location = New System.Drawing.Point(16, 185)
+        Me.Button22.Location = New System.Drawing.Point(7, 171)
         Me.Button22.Margin = New System.Windows.Forms.Padding(4)
         Me.Button22.Name = "Button22"
         Me.Button22.Size = New System.Drawing.Size(85, 43)
@@ -127,7 +124,7 @@ Partial Class TrainerEditor
         '
         'Button21
         '
-        Me.Button21.Location = New System.Drawing.Point(16, 136)
+        Me.Button21.Location = New System.Drawing.Point(7, 122)
         Me.Button21.Margin = New System.Windows.Forms.Padding(4)
         Me.Button21.Name = "Button21"
         Me.Button21.Size = New System.Drawing.Size(85, 43)
@@ -137,7 +134,7 @@ Partial Class TrainerEditor
         '
         'MusicTextBox
         '
-        Me.MusicTextBox.Location = New System.Drawing.Point(258, 148)
+        Me.MusicTextBox.Location = New System.Drawing.Point(255, 53)
         Me.MusicTextBox.Name = "MusicTextBox"
         Me.MusicTextBox.Size = New System.Drawing.Size(86, 22)
         Me.MusicTextBox.TabIndex = 19
@@ -145,7 +142,7 @@ Partial Class TrainerEditor
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(204, 151)
+        Me.Label4.Location = New System.Drawing.Point(201, 56)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(48, 17)
         Me.Label4.TabIndex = 18
@@ -155,7 +152,7 @@ Partial Class TrainerEditor
         '
         Me.GroupBox3.Controls.Add(Me.RadioButton2)
         Me.GroupBox3.Controls.Add(Me.RadioButton1)
-        Me.GroupBox3.Location = New System.Drawing.Point(111, 146)
+        Me.GroupBox3.Location = New System.Drawing.Point(108, 51)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(87, 82)
         Me.GroupBox3.TabIndex = 17
@@ -191,7 +188,7 @@ Partial Class TrainerEditor
         Me.ClassComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.ClassComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ClassComboBox.FormattingEnabled = True
-        Me.ClassComboBox.Location = New System.Drawing.Point(163, 51)
+        Me.ClassComboBox.Location = New System.Drawing.Point(64, 10)
         Me.ClassComboBox.Name = "ClassComboBox"
         Me.ClassComboBox.Size = New System.Drawing.Size(181, 24)
         Me.ClassComboBox.TabIndex = 16
@@ -199,7 +196,7 @@ Partial Class TrainerEditor
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(108, 54)
+        Me.Label3.Location = New System.Drawing.Point(9, 13)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(46, 17)
         Me.Label3.TabIndex = 15
@@ -207,7 +204,7 @@ Partial Class TrainerEditor
         '
         'RnmBttn
         '
-        Me.RnmBttn.Location = New System.Drawing.Point(269, 21)
+        Me.RnmBttn.Location = New System.Drawing.Point(266, 13)
         Me.RnmBttn.Name = "RnmBttn"
         Me.RnmBttn.Size = New System.Drawing.Size(75, 24)
         Me.RnmBttn.TabIndex = 14
@@ -216,7 +213,7 @@ Partial Class TrainerEditor
         '
         'TNameTextBox
         '
-        Me.TNameTextBox.Location = New System.Drawing.Point(163, 21)
+        Me.TNameTextBox.Location = New System.Drawing.Point(160, 13)
         Me.TNameTextBox.Name = "TNameTextBox"
         Me.TNameTextBox.Size = New System.Drawing.Size(100, 22)
         Me.TNameTextBox.TabIndex = 13
@@ -224,7 +221,7 @@ Partial Class TrainerEditor
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(108, 24)
+        Me.Label2.Location = New System.Drawing.Point(105, 16)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(49, 17)
         Me.Label2.TabIndex = 12
@@ -232,14 +229,14 @@ Partial Class TrainerEditor
         '
         'PicNumericUpDown
         '
-        Me.PicNumericUpDown.Location = New System.Drawing.Point(16, 107)
+        Me.PicNumericUpDown.Location = New System.Drawing.Point(7, 93)
         Me.PicNumericUpDown.Name = "PicNumericUpDown"
         Me.PicNumericUpDown.Size = New System.Drawing.Size(85, 22)
         Me.PicNumericUpDown.TabIndex = 11
         '
         'TrainerPic
         '
-        Me.TrainerPic.Location = New System.Drawing.Point(16, 21)
+        Me.TrainerPic.Location = New System.Drawing.Point(7, 7)
         Me.TrainerPic.Margin = New System.Windows.Forms.Padding(4)
         Me.TrainerPic.Name = "TrainerPic"
         Me.TrainerPic.Size = New System.Drawing.Size(85, 79)
@@ -260,29 +257,67 @@ Partial Class TrainerEditor
         '
         Me.fileOpenDialog.FileName = "OpenFileDialog1"
         '
-        'ClssRnmBttn
+        'TabControl1
         '
-        Me.ClssRnmBttn.Location = New System.Drawing.Point(163, 106)
-        Me.ClssRnmBttn.Name = "ClssRnmBttn"
-        Me.ClssRnmBttn.Size = New System.Drawing.Size(181, 34)
-        Me.ClssRnmBttn.TabIndex = 23
-        Me.ClssRnmBttn.Text = "Rename Class"
-        Me.ClssRnmBttn.UseVisualStyleBackColor = True
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Location = New System.Drawing.Point(179, 12)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(368, 306)
+        Me.TabControl1.TabIndex = 3
         '
-        'ClssTxtBx
+        'TabPage1
         '
-        Me.ClssTxtBx.Location = New System.Drawing.Point(163, 81)
-        Me.ClssTxtBx.Name = "ClssTxtBx"
-        Me.ClssTxtBx.Size = New System.Drawing.Size(181, 22)
-        Me.ClssTxtBx.TabIndex = 22
+        Me.TabPage1.Controls.Add(Me.TrainerPic)
+        Me.TabPage1.Controls.Add(Me.PicNumericUpDown)
+        Me.TabPage1.Controls.Add(Me.Button22)
+        Me.TabPage1.Controls.Add(Me.Label2)
+        Me.TabPage1.Controls.Add(Me.RnmBttn)
+        Me.TabPage1.Controls.Add(Me.Button21)
+        Me.TabPage1.Controls.Add(Me.TNameTextBox)
+        Me.TabPage1.Controls.Add(Me.MusicTextBox)
+        Me.TabPage1.Controls.Add(Me.Label4)
+        Me.TabPage1.Controls.Add(Me.GroupBox3)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(360, 277)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Trainer Data"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.ClssRnmBttn)
+        Me.TabPage2.Controls.Add(Me.Label3)
+        Me.TabPage2.Controls.Add(Me.ClassComboBox)
+        Me.TabPage2.Controls.Add(Me.ClssTxtBx)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(360, 277)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Trainer Class"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Size = New System.Drawing.Size(360, 277)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Pokemon Data"
+        Me.TabPage3.UseVisualStyleBackColor = True
         '
         'TrainerEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(559, 297)
+        Me.ClientSize = New System.Drawing.Size(559, 328)
+        Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.SaveBttn)
-        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -292,12 +327,15 @@ Partial Class TrainerEditor
         Me.Text = "Trainer Editor"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TrainerPic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -305,7 +343,6 @@ Partial Class TrainerEditor
     Friend WithEvents TrainerIndexTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TrainerListComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents PicNumericUpDown As System.Windows.Forms.NumericUpDown
     Friend WithEvents TrainerPic As System.Windows.Forms.PictureBox
     Friend WithEvents RnmBttn As System.Windows.Forms.Button
@@ -325,4 +362,8 @@ Partial Class TrainerEditor
     Friend WithEvents fileOpenDialog As System.Windows.Forms.OpenFileDialog
     Friend WithEvents ClssRnmBttn As System.Windows.Forms.Button
     Friend WithEvents ClssTxtBx As System.Windows.Forms.TextBox
+    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
+    Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
 End Class

@@ -1295,7 +1295,6 @@ Partial Class Pokemonedit
         '
         'Ab2
         '
-        Me.Ab2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.Ab2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.Ab2.FormattingEnabled = True
         Me.Ab2.Location = New System.Drawing.Point(8, 57)
@@ -1306,7 +1305,6 @@ Partial Class Pokemonedit
         '
         'Ab1
         '
-        Me.Ab1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.Ab1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.Ab1.FormattingEnabled = True
         Me.Ab1.Location = New System.Drawing.Point(8, 23)
@@ -1644,7 +1642,6 @@ Partial Class Pokemonedit
         '
         'ComboBox3
         '
-        Me.ComboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Location = New System.Drawing.Point(275, 229)
         Me.ComboBox3.Margin = New System.Windows.Forms.Padding(4)
@@ -1738,7 +1735,6 @@ Partial Class Pokemonedit
         '
         'ComboBox1
         '
-        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(509, 151)
@@ -1784,7 +1780,6 @@ Partial Class Pokemonedit
         '
         'EvoItem
         '
-        Me.EvoItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.EvoItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.EvoItem.FormattingEnabled = True
         Me.EvoItem.Location = New System.Drawing.Point(245, 155)
@@ -1857,7 +1852,6 @@ Partial Class Pokemonedit
         '
         'EvoPKMNames
         '
-        Me.EvoPKMNames.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.EvoPKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.EvoPKMNames.FormattingEnabled = True
         Me.EvoPKMNames.Location = New System.Drawing.Point(313, 39)
@@ -1948,7 +1942,6 @@ Partial Class Pokemonedit
         '
         'NewAt
         '
-        Me.NewAt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.NewAt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.NewAt.FormattingEnabled = True
         Me.NewAt.Location = New System.Drawing.Point(48, 235)
@@ -2972,7 +2965,6 @@ Partial Class Pokemonedit
         '
         'PKMNames
         '
-        Me.PKMNames.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.PKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.PKMNames.FormattingEnabled = True
         Me.PKMNames.Location = New System.Drawing.Point(8, 23)
