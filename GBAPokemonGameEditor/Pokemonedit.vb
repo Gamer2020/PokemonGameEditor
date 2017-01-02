@@ -119,8 +119,6 @@ Public Class Pokemonedit
 
             LoopVar = LoopVar + 1
 
-
-
         End While
 
         LoopVar = 0

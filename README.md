@@ -89,12 +89,14 @@ Trade Editor.
 
 Pokedex List Editor.
 
+Pokemon Cry Exporting.
+
 Planned Features A.K.A TODO List
 =========================
 
-Trainer Editor
+Trainer Editor (Started)
 
-Pokemon Cry Importing/Exporting
+Pokemon Cry Importing
 
 OW Editor
 
@@ -102,9 +104,7 @@ Finish the Battle Frontier Editor
 
 Improved Item Editor
 
-Item Adder
-
-Code Pokemon Adder for Emerald
+Toolbar mode
 
 Program Requirements
 ====================
@@ -121,8 +121,6 @@ Recommended Programs
 ====================
 
 This is a list of recommended programs that should be used with PGE for the best possible ROM hacking experience.
-
-MEH - https://github.com/shinyquagsire23/MEH
 
 Unofficial_XSE - https://github.com/Gamer2020/Unofficial_XSE/releases
 

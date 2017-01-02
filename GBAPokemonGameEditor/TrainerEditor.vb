@@ -26,9 +26,26 @@ Public Class TrainerEditor
 
             TrainerListComboBox.Items.Add(GetTrainerName(LoopVar))
 
+        End While
 
+        LoopVar = 0
+
+        TrainerItem1.Items.Clear()
+        TrainerItem2.Items.Clear()
+        TrainerItem3.Items.Clear()
+        TrainerItem4.Items.Clear()
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) = True
+
+            TrainerItem1.Items.Add(GetItemName(LoopVar))
+            TrainerItem2.Items.Add(GetItemName(LoopVar))
+            TrainerItem3.Items.Add(GetItemName(LoopVar))
+            TrainerItem4.Items.Add(GetItemName(LoopVar))
+
+            LoopVar = LoopVar + 1
 
         End While
+
 
         TrainerListComboBox.SelectedIndex = 0
 
@@ -74,6 +91,19 @@ Public Class TrainerEditor
         End If
 
         MusicTextBox.Text = Convert.ToInt32(MusicGenBin.Remove(0, 1), 2)
+
+        TrainerItem1.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 16, 2)), System.Globalization.NumberStyles.HexNumber)
+        TrainerItem2.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 18, 2)), System.Globalization.NumberStyles.HexNumber)
+        TrainerItem3.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 20, 2)), System.Globalization.NumberStyles.HexNumber)
+        TrainerItem4.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 22, 2)), System.Globalization.NumberStyles.HexNumber)
+
+        If (ReadHEX(LoadedROM, offvar + 24, 1)) = "00" Then
+            DblCheckBox.Checked = False
+        ElseIf (ReadHEX(LoadedROM, offvar + 24, 1)) = "01" Then
+            DblCheckBox.Checked = True
+        End If
+
+        AITextBox.Text = Int32.Parse((ReadHEX(LoadedROM, offvar + 28, 1)), System.Globalization.NumberStyles.HexNumber)
 
         TrainerIndexTextBox.Text = TrainerListComboBox.SelectedIndex + 1
     End Sub
@@ -132,21 +162,40 @@ Public Class TrainerEditor
 
         WriteHEX(LoadedROM, offvar + 1, Hex(ClassComboBox.SelectedIndex))
 
+        WriteHEX(LoadedROM, offvar + 16, ReverseHEX(VB.Right("0000" & Hex(TrainerItem1.SelectedIndex), 4)))
+        WriteHEX(LoadedROM, offvar + 18, ReverseHEX(VB.Right("0000" & Hex(TrainerItem2.SelectedIndex), 4)))
+        WriteHEX(LoadedROM, offvar + 20, ReverseHEX(VB.Right("0000" & Hex(TrainerItem3.SelectedIndex), 4)))
+        WriteHEX(LoadedROM, offvar + 22, ReverseHEX(VB.Right("0000" & Hex(TrainerItem4.SelectedIndex), 4)))
+
+        If DblCheckBox.Checked = False Then
+
+            WriteHEX(LoadedROM, offvar + 24, "00")
+
+        ElseIf DblCheckBox.Checked = True Then
+
+            WriteHEX(LoadedROM, offvar + 24, "01")
+
+        End If
+
+        WriteHEX(LoadedROM, offvar + 28, Hex(AITextBox.Text))
+
         Musictextbx = MusicTextBox.Text
 
         If RadioButton1.Checked = True Then
 
-            MusicGenBin = "1" & VB.Right("0000000" & Convert.ToString(Musictextbx, 2), 7)
+            MusicGenBin = "0" & VB.Right("0000000" & Convert.ToString(Musictextbx, 2), 7)
 
         ElseIf RadioButton2.Checked = True Then
 
-            MusicGenBin = "0" & VB.Right("0000000" & Convert.ToString(Musictextbx, 2), 7)
+            MusicGenBin = "1" & VB.Right("0000000" & Convert.ToString(Musictextbx, 2), 7)
 
         End If
 
         MusicGen = Convert.ToInt32(MusicGenBin, 2)
 
         WriteHEX(LoadedROM, offvar + 2, Hex(MusicGen))
+
+
 
     End Sub
 

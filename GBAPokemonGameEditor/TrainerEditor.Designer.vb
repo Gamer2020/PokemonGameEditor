@@ -50,6 +50,14 @@ Partial Class TrainerEditor
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TrainerItem1 = New System.Windows.Forms.ComboBox()
+        Me.TrainerItem2 = New System.Windows.Forms.ComboBox()
+        Me.TrainerItem3 = New System.Windows.Forms.ComboBox()
+        Me.TrainerItem4 = New System.Windows.Forms.ComboBox()
+        Me.DblCheckBox = New System.Windows.Forms.CheckBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.AITextBox = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +65,7 @@ Partial Class TrainerEditor
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -265,11 +274,15 @@ Partial Class TrainerEditor
         Me.TabControl1.Location = New System.Drawing.Point(179, 12)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(368, 306)
+        Me.TabControl1.Size = New System.Drawing.Size(368, 323)
         Me.TabControl1.TabIndex = 3
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.AITextBox)
+        Me.TabPage1.Controls.Add(Me.Label5)
+        Me.TabPage1.Controls.Add(Me.DblCheckBox)
+        Me.TabPage1.Controls.Add(Me.GroupBox2)
         Me.TabPage1.Controls.Add(Me.TrainerPic)
         Me.TabPage1.Controls.Add(Me.PicNumericUpDown)
         Me.TabPage1.Controls.Add(Me.Button22)
@@ -283,7 +296,7 @@ Partial Class TrainerEditor
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(360, 277)
+        Me.TabPage1.Size = New System.Drawing.Size(360, 294)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Trainer Data"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -311,11 +324,82 @@ Partial Class TrainerEditor
         Me.TabPage3.Text = "Pokemon Data"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.TrainerItem4)
+        Me.GroupBox2.Controls.Add(Me.TrainerItem3)
+        Me.GroupBox2.Controls.Add(Me.TrainerItem2)
+        Me.GroupBox2.Controls.Add(Me.TrainerItem1)
+        Me.GroupBox2.Location = New System.Drawing.Point(108, 139)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(179, 144)
+        Me.GroupBox2.TabIndex = 22
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Trainer Items"
+        '
+        'TrainerItem1
+        '
+        Me.TrainerItem1.FormattingEnabled = True
+        Me.TrainerItem1.Location = New System.Drawing.Point(6, 21)
+        Me.TrainerItem1.Name = "TrainerItem1"
+        Me.TrainerItem1.Size = New System.Drawing.Size(157, 24)
+        Me.TrainerItem1.TabIndex = 0
+        '
+        'TrainerItem2
+        '
+        Me.TrainerItem2.FormattingEnabled = True
+        Me.TrainerItem2.Location = New System.Drawing.Point(6, 51)
+        Me.TrainerItem2.Name = "TrainerItem2"
+        Me.TrainerItem2.Size = New System.Drawing.Size(157, 24)
+        Me.TrainerItem2.TabIndex = 1
+        '
+        'TrainerItem3
+        '
+        Me.TrainerItem3.FormattingEnabled = True
+        Me.TrainerItem3.Location = New System.Drawing.Point(6, 81)
+        Me.TrainerItem3.Name = "TrainerItem3"
+        Me.TrainerItem3.Size = New System.Drawing.Size(157, 24)
+        Me.TrainerItem3.TabIndex = 2
+        '
+        'TrainerItem4
+        '
+        Me.TrainerItem4.FormattingEnabled = True
+        Me.TrainerItem4.Location = New System.Drawing.Point(6, 111)
+        Me.TrainerItem4.Name = "TrainerItem4"
+        Me.TrainerItem4.Size = New System.Drawing.Size(157, 24)
+        Me.TrainerItem4.TabIndex = 3
+        '
+        'DblCheckBox
+        '
+        Me.DblCheckBox.AutoSize = True
+        Me.DblCheckBox.Location = New System.Drawing.Point(204, 83)
+        Me.DblCheckBox.Name = "DblCheckBox"
+        Me.DblCheckBox.Size = New System.Drawing.Size(115, 21)
+        Me.DblCheckBox.TabIndex = 23
+        Me.DblCheckBox.Text = "Double Battle"
+        Me.DblCheckBox.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(201, 107)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(24, 17)
+        Me.Label5.TabIndex = 24
+        Me.Label5.Text = "AI:"
+        '
+        'AITextBox
+        '
+        Me.AITextBox.Location = New System.Drawing.Point(255, 104)
+        Me.AITextBox.Name = "AITextBox"
+        Me.AITextBox.Size = New System.Drawing.Size(86, 22)
+        Me.AITextBox.TabIndex = 25
+        '
         'TrainerEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(559, 328)
+        Me.ClientSize = New System.Drawing.Size(559, 345)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.SaveBttn)
         Me.Controls.Add(Me.GroupBox1)
@@ -336,6 +420,7 @@ Partial Class TrainerEditor
         Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -366,4 +451,12 @@ Partial Class TrainerEditor
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents TrainerItem4 As System.Windows.Forms.ComboBox
+    Friend WithEvents TrainerItem3 As System.Windows.Forms.ComboBox
+    Friend WithEvents TrainerItem2 As System.Windows.Forms.ComboBox
+    Friend WithEvents TrainerItem1 As System.Windows.Forms.ComboBox
+    Friend WithEvents DblCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents AITextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
 End Class
