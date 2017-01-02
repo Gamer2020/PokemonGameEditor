@@ -189,6 +189,8 @@ doom-desire
 
 DizzyEggg
 
+EddyHg80
+
 Downloads
 ================================
 https://github.com/Gamer2020/PokemonGameEditor/releases
