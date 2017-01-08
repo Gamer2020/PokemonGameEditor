@@ -3968,4 +3968,12 @@ Public Class Pokemonedit
         End If
 
     End Sub
+
+    Private Sub Label15_Click(sender As Object, e As EventArgs) Handles Label15.Click
+
+    End Sub
+
+    Private Sub EvoItemPic_Click(sender As Object, e As EventArgs) Handles EvoItemPic.Click
+
+    End Sub
 End Class

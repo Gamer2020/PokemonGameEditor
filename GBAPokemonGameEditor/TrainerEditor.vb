@@ -11,10 +11,53 @@ Public Class TrainerEditor
 
         While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfTrainerClasses", "")) = True
 
-
             ClassComboBox.Items.Add(GetTrainerClass(LoopVar))
             LoopVar = LoopVar + 1
         End While
+
+        LoopVar = 0
+
+        TnPkmComboBox.Items.Clear()
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+
+            LoopVar = LoopVar + 1
+
+            TnPkmComboBox.Items.Add(GetPokemonName(LoopVar))
+
+        End While
+
+        LoopVar = 0
+
+        AttackComboBox1.Items.Clear()
+        AttackComboBox2.Items.Clear()
+        AttackComboBox3.Items.Clear()
+        AttackComboBox4.Items.Clear()
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfAttacks", "")) + 1 = True
+
+
+            AttackComboBox1.Items.Add(GetAttackName(LoopVar))
+            AttackComboBox2.Items.Add(GetAttackName(LoopVar))
+            AttackComboBox3.Items.Add(GetAttackName(LoopVar))
+            AttackComboBox4.Items.Add(GetAttackName(LoopVar))
+
+            LoopVar = LoopVar + 1
+
+        End While
+
+        LoopVar = 0
+
+        TnPkmItmComboBox.Items.Clear()
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) = True
+
+            TnPkmItmComboBox.Items.Add(GetItemName(LoopVar))
+
+            LoopVar = LoopVar + 1
+
+        End While
+
 
         LoopVar = 0
 
@@ -105,7 +148,26 @@ Public Class TrainerEditor
 
         AITextBox.Text = Int32.Parse((ReadHEX(LoadedROM, offvar + 28, 1)), System.Globalization.NumberStyles.HexNumber)
 
+        'Pokemon Tab Stuff
+
+        PointerPokeDataTextBox.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offvar + 36, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
+        PokeNumTextBox.Text = Int32.Parse((ReadHEX(LoadedROM, offvar + 32, 1)), System.Globalization.NumberStyles.HexNumber)
+        PokeDataFormatTextBox.Text = Int32.Parse(ReadHEX(LoadedROM, offvar, 1), System.Globalization.NumberStyles.HexNumber)
+
+        PkmSlts.Items.Clear()
+
+        While PkmSlts.Items.Count < PokeNumTextBox.Text
+
+            PkmSlts.Items.Add("Pokemon Slot" & (PkmSlts.Items.Count + 1))
+
+        End While
+
+        PkmSlts.SelectedIndex = 0
+
+        'end of Pokemon Tab Stuff
+
         TrainerIndexTextBox.Text = TrainerListComboBox.SelectedIndex + 1
+
     End Sub
 
     Private Sub TrainerIndexTextBox_TextChanged(sender As Object, e As EventArgs) Handles TrainerIndexTextBox.TextChanged
@@ -166,6 +228,9 @@ Public Class TrainerEditor
         WriteHEX(LoadedROM, offvar + 18, ReverseHEX(VB.Right("0000" & Hex(TrainerItem2.SelectedIndex), 4)))
         WriteHEX(LoadedROM, offvar + 20, ReverseHEX(VB.Right("0000" & Hex(TrainerItem3.SelectedIndex), 4)))
         WriteHEX(LoadedROM, offvar + 22, ReverseHEX(VB.Right("0000" & Hex(TrainerItem4.SelectedIndex), 4)))
+
+        WriteHEX(LoadedROM, offvar + 32, Hex(PokeNumTextBox.Text))
+        WriteHEX(LoadedROM, offvar, Hex(PokeDataFormatTextBox.Text))
 
         If DblCheckBox.Checked = False Then
 
@@ -338,5 +403,160 @@ Public Class TrainerEditor
         End While
 
         ClassComboBox.SelectedIndex = savevar
+    End Sub
+
+    Private Sub RpntPkDtBttn_Click(sender As Object, e As EventArgs) Handles RpntPkDtBttn.Click
+
+        Dim offvar As Integer
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerTable", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = offvar + (40 * (TrainerListComboBox.SelectedIndex + 1))
+
+        WriteHEX(LoadedROM, offvar + 36, ReverseHEX(Hex(Int32.Parse(((PointerPokeDataTextBox.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+
+        'Pokemon Tab Stuff
+
+        PointerPokeDataTextBox.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offvar + 36, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
+        PokeNumTextBox.Text = Int32.Parse((ReadHEX(LoadedROM, offvar + 32, 1)), System.Globalization.NumberStyles.HexNumber)
+        PokeDataFormatTextBox.Text = Int32.Parse(ReadHEX(LoadedROM, offvar, 1), System.Globalization.NumberStyles.HexNumber)
+
+        PkmSlts.Items.Clear()
+
+        While PkmSlts.Items.Count < PokeNumTextBox.Text
+
+            PkmSlts.Items.Add("Pokemon Slot" & (PkmSlts.Items.Count + 1))
+
+        End While
+
+        PkmSlts.SelectedIndex = 0
+
+        'end of Pokemon Tab Stuff
+
+    End Sub
+
+    Private Sub TnPkmComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TnPkmComboBox.SelectedIndexChanged
+
+        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "0") = "0" Then
+
+            If TnPkmComboBox.SelectedIndex + 1 > 0 Then
+                GetAndDrawFrontPokemonPic(TnPkmPictureBox, TnPkmComboBox.SelectedIndex + 1)
+            Else
+                TnPkmPictureBox.Image = Nothing
+            End If
+        End If
+
+    End Sub
+
+    Private Sub TnPkmItmComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TnPkmItmComboBox.SelectedIndexChanged
+
+        If TnPkmItmComboBox.SelectedIndex > -1 Then
+            If header2 = "BPR" Or header2 = "BPG" Then
+
+                GetAndDrawItemPic(TnPkmItmPictureBox, TnPkmItmComboBox.SelectedIndex)
+
+            ElseIf header2 = "BPE" Then
+
+                GetAndDrawItemPic(TnPkmItmPictureBox, TnPkmItmComboBox.SelectedIndex)
+
+            ElseIf header2 = "AXP" Or header2 = "AXV" Then
+
+                TnPkmItmPictureBox.Image = Nothing
+
+            End If
+
+        Else
+            TnPkmItmPictureBox.Image = Nothing
+        End If
+
+    End Sub
+
+    Private Sub PkmSlts_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PkmSlts.SelectedIndexChanged
+        Dim offvar As Integer
+        Dim offvar2 As Integer
+        Dim curtype As Integer
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerTable", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = offvar + (40 * (TrainerListComboBox.SelectedIndex + 1))
+
+        offvar2 = ((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offvar + 36, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
+
+        curtype = Int32.Parse(ReadHEX(LoadedROM, offvar, 1), System.Globalization.NumberStyles.HexNumber)
+
+        If curtype = 0 Then
+
+            PkmnEvsTextBox.Text = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            PkmLvlTextBox.Text = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 2 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            TnPkmComboBox.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 4 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber) - 1
+
+            TnPkmItmComboBox.SelectedIndex = -1
+            AttackComboBox1.SelectedIndex = -1
+            AttackComboBox2.SelectedIndex = -1
+            AttackComboBox3.SelectedIndex = -1
+            AttackComboBox4.SelectedIndex = -1
+
+            TnPkmItmComboBox.Enabled = False
+            AttackComboBox1.Enabled = False
+            AttackComboBox2.Enabled = False
+            AttackComboBox3.Enabled = False
+            AttackComboBox4.Enabled = False
+
+        ElseIf curtype = 1 Then
+
+            PkmnEvsTextBox.Text = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            PkmLvlTextBox.Text = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 2 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            TnPkmComboBox.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 4 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber) - 1
+
+            AttackComboBox1.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 6 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            AttackComboBox2.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 8 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            AttackComboBox3.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 10 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            AttackComboBox4.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 12 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+
+            TnPkmItmComboBox.SelectedIndex = -1
+
+            TnPkmItmComboBox.Enabled = False
+            AttackComboBox1.Enabled = True
+            AttackComboBox2.Enabled = True
+            AttackComboBox3.Enabled = True
+            AttackComboBox4.Enabled = True
+
+        ElseIf curtype = 2 Then
+
+            PkmnEvsTextBox.Text = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            PkmLvlTextBox.Text = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 2 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            TnPkmComboBox.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 4 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber) - 1
+
+            TnPkmItmComboBox.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 6 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+
+            AttackComboBox1.SelectedIndex = -1
+            AttackComboBox2.SelectedIndex = -1
+            AttackComboBox3.SelectedIndex = -1
+            AttackComboBox4.SelectedIndex = -1
+
+            TnPkmItmComboBox.Enabled = True
+            AttackComboBox1.Enabled = False
+            AttackComboBox2.Enabled = False
+            AttackComboBox3.Enabled = False
+            AttackComboBox4.Enabled = False
+
+        ElseIf curtype = 3 Then
+
+            PkmnEvsTextBox.Text = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            PkmLvlTextBox.Text = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 2 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            TnPkmComboBox.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 4 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber) - 1
+
+            TnPkmItmComboBox.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 6 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            AttackComboBox1.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 8 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            AttackComboBox2.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 10 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            AttackComboBox3.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 12 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+            AttackComboBox4.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar2 + 14 + (PkmSlts.SelectedIndex * 16), 2)), System.Globalization.NumberStyles.HexNumber)
+
+            TnPkmItmComboBox.Enabled = True
+            AttackComboBox1.Enabled = True
+            AttackComboBox2.Enabled = True
+            AttackComboBox3.Enabled = True
+            AttackComboBox4.Enabled = True
+
+        End If
+
     End Sub
 End Class
