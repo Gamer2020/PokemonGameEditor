@@ -213,6 +213,7 @@ D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.SplashScreen1.resources
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.TMHMEditor.resources
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.TradeEditor.resources
+D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.TrainerEditor.resources
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.vbproj.GenerateResource.Cache
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.TrustInfo.xml
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.exe.manifest
@@ -220,5 +221,3 @@ D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.exe
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.xml
 D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.pdb
-D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\GBAPokemonGameEditor.vbprojResolveAssemblyReference.cache
-D:\Github\PokemonGameEditor\GBAPokemonGameEditor\obj\x86\Debug\PokemonGameEditor.TrainerEditor.resources
