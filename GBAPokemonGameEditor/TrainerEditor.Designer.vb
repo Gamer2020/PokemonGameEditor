@@ -58,6 +58,12 @@ Partial Class TrainerEditor
         Me.TrainerItem1 = New System.Windows.Forms.ComboBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.PkmnSvBttn = New System.Windows.Forms.Button()
+        Me.PkmnEvsTextBox = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.PkmLvlTextBox = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.AttackComboBox4 = New System.Windows.Forms.ComboBox()
         Me.AttackComboBox3 = New System.Windows.Forms.ComboBox()
         Me.AttackComboBox2 = New System.Windows.Forms.ComboBox()
@@ -76,12 +82,6 @@ Partial Class TrainerEditor
         Me.RpntPkDtBttn = New System.Windows.Forms.Button()
         Me.PointerPokeDataTextBox = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.PkmLvlTextBox = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.PkmnEvsTextBox = New System.Windows.Forms.TextBox()
-        Me.PkmnSvBttn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -323,7 +323,7 @@ Partial Class TrainerEditor
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(360, 364)
+        Me.TabPage1.Size = New System.Drawing.Size(360, 436)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Trainer Data"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -408,7 +408,7 @@ Partial Class TrainerEditor
         Me.TabPage2.Location = New System.Drawing.Point(4, 25)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(360, 364)
+        Me.TabPage2.Size = New System.Drawing.Size(360, 436)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Trainer Class"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -445,6 +445,56 @@ Partial Class TrainerEditor
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Pokemon Data"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'PkmnSvBttn
+        '
+        Me.PkmnSvBttn.Location = New System.Drawing.Point(173, 398)
+        Me.PkmnSvBttn.Name = "PkmnSvBttn"
+        Me.PkmnSvBttn.Size = New System.Drawing.Size(138, 25)
+        Me.PkmnSvBttn.TabIndex = 46
+        Me.PkmnSvBttn.Text = "Save Pokemon"
+        Me.PkmnSvBttn.UseVisualStyleBackColor = True
+        '
+        'PkmnEvsTextBox
+        '
+        Me.PkmnEvsTextBox.Location = New System.Drawing.Point(213, 360)
+        Me.PkmnEvsTextBox.Name = "PkmnEvsTextBox"
+        Me.PkmnEvsTextBox.Size = New System.Drawing.Size(42, 22)
+        Me.PkmnEvsTextBox.TabIndex = 45
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(170, 363)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(37, 17)
+        Me.Label13.TabIndex = 44
+        Me.Label13.Text = "EVs:"
+        '
+        'PkmLvlTextBox
+        '
+        Me.PkmLvlTextBox.Location = New System.Drawing.Point(69, 386)
+        Me.PkmLvlTextBox.Name = "PkmLvlTextBox"
+        Me.PkmLvlTextBox.Size = New System.Drawing.Size(35, 22)
+        Me.PkmLvlTextBox.TabIndex = 43
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(17, 389)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(46, 17)
+        Me.Label12.TabIndex = 42
+        Me.Label12.Text = "Level:"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(170, 204)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(58, 17)
+        Me.Label11.TabIndex = 41
+        Me.Label11.Text = "Attacks:"
         '
         'AttackComboBox4
         '
@@ -607,56 +657,6 @@ Partial Class TrainerEditor
         Me.Label6.Size = New System.Drawing.Size(57, 17)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Pointer:"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(170, 204)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(58, 17)
-        Me.Label11.TabIndex = 41
-        Me.Label11.Text = "Attacks:"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(17, 389)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(46, 17)
-        Me.Label12.TabIndex = 42
-        Me.Label12.Text = "Level:"
-        '
-        'PkmLvlTextBox
-        '
-        Me.PkmLvlTextBox.Location = New System.Drawing.Point(69, 386)
-        Me.PkmLvlTextBox.Name = "PkmLvlTextBox"
-        Me.PkmLvlTextBox.Size = New System.Drawing.Size(35, 22)
-        Me.PkmLvlTextBox.TabIndex = 43
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(170, 363)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(37, 17)
-        Me.Label13.TabIndex = 44
-        Me.Label13.Text = "EVs:"
-        '
-        'PkmnEvsTextBox
-        '
-        Me.PkmnEvsTextBox.Location = New System.Drawing.Point(213, 360)
-        Me.PkmnEvsTextBox.Name = "PkmnEvsTextBox"
-        Me.PkmnEvsTextBox.Size = New System.Drawing.Size(42, 22)
-        Me.PkmnEvsTextBox.TabIndex = 45
-        '
-        'PkmnSvBttn
-        '
-        Me.PkmnSvBttn.Location = New System.Drawing.Point(173, 398)
-        Me.PkmnSvBttn.Name = "PkmnSvBttn"
-        Me.PkmnSvBttn.Size = New System.Drawing.Size(138, 25)
-        Me.PkmnSvBttn.TabIndex = 46
-        Me.PkmnSvBttn.Text = "Save Pokemon"
-        Me.PkmnSvBttn.UseVisualStyleBackColor = True
         '
         'TrainerEditor
         '

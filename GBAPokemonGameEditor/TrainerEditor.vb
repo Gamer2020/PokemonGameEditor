@@ -97,76 +97,80 @@ Public Class TrainerEditor
 
     Private Sub TrainerListComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TrainerListComboBox.SelectedIndexChanged
 
-        Dim offvar As Integer
-        Dim MusicGen As Integer
-        Dim MusicGenBin As String
+        If TrainerListComboBox.SelectedIndex <> -1 Then
 
-        PicNumericUpDown.Value = 1
-        PicNumericUpDown.Value = 0
-        PicNumericUpDown.Maximum = (GetString(GetINIFileLocation(), header, "NumberOfTrainerImages", ""))
+            Dim offvar As Integer
+            Dim MusicGen As Integer
+            Dim MusicGenBin As String
 
-        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerTable", "")), System.Globalization.NumberStyles.HexNumber)
+            PicNumericUpDown.Value = 1
+            PicNumericUpDown.Value = 0
+            PicNumericUpDown.Maximum = (GetString(GetINIFileLocation(), header, "NumberOfTrainerImages", ""))
 
-        offvar = offvar + (40 * (TrainerListComboBox.SelectedIndex + 1))
+            offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerTable", "")), System.Globalization.NumberStyles.HexNumber)
 
-        TNameTextBox.Text = GetTrainerName(TrainerListComboBox.SelectedIndex + 1)
+            offvar = offvar + (40 * (TrainerListComboBox.SelectedIndex + 1))
 
-        PicNumericUpDown.Value = Int32.Parse(ReadHEX(LoadedROM, offvar + 3, 1), System.Globalization.NumberStyles.HexNumber)
+            TNameTextBox.Text = GetTrainerName(TrainerListComboBox.SelectedIndex + 1)
 
-        ClassComboBox.SelectedIndex = Int32.Parse(ReadHEX(LoadedROM, offvar + 1, 1), System.Globalization.NumberStyles.HexNumber)
+            PicNumericUpDown.Value = Int32.Parse(ReadHEX(LoadedROM, offvar + 3, 1), System.Globalization.NumberStyles.HexNumber)
 
-        MusicGen = Int32.Parse(ReadHEX(LoadedROM, offvar + 2, 1), System.Globalization.NumberStyles.HexNumber)
+            ClassComboBox.SelectedIndex = Int32.Parse(ReadHEX(LoadedROM, offvar + 1, 1), System.Globalization.NumberStyles.HexNumber)
 
-        MusicGenBin = (Convert.ToString(MusicGen, 2))
+            MusicGen = Int32.Parse(ReadHEX(LoadedROM, offvar + 2, 1), System.Globalization.NumberStyles.HexNumber)
 
-        'While Len(MusicGenBin) < 8
+            MusicGenBin = (Convert.ToString(MusicGen, 2))
 
-        '    MusicGenBin = "0" & MusicGenBin
+            'While Len(MusicGenBin) < 8
 
-        'End While
+            '    MusicGenBin = "0" & MusicGenBin
 
-        MusicGenBin = VB.Right("00000000" & MusicGenBin, 8)
+            'End While
 
-        If GetChar(MusicGenBin, 1) = "0" Then
-            RadioButton1.Checked = True
-        ElseIf GetChar(MusicGenBin, 1) = "1" Then
-            RadioButton2.Checked = True
+            MusicGenBin = VB.Right("00000000" & MusicGenBin, 8)
+
+            If GetChar(MusicGenBin, 1) = "0" Then
+                RadioButton1.Checked = True
+            ElseIf GetChar(MusicGenBin, 1) = "1" Then
+                RadioButton2.Checked = True
+            End If
+
+            MusicTextBox.Text = Convert.ToInt32(MusicGenBin.Remove(0, 1), 2)
+
+            TrainerItem1.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 16, 2)), System.Globalization.NumberStyles.HexNumber)
+            TrainerItem2.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 18, 2)), System.Globalization.NumberStyles.HexNumber)
+            TrainerItem3.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 20, 2)), System.Globalization.NumberStyles.HexNumber)
+            TrainerItem4.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 22, 2)), System.Globalization.NumberStyles.HexNumber)
+
+            If (ReadHEX(LoadedROM, offvar + 24, 1)) = "00" Then
+                DblCheckBox.Checked = False
+            ElseIf (ReadHEX(LoadedROM, offvar + 24, 1)) = "01" Then
+                DblCheckBox.Checked = True
+            End If
+
+            AITextBox.Text = Int32.Parse((ReadHEX(LoadedROM, offvar + 28, 1)), System.Globalization.NumberStyles.HexNumber)
+
+            'Pokemon Tab Stuff
+
+            PointerPokeDataTextBox.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offvar + 36, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
+            PokeNumTextBox.Text = Int32.Parse((ReadHEX(LoadedROM, offvar + 32, 1)), System.Globalization.NumberStyles.HexNumber)
+            PokeDataFormatTextBox.Text = Int32.Parse(ReadHEX(LoadedROM, offvar, 1), System.Globalization.NumberStyles.HexNumber)
+
+            PkmSlts.Items.Clear()
+
+            While PkmSlts.Items.Count < PokeNumTextBox.Text
+
+                PkmSlts.Items.Add("Pokemon Slot" & (PkmSlts.Items.Count + 1))
+
+            End While
+
+            PkmSlts.SelectedIndex = 0
+
+            'end of Pokemon Tab Stuff
+
+            TrainerIndexTextBox.Text = TrainerListComboBox.SelectedIndex + 1
+
         End If
-
-        MusicTextBox.Text = Convert.ToInt32(MusicGenBin.Remove(0, 1), 2)
-
-        TrainerItem1.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 16, 2)), System.Globalization.NumberStyles.HexNumber)
-        TrainerItem2.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 18, 2)), System.Globalization.NumberStyles.HexNumber)
-        TrainerItem3.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 20, 2)), System.Globalization.NumberStyles.HexNumber)
-        TrainerItem4.SelectedIndex = Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, offvar + 22, 2)), System.Globalization.NumberStyles.HexNumber)
-
-        If (ReadHEX(LoadedROM, offvar + 24, 1)) = "00" Then
-            DblCheckBox.Checked = False
-        ElseIf (ReadHEX(LoadedROM, offvar + 24, 1)) = "01" Then
-            DblCheckBox.Checked = True
-        End If
-
-        AITextBox.Text = Int32.Parse((ReadHEX(LoadedROM, offvar + 28, 1)), System.Globalization.NumberStyles.HexNumber)
-
-        'Pokemon Tab Stuff
-
-        PointerPokeDataTextBox.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offvar + 36, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
-        PokeNumTextBox.Text = Int32.Parse((ReadHEX(LoadedROM, offvar + 32, 1)), System.Globalization.NumberStyles.HexNumber)
-        PokeDataFormatTextBox.Text = Int32.Parse(ReadHEX(LoadedROM, offvar, 1), System.Globalization.NumberStyles.HexNumber)
-
-        PkmSlts.Items.Clear()
-
-        While PkmSlts.Items.Count < PokeNumTextBox.Text
-
-            PkmSlts.Items.Add("Pokemon Slot" & (PkmSlts.Items.Count + 1))
-
-        End While
-
-        PkmSlts.SelectedIndex = 0
-
-        'end of Pokemon Tab Stuff
-
-        TrainerIndexTextBox.Text = TrainerListComboBox.SelectedIndex + 1
 
     End Sub
 
@@ -216,6 +220,8 @@ Public Class TrainerEditor
         Dim MusicGenBin As String = ""
         Dim Musictextbx As Integer
 
+        Dim loadedindex As Integer
+
         offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerTable", "")), System.Globalization.NumberStyles.HexNumber)
 
         offvar = offvar + (40 * (TrainerListComboBox.SelectedIndex + 1))
@@ -260,7 +266,9 @@ Public Class TrainerEditor
 
         WriteHEX(LoadedROM, offvar + 2, Hex(MusicGen))
 
-
+        loadedindex = TrainerListComboBox.SelectedIndex
+        TrainerListComboBox.SelectedIndex = -1
+        TrainerListComboBox.SelectedIndex = loadedindex
 
     End Sub
 
@@ -555,6 +563,61 @@ Public Class TrainerEditor
             AttackComboBox2.Enabled = True
             AttackComboBox3.Enabled = True
             AttackComboBox4.Enabled = True
+
+        End If
+
+    End Sub
+
+    Private Sub PkmnSvBttn_Click(sender As Object, e As EventArgs) Handles PkmnSvBttn.Click
+
+        Dim offvar As Integer
+        Dim offvar2 As Integer
+        Dim curtype As Integer
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerTable", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = offvar + (40 * (TrainerListComboBox.SelectedIndex + 1))
+
+        offvar2 = ((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offvar + 36, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
+
+        curtype = Int32.Parse(ReadHEX(LoadedROM, offvar, 1), System.Globalization.NumberStyles.HexNumber)
+
+        If curtype = 0 Then
+
+            WriteHEX(LoadedROM, offvar2 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(PkmnEvsTextBox.Text), 4)))
+            WriteHEX(LoadedROM, offvar2 + 2 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(PkmLvlTextBox.Text), 4)))
+            WriteHEX(LoadedROM, offvar2 + 4 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(TnPkmComboBox.SelectedIndex + 1), 4)))
+
+        ElseIf curtype = 1 Then
+
+            WriteHEX(LoadedROM, offvar2 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(PkmnEvsTextBox.Text), 4)))
+            WriteHEX(LoadedROM, offvar2 + 2 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(PkmLvlTextBox.Text), 4)))
+            WriteHEX(LoadedROM, offvar2 + 4 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(TnPkmComboBox.SelectedIndex + 1), 4)))
+
+            WriteHEX(LoadedROM, offvar2 + 6 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(AttackComboBox1.SelectedIndex), 4)))
+            WriteHEX(LoadedROM, offvar2 + 8 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(AttackComboBox2.SelectedIndex), 4)))
+            WriteHEX(LoadedROM, offvar2 + 10 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(AttackComboBox3.SelectedIndex), 4)))
+            WriteHEX(LoadedROM, offvar2 + 12 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(AttackComboBox4.SelectedIndex), 4)))
+
+        ElseIf curtype = 2 Then
+
+            WriteHEX(LoadedROM, offvar2 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(PkmnEvsTextBox.Text), 4)))
+            WriteHEX(LoadedROM, offvar2 + 2 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(PkmLvlTextBox.Text), 4)))
+            WriteHEX(LoadedROM, offvar2 + 4 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(TnPkmComboBox.SelectedIndex + 1), 4)))
+
+            WriteHEX(LoadedROM, offvar2 + 6 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(TnPkmItmComboBox.SelectedIndex), 4)))
+
+        ElseIf curtype = 3 Then
+
+            WriteHEX(LoadedROM, offvar2 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(PkmnEvsTextBox.Text), 4)))
+            WriteHEX(LoadedROM, offvar2 + 2 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(PkmLvlTextBox.Text), 4)))
+            WriteHEX(LoadedROM, offvar2 + 4 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(TnPkmComboBox.SelectedIndex + 1), 4)))
+
+            WriteHEX(LoadedROM, offvar2 + 6 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(TnPkmItmComboBox.SelectedIndex), 4)))
+
+            WriteHEX(LoadedROM, offvar2 + 8 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(AttackComboBox1.SelectedIndex), 4)))
+            WriteHEX(LoadedROM, offvar2 + 10 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(AttackComboBox2.SelectedIndex), 4)))
+            WriteHEX(LoadedROM, offvar2 + 12 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(AttackComboBox3.SelectedIndex), 4)))
+            WriteHEX(LoadedROM, offvar2 + 14 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(AttackComboBox4.SelectedIndex), 4)))
 
         End If
 
