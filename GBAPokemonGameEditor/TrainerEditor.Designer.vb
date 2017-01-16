@@ -57,6 +57,9 @@ Partial Class TrainerEditor
         Me.TrainerItem2 = New System.Windows.Forms.ComboBox()
         Me.TrainerItem1 = New System.Windows.Forms.ComboBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.SaveMnyRt = New System.Windows.Forms.Button()
+        Me.MoneyRateTextBox = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.PkmnSvBttn = New System.Windows.Forms.Button()
         Me.PkmnEvsTextBox = New System.Windows.Forms.TextBox()
@@ -82,9 +85,7 @@ Partial Class TrainerEditor
         Me.RpntPkDtBttn = New System.Windows.Forms.Button()
         Me.PointerPokeDataTextBox = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.MoneyRateTextBox = New System.Windows.Forms.TextBox()
-        Me.SaveMnyRt = New System.Windows.Forms.Button()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -404,6 +405,7 @@ Partial Class TrainerEditor
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Label15)
         Me.TabPage2.Controls.Add(Me.SaveMnyRt)
         Me.TabPage2.Controls.Add(Me.MoneyRateTextBox)
         Me.TabPage2.Controls.Add(Me.Label14)
@@ -418,6 +420,31 @@ Partial Class TrainerEditor
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Trainer Class"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'SaveMnyRt
+        '
+        Me.SaveMnyRt.Location = New System.Drawing.Point(64, 164)
+        Me.SaveMnyRt.Name = "SaveMnyRt"
+        Me.SaveMnyRt.Size = New System.Drawing.Size(181, 34)
+        Me.SaveMnyRt.TabIndex = 26
+        Me.SaveMnyRt.Text = "Save"
+        Me.SaveMnyRt.UseVisualStyleBackColor = True
+        '
+        'MoneyRateTextBox
+        '
+        Me.MoneyRateTextBox.Location = New System.Drawing.Point(164, 112)
+        Me.MoneyRateTextBox.Name = "MoneyRateTextBox"
+        Me.MoneyRateTextBox.Size = New System.Drawing.Size(81, 22)
+        Me.MoneyRateTextBox.TabIndex = 25
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(61, 115)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(88, 17)
+        Me.Label14.TabIndex = 24
+        Me.Label14.Text = "Money Rate:"
         '
         'TabPage3
         '
@@ -664,30 +691,14 @@ Partial Class TrainerEditor
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Pointer:"
         '
-        'Label14
+        'Label15
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(61, 115)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(88, 17)
-        Me.Label14.TabIndex = 24
-        Me.Label14.Text = "Money Rate:"
-        '
-        'MoneyRateTextBox
-        '
-        Me.MoneyRateTextBox.Location = New System.Drawing.Point(164, 112)
-        Me.MoneyRateTextBox.Name = "MoneyRateTextBox"
-        Me.MoneyRateTextBox.Size = New System.Drawing.Size(81, 22)
-        Me.MoneyRateTextBox.TabIndex = 25
-        '
-        'SaveMnyRt
-        '
-        Me.SaveMnyRt.Location = New System.Drawing.Point(64, 144)
-        Me.SaveMnyRt.Name = "SaveMnyRt"
-        Me.SaveMnyRt.Size = New System.Drawing.Size(181, 34)
-        Me.SaveMnyRt.TabIndex = 26
-        Me.SaveMnyRt.Text = "Save"
-        Me.SaveMnyRt.UseVisualStyleBackColor = True
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(61, 144)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(98, 17)
+        Me.Label15.TabIndex = 27
+        Me.Label15.Text = "Prize Money:  "
         '
         'TrainerEditor
         '
@@ -784,4 +795,5 @@ Partial Class TrainerEditor
     Friend WithEvents SaveMnyRt As System.Windows.Forms.Button
     Friend WithEvents MoneyRateTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents Label15 As System.Windows.Forms.Label
 End Class

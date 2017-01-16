@@ -166,6 +166,8 @@ Public Class TrainerEditor
 
             PkmSlts.SelectedIndex = 0
 
+            CalcPrizeMoney()
+
             'end of Pokemon Tab Stuff
 
             TrainerIndexTextBox.Text = TrainerListComboBox.SelectedIndex + 1
@@ -454,6 +456,8 @@ Public Class TrainerEditor
 
         PkmSlts.SelectedIndex = 0
 
+        CalcPrizeMoney()
+
         'end of Pokemon Tab Stuff
 
     End Sub
@@ -656,4 +660,38 @@ Public Class TrainerEditor
         WriteHEX(LoadedROM, offvar + (looper * 4) + 1, Hex(MoneyRateTextBox.Text))
 
     End Sub
+
+    Private Sub MoneyRateTextBox_TextChanged(sender As Object, e As EventArgs) Handles MoneyRateTextBox.TextChanged
+
+        CalcPrizeMoney()
+
+    End Sub
+
+    Private Sub CalcPrizeMoney()
+
+        Dim offvar As Integer
+        Dim offvar2 As Integer
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerTable", "")), System.Globalization.NumberStyles.HexNumber)
+        offvar = offvar + (40 * (TrainerListComboBox.SelectedIndex + 1))
+
+        offvar2 = ((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offvar + 36, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
+
+        Dim num As Integer = 0
+        Dim num2 As Integer = 8
+
+        If PokeDataFormatTextBox.Text <> "" And MoneyRateTextBox.Text <> "" Then
+
+            If PokeDataFormatTextBox.Text = 1 Or PokeDataFormatTextBox.Text = 3 Then
+                num2 = &H10
+            End If
+            If (PkmSlts.Items.Count > 0) Then
+                num = (4 * Int32.Parse(ReadHEX(LoadedROM, ((((offvar2) + (num2 * PkmSlts.Items.Count)) - num2) + 2), 1), System.Globalization.NumberStyles.HexNumber))
+            End If
+            Label15.Text = ("Prize Money: " & ((num * MoneyRateTextBox.Text)))
+
+        End If
+
+    End Sub
+
 End Class
