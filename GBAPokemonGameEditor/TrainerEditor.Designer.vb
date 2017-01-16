@@ -82,6 +82,9 @@ Partial Class TrainerEditor
         Me.RpntPkDtBttn = New System.Windows.Forms.Button()
         Me.PointerPokeDataTextBox = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.MoneyRateTextBox = New System.Windows.Forms.TextBox()
+        Me.SaveMnyRt = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -401,6 +404,9 @@ Partial Class TrainerEditor
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.SaveMnyRt)
+        Me.TabPage2.Controls.Add(Me.MoneyRateTextBox)
+        Me.TabPage2.Controls.Add(Me.Label14)
         Me.TabPage2.Controls.Add(Me.ClssRnmBttn)
         Me.TabPage2.Controls.Add(Me.Label3)
         Me.TabPage2.Controls.Add(Me.ClassComboBox)
@@ -658,6 +664,31 @@ Partial Class TrainerEditor
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Pointer:"
         '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(61, 115)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(88, 17)
+        Me.Label14.TabIndex = 24
+        Me.Label14.Text = "Money Rate:"
+        '
+        'MoneyRateTextBox
+        '
+        Me.MoneyRateTextBox.Location = New System.Drawing.Point(164, 112)
+        Me.MoneyRateTextBox.Name = "MoneyRateTextBox"
+        Me.MoneyRateTextBox.Size = New System.Drawing.Size(81, 22)
+        Me.MoneyRateTextBox.TabIndex = 25
+        '
+        'SaveMnyRt
+        '
+        Me.SaveMnyRt.Location = New System.Drawing.Point(64, 144)
+        Me.SaveMnyRt.Name = "SaveMnyRt"
+        Me.SaveMnyRt.Size = New System.Drawing.Size(181, 34)
+        Me.SaveMnyRt.TabIndex = 26
+        Me.SaveMnyRt.Text = "Save"
+        Me.SaveMnyRt.UseVisualStyleBackColor = True
+        '
         'TrainerEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -750,4 +781,7 @@ Partial Class TrainerEditor
     Friend WithEvents PkmnEvsTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents PkmnSvBttn As System.Windows.Forms.Button
+    Friend WithEvents SaveMnyRt As System.Windows.Forms.Button
+    Friend WithEvents MoneyRateTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Label14 As System.Windows.Forms.Label
 End Class

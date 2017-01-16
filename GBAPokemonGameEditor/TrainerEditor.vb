@@ -388,6 +388,22 @@ Public Class TrainerEditor
     End Sub
 
     Private Sub ClassComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ClassComboBox.SelectedIndexChanged
+
+        Dim offvar As Integer
+
+        Dim looper As Integer = 0
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerMoneyTable", "")), System.Globalization.NumberStyles.HexNumber)
+
+        While ClassComboBox.SelectedIndex <> Int32.Parse(ReadHEX(LoadedROM, offvar + (looper * 4), 1), System.Globalization.NumberStyles.HexNumber) And 255 <> Int32.Parse(ReadHEX(LoadedROM, offvar + (looper * 4), 1), System.Globalization.NumberStyles.HexNumber)
+
+
+            looper = looper + 1
+
+        End While
+
+        MoneyRateTextBox.Text = Int32.Parse(ReadHEX(LoadedROM, offvar + (looper * 4) + 1, 1), System.Globalization.NumberStyles.HexNumber)
+
         ClssTxtBx.Text = ClassComboBox.SelectedItem
     End Sub
 
@@ -620,6 +636,24 @@ Public Class TrainerEditor
             WriteHEX(LoadedROM, offvar2 + 14 + (PkmSlts.SelectedIndex * 16), ReverseHEX(VB.Right("0000" & Hex(AttackComboBox4.SelectedIndex), 4)))
 
         End If
+
+    End Sub
+
+    Private Sub SaveMnyRt_Click(sender As Object, e As EventArgs) Handles SaveMnyRt.Click
+        Dim offvar As Integer
+
+        Dim looper As Integer = 0
+
+        offvar = Int32.Parse((GetString(GetINIFileLocation(), header, "TrainerMoneyTable", "")), System.Globalization.NumberStyles.HexNumber)
+
+        While ClassComboBox.SelectedIndex <> Int32.Parse(ReadHEX(LoadedROM, offvar + (looper * 4), 1), System.Globalization.NumberStyles.HexNumber) And 255 <> Int32.Parse(ReadHEX(LoadedROM, offvar + (looper * 4), 1), System.Globalization.NumberStyles.HexNumber)
+
+
+            looper = looper + 1
+
+        End While
+
+        WriteHEX(LoadedROM, offvar + (looper * 4) + 1, Hex(MoneyRateTextBox.Text))
 
     End Sub
 End Class
