@@ -73,6 +73,16 @@ Public Class Pokemonedit
 
         End While
 
+
+        LoopVar = 0
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfMapLabels", ""))
+
+            ComboBox2.Items.Add(GetMapLabelName(LoopVar))
+
+            LoopVar = LoopVar + 1
+        End While
+
         LoopVar = 0
 
         NewAt.Items.Clear()
