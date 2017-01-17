@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xrml="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <assemblyIdentity name="PokemonGameEditor.application" version="3.7.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <assemblyIdentity name="PokemonGameEditor.application" version="3.8.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <description asmv2:publisher="PokemonGameEditor" asmv2:product="PokemonGameEditor" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true">
     <deploymentProvider codebase="http://gamer2020.0xrh.net/programs/GBAPokemonGameEditor/PokemonGameEditor.application" />
@@ -10,13 +10,13 @@
   </compatibleFrameworks>
   <dependency>
     <dependentAssembly dependencyType="install" codebase="PokemonGameEditor.exe.manifest" size="4714">
-      <assemblyIdentity name="PokemonGameEditor.exe" version="3.7.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+      <assemblyIdentity name="PokemonGameEditor.exe" version="3.8.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qBYJ1Qbh9KnbSH2FyJz+ZiZFimSfvuPQHOyL73AnrsQ=</dsig:DigestValue>
+        <dsig:DigestValue>xd50aTWRTRGUVR/smbYM5VR7xVADbJqpcwGRx2aRAfI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
