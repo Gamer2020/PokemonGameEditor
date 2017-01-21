@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("Gamer2020")> 
 <Assembly: AssemblyProduct("Pokemon Game Editor")>
-<Assembly: AssemblyCopyright("Copyright © 2016 Gamer2020 All Rights Reserved.")>
+<Assembly: AssemblyCopyright("Copyright © 2017 Gamer2020 All Rights Reserved.")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("3.7.0.0")>
-<Assembly: AssemblyFileVersion("3.7.0.0")>
+<Assembly: AssemblyVersion("3.8.0.0")> 
+<Assembly: AssemblyFileVersion("3.8.0.0")> 

@@ -1,6 +1,3 @@
-Please use the lastest beta!
-=================
-
 ![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/PGEBANNER.png)
 
 Pokemon Game Editor, commonly know as PGE, is an all in one tool started in 2010 by Gamer2020 for hacking the Game Boy Advanced Pokemon games. The program continues to evolve over the years and has had 60,000+ downloads. It has even inspired several copycat programs hence the slogan "Accept no Imitations!" was adopted. The program is currently developed in VB.Net with Visual Studio 2013.
@@ -91,10 +88,10 @@ Pokedex List Editor.
 
 Pokemon Cry Exporting.
 
+Trainer Editor.
+
 Planned Features A.K.A TODO List
 =========================
-
-Trainer Editor (Started)
 
 Pokemon Cry Importing
 
@@ -142,7 +139,7 @@ Gamer2020
 
 Issues
 =================
-Running added programs on Linux not implemented yet and possibly won't be for a while.
+Running added programs on Linux not implemented yet and possibly won't be for a while. Also keep in kind that the program hasn't been tested under Linux in a long time.
 
 Credits
 =================
@@ -188,6 +185,8 @@ AkameTheBulbasaur
 doom-desire
 
 DizzyEggg
+
+KDSKardabox
 
 EddyHg80
 

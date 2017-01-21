@@ -73,6 +73,16 @@ Public Class Pokemonedit
 
         End While
 
+
+        LoopVar = 0
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfMapLabels", ""))
+
+            ComboBox2.Items.Add(GetMapLabelName(LoopVar))
+
+            LoopVar = LoopVar + 1
+        End While
+
         LoopVar = 0
 
         NewAt.Items.Clear()
@@ -3966,6 +3976,14 @@ Public Class Pokemonedit
             WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "AnimDelayTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), (Hex(Val(TextBox10.Text))))
 
         End If
+
+    End Sub
+
+    Private Sub Label15_Click(sender As Object, e As EventArgs) Handles Label15.Click
+
+    End Sub
+
+    Private Sub EvoItemPic_Click(sender As Object, e As EventArgs) Handles EvoItemPic.Click
 
     End Sub
 End Class

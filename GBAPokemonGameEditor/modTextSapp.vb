@@ -6,6 +6,8 @@ Module modTextSapp
         o = ""
         Y = ""
 
+        Dim i As Integer
+
         Dim m As Boolean
         For i = 1 To Len(asciistring)
             m = False
@@ -373,6 +375,9 @@ Module modTextSapp
     Public Function Sapp2Asc(ByVal sappstring As String, Optional ByVal japanese As Boolean = False) As String
         Dim Y As String
         Dim n As Boolean
+
+        Dim i As Integer
+
         o = ""
         For i = 1 To Len(sappstring)
             X = IIf(Mid(sappstring, i, 1) = "", 0, Asc(Mid(sappstring, i, 1)))
@@ -786,6 +791,8 @@ Module modTextSapp
     Public Function NameAsc2Sapp(ByVal asciistring As String) As String
         o = ""
         Y = ""
+
+        Dim i As Integer
 
         Dim m As Boolean
         For i = 1 To Len(asciistring)

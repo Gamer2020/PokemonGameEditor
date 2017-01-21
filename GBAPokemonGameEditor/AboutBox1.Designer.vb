@@ -35,16 +35,18 @@ Partial Class AboutBox1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(500, 200)
+        Me.PictureBox1.Size = New System.Drawing.Size(667, 246)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
         'OKButton
         '
-        Me.OKButton.Location = New System.Drawing.Point(413, 267)
+        Me.OKButton.Location = New System.Drawing.Point(551, 329)
+        Me.OKButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.OKButton.Name = "OKButton"
-        Me.OKButton.Size = New System.Drawing.Size(75, 23)
+        Me.OKButton.Size = New System.Drawing.Size(100, 28)
         Me.OKButton.TabIndex = 1
         Me.OKButton.Text = "OK"
         Me.OKButton.UseVisualStyleBackColor = True
@@ -52,45 +54,49 @@ Partial Class AboutBox1
         'LabelVersion
         '
         Me.LabelVersion.AutoSize = True
-        Me.LabelVersion.Location = New System.Drawing.Point(207, 256)
+        Me.LabelVersion.Location = New System.Drawing.Point(276, 315)
+        Me.LabelVersion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelVersion.Name = "LabelVersion"
-        Me.LabelVersion.Size = New System.Drawing.Size(42, 13)
+        Me.LabelVersion.Size = New System.Drawing.Size(56, 17)
         Me.LabelVersion.TabIndex = 2
         Me.LabelVersion.Text = "Version"
         '
         'LabelCopyright
         '
         Me.LabelCopyright.AutoSize = True
-        Me.LabelCopyright.Location = New System.Drawing.Point(121, 214)
+        Me.LabelCopyright.Location = New System.Drawing.Point(161, 263)
+        Me.LabelCopyright.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelCopyright.Name = "LabelCopyright"
-        Me.LabelCopyright.Size = New System.Drawing.Size(247, 13)
+        Me.LabelCopyright.Size = New System.Drawing.Size(329, 17)
         Me.LabelCopyright.TabIndex = 3
-        Me.LabelCopyright.Text = "Copyright © 2016 Gamer2020 All Rights Reserved."
+        Me.LabelCopyright.Text = "Copyright © 2017 Gamer2020 All Rights Reserved."
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(154, 235)
+        Me.Label1.Location = New System.Drawing.Point(205, 289)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(179, 13)
+        Me.Label1.Size = New System.Drawing.Size(237, 17)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Contact: lostatlife2020@hotmail.com"
         '
         'AboutBox1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(500, 300)
+        Me.ClientSize = New System.Drawing.Size(667, 369)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.LabelCopyright)
         Me.Controls.Add(Me.LabelVersion)
         Me.Controls.Add(Me.OKButton)
         Me.Controls.Add(Me.PictureBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "AboutBox1"
-        Me.Padding = New System.Windows.Forms.Padding(9)
+        Me.Padding = New System.Windows.Forms.Padding(12, 11, 12, 11)
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "AboutBox1"

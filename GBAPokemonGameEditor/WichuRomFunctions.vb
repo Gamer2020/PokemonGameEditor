@@ -141,7 +141,7 @@ Module WichuRomFunctions
     Public Function FromRSChar(ByVal ch As Byte) As Object
         Dim array As Byte() = New Byte() {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, &HFE, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, &HAB, 0, 0, &HB7, &H5B, 0, 180, &H5C, &H5D, &HB9, &H2E, &HB8, &HAE, &HAD, &HBA, &HA1, &HA2, &HA3, &HA4, &HA5, &HA6, &HA7, &HA8, &HA9, 170, 240, &H36, 0, &H35, 0, &HAC, 0, &HBB, &HBC, &HBD, 190, &HBF, &HC0, &HC1, &HC2, &HC3, &HC4, &HC5, &HC6, &HC7, 200, &HC9, &HCA, &HCB, &HCC, &HCD, &HCE, &HCF, &HD0, &HD1, 210, &HD3, &HD4, 0, 0, 0, 0, 0, &HB3, &HD5, &HD6, &HD7, &HD8, &HD9, &HDA, &HDB, 220, &HDD, &HDE, &HDF, &HE0, &HE1, &HE2, &HE3, &HE4, &HE5, 230, &HE7, &HE8, &HE9, &HEA, &HEB, &HEC, &HED, &HEE, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, &H52, 0, 0, 0, 0, 0, 0, 0, 0, &H2B, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, &H2A, 0, 0, 0, 0, &H51, 1, 2, 0, 0, &HF1, 0, 0, 4, 5, 6, 7, 8, 9, 90, 11, 12, 0, 20, 13, 14, 15, 0, &HF2, 0, 0, &H11, &H12, &H13, &HF3, 0, 0, &H15, &H16, &H17, &H68, 0, &HF4, 0, 0, &H19, &H1A, &H1B, &H1C, &H1D, 30, &H6F, &H20, &H21, 0, &H29, &H22, &H23, &H24, 0, &HF5, 0, 0, &H26, &H27, 40, &HF6, 0, 0, 0, 0}
         'Dim index As Integer = array.IndexOf(Of Byte)(array, ch)
-        Dim index As Integer = array.IndexOf(array, ch)
+        Dim index As Integer = System.Array.IndexOf(array, ch)
         If (index = -1) Then
             index = 0
         End If
