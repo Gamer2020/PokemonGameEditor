@@ -237,3 +237,4 @@ Error! EvolutionName251 is missing for ROM BPEE!
 Error! EvolutionName252 is missing for ROM BPEE!
 Error! EvolutionName253 is missing for ROM BPEE!
 Error! NumberOfRegionDex is missing for ROM BPRE!
+Error! FrontAnimationTable is missing for ROM BPEI!
