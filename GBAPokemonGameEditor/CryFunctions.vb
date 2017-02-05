@@ -131,14 +131,20 @@ Module CryFunctions
 
         Dim cryImage As Bitmap
 
+        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisableCryImage", "0") = "1" Then
+            cryImage = New Bitmap(128, 128)
+        Else
 
-        cryImage = New Bitmap(cry.Data.Length, 128)
+            cryImage = New Bitmap(cry.Data.Length, 128)
 
-        Using g = Graphics.FromImage(cryImage)
-            For i As Integer = 1 To cry.Data.Length - 1
-                g.DrawLine(Pens.Green, i - 1, 64 + cry.Data(i - 1), i, 64 + cry.Data(i))
-            Next
-        End Using
+            Using g = Graphics.FromImage(cryImage)
+                For i As Integer = 1 To cry.Data.Length - 1
+                    g.DrawLine(Pens.Green, i - 1, 64 + cry.Data(i - 1), i, 64 + cry.Data(i))
+                Next
+            End Using
+
+
+        End If
 
         Return cryImage
 

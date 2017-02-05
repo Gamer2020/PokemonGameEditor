@@ -29,6 +29,12 @@ Public Class MainFrm
 
         End If
 
+        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisableCryImage", "0") = "1" Then
+
+            DisableCryImageToolStripMenuItem.CheckState = CheckState.Checked
+
+        End If
+
         If GetString(AppPath & "GBAPGESettings.ini", "Settings", "ProgramPath0", "") <> "" Then
 
             Button27.Text = GetString(AppPath & "GBAPGESettings.ini", "Settings", "ProgramName0", "")
@@ -836,5 +842,22 @@ Public Class MainFrm
         Me.Text = "Pokémon Game Editor"
         Me.Cursor = Cursors.Arrow
 
+    End Sub
+
+    Private Sub DisableCryImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DisableCryImageToolStripMenuItem.Click
+
+        If DisableCryImageToolStripMenuItem.CheckState = CheckState.Checked Then
+
+            DisableCryImageToolStripMenuItem.CheckState = CheckState.Unchecked
+
+            WriteString(AppPath & "GBAPGESettings.ini", "Settings", "DisableCryImage", "0")
+
+        ElseIf DisableCryImageToolStripMenuItem.CheckState = CheckState.Unchecked Then
+
+            DisableCryImageToolStripMenuItem.CheckState = CheckState.Checked
+
+            WriteString(AppPath & "GBAPGESettings.ini", "Settings", "DisableCryImage", "1")
+
+        End If
     End Sub
 End Class

@@ -86,6 +86,7 @@ Partial Class MainFrm
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.DisableCryImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -132,7 +133,7 @@ Partial Class MainFrm
         '
         'SettingsToolStripMenuItem
         '
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddOrRemoveProgramsToolStripMenuItem, Me.TransparentBackgroundsToolStripMenuItem, Me.DisablePokemonImageLoadingToolStripMenuItem, Me.LinuxToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddOrRemoveProgramsToolStripMenuItem, Me.TransparentBackgroundsToolStripMenuItem, Me.DisablePokemonImageLoadingToolStripMenuItem, Me.LinuxToolStripMenuItem, Me.DisableCryImageToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(74, 24)
         Me.SettingsToolStripMenuItem.Text = "&Settings"
@@ -758,6 +759,12 @@ Partial Class MainFrm
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Copyright © 2017 Gamer2020 All Rights Reserved. "
         '
+        'DisableCryImageToolStripMenuItem
+        '
+        Me.DisableCryImageToolStripMenuItem.Name = "DisableCryImageToolStripMenuItem"
+        Me.DisableCryImageToolStripMenuItem.Size = New System.Drawing.Size(313, 26)
+        Me.DisableCryImageToolStripMenuItem.Text = "Disable Cry Image"
+        '
         'MainFrm
         '
         Me.AllowDrop = True
@@ -853,4 +860,5 @@ Partial Class MainFrm
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button
     Friend WithEvents Button12 As System.Windows.Forms.Button
+    Friend WithEvents DisableCryImageToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
