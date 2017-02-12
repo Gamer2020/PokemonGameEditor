@@ -62,6 +62,7 @@ Partial Class TrainerEditor
         Me.MoneyRateTextBox = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.PokeDataFormatComboBox = New System.Windows.Forms.ComboBox()
         Me.PkmnSvBttn = New System.Windows.Forms.Button()
         Me.PkmnEvsTextBox = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -85,7 +86,6 @@ Partial Class TrainerEditor
         Me.RpntPkDtBttn = New System.Windows.Forms.Button()
         Me.PointerPokeDataTextBox = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.PokeDataFormatComboBox = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -488,6 +488,16 @@ Partial Class TrainerEditor
         Me.TabPage3.Text = "Pokemon Data"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'PokeDataFormatComboBox
+        '
+        Me.PokeDataFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PokeDataFormatComboBox.FormattingEnabled = True
+        Me.PokeDataFormatComboBox.Items.AddRange(New Object() {"Default Moves", "Custom Moves", "Custom Items", "Custom Moves/Items"})
+        Me.PokeDataFormatComboBox.Location = New System.Drawing.Point(173, 13)
+        Me.PokeDataFormatComboBox.Name = "PokeDataFormatComboBox"
+        Me.PokeDataFormatComboBox.Size = New System.Drawing.Size(138, 24)
+        Me.PokeDataFormatComboBox.TabIndex = 47
+        '
         'PkmnSvBttn
         '
         Me.PkmnSvBttn.Location = New System.Drawing.Point(173, 398)
@@ -692,16 +702,6 @@ Partial Class TrainerEditor
         Me.Label6.Size = New System.Drawing.Size(57, 17)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Pointer:"
-        '
-        'PokeDataFormatComboBox
-        '
-        Me.PokeDataFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.PokeDataFormatComboBox.FormattingEnabled = True
-        Me.PokeDataFormatComboBox.Items.AddRange(New Object() {"Default Moves", "Custom Moves", "Custom Items", "Custom Moves/Items"})
-        Me.PokeDataFormatComboBox.Location = New System.Drawing.Point(173, 13)
-        Me.PokeDataFormatComboBox.Name = "PokeDataFormatComboBox"
-        Me.PokeDataFormatComboBox.Size = New System.Drawing.Size(138, 24)
-        Me.PokeDataFormatComboBox.TabIndex = 47
         '
         'TrainerEditor
         '
