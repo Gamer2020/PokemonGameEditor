@@ -1656,7 +1656,7 @@ Public Class Pokemonedit
         Dim at As String
         Dim lvl As String
 
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "false" Then
 
             AttackTable = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
 
@@ -1691,7 +1691,7 @@ Public Class Pokemonedit
                 Looper = Looper + 1
             End While
 
-        ElseIf GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
+        ElseIf GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "true" Then
             AttackTable = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
 
             LvlUpAttPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
@@ -1719,7 +1719,7 @@ Public Class Pokemonedit
         Dim at As String
         Dim lvl As String
 
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "false" Then
             i = PKMNames.SelectedIndex
             WriteHEX(LoadedROM, (AttackTable) + (4) + (i * 4), ReverseHEX(Hex(Int32.Parse(((LvlUpAttPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
             lvlupattacks.Items.Clear()
@@ -1752,7 +1752,7 @@ Public Class Pokemonedit
             End While
         End If
 
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "true" Then
             i = PKMNames.SelectedIndex
             WriteHEX(LoadedROM, (AttackTable) + (4) + (i * 4), ReverseHEX(Hex(Val("&H" & (LvlUpAttPointer.Text)) + &H8000000)))
             lvlupattacks.Items.Clear()
