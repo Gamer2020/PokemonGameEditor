@@ -65,7 +65,7 @@ Module ExportDataFunctions
         CurAttackListOffset = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)) + (PokemonIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
 
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "False".ToLower() Then
 
             Looper = 0
 
@@ -108,7 +108,7 @@ Module ExportDataFunctions
             End While
 
 
-        ElseIf GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
+        ElseIf GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "True".ToLower() Then
 
             Looper = 0
 

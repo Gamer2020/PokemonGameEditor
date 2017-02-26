@@ -76,9 +76,9 @@ Module ImportDataFunctions
             EvolutionData = EvolutionData.Remove((8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) * 2)
         End If
 
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "False".ToLower() Then
             lvlupattacks = GetString(INIFileName, "Pokemon", "LevelUpAttacksOriginal", "2102FFFF0000")
-        ElseIf GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
+        ElseIf GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "True".ToLower() Then
             lvlupattacks = GetString(INIFileName, "Pokemon", "LevelUpAttacksJambo51", "2100010000FF00")
         End If
 
