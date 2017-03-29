@@ -1691,7 +1691,7 @@ Public Class Pokemonedit
                 Looper = Looper + 1
             End While
 
-        ElseIf GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
+        ElseIf GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "True".ToLower() Then
             AttackTable = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)
 
             LvlUpAttPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
@@ -1719,7 +1719,7 @@ Public Class Pokemonedit
         Dim at As String
         Dim lvl As String
 
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "False".ToLower() Then
             i = PKMNames.SelectedIndex
             WriteHEX(LoadedROM, (AttackTable) + (4) + (i * 4), ReverseHEX(Hex(Int32.Parse(((LvlUpAttPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
             lvlupattacks.Items.Clear()
@@ -1752,7 +1752,7 @@ Public Class Pokemonedit
             End While
         End If
 
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "True".ToLower() Then
             i = PKMNames.SelectedIndex
             WriteHEX(LoadedROM, (AttackTable) + (4) + (i * 4), ReverseHEX(Hex(Val("&H" & (LvlUpAttPointer.Text)) + &H8000000)))
             lvlupattacks.Items.Clear()
@@ -1997,7 +1997,7 @@ Public Class Pokemonedit
         Dim pointer As String
         'Dim loopme As Integer
 
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "False".ToLower() Then
 
             pointer = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
@@ -2023,7 +2023,7 @@ Public Class Pokemonedit
             AtLvl.Text = lvl
             NewAt.SelectedIndex = at
         End If
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "True".ToLower() Then
 
             pointer = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
@@ -2051,7 +2051,7 @@ Public Class Pokemonedit
         Dim temp As Integer
         'Dim loopme As Integer
 
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "False".ToLower() Then
             holder = lvlupattacks.SelectedIndex
             pointer = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
@@ -2082,7 +2082,7 @@ Public Class Pokemonedit
         End If
 
 
-        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
+        If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "True".ToLower() Then
             holder = lvlupattacks.SelectedIndex
             pointer = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AttackTable) + (4) + (PKMNames.SelectedIndex * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 

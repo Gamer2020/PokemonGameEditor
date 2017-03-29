@@ -154,7 +154,7 @@ Public Class TrainerEditor
 
             PointerPokeDataTextBox.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offvar + 36, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
             PokeNumTextBox.Text = Int32.Parse((ReadHEX(LoadedROM, offvar + 32, 1)), System.Globalization.NumberStyles.HexNumber)
-            PokeDataFormatTextBox.Text = Int32.Parse(ReadHEX(LoadedROM, offvar, 1), System.Globalization.NumberStyles.HexNumber)
+            PokeDataFormatComboBox.SelectedIndex = Int32.Parse(ReadHEX(LoadedROM, offvar, 1), System.Globalization.NumberStyles.HexNumber)
 
             PkmSlts.Items.Clear()
 
@@ -238,7 +238,7 @@ Public Class TrainerEditor
         WriteHEX(LoadedROM, offvar + 22, ReverseHEX(VB.Right("0000" & Hex(TrainerItem4.SelectedIndex), 4)))
 
         WriteHEX(LoadedROM, offvar + 32, Hex(PokeNumTextBox.Text))
-        WriteHEX(LoadedROM, offvar, Hex(PokeDataFormatTextBox.Text))
+        WriteHEX(LoadedROM, offvar, Hex(PokeDataFormatComboBox.SelectedIndex))
 
         If DblCheckBox.Checked = False Then
 
@@ -444,7 +444,7 @@ Public Class TrainerEditor
 
         PointerPokeDataTextBox.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, offvar + 36, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
         PokeNumTextBox.Text = Int32.Parse((ReadHEX(LoadedROM, offvar + 32, 1)), System.Globalization.NumberStyles.HexNumber)
-        PokeDataFormatTextBox.Text = Int32.Parse(ReadHEX(LoadedROM, offvar, 1), System.Globalization.NumberStyles.HexNumber)
+        PokeDataFormatComboBox.SelectedIndex = Int32.Parse(ReadHEX(LoadedROM, offvar, 1), System.Globalization.NumberStyles.HexNumber)
 
         PkmSlts.Items.Clear()
 
@@ -680,9 +680,9 @@ Public Class TrainerEditor
         Dim num As Integer = 0
         Dim num2 As Integer = 8
 
-        If PokeDataFormatTextBox.Text <> "" And MoneyRateTextBox.Text <> "" Then
+        If PokeDataFormatComboBox.SelectedIndex <> -1 And MoneyRateTextBox.Text <> "" Then
 
-            If PokeDataFormatTextBox.Text = 1 Or PokeDataFormatTextBox.Text = 3 Then
+            If PokeDataFormatComboBox.SelectedIndex = 1 Or PokeDataFormatComboBox.SelectedIndex = 3 Then
                 num2 = &H10
             End If
             If (PkmSlts.Items.Count > 0) Then

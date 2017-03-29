@@ -372,7 +372,7 @@ Public Class PokemonAdder
 
             'Repoint Pokemon Attack Table
 
-            If GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "True" Then
+            If GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "True".ToLower() Then
 
                 WriteHEX(LoadedROM, (Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, &H3EA10 + 4, 4)), System.Globalization.NumberStyles.HexNumber) - &H8000001 + 124), ReverseHEX(Hex((PokemonAttackDataNewOffset) + &H8000000)))
                 WriteHEX(LoadedROM, &H3EB10, ReverseHEX(Hex((PokemonAttackDataNewOffset) + &H8000000)))
@@ -381,7 +381,7 @@ Public Class PokemonAdder
                 WriteHEX(LoadedROM, &H43DD4 + 72, ReverseHEX(Hex((PokemonAttackDataNewOffset) + &H8000000)))
                 WriteHEX(LoadedROM, (Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, &H43E2C + 4, 4)), System.Globalization.NumberStyles.HexNumber) - &H8000001 + 360), ReverseHEX(Hex((PokemonAttackDataNewOffset) + &H8000000)))
 
-            ElseIf GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+            ElseIf GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "False".ToLower() Then
 
                 WriteHEX(LoadedROM, &H3EA7C, ReverseHEX(Hex((PokemonAttackDataNewOffset) + &H8000000)))
                 WriteHEX(LoadedROM, &H3EB10, ReverseHEX(Hex((PokemonAttackDataNewOffset) + &H8000000)))

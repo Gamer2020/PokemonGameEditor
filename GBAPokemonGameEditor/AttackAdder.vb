@@ -397,7 +397,7 @@ Public Class AttackAdder
         WriteHEX(LoadedROM, &HD75FC, "00000000000013E0")
 
         'Move Table hack stuff
-        If CheckBox1.Checked And GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+        If CheckBox1.Checked And GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "False".ToLower() Then
 
             'Converts the table to the new format
 
@@ -999,7 +999,7 @@ Public Class AttackAdder
         WriteHEX(LoadedROM, &HDE83A, "00000000000000E0")
 
         'Move Table hack stuff
-        If CheckBox4.Checked And GetString(GetINIFileLocation(), header, "MoveTableHack", "False") = "False" Then
+        If CheckBox4.Checked And GetString(GetINIFileLocation(), header, "MoveTableHack", "False").ToLower() = "False".ToLower() Then
 
             'Converts the table to the new format
 

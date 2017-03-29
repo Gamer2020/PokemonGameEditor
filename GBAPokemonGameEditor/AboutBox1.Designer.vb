@@ -35,7 +35,7 @@ Partial Class AboutBox1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(667, 246)
         Me.PictureBox1.TabIndex = 0
@@ -44,7 +44,7 @@ Partial Class AboutBox1
         'OKButton
         '
         Me.OKButton.Location = New System.Drawing.Point(551, 329)
-        Me.OKButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.OKButton.Margin = New System.Windows.Forms.Padding(4)
         Me.OKButton.Name = "OKButton"
         Me.OKButton.Size = New System.Drawing.Size(100, 28)
         Me.OKButton.TabIndex = 1
@@ -77,9 +77,9 @@ Partial Class AboutBox1
         Me.Label1.Location = New System.Drawing.Point(205, 289)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(237, 17)
+        Me.Label1.Size = New System.Drawing.Size(295, 17)
         Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Contact: lostatlife2020@hotmail.com"
+        Me.Label1.Text = "Contact: Gamer2020@romhackersonline.com"
         '
         'AboutBox1
         '
@@ -92,7 +92,7 @@ Partial Class AboutBox1
         Me.Controls.Add(Me.OKButton)
         Me.Controls.Add(Me.PictureBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "AboutBox1"

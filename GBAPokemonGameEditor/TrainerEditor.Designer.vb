@@ -57,10 +57,12 @@ Partial Class TrainerEditor
         Me.TrainerItem2 = New System.Windows.Forms.ComboBox()
         Me.TrainerItem1 = New System.Windows.Forms.ComboBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.SaveMnyRt = New System.Windows.Forms.Button()
         Me.MoneyRateTextBox = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.PokeDataFormatComboBox = New System.Windows.Forms.ComboBox()
         Me.PkmnSvBttn = New System.Windows.Forms.Button()
         Me.PkmnEvsTextBox = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -78,14 +80,12 @@ Partial Class TrainerEditor
         Me.TnPkmPictureBox = New System.Windows.Forms.PictureBox()
         Me.TnPkmComboBox = New System.Windows.Forms.ComboBox()
         Me.PkmSlts = New System.Windows.Forms.ListBox()
-        Me.PokeDataFormatTextBox = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.PokeNumTextBox = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.RpntPkDtBttn = New System.Windows.Forms.Button()
         Me.PointerPokeDataTextBox = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.PicNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -421,6 +421,15 @@ Partial Class TrainerEditor
         Me.TabPage2.Text = "Trainer Class"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(61, 144)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(98, 17)
+        Me.Label15.TabIndex = 27
+        Me.Label15.Text = "Prize Money:  "
+        '
         'SaveMnyRt
         '
         Me.SaveMnyRt.Location = New System.Drawing.Point(64, 164)
@@ -448,6 +457,7 @@ Partial Class TrainerEditor
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.PokeDataFormatComboBox)
         Me.TabPage3.Controls.Add(Me.PkmnSvBttn)
         Me.TabPage3.Controls.Add(Me.PkmnEvsTextBox)
         Me.TabPage3.Controls.Add(Me.Label13)
@@ -465,7 +475,6 @@ Partial Class TrainerEditor
         Me.TabPage3.Controls.Add(Me.TnPkmPictureBox)
         Me.TabPage3.Controls.Add(Me.TnPkmComboBox)
         Me.TabPage3.Controls.Add(Me.PkmSlts)
-        Me.TabPage3.Controls.Add(Me.PokeDataFormatTextBox)
         Me.TabPage3.Controls.Add(Me.Label8)
         Me.TabPage3.Controls.Add(Me.PokeNumTextBox)
         Me.TabPage3.Controls.Add(Me.Label7)
@@ -478,6 +487,16 @@ Partial Class TrainerEditor
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Pokemon Data"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'PokeDataFormatComboBox
+        '
+        Me.PokeDataFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PokeDataFormatComboBox.FormattingEnabled = True
+        Me.PokeDataFormatComboBox.Items.AddRange(New Object() {"Default Moves", "Custom Moves", "Custom Items", "Custom Moves/Items"})
+        Me.PokeDataFormatComboBox.Location = New System.Drawing.Point(173, 13)
+        Me.PokeDataFormatComboBox.Name = "PokeDataFormatComboBox"
+        Me.PokeDataFormatComboBox.Size = New System.Drawing.Size(138, 24)
+        Me.PokeDataFormatComboBox.TabIndex = 47
         '
         'PkmnSvBttn
         '
@@ -634,13 +653,6 @@ Partial Class TrainerEditor
         Me.PkmSlts.Size = New System.Drawing.Size(138, 116)
         Me.PkmSlts.TabIndex = 29
         '
-        'PokeDataFormatTextBox
-        '
-        Me.PokeDataFormatTextBox.Location = New System.Drawing.Point(173, 13)
-        Me.PokeDataFormatTextBox.Name = "PokeDataFormatTextBox"
-        Me.PokeDataFormatTextBox.Size = New System.Drawing.Size(43, 22)
-        Me.PokeDataFormatTextBox.TabIndex = 28
-        '
         'Label8
         '
         Me.Label8.AutoSize = True
@@ -690,15 +702,6 @@ Partial Class TrainerEditor
         Me.Label6.Size = New System.Drawing.Size(57, 17)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Pointer:"
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(61, 144)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(98, 17)
-        Me.Label15.TabIndex = 27
-        Me.Label15.Text = "Prize Money:  "
         '
         'TrainerEditor
         '
@@ -773,7 +776,6 @@ Partial Class TrainerEditor
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents PokeNumTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents PokeDataFormatTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents PkmSlts As System.Windows.Forms.ListBox
     Friend WithEvents TnPkmPictureBox As System.Windows.Forms.PictureBox
@@ -796,4 +798,5 @@ Partial Class TrainerEditor
     Friend WithEvents MoneyRateTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents PokeDataFormatComboBox As System.Windows.Forms.ComboBox
 End Class
