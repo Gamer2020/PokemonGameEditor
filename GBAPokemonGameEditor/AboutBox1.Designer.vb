@@ -77,9 +77,9 @@ Partial Class AboutBox1
         Me.Label1.Location = New System.Drawing.Point(205, 289)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(295, 17)
+        Me.Label1.Size = New System.Drawing.Size(254, 17)
         Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Contact: Gamer2020@romhackersonline.com"
+        Me.Label1.Text = "Contact: Gamer2020@RomBusters.net"
         '
         'AboutBox1
         '
