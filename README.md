@@ -1,5 +1,5 @@
-Please use the latest beta!
-====================
+Support is not being offered at this time! Please make sure to use the latest beta and make sure you have the correct ROM dump.
+=================================================================================================
 
 ![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/PGEBANNER.png)
 
