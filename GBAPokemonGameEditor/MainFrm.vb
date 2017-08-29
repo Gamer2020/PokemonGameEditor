@@ -775,62 +775,72 @@ Public Class MainFrm
     Private Sub Button34_Click(sender As Object, e As EventArgs) Handles Button34.Click
         Me.Cursor = Cursors.WaitCursor
         ItemEditor.Show()
+        ItemEditor.focus()
         Me.Cursor = Cursors.Arrow
     End Sub
 
     Private Sub Button35_Click(sender As Object, e As EventArgs) Handles Button35.Click
         Me.Cursor = Cursors.WaitCursor
         TMHMEditor.Show()
+        TMHMEditor.focus()
         Me.Cursor = Cursors.Arrow
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Cursor = Cursors.WaitCursor
         AttackAdder.Show()
-        Me.Cursor = Cursors.Arrow
+attackadder.focus()        
+Me.Cursor = Cursors.Arrow
     End Sub
 
     Private Sub Button36_Click(sender As Object, e As EventArgs) Handles Button36.Click
         Me.Cursor = Cursors.WaitCursor
         EggMoveEditor.Show()
-        Me.Cursor = Cursors.Arrow
+eggmoveeditor.focus()        
+Me.Cursor = Cursors.Arrow
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Cursor = Cursors.WaitCursor
         HabitatEditor.Show()
-        Me.Cursor = Cursors.Arrow
+habitateditor.focus()        
+Me.Cursor = Cursors.Arrow
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Me.Cursor = Cursors.WaitCursor
         AbilityAdder.Show()
-        Me.Cursor = Cursors.Arrow
+abilityadder.focus()        
+Me.Cursor = Cursors.Arrow
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
         Me.Cursor = Cursors.WaitCursor
         RomExpander.Show()
-        Me.Cursor = Cursors.Arrow
+romexpander.focus()        
+Me.Cursor = Cursors.Arrow
     End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
         Me.Cursor = Cursors.WaitCursor
         PokemonAdder.Show()
-        Me.Cursor = Cursors.Arrow
+pokemonadder.focus()        
+Me.Cursor = Cursors.Arrow
     End Sub
 
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
         Me.Cursor = Cursors.WaitCursor
         TradeEditor.Show()
-        Me.Cursor = Cursors.Arrow
+tradereditor.focus()        
+Me.Cursor = Cursors.Arrow
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
         Me.Text = "Please wait... This will take a while..."
         Me.Cursor = Cursors.WaitCursor
         PokedexListEditor.Show()
-        Me.Text = "Pokémon Game Editor"
+pokedexlisteditor.focus()        
+Me.Text = "Pokémon Game Editor"
         Me.Cursor = Cursors.Arrow
     End Sub
 
@@ -839,7 +849,8 @@ Public Class MainFrm
         Me.Text = "Please wait... This will take a while..."
         Me.Cursor = Cursors.WaitCursor
         TrainerEditor.Show()
-        Me.Text = "Pokémon Game Editor"
+trainereditor.focus()        
+Me.Text = "Pokémon Game Editor"
         Me.Cursor = Cursors.Arrow
 
     End Sub
