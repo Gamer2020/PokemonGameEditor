@@ -29,6 +29,13 @@ Public Class Pokemonedit
     Dim DexDescripLength1 As Integer
     Dim DexDescripLength2 As Integer
 
+    Dim Tab1LoadedMon As Integer
+    Dim Tab2LoadedMon As Integer
+    Dim Tab3LoadedMon As Integer
+    Dim Tab4LoadedMon As Integer
+    Dim Tab5LoadedMon As Integer
+    Dim Tab6LoadedMon As Integer
+
     Private Sub Pokemonedit_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         MainFrm.Visible = True
     End Sub
@@ -615,6 +622,9 @@ Public Class Pokemonedit
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
         i = PKMNames.SelectedIndex
+
+        LoadUnloadedTabs()
+
         BaseSave()
         EvoSave()
         TMHMCOMSave()
@@ -648,9 +658,6 @@ Public Class Pokemonedit
         IconPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber)
         IconPalTable = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber)
         FootPrintTable = Int32.Parse((GetString(GetINIFileLocation(), header, "FootPrintTable", "")), System.Globalization.NumberStyles.HexNumber)
-        CryTable = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable", "")), System.Globalization.NumberStyles.HexNumber)
-        CryTable2 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
-        CryTable3 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable2", "")), System.Globalization.NumberStyles.HexNumber)
 
         FrontPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (FrontSpritePointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
         BackPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (BackSpritePointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
@@ -662,6 +669,42 @@ Public Class Pokemonedit
 
         FootPrintPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (FootPrintTable) + (4) + (i * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
+        AnimationPointer.Text = ""
+        AniPic.Image = Nothing
+        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "0") = "0" Then
+
+
+            If header2 = "BPE" Then
+
+                GroupBox15.Enabled = True
+                Button2.Enabled = True
+                AnimationPointer.Enabled = True
+
+                AnimationPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAnimations", "")), System.Globalization.NumberStyles.HexNumber)
+                AnimationPointer.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AnimationPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
+
+                'GetAndDrawAnimationPokemonPic(AniPic, i + 1)
+                'GetAndDrawAnimationPokemonPicShiny(AniPic2, i + 1)
+
+
+                TextBox8.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "FrontAnimationTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
+                TextBox9.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "BackAnimTable", "")), System.Globalization.NumberStyles.HexNumber)) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
+                TextBox10.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "AnimDelayTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
+
+            Else
+
+                GroupBox15.Enabled = False
+                Button2.Enabled = False
+                AnimationPointer.Enabled = False
+
+            End If
+        End If
+    End Sub
+
+    Private Sub LoadCryWindow()
+        CryTable = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable", "")), System.Globalization.NumberStyles.HexNumber)
+        CryTable2 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
+        CryTable3 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable2", "")), System.Globalization.NumberStyles.HexNumber)
 
         'cry stuff with conversion table support
         If (i + 1) < 252 Then
@@ -730,7 +773,7 @@ Public Class Pokemonedit
         End If
 
 
-        If (i + 1) > 276 Then
+        If (i + 1) > 276 Then 'And (i + 1) < 440
             GroupBox21.Enabled = True
             CryConver.Enabled = True
             Button13.Enabled = True
@@ -744,8 +787,12 @@ Public Class Pokemonedit
 
             CryPointer2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable3) + (4)) + ((CryConver.Text) * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
-            crynorm = LoadCry(CryConver.Text, CryTable)
-            crygrowl = LoadCry(CryConver.Text, CryTable3)
+            CryComp1.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable) + ((CryConver.Text) * 12), 1))), System.Globalization.NumberStyles.HexNumber))
+            CryComp2.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable3) + ((CryConver.Text) * 12), 1))), System.Globalization.NumberStyles.HexNumber))
+
+
+            crynorm = LoadCry(i, CryTable)
+            crygrowl = LoadCry(i, CryTable3)
 
             Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
@@ -762,41 +809,6 @@ Public Class Pokemonedit
 
         End If
 
-        GroupBox15.Enabled = False
-        Button2.Enabled = False
-        AnimationPointer.Text = ""
-        AnimationPointer.Enabled = False
-        AniPic.Image = Nothing
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "0") = "0" Then
-
-
-            If header2 = "BPE" Then
-                Button2.Enabled = True
-                AnimationPointer.Enabled = True
-                GroupBox15.Enabled = True
-
-                AnimationPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAnimations", "")), System.Globalization.NumberStyles.HexNumber)
-                AnimationPointer.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AnimationPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
-
-                GetAndDrawAnimationPokemonPic(AniPic, i + 1)
-                GetAndDrawAnimationPokemonPicShiny(AniPic2, i + 1)
-
-
-                TextBox8.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "FrontAnimationTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
-                TextBox9.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "BackAnimTable", "")), System.Globalization.NumberStyles.HexNumber)) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
-                TextBox10.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "AnimDelayTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
-
-
-            End If
-            GetAndDrawFrontPokemonPic(FrntPic, i + 1)
-            GetAndDrawBackPokemonPic(BckPic2, i + 1)
-            GetAndDrawFrontPokemonPicShiny(FrntPic2, i + 1)
-            GetAndDrawBackPokemonPicNormal(BckPic, i + 1)
-
-            'GetAndDrawFrontPokemonPic(EvoBasePokePic, i + 1)
-            GetAndDrawPokemonIconPic(IconPicBox, i + 1, IconPal.SelectedIndex)
-            GetAndDrawPokemonFootPrint(PictureBox1, i + 1)
-        End If
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
@@ -1138,25 +1150,26 @@ Public Class Pokemonedit
 
     Private Sub PKMNames_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PKMNames.SelectedIndexChanged
 
-        Me.Enabled = False
+        Me.Invalidate()
 
         i = PKMNames.SelectedIndex
         PokemonListIndex.Text = PKMNames.SelectedIndex + 1
 
+        TabChanged()
 
-        Baseload()
+        'Baseload()
 
-        MediaLoad()
+        'MediaLoad()
 
-        TMHMCOMLoad()
+        'TMHMCOMLoad()
 
-        LearnableMoveLoad()
+        'LearnableMoveLoad()
 
-        MTComLoad()
+        'MTComLoad()
 
-        LoadDexData()
+        'LoadDexData()
 
-        LoadSpritePosition()
+        'LoadSpritePosition()
 
         CurPKMName.Text = GetPokemonName(PKMNames.SelectedIndex + 1)
 
@@ -1169,9 +1182,9 @@ Public Class Pokemonedit
 
         EvoSlots.SelectedIndex = -1
         EvoSlots.SelectedIndex = 0
-        lvlupattacks.SelectedIndex = 0
+        'lvlupattacks.SelectedIndex = 0
 
-        Me.Enabled = True
+        Me.Validate()
 
     End Sub
 
@@ -1632,7 +1645,9 @@ Public Class Pokemonedit
                 ExportPokemonINI(FolderBrowserDialog.SelectedPath & "\Pokemon\" & LoopVar & ".ini", LoopVar)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
             End While
 
             Me.Text = "Pokemon Editor"
@@ -2318,7 +2333,9 @@ Public Class Pokemonedit
                 End If
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
             End While
 
             LoopVar = 0
@@ -3477,7 +3494,9 @@ Public Class Pokemonedit
                 ExportAseriesSheet(FolderBrowserDialog.SelectedPath & "\Sprites\" & LoopVar & ".png", LoopVar)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
             End While
 
             Me.Text = "Pokemon Editor"
@@ -3517,7 +3536,9 @@ Public Class Pokemonedit
                 End If
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
             End While
 
             PKMNames.SelectedIndex = 1
@@ -3557,7 +3578,9 @@ Public Class Pokemonedit
                 ExportPokemonIcon(FolderBrowserDialog.SelectedPath & "\Icons\" & LoopVar & ".png", LoopVar)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
             End While
 
             Me.Text = "Pokemon Editor"
@@ -3597,7 +3620,9 @@ Public Class Pokemonedit
                 End If
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
             End While
 
             PKMNames.SelectedIndex = 1
@@ -3638,7 +3663,9 @@ Public Class Pokemonedit
                 End If
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
             End While
 
             PKMNames.SelectedIndex = 1
@@ -3678,7 +3705,9 @@ Public Class Pokemonedit
                 ExportPokemonFootprint(FolderBrowserDialog.SelectedPath & "\Footprints\" & LoopVar & ".png", LoopVar)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
             End While
 
             Me.Text = "Pokemon Editor"
@@ -3947,7 +3976,9 @@ Public Class Pokemonedit
                 ExportCry(FolderBrowserDialog.SelectedPath & "\Cries\" & LoopVar & ".wav", crynorm)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
             End While
 
             Me.Text = "Pokemon Editor"
@@ -3979,11 +4010,130 @@ Public Class Pokemonedit
 
     End Sub
 
-    Private Sub Label15_Click(sender As Object, e As EventArgs) Handles Label15.Click
+    Private Sub TabChanged() Handles TabControl1.Selected
+
+        If (TabControl1.SelectedTab Is TabPage1 And Not Tab1LoadedMon = PKMNames.SelectedIndex + 1) Or
+           (TabControl1.SelectedTab Is TabPage2 And Not Tab2LoadedMon = PKMNames.SelectedIndex + 1) Or
+           (TabControl1.SelectedTab Is TabPage3 And Not Tab3LoadedMon = PKMNames.SelectedIndex + 1) Then
+
+            Baseload()
+
+            Tab2LoadedMon = PKMNames.SelectedIndex + 1
+            Tab3LoadedMon = PKMNames.SelectedIndex + 1
+
+        End If
+
+        If (TabControl1.SelectedTab Is TabPage1 And Not Tab1LoadedMon = PKMNames.SelectedIndex + 1) Then
+
+            MediaLoad()
+
+            LoadSpritePosition()
+
+            'BackgroundBox loads late if its not invalidated/updated
+            BackgroundBox.Invalidate()
+
+            GetAndDrawFrontPokemonPic(FrntPic, i + 1)
+            GetAndDrawBackPokemonPic(BckPic2, i + 1)
+            GetAndDrawFrontPokemonPicShiny(FrntPic2, i + 1)
+            GetAndDrawBackPokemonPicNormal(BckPic, i + 1)
+
+            GetAndDrawPokemonIconPic(IconPicBox, i + 1, IconPal.SelectedIndex)
+
+
+            GetAndDrawPokemonFootPrint(PictureBox1, i + 1)
+
+            If header2 = "BPE" Then
+
+                GetAndDrawAnimationPokemonPic(AniPic, i + 1)
+                GetAndDrawAnimationPokemonPicShiny(AniPic2, i + 1)
+
+            End If
+
+            BackgroundBox.Update()
+
+            Tab1LoadedMon = PKMNames.SelectedIndex + 1
+
+        End If
+
+        If (TabControl1.SelectedTab Is TabPage6 And Not Tab6LoadedMon = PKMNames.SelectedIndex + 1) Then
+
+            LoadCryWindow()
+
+            Tab6LoadedMon = PKMNames.SelectedIndex + 1
+
+        End If
+
+        If TabControl1.SelectedTab Is TabPage2 And Not Tab2LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            Tab2LoadedMon = PKMNames.SelectedIndex + 1
+
+        ElseIf TabControl1.SelectedTab Is TabPage3 And Not Tab3LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            Tab3LoadedMon = PKMNames.SelectedIndex + 1
+
+        ElseIf TabControl1.SelectedTab Is TabPage4 And Not Tab4LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            TMHMCOMLoad()
+
+            LearnableMoveLoad()
+
+            MTComLoad()
+
+            lvlupattacks.SelectedIndex = 0
+
+            Tab4LoadedMon = PKMNames.SelectedIndex + 1
+
+        ElseIf TabControl1.SelectedTab Is TabPage5 And Not Tab5LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            LoadDexData()
+
+            Tab5LoadedMon = PKMNames.SelectedIndex + 1
+
+        End If
 
     End Sub
 
-    Private Sub EvoItemPic_Click(sender As Object, e As EventArgs) Handles EvoItemPic.Click
+    Private Sub LoadUnloadedTabs()
+        'Me.Enabled = False
 
+        If Not (Tab1LoadedMon = PKMNames.SelectedIndex + 1 Or Tab2LoadedMon = PKMNames.SelectedIndex + 1 Or Tab3LoadedMon = PKMNames.SelectedIndex + 1) Then
+
+            Baseload()
+
+        End If
+
+        If Not Tab4LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            TMHMCOMLoad()
+
+            LearnableMoveLoad()
+
+            MTComLoad()
+
+            lvlupattacks.SelectedIndex = 0
+
+            Tab4LoadedMon = PKMNames.SelectedIndex + 1
+
+        End If
+
+        If Not Tab5LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            LoadDexData()
+
+        End If
+
+        If Not Tab1LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            LoadSpritePosition()
+
+        End If
+
+
+        Tab2LoadedMon = PKMNames.SelectedIndex + 1
+        Tab3LoadedMon = PKMNames.SelectedIndex + 1
+        Tab4LoadedMon = PKMNames.SelectedIndex + 1
+        Tab5LoadedMon = PKMNames.SelectedIndex + 1
+
+        'Me.Enabled = True
     End Sub
 End Class
