@@ -225,7 +225,12 @@ Partial Class Pokemonedit
         Me.Label25 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Clr1 = New System.Windows.Forms.ComboBox()
+<<<<<<< HEAD
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+=======
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Button43 = New System.Windows.Forms.Button()
+>>>>>>> update-cry-imp-exp
         Me.GroupBox35 = New System.Windows.Forms.GroupBox()
         Me.Button35 = New System.Windows.Forms.Button()
         Me.Button36 = New System.Windows.Forms.Button()
@@ -358,7 +363,10 @@ Partial Class Pokemonedit
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
+<<<<<<< HEAD
         Me.TabControl1.Controls.Add(Me.TabPage6)
+=======
+>>>>>>> update-cry-imp-exp
         Me.TabControl1.Location = New System.Drawing.Point(222, 41)
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabControl1.Name = "TabControl1"
@@ -2018,6 +2026,7 @@ Partial Class Pokemonedit
         '
         'TabPage5
         '
+<<<<<<< HEAD
         Me.TabPage5.Controls.Add(Me.GroupBox31)
         Me.TabPage5.Controls.Add(Me.GroupBox32)
         Me.TabPage5.Controls.Add(Me.GroupBox30)
@@ -2031,6 +2040,21 @@ Partial Class Pokemonedit
         Me.TabPage5.TabIndex = 5
         Me.TabPage5.Text = "Pokedex"
         Me.TabPage5.UseVisualStyleBackColor = True
+=======
+        Me.TabPage6.Controls.Add(Me.GroupBox31)
+        Me.TabPage6.Controls.Add(Me.GroupBox32)
+        Me.TabPage6.Controls.Add(Me.GroupBox30)
+        Me.TabPage6.Controls.Add(Me.GroupBox29)
+        Me.TabPage6.Controls.Add(Me.GroupBox28)
+        Me.TabPage6.Controls.Add(Me.GroupBox2)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage6.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TabPage6.Name = "TabPage6"
+        Me.TabPage6.Size = New System.Drawing.Size(925, 736)
+        Me.TabPage6.TabIndex = 5
+        Me.TabPage6.Text = "Pokedex"
+        Me.TabPage6.UseVisualStyleBackColor = True
+>>>>>>> update-cry-imp-exp
         '
         'GroupBox31
         '
@@ -2543,6 +2567,7 @@ Partial Class Pokemonedit
         '
         'TabPage6
         '
+<<<<<<< HEAD
         Me.TabPage6.Controls.Add(Me.GroupBox35)
         Me.TabPage6.Controls.Add(Me.GroupBox34)
         Me.TabPage6.Controls.Add(Me.GroupBox21)
@@ -2554,6 +2579,30 @@ Partial Class Pokemonedit
         Me.TabPage6.TabIndex = 6
         Me.TabPage6.Text = "Cry Data"
         Me.TabPage6.UseVisualStyleBackColor = True
+=======
+        Me.TabPage5.Controls.Add(Me.Button43)
+        Me.TabPage5.Controls.Add(Me.GroupBox35)
+        Me.TabPage5.Controls.Add(Me.GroupBox34)
+        Me.TabPage5.Controls.Add(Me.GroupBox21)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage5.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabPage5.Size = New System.Drawing.Size(925, 736)
+        Me.TabPage5.TabIndex = 6
+        Me.TabPage5.Text = "Cry Data"
+        Me.TabPage5.UseVisualStyleBackColor = True
+>>>>>>> update-cry-imp-exp
+        '
+        'Button43
+        '
+        Me.Button43.Location = New System.Drawing.Point(19, 682)
+        Me.Button43.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Button43.Name = "Button43"
+        Me.Button43.Size = New System.Drawing.Size(237, 41)
+        Me.Button43.TabIndex = 30
+        Me.Button43.Text = "Import and Repoint All"
+        Me.Button43.UseVisualStyleBackColor = True
         '
         'GroupBox35
         '
@@ -2740,7 +2789,10 @@ Partial Class Pokemonedit
         '
         'Button33
         '
+<<<<<<< HEAD
         Me.Button33.Enabled = False
+=======
+>>>>>>> update-cry-imp-exp
         Me.Button33.Location = New System.Drawing.Point(336, 264)
         Me.Button33.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button33.Name = "Button33"
@@ -3513,4 +3565,5 @@ Partial Class Pokemonedit
     Friend WithEvents Label59 As System.Windows.Forms.Label
     Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
     Friend WithEvents Label58 As System.Windows.Forms.Label
+    Friend WithEvents Button43 As Button
 End Class
