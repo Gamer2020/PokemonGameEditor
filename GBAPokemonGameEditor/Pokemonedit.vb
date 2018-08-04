@@ -3943,8 +3943,14 @@ Public Class Pokemonedit
             Me.Enabled = False
 
             crynorm = ImportCry(fileOpenDialog.FileName, crynorm)
+            crynorm.Index += 1
+            Dim cryGood As Boolean = SaveCryNoPrompt(crynorm, CryTable, CryTable3)
 
-            SaveCry(crynorm, CryTable)
+            If cryGood Then
+
+                LoadCryWindow()
+
+            End If
 
             Me.Text = "Pokemon Editor"
             Me.Enabled = True
@@ -3987,14 +3993,6 @@ Public Class Pokemonedit
             ProgressBar.Visible = False
             Me.BringToFront()
         End If
-    End Sub
-
-    Private Sub Button36_Click(sender As Object, e As EventArgs) Handles Button36.Click
-
-    End Sub
-
-    Private Sub chkCompressed1_CheckedChanged(sender As Object, e As EventArgs) Handles chkCompressed1.CheckedChanged
-
     End Sub
 
     Private Sub AniSavBttn_Click(sender As Object, e As EventArgs) Handles AniSavBttn.Click
@@ -4135,5 +4133,104 @@ Public Class Pokemonedit
         Tab5LoadedMon = PKMNames.SelectedIndex + 1
 
         'Me.Enabled = True
+    End Sub
+
+    Private Sub Button43_Click(sender As Object, e As EventArgs) Handles Button43.Click
+        FolderBrowserDialog.Description = "Select folder to import cries from:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            Dim LoopVar As Integer
+
+            LoopVar = 440
+
+            Me.Enabled = False
+
+            CryTable = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable", "")), System.Globalization.NumberStyles.HexNumber)
+            'CryTable2 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
+            CryTable3 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable2", "")), System.Globalization.NumberStyles.HexNumber)
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 And 439 < LoopVar And 861 > LoopVar = True
+                'PKMNames.SelectedIndex = LoopVar
+
+                Dim convNum As Integer = LoopVar - 53
+
+                Dim validFiles As String() = GetFiles(FolderBrowserDialog.SelectedPath, "*" & convNum & "*")
+
+                If validFiles.Count > 0 Then
+                    crynorm = New Cry With {
+                        .Index = LoopVar
+                    }
+                    crynorm = ImportCry(validFiles(0), crynorm)
+                    SaveCryNoPrompt(crynorm, CryTable, CryTable3)
+                End If
+
+
+                LoopVar = LoopVar + 1
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
+
+            End While
+
+            LoopVar = 880
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 And 439 < LoopVar = True
+
+                Dim validFiles As String() = GetFiles(FolderBrowserDialog.SelectedPath, "*" & LoopVar & "*")
+
+                If validFiles.Count > 0 Then
+                    crynorm = New Cry With {
+                        .Index = LoopVar
+                    }
+                    crynorm = ImportCry(validFiles(0), crynorm)
+                    SaveCryNoPrompt(crynorm, CryTable, CryTable3)
+                End If
+
+
+                LoopVar = LoopVar + 1
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
+
+            End While
+
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            Dim convMons As New List(Of String)
+
+            If IO.File.Exists(FolderBrowserDialog.SelectedPath & "\Conversions.txt") Then
+                convMons.AddRange(IO.File.ReadLines(FolderBrowserDialog.SelectedPath & "\Conversions.txt"))
+
+                Dim MonArray As List(Of String()) = New List(Of String())
+                For Each mon As String In convMons
+                    MonArray.Add(mon.Split(New String() {"="}, StringSplitOptions.None))
+                Next
+
+                Dim offset As Integer = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
+
+                For Each mon As String() In MonArray
+                    If mon.Count > 1 Then
+                        If mon(1) < 277 Then
+                            WriteHEX(LoadedROM, ((offset)) + ((Int32.Parse(mon(0)) - 277) * 2), ReverseHEX(VB.Right("0000" & Hex(Int32.Parse(mon(1) - 1)), 4)))
+                        Else
+                            WriteHEX(LoadedROM, ((offset)) + ((Int32.Parse(mon(0)) - 277) * 2), ReverseHEX(VB.Right("0000" & Hex(Int32.Parse(mon(1))), 4)))
+                        End If
+                    End If
+                Next
+            End If
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+            PKMNames.SelectedIndex = 0
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
     End Sub
 End Class
