@@ -591,11 +591,20 @@ Module ImportDataFunctions
             ConvertBitmapToPalette(OShinyBackBitmapAnimation, AnimationShinyPalette, True)
         End If
 
-        SynchSprite(FrontSprite, ONormalFrontBitmap, OShinyFrontBitmap)
-        SynchSprite(BackSprite, ONormalBackBitmap, OShinyBackBitmap)
+        Try
+            SynchSprite(FrontSprite, ONormalFrontBitmap, OShinyFrontBitmap)
+            SynchSprite(BackSprite, ONormalBackBitmap, OShinyBackBitmap)
+        Catch
+            SynchSpriteOverflow(FrontSprite, ONormalFrontBitmap, OShinyFrontBitmap)
+            SynchSpriteOverflow(BackSprite, ONormalBackBitmap, OShinyBackBitmap)
+        End Try
 
         If LoadAnimationFlag = True Then
-            SynchSprite2(AnimationNormalSprite, ONormalFrontBitmapAnimation, OShinyFrontBitmapAnimation)
+            Try
+                SynchSprite2(AnimationNormalSprite, ONormalFrontBitmapAnimation, OShinyFrontBitmapAnimation)
+            Catch
+                SynchSprite2Overflow(AnimationNormalSprite, ONormalFrontBitmapAnimation, OShinyFrontBitmapAnimation)
+            End Try
         End If
 
         mainbitmap.Dispose()
@@ -664,6 +673,84 @@ Module ImportDataFunctions
                         Dim num2 As Byte = CByte(Array.IndexOf(Of Color)(AnimationNormalPalette, NormalSprite.GetPixel((((num8 * 8) + (num10 * 2)) + 1), CInt(Math.Round(CDbl(((i * 8) + num9)))))))
                         Dim num5 As Byte = CByte(Array.IndexOf(Of Color)(AnimationShinyPalette, ShinySprite.GetPixel(((num8 * 8) + (num10 * 2)), CInt(Math.Round(CDbl(((i * 8) + num9)))))))
                         Dim num6 As Byte = CByte(Array.IndexOf(Of Color)(AnimationShinyPalette, ShinySprite.GetPixel((((num8 * 8) + (num10 * 2)) + 1), CInt(Math.Round(CDbl(((i * 8) + num9)))))))
+                        If (num5 > index) Then
+                            num3 = num5
+                        Else
+                            num3 = index
+                        End If
+                        If (num6 > num2) Then
+                            num3 = CByte((num3 Or CByte((num6 << 4))))
+                        Else
+                            num3 = CByte((num3 Or CByte((num2 << 4))))
+                        End If
+                        SpriteArray(num4) = num3
+                        Dim addvar As UInteger = 1
+                        num4 = (num4 + addvar)
+                        num10 += 1
+                    Loop While (num10 <= 3)
+                    num9 += 1
+                Loop While (num9 <= 7)
+                num8 += 1
+            Loop While (num8 <= 7)
+            i += 1
+        Loop
+    End Sub
+
+    Private Sub SynchSpriteOverflow(ByRef SpriteArray As Byte(), ByRef NormalSprite As Bitmap, ByRef ShinySprite As Bitmap)
+        Dim num11 As Double = ((CDbl(SpriteArray.Length) / 256) - 1)
+        Dim i As Double = 0
+        Do While (i <= num11)
+            Dim num8 As Integer = 0
+            Do
+                Dim num9 As Integer = 0
+                Do
+                    Dim num10 As Integer = 0
+                    Do
+                        Dim num3 As Byte
+                        Dim num4 As UInt32
+                        Dim index As Byte = CByte(Array.IndexOf(Of Color)(FrontPalette, FrontPalette(GetClosestColorFromPalette(NormalSprite.GetPixel(((num8 * 8) + (num10 * 2)), CInt(Math.Round(CDbl(((i * 8) + num9))))), FrontPalette))))
+                        Dim num2 As Byte = CByte(Array.IndexOf(Of Color)(FrontPalette, FrontPalette(GetClosestColorFromPalette(NormalSprite.GetPixel((((num8 * 8) + (num10 * 2)) + 1), CInt(Math.Round(CDbl(((i * 8) + num9))))), FrontPalette))))
+                        Dim num5 As Byte = CByte(Array.IndexOf(Of Color)(BackPalette, BackPalette(GetClosestColorFromPalette(ShinySprite.GetPixel(((num8 * 8) + (num10 * 2)), CInt(Math.Round(CDbl(((i * 8) + num9))))), BackPalette))))
+                        Dim num6 As Byte = CByte(Array.IndexOf(Of Color)(BackPalette, BackPalette(GetClosestColorFromPalette(ShinySprite.GetPixel((((num8 * 8) + (num10 * 2)) + 1), CInt(Math.Round(CDbl(((i * 8) + num9))))), BackPalette))))
+                        If (num5 > index) Then
+                            num3 = num5
+                        Else
+                            num3 = index
+                        End If
+                        If (num6 > num2) Then
+                            num3 = CByte((num3 Or CByte((num6 << 4))))
+                        Else
+                            num3 = CByte((num3 Or CByte((num2 << 4))))
+                        End If
+                        SpriteArray(num4) = num3
+                        Dim addvar As UInteger = 1
+                        num4 = (num4 + addvar)
+                        num10 += 1
+                    Loop While (num10 <= 3)
+                    num9 += 1
+                Loop While (num9 <= 7)
+                num8 += 1
+            Loop While (num8 <= 7)
+            i += 1
+        Loop
+    End Sub
+
+    Private Sub SynchSprite2Overflow(ByRef SpriteArray As Byte(), ByRef NormalSprite As Bitmap, ByRef ShinySprite As Bitmap)
+        Dim num11 As Double = ((CDbl(SpriteArray.Length) / 256) - 1)
+        Dim i As Double = 0
+        Do While (i <= num11)
+            Dim num8 As Integer = 0
+            Do
+                Dim num9 As Integer = 0
+                Do
+                    Dim num10 As Integer = 0
+                    Do
+                        Dim num3 As Byte
+                        Dim num4 As UInt32
+                        Dim index As Byte = CByte(Math.Abs(Array.IndexOf(Of Color)(AnimationNormalPalette, AnimationNormalPalette(GetClosestColorFromPalette(NormalSprite.GetPixel(((num8 * 8) + (num10 * 2)), CInt(Math.Round(CDbl(((i * 8) + num9))))), AnimationNormalPalette)))))
+                        Dim num2 As Byte = CByte(Math.Abs(Array.IndexOf(Of Color)(AnimationNormalPalette, AnimationNormalPalette(GetClosestColorFromPalette(NormalSprite.GetPixel((((num8 * 8) + (num10 * 2)) + 1), CInt(Math.Round(CDbl(((i * 8) + num9))))), AnimationNormalPalette)))))
+                        Dim num5 As Byte = CByte(Math.Abs(Array.IndexOf(Of Color)(AnimationShinyPalette, AnimationShinyPalette(GetClosestColorFromPalette(ShinySprite.GetPixel(((num8 * 8) + (num10 * 2)), CInt(Math.Round(CDbl(((i * 8) + num9))))), AnimationShinyPalette)))))
+                        Dim num6 As Byte = CByte(Math.Abs(Array.IndexOf(Of Color)(AnimationShinyPalette, AnimationShinyPalette(GetClosestColorFromPalette(ShinySprite.GetPixel((((num8 * 8) + (num10 * 2)) + 1), CInt(Math.Round(CDbl(((i * 8) + num9))))), AnimationShinyPalette)))))
                         If (num5 > index) Then
                             num3 = num5
                         Else
