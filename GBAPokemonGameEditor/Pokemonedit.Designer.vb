@@ -226,6 +226,7 @@ Partial Class Pokemonedit
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Clr1 = New System.Windows.Forms.ComboBox()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Button43 = New System.Windows.Forms.Button()
         Me.GroupBox35 = New System.Windows.Forms.GroupBox()
         Me.Button35 = New System.Windows.Forms.Button()
         Me.Button36 = New System.Windows.Forms.Button()
@@ -283,7 +284,6 @@ Partial Class Pokemonedit
         Me.Button30 = New System.Windows.Forms.Button()
         Me.Button38 = New System.Windows.Forms.Button()
         Me.Button39 = New System.Windows.Forms.Button()
-        Me.Button43 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox26.SuspendLayout()
@@ -2557,6 +2557,16 @@ Partial Class Pokemonedit
         Me.TabPage5.Text = "Cry Data"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'Button43
+        '
+        Me.Button43.Location = New System.Drawing.Point(19, 682)
+        Me.Button43.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Button43.Name = "Button43"
+        Me.Button43.Size = New System.Drawing.Size(237, 41)
+        Me.Button43.TabIndex = 30
+        Me.Button43.Text = "Import and Repoint All"
+        Me.Button43.UseVisualStyleBackColor = True
+        '
         'GroupBox35
         '
         Me.GroupBox35.Controls.Add(Me.Button35)
@@ -2742,7 +2752,6 @@ Partial Class Pokemonedit
         '
         'Button33
         '
-        Me.Button33.Enabled = False
         Me.Button33.Location = New System.Drawing.Point(336, 264)
         Me.Button33.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button33.Name = "Button33"
@@ -3129,17 +3138,6 @@ Partial Class Pokemonedit
         Me.Button39.TabIndex = 20
         Me.Button39.Text = "Import All Cries"
         Me.Button39.UseVisualStyleBackColor = True
-        '
-        'Button43
-        '
-        Me.Button43.Enabled = False
-        Me.Button43.Location = New System.Drawing.Point(19, 682)
-        Me.Button43.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button43.Name = "Button43"
-        Me.Button43.Size = New System.Drawing.Size(237, 41)
-        Me.Button43.TabIndex = 30
-        Me.Button43.Text = "Import and Repoint All"
-        Me.Button43.UseVisualStyleBackColor = True
         '
         'Pokemonedit
         '

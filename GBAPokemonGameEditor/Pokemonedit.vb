@@ -3914,47 +3914,38 @@ Public Class Pokemonedit
             Me.Enabled = False
 
             crynorm = ImportCry(fileOpenDialog.FileName, crynorm)
+            crynorm.Index += 1
+            Dim cryGood As Boolean = SaveCryNoPrompt(crynorm, CryTable, CryTable3)
 
-            SaveCry(crynorm, CryTable)
+            If cryGood Then
 
-            Me.Text = "Pokemon Editor"
-            Me.Enabled = True
-        End If
-    End Sub
+                CryConver.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+                CryPointer.Text = Hex(Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, ((CryTable) + (4)) + ((CryConver.Text) * 12), 4)), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+                CryPointer2.Text = Hex(Int32.Parse(ReverseHEX(ReadHEX(LoadedROM, ((CryTable3) + (4)) + ((CryConver.Text) * 12), 4)), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
-    Private Sub Button38_Click(sender As Object, e As EventArgs) Handles Button38.Click
-        FolderBrowserDialog.Description = "Select folder to export all Cries to:"
+                'Label53.Text = "Sample Rate: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer.Text) + (4), 4)))), System.Globalization.NumberStyles.HexNumber)) >> 10) & " Hz"
+                'Label54.Text = "Sample Rate: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer2.Text) + (4), 4)))), System.Globalization.NumberStyles.HexNumber)) >> 10) & " Hz"
 
-        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Me.Text = "Please wait..."
-            Me.UseWaitCursor = True
-            ProgressBar.Value = 0
-            ProgressBar.Visible = True
+                crynorm = LoadCry(CryConver.Text, CryTable)
+                crygrowl = LoadCry(CryConver.Text, CryTable3)
 
-            If System.IO.Directory.Exists(FolderBrowserDialog.SelectedPath & "\Cries") = False Then
-                CreateDirectory(FolderBrowserDialog.SelectedPath & "\Cries")
+                Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
+                Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
+
+
+                Label55.Text = "Size: " & crynorm.Data.Length & " samples"
+                Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+
+                chkCompressed1.Checked = crynorm.Compressed
+                chkCompressed2.Checked = crygrowl.Compressed
+
+                pSample.Image = GetCryImage(crynorm)
+                pSample2.Image = GetCryImage(crygrowl)
+
             End If
 
-            Dim LoopVar As Integer
-
-            LoopVar = 0
-            Me.Enabled = False
-            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
-                PKMNames.SelectedIndex = LoopVar
-
-                LoopVar = LoopVar + 1
-
-                ExportCry(FolderBrowserDialog.SelectedPath & "\Cries\" & LoopVar & ".wav", crynorm)
-
-                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
-            End While
-
             Me.Text = "Pokemon Editor"
-            Me.UseWaitCursor = False
             Me.Enabled = True
-            ProgressBar.Visible = False
-            Me.BringToFront()
         End If
     End Sub
 
