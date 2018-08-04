@@ -764,4 +764,66 @@ Module ImportDataFunctions
 
     End Sub
 
+    Public Sub ImportPokemonIconNewOffset(filename As String, PokemonIndex As Integer)
+
+        Dim iconpals(2)() As Color
+
+        Dim importimg As New Bitmap(filename)
+
+
+        If importimg.Height <> &H40 Or importimg.Width <> &H20 Then
+
+            MsgBox("Image dimensions must be 32 by 64! Aborting...")
+            Exit Sub
+        End If
+
+        Dim palval As Integer
+
+        Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPointerTable", ""), System.Globalization.NumberStyles.HexNumber) + (PokemonIndex * 4)
+
+        Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPals", ""), System.Globalization.NumberStyles.HexNumber)
+
+        Dim hexstring As String = ""
+        Dim ImgNewOffset
+        Dim ImgBytes As Byte()
+        Dim ImgString As String
+
+
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+
+                fs.Position = sOffset
+                sOffset = r.ReadInt32 - &H8000000
+
+                fs.Position = pOffset
+
+                Dim indexvar As Integer = 0
+
+                Do
+                    iconpals(indexvar) = LoadPaletteFromROM(fs)
+                    indexvar += 1
+                Loop While (indexvar <= 2)
+
+                fs.Close()
+                r.Close()
+
+            End Using
+        End Using
+
+        palval = GetClosestPalette(importimg, iconpals)
+
+        ConvertBitmapToPalette(importimg, iconpals(palval), True)
+        ImgBytes = ConvertStringToByteArray(CompressLz77String(ConvertByteArrayToString(SaveBitmapToArray(importimg, iconpals(palval)))))
+        ImgString = ByteArrayToHexString(ImgBytes)
+        hexstring = ByteArrayToHexString(SaveBitmapToArray(importimg, iconpals(palval)))
+        ImgNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(hexstring) / 2)), "&H" & GetString(GetINIFileLocation(), header, "B00000", "B00000"))
+        WriteHEX(LoadedROM, ImgNewOffset, hexstring)
+
+
+        sOffset = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPointerTable", ""), System.Globalization.NumberStyles.HexNumber) + (PokemonIndex * 4)
+
+        WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber) + PokemonIndex, Hex(palval))
+        WriteHEX(LoadedROM, sOffset, ReverseHEX(Hex((ImgNewOffset) + &H8000000)))
+    End Sub
+
 End Module
