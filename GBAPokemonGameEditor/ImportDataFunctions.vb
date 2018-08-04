@@ -952,4 +952,268 @@ Module ImportDataFunctions
         WriteHEX(LoadedROM, sOffset, ReverseHEX(Hex((ImgNewOffset) + &H8000000)))
     End Sub
 
+    Public Sub ExportItemINI(DataPath As String, ItemIndex As Integer, Optional Individual As Boolean = False)
+        Dim DataFolder As String = DataPath
+        Dim ItemBaseOff As Integer = Int32.Parse((GetString(GetINIFileLocation(), header, "ItemData", "")), System.Globalization.NumberStyles.HexNumber)
+        Dim ItemPicDataOff As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
+
+        If Not Individual Then
+            DataPath = DataPath & "\Items\" & ItemIndex & ".ini"
+        End If
+
+        Dim ItemName As String = GetItemName(ItemIndex)
+        Dim ItemID As String = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 14) + (ItemIndex * 44), 2))), System.Globalization.NumberStyles.HexNumber)
+        Dim Price As String = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 16) + (ItemIndex * 44), 2))), System.Globalization.NumberStyles.HexNumber)
+        Dim HoldEffect As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 18) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim Value As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 19) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim DescriptionPointer As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 20) + (ItemIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        Dim Mystery1 As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 24) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim Mystery2 As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 25) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim Pocket As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 26) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim ItemType As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 27) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim FieldUsagePointer As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 28) + (ItemIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        Dim BattleUsagePointer As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        Dim BUText As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 32) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+
+        Dim ExtraParam As String = ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 40) + (ItemIndex * 44), 4))
+
+        Dim ItemPicDataOffSpecific As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ItemPicDataOff + (ItemIndex * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        Dim ItemPalDataOffSpecific As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ItemPicDataOff + (ItemIndex * 8) + 4, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
+        Dim CurrentItemDescripLength As Integer
+
+        FileNum = FreeFile()
+        FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+        Dim ItemDescp As String = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+        If ItemIndex = 377 Then
+            ItemDescp = ""
+        Else
+            FileGet(FileNum, ItemDescp, Int32.Parse(((DescriptionPointer)), System.Globalization.NumberStyles.HexNumber) + 1, True)
+            ItemDescp = Sapp2Asc(ItemDescp)
+            ItemDescp = Mid$(ItemDescp, 1, InStr(1, ItemDescp, "\x"))
+            'ItemDescp = Replace(ItemDescp, "\n", vbCrLf)
+            'ItemDescp = Replace(RTrim$(ItemDescp), "\", "")
+            ItemDescp = ItemDescp & "x"
+        End If
+
+        CurrentItemDescripLength = Len(ItemDescp)
+
+        FileClose(FileNum)
+
+        If Not Individual Then
+
+            ExportItemPicture(DataFolder & "\Items\ItemPics\" & ItemIndex & ".png", ItemIndex)
+
+        End If
+
+        If System.IO.File.Exists(DataPath) Then
+            System.IO.File.Delete(DataPath)
+        End If
+
+        WriteString(DataPath, "Item", "ItemName", ItemName)
+        WriteString(DataPath, "Item", "Price", Price)
+        WriteString(DataPath, "Item", "HoldEffect", HoldEffect)
+        WriteString(DataPath, "Item", "Value", Value)
+        WriteString(DataPath, "Item", "ItemDescp", ItemDescp)
+        WriteString(DataPath, "Item", "Mystery1", Mystery1)
+        WriteString(DataPath, "Item", "Mystery2", Mystery2)
+        WriteString(DataPath, "Item", "Pocket", Pocket)
+        WriteString(DataPath, "Item", "ItemType", ItemType)
+        WriteString(DataPath, "Item", "FieldUsagePointer", FieldUsagePointer)
+        WriteString(DataPath, "Item", "BattleUsagePointer", BattleUsagePointer)
+        WriteString(DataPath, "Item", "BUText", BUText)
+        WriteString(DataPath, "Item", "ExtraParam", ExtraParam)
+        WriteString(DataPath, "Item", "ItemName", ItemName)
+    End Sub
+
+    Public Sub ExportItemPicture(DataPath As String, ItemIndex As Integer, Optional Individual As Boolean = False)
+        Dim ItemPicDataOff As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
+        Dim ItemPalDataOff As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
+
+        Dim ItemPicDataOffSpecific As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ItemPicDataOff + (ItemIndex * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        Dim ItemPalDataOffSpecific As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ItemPalDataOff + (ItemIndex * 8) + 4, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
+        Dim bitout As Bitmap = GetAndDrawItemIconToBitmap(ItemPicDataOffSpecific, ItemPalDataOffSpecific, True)
+
+        bitout.Save(DataPath)
+
+    End Sub
+
+    Public Sub ImportItem(DataPath As String, ItemIndex As Integer, Optional Individual As Boolean = False)
+
+        Dim iniPath As String = ""
+
+        If Not Individual Then
+            iniPath = DataPath & "\" & ItemIndex & ".ini"
+        Else
+            iniPath = DataPath
+        End If
+
+        Dim ItemBaseOff As String = Int32.Parse((GetString(GetINIFileLocation(), header, "ItemData", "")), System.Globalization.NumberStyles.HexNumber)
+
+        'If System.IO.File.Exists(iniPath) Then
+
+        Dim ItemName As String = INI.GetString(iniPath, "Item", "ItemName", "IniProblem")
+        Dim ItemText As String = INI.GetString(iniPath, "Item", "ItemText", "IniProblem")
+        Dim Price As String = INI.GetString(iniPath, "Item", "Price", "0")
+        Dim HoldEffect As String = INI.GetString(iniPath, "Item", "HoldEffect", "0")
+        Dim Value As String = INI.GetString(iniPath, "Item", "Value", "0")
+        Dim ItemDescp As String = INI.GetString(iniPath, "Item", "ItemDescp", "IniProblem\x")
+        Dim Mystery1 As String = INI.GetString(iniPath, "Item", "Mystery1", "0")
+        Dim Mystery2 As String = INI.GetString(iniPath, "Item", "Mystery2", "0")
+        Dim Pocket As String = INI.GetString(iniPath, "Item", "Pocket", "1")
+        Dim ItemType As String = INI.GetString(iniPath, "Item", "ItemType", "0")
+        Dim FieldUsagePointer As String = INI.GetString(iniPath, "Item", "FieldUsagePointer", "FE821")
+        Dim BattleUsagePointer As String = INI.GetString(iniPath, "Item", "BattleUsagePointer", "F8000000")
+        Dim BUText As String = INI.GetString(iniPath, "Item", "BUText", "0")
+        Dim ExtraParam As String = INI.GetString(iniPath, "Item", "ExtraParam", "00000000")
+
+
+        ChangeItemName(ItemIndex, ItemName)
+
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 14) + (ItemIndex * 44), ReverseHEX(VB.Right("0000" & Hex(ItemIndex), 4)))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 16) + (ItemIndex * 44), ReverseHEX(VB.Right("0000" & Hex(Price), 4)))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 18) + (ItemIndex * 44), Hex(HoldEffect))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 19) + (ItemIndex * 44), Hex(Value))
+
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 24) + (ItemIndex * 44), Hex(Mystery1))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 25) + (ItemIndex * 44), Hex(Mystery2))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 26) + (ItemIndex * 44), Hex(Pocket))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 27) + (ItemIndex * 44), Hex(ItemType))
+
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 28) + (ItemIndex * 44), ReverseHEX(Hex(Int32.Parse(((FieldUsagePointer)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemIndex * 44), ReverseHEX(Hex(Int32.Parse(((BattleUsagePointer)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 32) + (ItemIndex * 44), Hex(BUText))
+
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 40) + (ItemIndex * 44), ReverseHEX(ExtraParam))
+
+        'Description
+        Dim alreadyInserted As Boolean = False
+        Dim countNum As Integer = 0
+        Dim newtextoff As String = ""
+        If ItemEditor.itemDescs.Count > 0 Then
+            For Each desc As String In ItemEditor.itemDescs
+                If String.Compare(desc, ItemDescp) = 0 Then
+                    alreadyInserted = True
+                    newtextoff = ItemEditor.itemDescOffsets(countNum)
+                End If
+
+                countNum += 1
+            Next
+        End If
+
+        If Not alreadyInserted Then
+            ItemEditor.itemDescs.Add(ItemDescp)
+
+            Dim destowrite As String = Asc2Sapp(Replace(ItemDescp, vbCrLf, "\n") & "\x")
+            Dim DescpByteLength As Integer = ItemDescp.Length
+
+            DescpByteLength = ItemDescp.Length - (ItemDescp.Split("[").Length - 1) - (ItemDescp.Split("]").Length - 1) - 1
+            If DescpByteLength < 1 Then
+                DescpByteLength = (destowrite & " ").Length
+                'destowrite = Asc2Sapp(Replace("?????", vbCrLf, "\n") & "\x")
+            End If
+
+            newtextoff = SearchFreeSpaceFourAligned(LoadedROM, &HFF, DescpByteLength, "&H" & GetString(GetINIFileLocation(), header, "B00000", "B00000"))
+            ItemEditor.itemDescOffsets.Add(newtextoff)
+
+            FileNum = FreeFile()
+
+            FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+            FilePut(FileNum, destowrite & " ", ("&H" & Hex(newtextoff)) + 1, False)
+            FileClose(FileNum)
+        End If
+
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 20) + (ItemIndex * 44), ReverseHEX(Hex(Int32.Parse(((newtextoff))) + &H8000000)))
+
+    End Sub
+
+    Public Sub ImportItemPicture(pngpath As String, ItemIndex As String, Optional Individual As Boolean = False)
+        Dim ItemPalette As Color() = New Color(&H11 - 1) {}
+        Dim mainbitmap As New Bitmap(pngpath)
+        Dim ItemBitmap As Bitmap = New Bitmap(&H18, &H18)
+        Dim ItemPicDataOff As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
+
+        If mainbitmap.Height = 24 And mainbitmap.Width = 24 Then
+
+        Else
+            MsgBox("The dimensions of the file" & ItemIndex & ".png" & " does not seem correct. Aborting...")
+            Exit Sub
+        End If
+
+        BitmapBLT(mainbitmap, ItemBitmap, 0, 0, 0, 0, &H18, &H18, Color.FromArgb(&HFF, 200, 200, &HA8))
+        ItemPalette = GetBitmapPalette(ItemBitmap)
+
+        ' ConvertBitmapToPalette(ItemBitmap, ItemPalette, True)
+
+        Dim Sprite As Byte() = SaveBitmapToArray(ItemBitmap, ItemPalette)
+
+        Dim ImgString As String
+        Dim PalString As String
+
+        Dim ImgBytes As Byte()
+        Dim PalBytes As Byte()
+
+        Dim ImgNewOffset As String = ""
+        Dim PalNewOffset As String = ""
+
+        ImgBytes = ConvertStringToByteArray(CompressLz77String(ConvertByteArrayToString(Sprite)))
+        PalBytes = ConvertStringToByteArray(CompressLz77String(ConvertPaletteToString(ItemPalette)))
+
+        ImgString = ByteArrayToHexString(ImgBytes)
+        PalString = ByteArrayToHexString(PalBytes)
+        Dim alreadyInsertedPic As Boolean = False
+        If ItemEditor.itemPics.Count > 0 Then
+            Dim countNum As Integer = 0
+            For Each oldPic As String In ItemEditor.itemPics
+                If String.Compare(ImgString, oldPic) = 0 Then
+                    alreadyInsertedPic = True
+                    ImgNewOffset = ItemEditor.itemPicOffsets(countNum)
+                    Exit For
+                End If
+
+                countNum += 1
+            Next
+        End If
+
+        Dim alreadyInsertedPal As Boolean = False
+        If ItemEditor.itemPals.Count > 0 Then
+            Dim countNum As Integer = 0
+            For Each oldPal As String In ItemEditor.itemPals
+                If String.Compare(PalString, oldPal) = 0 Then
+                    alreadyInsertedPal = True
+                    PalNewOffset = ItemEditor.itemPalOffsets(countNum)
+                    Exit For
+                End If
+
+                countNum += 1
+            Next
+        End If
+
+
+        If Not alreadyInsertedPic Then
+            ImgNewOffset = Convert.ToInt32(SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(ImgString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "B00000", "B00000")))
+            ItemEditor.itemPics.Add(ImgString)
+            ItemEditor.itemPicOffsets.Add(ImgNewOffset)
+        End If
+
+        WriteHEX(LoadedROM, Int32.Parse(ImgNewOffset), ImgString)
+
+        If Not alreadyInsertedPal Then
+            PalNewOffset = Convert.ToInt32(SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PalString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "B00000", "B00000")))
+            ItemEditor.itemPals.Add(PalString)
+            ItemEditor.itemPalOffsets.Add(PalNewOffset)
+        End If
+
+        WriteHEX(LoadedROM, Int32.Parse(PalNewOffset), PalString)
+
+        WriteHEX(LoadedROM, (ItemPicDataOff + (ItemIndex * 8)), ReverseHEX(Hex(Int32.Parse(((ImgNewOffset))) + &H8000000)))
+        WriteHEX(LoadedROM, (ItemPicDataOff + (ItemIndex * 8) + 4), ReverseHEX(Hex(Int32.Parse(((PalNewOffset))) + &H8000000)))
+
+        mainbitmap.Dispose()
+
+    End Sub
+
 End Module

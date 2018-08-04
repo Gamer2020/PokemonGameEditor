@@ -11,6 +11,13 @@ Public Class ItemEditor
     Dim ItemPicDataOff As Integer
     Dim CurrentItemDescripLength As Integer
 
+    Public Shared itemDescs As List(Of String)
+    Public Shared itemDescOffsets As List(Of String)
+    Public Shared itemPics As List(Of String)
+    Public Shared itemPicOffsets As List(Of String)
+    Public Shared itemPals As List(Of String)
+    Public Shared itemPalOffsets As List(Of String)
+
     Private Sub ItemEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         If header2 = "BPR" Or header2 = "BPG" Or header2 = "BPE" Then
@@ -46,6 +53,13 @@ Public Class ItemEditor
         End While
 
         ItemListComboBox.SelectedIndex = 0
+
+        itemDescs = New List(Of String)
+        itemDescOffsets = New List(Of String)
+        itemPics = New List(Of String)
+        itemPicOffsets = New List(Of String)
+        itemPals = New List(Of String)
+        itemPalOffsets = New List(Of String)
 
     End Sub
 
@@ -255,5 +269,291 @@ Public Class ItemEditor
             DescribPointTextBox.Text = curdespoff
 
         End If
+    End Sub
+
+    Private Sub ExportAll(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        FolderBrowserDialog.Description = "Select folder to export Items to:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+
+            If System.IO.Directory.Exists(FolderBrowserDialog.SelectedPath & "\Items") = False Then
+                System.IO.Directory.CreateDirectory(FolderBrowserDialog.SelectedPath & "\Items")
+            End If
+
+            If System.IO.Directory.Exists(FolderBrowserDialog.SelectedPath & "\Items\ItemPics") = False Then
+                System.IO.Directory.CreateDirectory(FolderBrowserDialog.SelectedPath & "\Items\ItemPics")
+            End If
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+            Me.Enabled = False
+            ProgressBar1.Value = 0
+            ProgressBar1.Visible = True
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) - 2 = True
+                '  PKMNaItemImportExportss.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+
+
+
+                ImportDataFunctions.ExportItemINI(FolderBrowserDialog.SelectedPath, LoopVar)
+
+                ProgressBar1.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfItems", ""))) * 100
+                ProgressBar1.Invalidate()
+                ProgressBar1.Update()
+
+            End While
+
+            ProgressBar1.Visible = False
+            Me.Enabled = True
+            Me.UseWaitCursor = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub ImportAll(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim listvar As Integer = ItemListComboBox.SelectedIndex
+
+        FolderBrowserDialog.Description = "Select ini file to import Items from:"
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar1.Value = 0
+            ProgressBar1.Visible = True
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+
+            If CheckBox1.Checked Then
+                LoopVar = 289
+            End If
+
+            Me.Enabled = False
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) - 2 = True
+
+                LoopVar = LoopVar + 1
+
+                If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini") Then
+                    ImportItem(FolderBrowserDialog.SelectedPath, LoopVar)
+                ElseIf System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & VB.Right("000" & LoopVar, 3) & ".ini") And LoopVar < 1000 Then
+                    ImportItem(FolderBrowserDialog.SelectedPath, LoopVar)
+                End If
+
+                If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\ItemPics\" & LoopVar & ".png") Then
+                    ImportItemPicture(FolderBrowserDialog.SelectedPath & "\ItemPics\" & LoopVar & ".png", LoopVar)
+                ElseIf System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\ItemPics\" & VB.Right("000" & LoopVar, 3) & ".png") And LoopVar < 1000 Then
+                    ImportItemPicture(FolderBrowserDialog.SelectedPath & "\ItemPics\" & VB.Right("000" & LoopVar, 3) & ".png", LoopVar)
+                End If
+
+                ProgressBar1.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfItems", ""))) * 100
+                ProgressBar1.Invalidate()
+                ProgressBar1.Update()
+
+                If CheckBox1.Checked And LoopVar = 346 Then
+                    LoopVar = 377
+                End If
+
+            End While
+
+            'ItemImportExports.WriteNewFile(Convert.ToString(ItemImportExports.romString))
+
+            ItemListComboBox.SelectedIndex = 1
+            ItemListComboBox.SelectedIndex = 0
+            Me.UseWaitCursor = False
+            Me.BringToFront()
+
+            RefreshItems(listvar)
+
+        End If
+
+        Me.Text = "Item Editor"
+        Me.Enabled = True
+        ProgressBar1.Visible = False
+        Me.BringToFront()
+    End Sub
+
+    Private Sub ExportSingleItem(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim listvar As Integer = ItemListComboBox.SelectedIndex
+        SaveFileDialog.FileName = (listvar) & ".ini"
+        'SaveFileDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        SaveFileDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        SaveFileDialog.DefaultExt = "ini"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        SaveFileDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        SaveFileDialog.Filter =
+            "(*.ini)|*.ini*"
+
+        'SaveFileDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        SaveFileDialog.ShowHelp = False
+        'SaveFileDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        'SaveFileDialog.ReadOnlyChecked = False
+
+        SaveFileDialog.Title = "Save as"
+
+        SaveFileDialog.ValidateNames = True
+
+
+        If SaveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ExportItemINI(SaveFileDialog.FileName, listvar, True)
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            Me.ProgressBar1.Visible = False
+        End If
+
+        RefreshItems(listvar)
+    End Sub
+
+    Private Sub RefreshItems(listvar)
+        Dim LoopVar As Integer = 0
+
+        ItemListComboBox.Items.Clear()
+
+        While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "") - 1) = True
+            ItemListComboBox.Items.Add(GetItemName(LoopVar))
+
+            LoopVar = LoopVar + 1
+
+        End While
+
+        ItemListComboBox.SelectedIndex = listvar
+    End Sub
+
+    Private Sub ExportSinglePicture(sender As Object, e As EventArgs) Handles Button7.Click
+        Dim listvar As Integer = ItemListComboBox.SelectedIndex
+        SaveFileDialog.FileName = (listvar) & ".png"
+        'SaveFileDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        SaveFileDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        SaveFileDialog.DefaultExt = "ini"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        SaveFileDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        SaveFileDialog.Filter =
+            "(*.png)|*.png*"
+
+        'SaveFileDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        SaveFileDialog.ShowHelp = False
+        'SaveFileDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        'SaveFileDialog.ReadOnlyChecked = False
+
+        SaveFileDialog.Title = "Save as"
+
+        SaveFileDialog.ValidateNames = True
+
+
+        If SaveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ExportItemPicture(SaveFileDialog.FileName, listvar)
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            Me.ProgressBar1.Visible = False
+        End If
+
+        RefreshItems(listvar)
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+
+    End Sub
+
+    Private Sub ImportSinglePicture(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim listvar As Integer = ItemListComboBox.SelectedIndex
+        OpenFileDialog.Title = "Select Image to import"
+
+        ' Only accept valid Win32 file names?
+        OpenFileDialog.ValidateNames = False
+        If Not OpenFileDialog.FileName.Contains(".png") Then
+            OpenFileDialog.FileName = OpenFileDialog.FileName & ".png"
+        End If
+
+
+        If OpenFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ImportItemPicture(OpenFileDialog.FileName, listvar, True)
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            Me.ProgressBar1.Visible = False
+        End If
+
+        RefreshItems(listvar)
+    End Sub
+
+    Private Sub ImportSingleItem(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim listvar As Integer = ItemListComboBox.SelectedIndex
+        OpenFileDialog.Title = "Select Item to import"
+
+        ' Only accept valid Win32 file names?
+        OpenFileDialog.ValidateNames = True
+
+
+        If OpenFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ImportItem(OpenFileDialog.FileName, listvar, True)
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            Me.ProgressBar1.Visible = False
+        End If
+
+        RefreshItems(listvar)
     End Sub
 End Class

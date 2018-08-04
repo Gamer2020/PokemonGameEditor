@@ -1194,4 +1194,33 @@ ErrorHandle:
 
     End Function
 
+    Public Function GetAndDrawItemIconToBitmap(ByVal imgOffset As String, ByVal palOffset As String, Optional ShowBackColor As Boolean = False) As Bitmap
+
+        Dim Temp(&HFFF) As Byte
+        Dim Image(&HFFFF) As Byte
+        Dim Palette15(&HFFF) As Byte
+        Dim Palette32() As Color
+        Dim bSprite As Bitmap
+        Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
+            Using r As New BinaryReader(fs)
+                fs.Position = Convert.ToInt32(imgOffset, 16)
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Image)
+
+                ReDim Temp(&HFFF)
+                fs.Position = Convert.ToInt32(palOffset, 16)
+                r.Read(Temp, 0, &HFFF)
+                LZ77UnComp(Temp, Palette15)
+
+                Palette32 = LoadPalette(Palette15)
+
+            End Using
+        End Using
+
+
+        bSprite = LoadSprite(Image, Palette32, 24, 24, ShowBackColor)
+        GetAndDrawItemIconToBitmap = bSprite
+
+    End Function
+
 End Module
