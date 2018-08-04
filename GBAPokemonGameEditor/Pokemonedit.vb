@@ -3979,11 +3979,101 @@ Public Class Pokemonedit
 
     End Sub
 
-    Private Sub Label15_Click(sender As Object, e As EventArgs) Handles Label15.Click
+    Private Sub Button43_Click(sender As Object, e As EventArgs) Handles Button43.Click
+        FolderBrowserDialog.Description = "Select folder to import cries from:"
 
-    End Sub
 
-    Private Sub EvoItemPic_Click(sender As Object, e As EventArgs) Handles EvoItemPic.Click
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
 
+            Dim LoopVar As Integer
+
+            LoopVar = 440
+
+            Me.Enabled = False
+
+            CryTable = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable", "")), System.Globalization.NumberStyles.HexNumber)
+            'CryTable2 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
+            CryTable3 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable2", "")), System.Globalization.NumberStyles.HexNumber)
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 And 439 < LoopVar And 861 > LoopVar = True
+                'PKMNames.SelectedIndex = LoopVar
+
+                Dim convNum As Integer = LoopVar - 53
+
+                Dim validFiles As String() = GetFiles(FolderBrowserDialog.SelectedPath, "*" & convNum & "*")
+
+                If validFiles.Count > 0 Then
+                    crynorm = New Cry With {
+                        .Index = LoopVar
+                    }
+                    crynorm = ImportCry(validFiles(0), crynorm)
+                    SaveCryNoPrompt(crynorm, CryTable, CryTable3)
+                End If
+
+
+                LoopVar = LoopVar + 1
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
+
+                'Me.Refresh()
+            End While
+
+            LoopVar = 880
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 And 439 < LoopVar = True
+
+                Dim validFiles As String() = GetFiles(FolderBrowserDialog.SelectedPath, "*" & LoopVar & "*")
+
+                If validFiles.Count > 0 Then
+                    crynorm = New Cry With {
+                        .Index = LoopVar
+                    }
+                    crynorm = ImportCry(validFiles(0), crynorm)
+                    SaveCryNoPrompt(crynorm, CryTable, CryTable3)
+                End If
+
+
+                LoopVar = LoopVar + 1
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                ProgressBar.Invalidate()
+                ProgressBar.Update()
+
+            End While
+
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            Dim convMons As New List(Of String)
+            convMons.AddRange(IO.File.ReadLines(FolderBrowserDialog.SelectedPath & "\Conversions.txt"))
+
+            Dim MonArray As List(Of String()) = New List(Of String())
+            For Each mon As String In convMons
+                MonArray.Add(mon.Split(New String() {"="}, StringSplitOptions.None))
+            Next
+
+            Dim offset As Integer = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
+
+            For Each mon As String() In MonArray
+                If mon.Count > 1 Then
+                    If mon(1) < 277 Then
+                        WriteHEX(LoadedROM, ((offset)) + ((Int32.Parse(mon(0)) - 277) * 2), ReverseHEX(VB.Right("0000" & Hex(Int32.Parse(mon(1) - 1)), 4)))
+                    Else
+                        WriteHEX(LoadedROM, ((offset)) + ((Int32.Parse(mon(0)) - 277) * 2), ReverseHEX(VB.Right("0000" & Hex(Int32.Parse(mon(1))), 4)))
+                    End If
+                End If
+            Next
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+            PKMNames.SelectedIndex = 0
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
     End Sub
 End Class
