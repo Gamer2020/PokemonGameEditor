@@ -54,7 +54,7 @@ Module ImportDataFunctions
         Dim FrontAnimationTable As String = ""
         Dim BackAnimTable As String = ""
         Dim AnimDelayTable As String = ""
-
+        Dim EggMoveList As String = ""
 
         'Load data
 
@@ -113,7 +113,7 @@ Module ImportDataFunctions
         NationalDexNumber = GetString(INIFileName, "Pokemon", "NationalDexNumber", "0")
         SecondDexNumber = GetString(INIFileName, "Pokemon", "SecondDexNumber", "0")
 
-        If NationalDexNumber < (GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "")) And NationalDexNumber <> 0 Then
+        If Int32.Parse(NationalDexNumber) < Int32.Parse(GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "")) And NationalDexNumber <> 0 Then
             PokedexDescription = Asc2Sapp(GetString(INIFileName, "Pokemon", "PokedexDescription", "Description\x")) & " "
             Hght = GetString(INIFileName, "Pokemon", "Hght", "1")
             Wght = GetString(INIFileName, "Pokemon", "Wght", "1")
@@ -138,9 +138,28 @@ Module ImportDataFunctions
 
         WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonEvolutions", "")), System.Globalization.NumberStyles.HexNumber)) + ((PokemonIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))), EvolutionData)
 
-        lvlupattacksoffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(lvlupattacks) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+        Dim alreadyInsertedAtk As Boolean = False
+        If Pokemonedit.CheckBox1.Checked Then
+            If Pokemonedit.AtkStrings.Count > 0 Then
+                Dim countNum As Integer = 0
+                For Each oldAtk As String In Pokemonedit.AtkStrings
+                    If String.Compare(lvlupattacks, oldAtk) = 0 Then
+                        alreadyInsertedAtk = True
+                        lvlupattacksoffset = Pokemonedit.AtkOffsets(countNum)
+                        Exit For
+                    End If
 
-        WriteHEX(LoadedROM, lvlupattacksoffset, lvlupattacks)
+                    countNum += 1
+                Next
+            End If
+        End If
+
+        If Not alreadyInsertedAtk Then
+            lvlupattacksoffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(lvlupattacks) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+            Pokemonedit.AtkStrings.Add(lvlupattacks)
+            Pokemonedit.AtkOffsets.Add(lvlupattacksoffset)
+            WriteHEX(LoadedROM, lvlupattacksoffset, lvlupattacks)
+        End If
 
         WriteHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAttackTable", "")), System.Globalization.NumberStyles.HexNumber)) + (PokemonIndex * 4), ReverseHEX(Hex(((lvlupattacksoffset)) + &H8000000)))
 
@@ -150,7 +169,7 @@ Module ImportDataFunctions
 
         WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "TMHMCompatibility", "")), System.Globalization.NumberStyles.HexNumber) + (PokemonIndex * (Val(GetString(GetINIFileLocation(), header, "TMHMLenPerPoke", "")))), TMHMCompatibility)
 
-        If NationalDexNumber < (GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "")) And NationalDexNumber <> 0 Then
+        If Int32.Parse(NationalDexNumber) < Int32.Parse(GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "")) And NationalDexNumber <> 0 Then
 
             If header2 = "AXP" Or header2 = "AXV" Then
 
@@ -196,16 +215,36 @@ Module ImportDataFunctions
                 WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 26 + (NationalDexNumber * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Scale2), 4)))
                 WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 28 + (NationalDexNumber * SkipVar), ReverseHEX(VB.Right("0000" & Hex(Offset_2), 4)))
 
+                Dim alreadyInserted As Boolean = False
+                If Pokemonedit.CheckBox1.Checked Then
+                    Dim countNum As Integer = 0
+                    If Pokemonedit.DexDescps.Count > 0 Then
+                        For Each desc As String In Pokemonedit.DexDescps
+                            If String.Compare(PokedexDescription, desc) = 0 Then
+                                alreadyInserted = True
+                                PokedexDescriptionOff = Pokemonedit.DexOffsets(countNum)
+                            End If
 
-                PokedexDescriptionOff = SearchFreeSpaceFourAligned(LoadedROM, &HFF, (Len(PokedexDescription)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+                            countNum += 1
+                        Next
+                    End If
+                End If
 
-                FileNum = FreeFile()
 
-                FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+                If Not alreadyInserted Then
+                    PokedexDescriptionOff = SearchFreeSpaceFourAligned(LoadedROM, &HFF, (Len(PokedexDescription)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
 
-                FilePut(FileNum, PokedexDescription, ("&H" & Hex(PokedexDescriptionOff)) + 1, False)
+                    Pokemonedit.DexDescps.Add(PokedexDescription)
+                    Pokemonedit.DexOffsets.Add(PokedexDescriptionOff)
 
-                FileClose(FileNum)
+                    FileNum = FreeFile()
+
+                    FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+
+                    FilePut(FileNum, PokedexDescription, ("&H" & Hex(PokedexDescriptionOff)) + 1, False)
+
+                    FileClose(FileNum)
+                End If
 
                 WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexData", "")), System.Globalization.NumberStyles.HexNumber) + 4 + 12 + (NationalDexNumber * SkipVar), ReverseHEX(Hex(Val("&H" & (Hex(PokedexDescriptionOff))) + &H8000000)))
 

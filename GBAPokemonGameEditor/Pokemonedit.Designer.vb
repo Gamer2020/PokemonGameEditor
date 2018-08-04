@@ -44,6 +44,7 @@ Partial Class Pokemonedit
         Me.Button5 = New System.Windows.Forms.Button()
         Me.FootPrintPointer = New System.Windows.Forms.TextBox()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.Button40 = New System.Windows.Forms.Button()
         Me.Button22 = New System.Windows.Forms.Button()
         Me.Button21 = New System.Windows.Forms.Button()
         Me.IconPicBox = New System.Windows.Forms.PictureBox()
@@ -226,7 +227,6 @@ Partial Class Pokemonedit
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Clr1 = New System.Windows.Forms.ComboBox()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
-        Me.Button43 = New System.Windows.Forms.Button()
         Me.GroupBox35 = New System.Windows.Forms.GroupBox()
         Me.Button35 = New System.Windows.Forms.Button()
         Me.Button36 = New System.Windows.Forms.Button()
@@ -284,8 +284,8 @@ Partial Class Pokemonedit
         Me.Button30 = New System.Windows.Forms.Button()
         Me.Button38 = New System.Windows.Forms.Button()
         Me.Button39 = New System.Windows.Forms.Button()
-        Me.Button40 = New System.Windows.Forms.Button()
         Me.Button41 = New System.Windows.Forms.Button()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox26.SuspendLayout()
@@ -598,6 +598,16 @@ Partial Class Pokemonedit
         Me.GroupBox16.TabIndex = 3
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "Icons"
+        '
+        'Button40
+        '
+        Me.Button40.Location = New System.Drawing.Point(118, 195)
+        Me.Button40.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Button40.Name = "Button40"
+        Me.Button40.Size = New System.Drawing.Size(87, 39)
+        Me.Button40.TabIndex = 15
+        Me.Button40.Text = "Imp/Rep"
+        Me.Button40.UseVisualStyleBackColor = True
         '
         'Button22
         '
@@ -2547,7 +2557,6 @@ Partial Class Pokemonedit
         '
         'TabPage6
         '
-        Me.TabPage6.Controls.Add(Me.Button43)
         Me.TabPage6.Controls.Add(Me.GroupBox35)
         Me.TabPage6.Controls.Add(Me.GroupBox34)
         Me.TabPage6.Controls.Add(Me.GroupBox21)
@@ -2559,16 +2568,6 @@ Partial Class Pokemonedit
         Me.TabPage6.TabIndex = 6
         Me.TabPage6.Text = "Cry Data"
         Me.TabPage6.UseVisualStyleBackColor = True
-        '
-        'Button43
-        '
-        Me.Button43.Location = New System.Drawing.Point(19, 682)
-        Me.Button43.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button43.Name = "Button43"
-        Me.Button43.Size = New System.Drawing.Size(237, 41)
-        Me.Button43.TabIndex = 29
-        Me.Button43.Text = "Import And Repoint All"
-        Me.Button43.UseVisualStyleBackColor = True
         '
         'GroupBox35
         '
@@ -3133,7 +3132,6 @@ Partial Class Pokemonedit
         '
         'Button39
         '
-        Me.Button39.Enabled = False
         Me.Button39.Location = New System.Drawing.Point(12, 720)
         Me.Button39.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button39.Name = "Button39"
@@ -3141,16 +3139,6 @@ Partial Class Pokemonedit
         Me.Button39.TabIndex = 20
         Me.Button39.Text = "Import All Cries"
         Me.Button39.UseVisualStyleBackColor = True
-        '
-        'Button40
-        '
-        Me.Button40.Location = New System.Drawing.Point(118, 195)
-        Me.Button40.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.Button40.Name = "Button40"
-        Me.Button40.Size = New System.Drawing.Size(87, 39)
-        Me.Button40.TabIndex = 15
-        Me.Button40.Text = "Imp/Rep"
-        Me.Button40.UseVisualStyleBackColor = True
         '
         'Button41
         '
@@ -3162,11 +3150,22 @@ Partial Class Pokemonedit
         Me.Button41.Text = "Rep."
         Me.Button41.UseVisualStyleBackColor = True
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(12, 788)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(151, 24)
+        Me.CheckBox1.TabIndex = 23
+        Me.CheckBox1.Text = "Efficient Imports"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'Pokemonedit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1173, 862)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button41)
         Me.Controls.Add(Me.Button38)
         Me.Controls.Add(Me.Button39)
@@ -3286,6 +3285,7 @@ Partial Class Pokemonedit
         Me.GroupBox19.ResumeLayout(False)
         Me.GroupBox19.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
@@ -3548,7 +3548,7 @@ Partial Class Pokemonedit
     Friend WithEvents Label59 As System.Windows.Forms.Label
     Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
     Friend WithEvents Label58 As System.Windows.Forms.Label
-    Friend WithEvents Button43 As Button
     Friend WithEvents Button40 As Button
     Friend WithEvents Button41 As Button
+    Friend WithEvents CheckBox1 As CheckBox
 End Class

@@ -36,6 +36,15 @@ Public Class Pokemonedit
     Dim Tab5LoadedMon As Integer
     Dim Tab6LoadedMon As Integer
 
+    Public Shared PicStrings As List(Of String)
+    Public Shared PicOffsets As List(Of String)
+    Public Shared PalStrings As List(Of String)
+    Public Shared PalOffsets As List(Of String)
+    Public Shared DexDescps As List(Of String)
+    Public Shared DexOffsets As List(Of String)
+    Public Shared AtkStrings As List(Of String)
+    Public Shared AtkOffsets As List(Of String)
+
     Private Sub Pokemonedit_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         MainFrm.Visible = True
     End Sub
@@ -177,6 +186,23 @@ Public Class Pokemonedit
         PKMNames.SelectedIndex = 0
 
         Me.Cursor = Cursors.Arrow
+
+        PicStrings = New List(Of String)
+        PicOffsets = New List(Of String)
+        PalStrings = New List(Of String)
+        PalOffsets = New List(Of String)
+        DexDescps = New List(Of String)
+        DexOffsets = New List(Of String)
+        AtkStrings = New List(Of String)
+        AtkOffsets = New List(Of String)
+
+        Tab1LoadedMon = PKMNames.SelectedIndex + 1
+        Tab2LoadedMon = -1
+        Tab3LoadedMon = -1
+        Tab4LoadedMon = -1
+        Tab5LoadedMon = -1
+        Tab6LoadedMon = -1
+
     End Sub
 
 
@@ -854,8 +880,6 @@ Public Class Pokemonedit
 
         EvoData = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonEvolutions", "")), System.Globalization.NumberStyles.HexNumber)
 
-
-
         'Reset the evolution stuff!
 
         EvoTypes.SelectedIndex = -1
@@ -1086,7 +1110,11 @@ Public Class Pokemonedit
         If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "0") = "0" Then
 
             If EvoPKMNames.SelectedIndex + 1 > 0 Then
+                EvoPokePic.Invalidate()
+
                 GetAndDrawFrontPokemonPic(EvoPokePic, EvoPKMNames.SelectedIndex + 1)
+
+                EvoPokePic.Update()
             Else
                 EvoPokePic.Image = Nothing
             End If
@@ -1095,6 +1123,8 @@ Public Class Pokemonedit
 
     Private Sub EvoItem_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EvoItem.SelectedIndexChanged
         If EvoItem.SelectedIndex > -1 Then
+            EvoItemPic.Invalidate()
+
             If header2 = "BPR" Or header2 = "BPG" Then
 
                 GetAndDrawItemPic(EvoItemPic, EvoItem.SelectedIndex)
@@ -1109,6 +1139,7 @@ Public Class Pokemonedit
 
             End If
 
+            EvoItemPic.Update()
         Else
             EvoItemPic.Image = Nothing
         End If
@@ -4067,9 +4098,15 @@ Public Class Pokemonedit
 
         ElseIf TabControl1.SelectedTab Is TabPage3 And Not Tab3LoadedMon = PKMNames.SelectedIndex + 1 Then
 
+            EvoItemPic.Invalidate()
+            EvoItemPic.Invalidate()
+            EvoItemPic.Update()
+            EvoItemPic.Update()
+
             Tab3LoadedMon = PKMNames.SelectedIndex + 1
 
         ElseIf TabControl1.SelectedTab Is TabPage4 And Not Tab4LoadedMon = PKMNames.SelectedIndex + 1 Then
+            lvlupattacks.BeginUpdate()
 
             TMHMCOMLoad()
 
@@ -4079,11 +4116,26 @@ Public Class Pokemonedit
 
             lvlupattacks.SelectedIndex = 0
 
+            TMHMCom.Invalidate()
+            MTCom.Invalidate()
+            LvlUpAttPointer.Invalidate()
+
+            TMHMCom.Update()
+            MTCom.Update()
+            LvlUpAttPointer.Update()
+            lvlupattacks.EndUpdate()
+
+            lvlupattacks.Invalidate()
+            lvlupattacks.Update()
+
             Tab4LoadedMon = PKMNames.SelectedIndex + 1
 
         ElseIf TabControl1.SelectedTab Is TabPage5 And Not Tab5LoadedMon = PKMNames.SelectedIndex + 1 Then
+            Description1.Invalidate()
 
             LoadDexData()
+
+            Description1.Update()
 
             Tab5LoadedMon = PKMNames.SelectedIndex + 1
 
@@ -4135,7 +4187,7 @@ Public Class Pokemonedit
         'Me.Enabled = True
     End Sub
 
-    Private Sub Button43_Click(sender As Object, e As EventArgs) Handles Button43.Click
+    Private Sub Button39_Click(sender As Object, e As EventArgs) Handles Button39.Click
         FolderBrowserDialog.Description = "Select folder to import cries from:"
 
 
@@ -4323,8 +4375,6 @@ Public Class Pokemonedit
                 'PKMNames.SelectedIndex = LoopVar
 
                 LoopVar = LoopVar + 1
-
-
 
                 If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png") Then
                     ImportPokemonIconNewOffset(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png", LoopVar)
