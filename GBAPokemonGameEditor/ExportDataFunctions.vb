@@ -444,4 +444,27 @@ Module ExportDataFunctions
 
     End Sub
 
+    Public Sub ExportTutorMoves(filename)
+        Dim moveTable As Integer = Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
+        Dim moveString As String = ""
+        Dim loopything As Integer = 0
+
+        While loopything < (Val(GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", "")))
+
+            moveString = moveString & VB.Right("0000" & ReadHEX(LoadedROM, moveTable + (2 * loopything), 2), 4)
+
+            loopything = loopything + 1
+
+        End While
+
+        WriteString(filename, "TUTR", "TutorMoves", moveString)
+
+    End Sub
+
+    Public Sub ExportTMHMINI(INIFileName As String, ExportString As String)
+
+        WriteString(INIFileName, "TMHM", "TMHMData", ExportString)
+
+    End Sub
+
 End Module

@@ -49,8 +49,6 @@ Public Class Pokemonedit
         MainFrm.Visible = True
     End Sub
 
-
-
     Private Sub Pokemonedit_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         ' ledrom = New ROM(LoadedROM)
@@ -159,8 +157,6 @@ Public Class Pokemonedit
 
             LoopVar = LoopVar + 1
 
-
-
         End While
 
         If header2 = "BPR" Or header2 = "BPG" Then
@@ -170,7 +166,6 @@ Public Class Pokemonedit
             ItmAnmtn.Enabled = False
             ItmAnmtn.Text = ""
         End If
-
 
         If header2 = "AXP" Or header2 = "AXV" Then
             Pointer2.Enabled = True

@@ -1216,4 +1216,74 @@ Module ImportDataFunctions
 
     End Sub
 
+    Public Function GetLongString(ByVal strFilename As String, ByVal Section As String,
+      ByVal Key As String, ByVal [Default] As String) As String
+
+        GetLongString = ""
+
+        Dim intCharCount As Integer
+        Dim objResult As New System.Text.StringBuilder(1000)
+        intCharCount = GetPrivateProfileString(Section, Key,
+           [Default], objResult, objResult.Capacity, strFilename)
+        If intCharCount > 0 Then GetLongString =
+           Left(objResult.ToString, intCharCount)
+
+
+        'This should probably be commented out if used for another program!
+        If LoadedROM <> "" Then
+            If GetLongString = "" And GetINIFileLocation() = strFilename Then
+                OutPutError("Error! " & Key & " is missing for ROM " & Section & "!")
+            End If
+        End If
+
+    End Function
+
+    Private Declare Ansi Function GetPrivateProfileString _
+      Lib "kernel32.dll" Alias "GetPrivateProfileStringA" _
+      (ByVal lpApplicationName As String,
+      ByVal lpKeyName As String, ByVal lpDefault As String,
+      ByVal lpReturnedString As System.Text.StringBuilder,
+      ByVal nSize As Integer, ByVal lpFileName As String) _
+      As Integer
+
+    Public Sub ImportTutorMoves(filename)
+        Dim newMoves As String = GetLongString(filename, "TUTR", "TutorMoves", "")
+        Dim moveTable As Integer = Int32.Parse((GetString(GetINIFileLocation(), header, "MoveTutorAttacks", "")), System.Globalization.NumberStyles.HexNumber)
+        Dim looper As Integer = 0
+        Dim maxAtacks As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "NumberOfMoveTutorAttacks", "0"))
+
+        While newMoves.Length > looper * 4 And looper < maxAtacks
+            WriteHEX(LoadedROM, moveTable + (2 * looper), VB.Right("0000" & newMoves.Substring(looper * 4, 4), 4))
+            looper += 1
+        End While
+
+    End Sub
+
+    Public Sub ImportTMHMINI(Filepath As String)
+
+        Dim TMHMAttacks As Integer = Int32.Parse((GetString(GetINIFileLocation(), header, "TMData", "")), System.Globalization.NumberStyles.HexNumber)
+        WriteHEX(LoadedROM, TMHMAttacks, GetString(Filepath, "TMHM", "TMHMData", ""))
+        Dim TMList As String = GetLongString(Filepath, "TMHM", "TMHMData", "")
+        Dim LoopVar As Integer = 0
+        Dim LoopLength As Integer = 0
+
+        If TMHMEditor.CheckBox1.Checked Then
+            LoopLength = Int32.Parse((Val(GetString(GetINIFileLocation(), header, "TotalTMsPlusHMs", "")))) - 8
+        Else
+            LoopLength = Int32.Parse((Val(GetString(GetINIFileLocation(), header, "TotalTMsPlusHMs", ""))))
+        End If
+
+        While LoopVar < LoopLength And LoopVar + 4 < TMList.Length = True
+
+            If TMList.Length > (LoopVar * 4) Then
+                WriteHEX(LoadedROM, TMHMAttacks + LoopVar * 2, TMList.Substring(LoopVar * 4, 4))
+            Else
+                WriteHEX(LoadedROM, TMHMAttacks + LoopVar * 2, "0000")
+            End If
+
+            LoopVar += 1
+
+        End While
+
+    End Sub
 End Module
