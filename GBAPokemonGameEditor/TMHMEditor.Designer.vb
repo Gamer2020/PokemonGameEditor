@@ -97,7 +97,7 @@ Partial Class TMHMEditor
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(206, 14)
+        Me.Button2.Location = New System.Drawing.Point(206, 13)
         Me.Button2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(83, 35)
