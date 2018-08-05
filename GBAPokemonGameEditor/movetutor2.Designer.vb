@@ -34,10 +34,10 @@ Partial Class movetutor2
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(81, 275)
+        Me.Button2.Location = New System.Drawing.Point(86, 275)
         Me.Button2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(187, 38)
+        Me.Button2.Size = New System.Drawing.Size(176, 38)
         Me.Button2.TabIndex = 16
         Me.Button2.Text = "Save"
         Me.Button2.UseVisualStyleBackColor = True
@@ -46,20 +46,20 @@ Partial Class movetutor2
         '
         Me.Combo1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.Combo1.FormattingEnabled = True
-        Me.Combo1.Location = New System.Drawing.Point(80, 234)
+        Me.Combo1.Location = New System.Drawing.Point(86, 234)
         Me.Combo1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Combo1.Name = "Combo1"
-        Me.Combo1.Size = New System.Drawing.Size(188, 28)
+        Me.Combo1.Size = New System.Drawing.Size(176, 28)
         Me.Combo1.TabIndex = 0
         '
         'ListBox1
         '
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 20
-        Me.ListBox1.Location = New System.Drawing.Point(81, 18)
+        Me.ListBox1.Location = New System.Drawing.Point(86, 18)
         Me.ListBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(187, 204)
+        Me.ListBox1.Size = New System.Drawing.Size(176, 204)
         Me.ListBox1.TabIndex = 16
         '
         'Button3
