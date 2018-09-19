@@ -1027,19 +1027,6 @@ Module ImportDataFunctions
         WriteString(DataPath, "Item", "ItemName", ItemName)
     End Sub
 
-    Public Sub ExportItemPicture(DataPath As String, ItemIndex As Integer, Optional Individual As Boolean = False)
-        Dim ItemPicDataOff As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
-        Dim ItemPalDataOff As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
-
-        Dim ItemPicDataOffSpecific As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ItemPicDataOff + (ItemIndex * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
-        Dim ItemPalDataOffSpecific As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ItemPalDataOff + (ItemIndex * 8) + 4, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
-
-        Dim bitout As Bitmap = GetAndDrawItemIconToBitmap(ItemPicDataOffSpecific, ItemPalDataOffSpecific, True)
-
-        bitout.Save(DataPath)
-
-    End Sub
-
     Public Sub ImportItem(DataPath As String, ItemIndex As Integer, Optional Individual As Boolean = False)
 
         Dim iniPath As String = ""
@@ -1131,7 +1118,7 @@ Module ImportDataFunctions
     End Sub
 
     Public Sub ImportItemPicture(pngpath As String, ItemIndex As String, Optional Individual As Boolean = False)
-        Dim ItemPalette As Color() = New Color(&H11 - 1) {}
+        'Dim ItemPalette As Color() = New Color(&H11 - 1) {}
         Dim mainbitmap As New Bitmap(pngpath)
         Dim ItemBitmap As Bitmap = New Bitmap(&H18, &H18)
         Dim ItemPicDataOff As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
@@ -1144,9 +1131,29 @@ Module ImportDataFunctions
         End If
 
         BitmapBLT(mainbitmap, ItemBitmap, 0, 0, 0, 0, &H18, &H18, Color.FromArgb(&HFF, 200, 200, &HA8))
-        ItemPalette = GetBitmapPalette(ItemBitmap)
+        Dim ItemPalette As Color() = GetBitmapPaletteNoLimit(ItemBitmap)
 
-        ' ConvertBitmapToPalette(ItemBitmap, ItemPalette, True)
+        While ItemPalette.Count() > 16
+            Dim BufferPal As New List(Of Color)
+
+            For looper = 1 To ItemPalette.Count() - 1
+                BufferPal.Add(ItemPalette(looper))
+            Next
+
+            BufferPal = RemoveOneColor(BufferPal)
+            BufferPal.InsertRange(0, {ItemPalette(0)})
+
+            ItemPalette = BufferPal.ToArray()
+
+        End While
+
+        ConvertBitmapToPalette(ItemBitmap, ItemPalette, True)
+
+        While ItemPalette.Count < 16
+            Dim BufferList As List(Of Color) = ItemPalette.ToList()
+            BufferList.Add(Color.FromArgb(&HFFFFFF))
+            ItemPalette = BufferList.ToArray()
+        End While
 
         Dim Sprite As Byte() = SaveBitmapToArray(ItemBitmap, ItemPalette)
 
@@ -1215,6 +1222,57 @@ Module ImportDataFunctions
         mainbitmap.Dispose()
 
     End Sub
+
+    Public Function RemoveOneColor(pal As List(Of Color)) As List(Of Color)
+        RemoveOneColor = New List(Of Color)
+
+        Dim colorDiffs As List(Of List(Of Integer)) = New List(Of List(Of Integer))
+
+        Dim looper As Integer = 0
+        For col = 0 To pal.Count() - 1
+            Dim innerloop As Integer = 0
+            colorDiffs.Add(New List(Of Integer))
+
+            For innerCol = 0 To pal.Count() - 1
+                Dim testColDiff As Integer = 99999
+                If innerCol > col Then
+                    If Not col = innerCol Then
+                        testColDiff = GetColorDifference(pal(col), pal(innerCol))
+                    End If
+                End If
+                colorDiffs(looper).Add(testColDiff)
+
+                innerloop += 1
+            Next
+
+            looper += 1
+        Next
+
+        looper = 0
+        Dim oldDiff As Integer = 99999
+        Dim colorsToCombine As Integer() = {0, 0}
+        For Each diffList As List(Of Integer) In colorDiffs
+            Dim innerloop As Integer = 0
+
+            For Each diff As Integer In diffList
+                If diff < oldDiff Then
+                    oldDiff = diff
+                    colorsToCombine = {looper, innerloop}
+                End If
+
+                innerloop += 1
+            Next
+
+            looper += 1
+        Next
+
+        pal.RemoveAt(colorsToCombine(1))
+
+        RemoveOneColor = pal
+
+        Return RemoveOneColor
+
+    End Function
 
     Public Function GetLongString(ByVal strFilename As String, ByVal Section As String,
       ByVal Key As String, ByVal [Default] As String) As String

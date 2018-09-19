@@ -178,6 +178,35 @@ Module WichuSpriteFunctions
         Return source
     End Function
 
+    Public Function GetBitmapPaletteNoLimit(ByRef sprite As Bitmap) As Color()
+        Dim source As List(Of Color) = New List(Of Color)
+        Dim output As Color()
+        Dim index As Byte = 0
+        Dim num4 As Integer = (sprite.Width - 1)
+        Dim i As Integer = 0
+        Do While (i <= num4)
+            Dim num5 As Integer = (sprite.Height - 1)
+            Dim j As Integer = 0
+            Do While (j <= num5)
+                Dim pixel As Color = sprite.GetPixel(i, j)
+                If Not Enumerable.Contains(Of Color)(source, pixel) Then
+                    source.Add(pixel)
+                    Try
+                        index = CByte((index + 1))
+                    Catch
+                        output = source.ToArray()
+                        Return output
+                    End Try
+                End If
+                j += 1
+            Loop
+            i += 1
+        Loop
+
+        output = source.ToArray()
+        Return output
+    End Function
+
     Public Function GetBottom(ByRef bitmap As Bitmap) As Integer
         Dim num As Integer
         Dim height As Integer = bitmap.Height

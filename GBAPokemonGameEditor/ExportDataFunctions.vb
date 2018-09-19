@@ -467,4 +467,17 @@ Module ExportDataFunctions
 
     End Sub
 
+    Public Sub ExportItemPicture(DataPath As String, ItemIndex As Integer, Optional Individual As Boolean = False)
+        Dim ItemPicDataOff As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
+        Dim ItemPalDataOff As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
+
+        Dim ItemPicDataOffSpecific As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ItemPicDataOff + (ItemIndex * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        Dim ItemPalDataOffSpecific As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ItemPalDataOff + (ItemIndex * 8) + 4, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
+        Dim bitout As Bitmap = GetAndDrawItemIconToBitmap(ItemPicDataOffSpecific, ItemPalDataOffSpecific, True)
+
+        bitout.Save(DataPath)
+
+    End Sub
+
 End Module

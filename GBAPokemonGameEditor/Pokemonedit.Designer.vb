@@ -3164,6 +3164,8 @@ Partial Class Pokemonedit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(1173, 862)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button41)
