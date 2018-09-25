@@ -313,19 +313,6 @@ Public Class Pokemonedit
 
         End If
 
-        If Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber) < 10 Then
-
-            Rght1.Checked = True
-
-            Clr1.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-
-        ElseIf Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber) > 10 Then
-
-            Lft1.Checked = True
-            Clr1.SelectedIndex = (Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)) - 128
-
-        End If
-
         If ((ReadHEX(LoadedROM, ((baseoff) + 28 + 18) + (i * 28), 1))) = "00" Then
 
             HPVal.Enabled = False
@@ -1181,21 +1168,10 @@ Public Class Pokemonedit
         i = PKMNames.SelectedIndex
         PokemonListIndex.Text = PKMNames.SelectedIndex + 1
 
+        QuickRefresh(PokemonListIndex)
+        QuickRefresh(CurPKMName)
+
         TabChanged()
-
-        'Baseload()
-
-        'MediaLoad()
-
-        'TMHMCOMLoad()
-
-        'LearnableMoveLoad()
-
-        'MTComLoad()
-
-        'LoadDexData()
-
-        'LoadSpritePosition()
 
         CurPKMName.Text = GetPokemonName(PKMNames.SelectedIndex + 1)
 
@@ -1672,8 +1648,7 @@ Public Class Pokemonedit
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
             End While
 
             Me.Text = "Pokemon Editor"
@@ -2360,8 +2335,7 @@ Public Class Pokemonedit
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
             End While
 
             LoopVar = 0
@@ -2519,6 +2493,19 @@ Public Class Pokemonedit
 
             Else
                 TextBox7.Enabled = False
+            End If
+
+            If Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber) < 10 Then
+
+                Rght1.Checked = True
+
+                Clr1.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
+
+            ElseIf Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber) > 10 Then
+
+                Lft1.Checked = True
+                Clr1.SelectedIndex = (Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)) - 128
+
             End If
 
         Else
@@ -3521,8 +3508,7 @@ Public Class Pokemonedit
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
             End While
 
             Me.Text = "Pokemon Editor"
@@ -3563,8 +3549,7 @@ Public Class Pokemonedit
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
             End While
 
             PKMNames.SelectedIndex = 1
@@ -3605,8 +3590,7 @@ Public Class Pokemonedit
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
             End While
 
             Me.Text = "Pokemon Editor"
@@ -3647,8 +3631,7 @@ Public Class Pokemonedit
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
             End While
 
             PKMNames.SelectedIndex = 1
@@ -3690,8 +3673,7 @@ Public Class Pokemonedit
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
             End While
 
             PKMNames.SelectedIndex = 1
@@ -3732,8 +3714,7 @@ Public Class Pokemonedit
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
             End While
 
             Me.Text = "Pokemon Editor"
@@ -4009,8 +3990,7 @@ Public Class Pokemonedit
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
             End While
 
             Me.Text = "Pokemon Editor"
@@ -4075,6 +4055,24 @@ Public Class Pokemonedit
 
             BackgroundBox.Update()
 
+            QuickRefresh(FrontPointer)
+            QuickRefresh(BackPointer)
+            QuickRefresh(NormalPointer)
+            QuickRefresh(ShinyPointer)
+            QuickRefresh(IconPointer)
+            QuickRefresh(FootPrintPointer)
+            QuickRefresh(PictureBox1)
+            QuickRefresh(PlayerYSelect)
+            QuickRefresh(EnemyYSelect)
+            QuickRefresh(EnemyAltitudeSelect)
+
+            If header2 = "BPE" Then
+                QuickRefresh(AnimationPointer)
+                QuickRefresh(TextBox8)
+                QuickRefresh(TextBox9)
+                QuickRefresh(TextBox10)
+            End If
+
             Tab1LoadedMon = PKMNames.SelectedIndex + 1
 
         End If
@@ -4093,10 +4091,7 @@ Public Class Pokemonedit
 
         ElseIf TabControl1.SelectedTab Is TabPage3 And Not Tab3LoadedMon = PKMNames.SelectedIndex + 1 Then
 
-            EvoItemPic.Invalidate()
-            EvoItemPic.Invalidate()
-            EvoItemPic.Update()
-            EvoItemPic.Update()
+            QuickRefresh(EvoItemPic)
 
             Tab3LoadedMon = PKMNames.SelectedIndex + 1
 
@@ -4111,26 +4106,37 @@ Public Class Pokemonedit
 
             lvlupattacks.SelectedIndex = 0
 
-            TMHMCom.Invalidate()
-            MTCom.Invalidate()
-            LvlUpAttPointer.Invalidate()
 
-            TMHMCom.Update()
-            MTCom.Update()
-            LvlUpAttPointer.Update()
+            QuickRefresh(MTCom)
+            QuickRefresh(TMHMCom)
+            QuickRefresh(LvlUpAttPointer)
+
             lvlupattacks.EndUpdate()
 
-            lvlupattacks.Invalidate()
-            lvlupattacks.Update()
+            QuickRefresh(lvlupattacks)
 
             Tab4LoadedMon = PKMNames.SelectedIndex + 1
 
         ElseIf TabControl1.SelectedTab Is TabPage5 And Not Tab5LoadedMon = PKMNames.SelectedIndex + 1 Then
-            Description1.Invalidate()
 
             LoadDexData()
 
-            Description1.Update()
+            QuickRefresh(Description1)
+            QuickRefresh(TextBox3)
+            QuickRefresh(TextBox4)
+            QuickRefresh(TextBox7)
+            QuickRefresh(TextBox5)
+            QuickRefresh(Hght)
+            QuickRefresh(Wght)
+            QuickRefresh(Offset_1)
+            QuickRefresh(Offset_2)
+            QuickRefresh(Scale1)
+            QuickRefresh(Scale2)
+            QuickRefresh(Pointer1)
+            QuickRefresh(Pointer2)
+            QuickRefresh(RSEDexPoke)
+            QuickRefresh(RSEDexTrainer)
+            QuickRefresh(GroupBox31)
 
             Tab5LoadedMon = PKMNames.SelectedIndex + 1
 
@@ -4221,8 +4227,7 @@ Public Class Pokemonedit
 
                 LoopVar = LoopVar + 1
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
 
             End While
 
@@ -4243,8 +4248,7 @@ Public Class Pokemonedit
 
                 LoopVar = LoopVar + 1
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
 
             End While
 
@@ -4380,8 +4384,7 @@ Public Class Pokemonedit
                 End If
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                ProgressBar.Invalidate()
-                ProgressBar.Update()
+                QuickRefresh(ProgressBar)
 
             End While
 
@@ -4395,4 +4398,10 @@ Public Class Pokemonedit
             Me.BringToFront()
         End If
     End Sub
+
+    Private Sub QuickRefresh(MenuItem)
+        MenuItem.Invalidate()
+        MenuItem.Update()
+    End Sub
+
 End Class
