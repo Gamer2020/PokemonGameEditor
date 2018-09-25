@@ -44,15 +44,21 @@ Public Class ItemEditor
         LoopVar = 0
 
         ItemListComboBox.Items.Clear()
+        ComboBox1.Items.Clear()
+        ComboBox2.Items.Clear()
 
         While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) = True
             ItemListComboBox.Items.Add(GetItemName(LoopVar))
+            ComboBox1.Items.Add(GetItemName(LoopVar))
+            ComboBox2.Items.Add(GetItemName(LoopVar))
 
             LoopVar = LoopVar + 1
 
         End While
 
         ItemListComboBox.SelectedIndex = 0
+        ComboBox1.SelectedIndex = 1
+        ComboBox2.SelectedIndex = Int32.Parse(GetString(GetINIFileLocation(), header, "NumberOfItems", "")) - 1
 
         itemDescs = New List(Of String)
         itemDescOffsets = New List(Of String)
@@ -146,9 +152,13 @@ Public Class ItemEditor
         LoopVar = 0
 
         ItemListComboBox.Items.Clear()
+        ComboBox1.Items.Clear()
+        ComboBox2.Items.Clear()
 
         While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) = True
             ItemListComboBox.Items.Add(GetItemName(LoopVar))
+            ComboBox1.Items.Add(GetItemName(LoopVar))
+            ComboBox2.Items.Add(GetItemName(LoopVar))
 
             LoopVar = LoopVar + 1
 
@@ -275,6 +285,16 @@ Public Class ItemEditor
         FolderBrowserDialog.Description = "Select folder to export Items to:"
 
         If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            If ComboBox1.SelectedIndex > ComboBox2.SelectedIndex Then
+
+                Dim tempBox1 As Integer = ComboBox1.SelectedIndex
+
+                ComboBox1.SelectedIndex = ComboBox2.SelectedIndex
+                ComboBox2.SelectedIndex = tempBox1
+
+            End If
+
             Me.Text = "Please wait..."
             Me.UseWaitCursor = True
 
@@ -288,29 +308,29 @@ Public Class ItemEditor
 
             Dim LoopVar As Integer
 
-            LoopVar = 0
+            LoopVar = ComboBox1.SelectedIndex - 1
+
             Me.Enabled = False
             ProgressBar1.Value = 0
-            ProgressBar1.Visible = True
 
-            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) - 2 = True
+            While LoopVar < ComboBox2.SelectedIndex = True
                 '  PKMNaItemImportExportss.SelectedIndex = LoopVar
 
                 LoopVar = LoopVar + 1
 
 
 
-                ImportDataFunctions.ExportItemINI(FolderBrowserDialog.SelectedPath, LoopVar)
+                ExportItemINI(FolderBrowserDialog.SelectedPath, LoopVar)
 
-                ProgressBar1.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfItems", ""))) * 100
+                ProgressBar1.Value = ((LoopVar - ComboBox1.SelectedIndex) / (ComboBox2.SelectedIndex - ComboBox1.SelectedIndex)) * 100
                 ProgressBar1.Invalidate()
                 ProgressBar1.Update()
 
             End While
 
-            ProgressBar1.Visible = False
             Me.Enabled = True
             Me.UseWaitCursor = False
+            ProgressBar1.Value = 0
             Me.BringToFront()
         End If
     End Sub
@@ -321,24 +341,40 @@ Public Class ItemEditor
         FolderBrowserDialog.Description = "Select ini file to import Items from:"
         If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
 
+            If ComboBox1.SelectedIndex > ComboBox2.SelectedIndex Then
+
+                Dim tempBox1 As Integer = ComboBox1.SelectedIndex
+
+                ComboBox1.SelectedIndex = ComboBox2.SelectedIndex
+                ComboBox2.SelectedIndex = tempBox1
+
+            End If
+
             Me.Text = "Please wait..."
             Me.UseWaitCursor = True
             ProgressBar1.Value = 0
-            ProgressBar1.Visible = True
 
             Dim LoopVar As Integer
 
-            LoopVar = 0
-
-            If CheckBox1.Checked Then
-                LoopVar = 289
-            End If
+            LoopVar = ComboBox1.SelectedIndex - 1
 
             Me.Enabled = False
 
-            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) - 2 = True
+            While LoopVar < ComboBox2.SelectedIndex = True
+
+                'While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "")) - 2 = True
 
                 LoopVar = LoopVar + 1
+
+                If LoopVar = 377 Then
+
+                    LoopVar = 378
+
+                    If LoopVar < ComboBox2.SelectedIndex Then
+                        Exit While
+                    End If
+
+                End If
 
                 If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini") Then
                     ImportItem(FolderBrowserDialog.SelectedPath, LoopVar)
@@ -352,13 +388,13 @@ Public Class ItemEditor
                     ImportItemPicture(FolderBrowserDialog.SelectedPath & "\ItemPics\" & VB.Right("000" & LoopVar, 3) & ".png", LoopVar)
                 End If
 
-                ProgressBar1.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfItems", ""))) * 100
+                ProgressBar1.Value = ((LoopVar - ComboBox1.SelectedIndex) / (ComboBox2.SelectedIndex - ComboBox1.SelectedIndex)) * 100
                 ProgressBar1.Invalidate()
                 ProgressBar1.Update()
 
-                If CheckBox1.Checked And LoopVar = 346 Then
-                    LoopVar = 377
-                End If
+                'If CheckBox1.Checked And LoopVar = 346 Then
+                'LoopVar = 377
+                'End If
 
             End While
 
@@ -367,6 +403,7 @@ Public Class ItemEditor
             ItemListComboBox.SelectedIndex = 1
             ItemListComboBox.SelectedIndex = 0
             Me.UseWaitCursor = False
+            ProgressBar1.Value = 0
             Me.BringToFront()
 
             RefreshItems(listvar)
@@ -375,7 +412,6 @@ Public Class ItemEditor
 
         Me.Text = "Item Editor"
         Me.Enabled = True
-        ProgressBar1.Visible = False
         Me.BringToFront()
     End Sub
 
@@ -431,7 +467,6 @@ Public Class ItemEditor
             ExportItemINI(SaveFileDialog.FileName, listvar, True)
             Me.UseWaitCursor = False
             Me.Enabled = True
-            Me.ProgressBar1.Visible = False
         End If
 
         RefreshItems(listvar)
@@ -441,9 +476,13 @@ Public Class ItemEditor
         Dim LoopVar As Integer = 0
 
         ItemListComboBox.Items.Clear()
+        ComboBox1.Items.Clear()
+        ComboBox2.Items.Clear()
 
         While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfItems", "") - 1) = True
             ItemListComboBox.Items.Add(GetItemName(LoopVar))
+            ComboBox1.Items.Add(GetItemName(LoopVar))
+            ComboBox2.Items.Add(GetItemName(LoopVar))
 
             LoopVar = LoopVar + 1
 
@@ -504,14 +543,9 @@ Public Class ItemEditor
             ExportItemPicture(SaveFileDialog.FileName, listvar)
             Me.UseWaitCursor = False
             Me.Enabled = True
-            Me.ProgressBar1.Visible = False
         End If
 
         RefreshItems(listvar)
-    End Sub
-
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-
     End Sub
 
     Private Sub ImportSinglePicture(sender As Object, e As EventArgs) Handles Button5.Click
@@ -531,7 +565,6 @@ Public Class ItemEditor
             ImportItemPicture(OpenFileDialog.FileName, listvar, True)
             Me.UseWaitCursor = False
             Me.Enabled = True
-            Me.ProgressBar1.Visible = False
         End If
 
         RefreshItems(listvar)
@@ -551,9 +584,9 @@ Public Class ItemEditor
             ImportItem(OpenFileDialog.FileName, listvar, True)
             Me.UseWaitCursor = False
             Me.Enabled = True
-            Me.ProgressBar1.Visible = False
         End If
 
         RefreshItems(listvar)
     End Sub
+
 End Class

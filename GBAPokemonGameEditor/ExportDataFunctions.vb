@@ -480,4 +480,79 @@ Module ExportDataFunctions
 
     End Sub
 
+    Public Sub ExportItemINI(DataPath As String, ItemIndex As Integer, Optional Individual As Boolean = False)
+        Dim DataFolder As String = DataPath
+        Dim ItemBaseOff As Integer = Int32.Parse((GetString(GetINIFileLocation(), header, "ItemData", "")), System.Globalization.NumberStyles.HexNumber)
+        Dim ItemPicDataOff As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "ItemIMGData", ""), System.Globalization.NumberStyles.HexNumber)
+
+        If Not Individual Then
+            DataPath = DataPath & "\Items\" & ItemIndex & ".ini"
+        End If
+
+        Dim ItemName As String = GetItemName(ItemIndex)
+        Dim ItemID As String = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 14) + (ItemIndex * 44), 2))), System.Globalization.NumberStyles.HexNumber)
+        Dim Price As String = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 16) + (ItemIndex * 44), 2))), System.Globalization.NumberStyles.HexNumber)
+        Dim HoldEffect As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 18) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim Value As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 19) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim DescriptionPointer As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 20) + (ItemIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        Dim Mystery1 As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 24) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim Mystery2 As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 25) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim Pocket As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 26) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim ItemType As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 27) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim FieldUsagePointer As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 28) + (ItemIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        Dim BattleUsagePointer As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        Dim BUText As String = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 32) + (ItemIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+
+        Dim ExtraParam As String = ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 40) + (ItemIndex * 44), 4))
+
+        Dim ItemPicDataOffSpecific As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ItemPicDataOff + (ItemIndex * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        Dim ItemPalDataOffSpecific As String = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ItemPicDataOff + (ItemIndex * 8) + 4, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+
+        Dim CurrentItemDescripLength As Integer
+
+        FileNum = FreeFile()
+        FileOpen(FileNum, LoadedROM, OpenMode.Binary)
+        Dim ItemDescp As String = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+        If ItemIndex = 377 Then
+            ItemDescp = ""
+        Else
+            FileGet(FileNum, ItemDescp, Int32.Parse(((DescriptionPointer)), System.Globalization.NumberStyles.HexNumber) + 1, True)
+            ItemDescp = Sapp2Asc(ItemDescp)
+            ItemDescp = Mid$(ItemDescp, 1, InStr(1, ItemDescp, "\x"))
+            'ItemDescp = Replace(ItemDescp, "\n", vbCrLf)
+            'ItemDescp = Replace(RTrim$(ItemDescp), "\", "")
+            ItemDescp = ItemDescp & "x"
+        End If
+
+        CurrentItemDescripLength = Len(ItemDescp)
+
+        FileClose(FileNum)
+
+        If Not Individual Then
+
+            ExportItemPicture(DataFolder & "\Items\ItemPics\" & ItemIndex & ".png", ItemIndex)
+
+        End If
+
+        If System.IO.File.Exists(DataPath) Then
+            System.IO.File.Delete(DataPath)
+        End If
+
+        WriteString(DataPath, "Item", "ItemName", ItemName)
+        WriteString(DataPath, "Item", "Price", Price)
+        WriteString(DataPath, "Item", "HoldEffect", HoldEffect)
+        WriteString(DataPath, "Item", "Value", Value)
+        WriteString(DataPath, "Item", "ItemDescp", ItemDescp)
+        WriteString(DataPath, "Item", "Mystery1", Mystery1)
+        WriteString(DataPath, "Item", "Mystery2", Mystery2)
+        WriteString(DataPath, "Item", "Pocket", Pocket)
+        WriteString(DataPath, "Item", "ItemType", ItemType)
+        WriteString(DataPath, "Item", "FieldUsagePointer", FieldUsagePointer)
+        WriteString(DataPath, "Item", "BattleUsagePointer", BattleUsagePointer)
+        WriteString(DataPath, "Item", "BUText", BUText)
+        WriteString(DataPath, "Item", "ExtraParam", ExtraParam)
+        WriteString(DataPath, "Item", "ItemName", ItemName)
+    End Sub
+
 End Module

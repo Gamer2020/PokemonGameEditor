@@ -65,7 +65,6 @@ Partial Class ItemEditor
         Me.BUTextBox = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.ExtParTxt = New System.Windows.Forms.TextBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -74,6 +73,8 @@ Partial Class ItemEditor
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
@@ -491,87 +492,77 @@ Partial Class ItemEditor
         Me.ExtParTxt.Size = New System.Drawing.Size(123, 26)
         Me.ExtParTxt.TabIndex = 52
         '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(280, 25)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(167, 24)
-        Me.CheckBox1.TabIndex = 67
-        Me.CheckBox1.Text = "Skip Original Items"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(135, 21)
+        Me.Button7.Location = New System.Drawing.Point(153, 25)
         Me.Button7.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(125, 31)
+        Me.Button7.Size = New System.Drawing.Size(122, 34)
         Me.Button7.TabIndex = 66
-        Me.Button7.Text = "Export Picture"
+        Me.Button7.Text = "Export Image"
         Me.Button7.UseVisualStyleBackColor = True
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(466, 21)
+        Me.Button5.Location = New System.Drawing.Point(389, 25)
         Me.Button5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(125, 31)
+        Me.Button5.Size = New System.Drawing.Size(122, 34)
         Me.Button5.TabIndex = 65
-        Me.Button5.Text = "Import Picture"
+        Me.Button5.Text = "Import Image"
         Me.Button5.UseVisualStyleBackColor = True
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(5, 21)
+        Me.Button4.Location = New System.Drawing.Point(20, 25)
         Me.Button4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(125, 31)
+        Me.Button4.Size = New System.Drawing.Size(125, 34)
         Me.Button4.TabIndex = 64
         Me.Button4.Text = "Export Item"
         Me.Button4.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(598, 21)
+        Me.Button3.Location = New System.Drawing.Point(519, 25)
         Me.Button3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(125, 31)
+        Me.Button3.Size = New System.Drawing.Size(125, 34)
         Me.Button3.TabIndex = 63
         Me.Button3.Text = "Import Item"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(598, 58)
+        Me.Button2.Location = New System.Drawing.Point(519, 66)
         Me.Button2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(125, 31)
+        Me.Button2.Size = New System.Drawing.Size(125, 34)
         Me.Button2.TabIndex = 62
-        Me.Button2.Text = "Import All"
+        Me.Button2.Text = "Import Range"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(5, 58)
+        Me.Button1.Location = New System.Drawing.Point(20, 66)
         Me.Button1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(125, 31)
+        Me.Button1.Size = New System.Drawing.Size(125, 34)
         Me.Button1.TabIndex = 60
-        Me.Button1.Text = "Export All"
+        Me.Button1.Text = "Export Range"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(135, 58)
+        Me.ProgressBar1.Location = New System.Drawing.Point(19, 108)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(456, 30)
+        Me.ProgressBar1.Size = New System.Drawing.Size(624, 30)
         Me.ProgressBar1.TabIndex = 61
-        Me.ProgressBar1.Visible = False
         '
         'GroupBox4
         '
-        Me.GroupBox4.Controls.Add(Me.CheckBox1)
+        Me.GroupBox4.Controls.Add(Me.ComboBox2)
+        Me.GroupBox4.Controls.Add(Me.ComboBox1)
         Me.GroupBox4.Controls.Add(Me.ProgressBar1)
         Me.GroupBox4.Controls.Add(Me.Button7)
         Me.GroupBox4.Controls.Add(Me.Button1)
@@ -579,12 +570,32 @@ Partial Class ItemEditor
         Me.GroupBox4.Controls.Add(Me.Button2)
         Me.GroupBox4.Controls.Add(Me.Button4)
         Me.GroupBox4.Controls.Add(Me.Button3)
-        Me.GroupBox4.Location = New System.Drawing.Point(9, 471)
+        Me.GroupBox4.Location = New System.Drawing.Point(37, 469)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(728, 100)
+        Me.GroupBox4.Size = New System.Drawing.Size(665, 150)
         Me.GroupBox4.TabIndex = 68
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Import/Export"
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(336, 68)
+        Me.ComboBox2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(175, 28)
+        Me.ComboBox2.TabIndex = 68
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(153, 68)
+        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(175, 28)
+        Me.ComboBox1.TabIndex = 2
         '
         'OpenFileDialog
         '
@@ -594,7 +605,7 @@ Partial Class ItemEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(744, 575)
+        Me.ClientSize = New System.Drawing.Size(744, 635)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.ExtParTxt)
         Me.Controls.Add(Me.Label15)
@@ -639,7 +650,6 @@ Partial Class ItemEditor
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -687,7 +697,6 @@ Partial Class ItemEditor
     Friend WithEvents Button6 As Button
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents ExtParTxt As System.Windows.Forms.TextBox
-    Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents Button7 As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents Button4 As Button
@@ -699,4 +708,6 @@ Partial Class ItemEditor
     Friend WithEvents FolderBrowserDialog As FolderBrowserDialog
     Friend WithEvents SaveFileDialog As SaveFileDialog
     Friend WithEvents OpenFileDialog As OpenFileDialog
+    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents ComboBox1 As ComboBox
 End Class
