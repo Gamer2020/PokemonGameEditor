@@ -15,6 +15,7 @@ Public Class Pokemonedit
     Dim AnimationPointers As Integer
     Dim IconPointers As Integer
     Dim IconPalTable As Integer
+    Dim IconPalCount As Integer
     Dim EvoData As Integer
     Dim TMHMAttacks As Integer
     Dim TMHMCompoLoc As Integer
@@ -177,6 +178,21 @@ Public Class Pokemonedit
 
         TMHMLoad()
         MTLoad()
+
+        Try
+            IconPalCount = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalCount", "")), System.Globalization.NumberStyles.HexNumber)
+            If IconPalCount > 3 Then
+
+                For tempLoop = 0 To IconPalCount - 4
+                    IconPal.Items.Add("Pal " + Convert.ToString(tempLoop + 3))
+                Next
+
+            End If
+        Catch
+
+            IconPalCount = 3
+
+        End Try
 
         PKMNames.SelectedIndex = 0
 
@@ -673,7 +689,12 @@ Public Class Pokemonedit
         NormalPointer.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (NormalPalPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
 
         IconPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (IconPointers) + (4) + (i * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
-        IconPal.SelectedIndex = Int32.Parse(((ReadHEX(LoadedROM, (IconPalTable) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber)
+
+        Try
+            IconPal.SelectedIndex = Int32.Parse(((ReadHEX(LoadedROM, (IconPalTable) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber)
+        Catch
+            IconPal.SelectedIndex = IconPalCount - 1
+        End Try
 
         FootPrintPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (FootPrintTable) + (4) + (i * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
