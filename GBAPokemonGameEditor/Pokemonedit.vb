@@ -692,9 +692,14 @@ Public Class Pokemonedit
 
         Try
             IconPal.SelectedIndex = Int32.Parse(((ReadHEX(LoadedROM, (IconPalTable) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber)
+            Label61.Text = "                           "
         Catch
             IconPal.SelectedIndex = IconPalCount - 1
+            Label61.Text = "Invalid Pal#: " + Convert.ToString(Int32.Parse(((ReadHEX(LoadedROM, (IconPalTable) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
         End Try
+
+        Label61.Invalidate()
+        Label61.Update()
 
         FootPrintPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (FootPrintTable) + (4) + (i * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 

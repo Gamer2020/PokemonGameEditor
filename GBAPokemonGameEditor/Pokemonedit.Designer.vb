@@ -286,6 +286,7 @@ Partial Class Pokemonedit
         Me.Button39 = New System.Windows.Forms.Button()
         Me.Button41 = New System.Windows.Forms.Button()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Label61 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox26.SuspendLayout()
@@ -583,6 +584,7 @@ Partial Class Pokemonedit
         '
         'GroupBox16
         '
+        Me.GroupBox16.Controls.Add(Me.Label61)
         Me.GroupBox16.Controls.Add(Me.Button40)
         Me.GroupBox16.Controls.Add(Me.Button22)
         Me.GroupBox16.Controls.Add(Me.Button21)
@@ -3160,6 +3162,17 @@ Partial Class Pokemonedit
         Me.CheckBox1.Text = "Efficient Imports"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
+        'Label61
+        '
+        Me.Label61.AutoSize = True
+        Me.Label61.ForeColor = System.Drawing.Color.Crimson
+        Me.Label61.Location = New System.Drawing.Point(27, 119)
+        Me.Label61.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label61.Name = "Label61"
+        Me.Label61.Size = New System.Drawing.Size(97, 20)
+        Me.Label61.TabIndex = 13
+        Me.Label61.Text = "Invalid Pal#: "
+        '
         'Pokemonedit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -3553,4 +3566,5 @@ Partial Class Pokemonedit
     Friend WithEvents Button40 As Button
     Friend WithEvents Button41 As Button
     Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents Label61 As Label
 End Class
