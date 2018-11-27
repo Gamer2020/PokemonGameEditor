@@ -1,6 +1,8 @@
 .ide
+.ide-wal
+.ide-shm
 .exe
 .application
 .manifest
 .Cache
-.ide-wal
+.suo
