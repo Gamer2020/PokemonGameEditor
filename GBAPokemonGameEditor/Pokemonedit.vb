@@ -4217,8 +4217,6 @@ Public Class Pokemonedit
     Private Sub Button39_Click(sender As Object, e As EventArgs) Handles Button39.Click
         FolderBrowserDialog.Description = "Select folder to import cries from:"
 
-
-
         If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
             Me.Text = "Please wait..."
             Me.UseWaitCursor = True
@@ -4227,7 +4225,7 @@ Public Class Pokemonedit
 
             Dim LoopVar As Integer
 
-            LoopVar = 440
+            LoopVar = 1 'Might need to be zero
 
             Me.Enabled = False
 
@@ -4235,31 +4233,8 @@ Public Class Pokemonedit
             'CryTable2 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
             CryTable3 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable2", "")), System.Globalization.NumberStyles.HexNumber)
 
-            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 And 439 < LoopVar And 861 > LoopVar = True
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
                 'PKMNames.SelectedIndex = LoopVar
-
-                Dim convNum As Integer = LoopVar - 53
-
-                Dim validFiles As String() = GetFiles(FolderBrowserDialog.SelectedPath, "*" & convNum & "*")
-
-                If validFiles.Count > 0 Then
-                    crynorm = New Cry With {
-                        .Index = LoopVar
-                    }
-                    crynorm = ImportCry(validFiles(0), crynorm)
-                    SaveCryNoPrompt(crynorm, CryTable, CryTable3)
-                End If
-
-
-                LoopVar = LoopVar + 1
-                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                QuickRefresh(ProgressBar)
-
-            End While
-
-            LoopVar = 880
-
-            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 And 439 < LoopVar = True
 
                 Dim validFiles As String() = GetFiles(FolderBrowserDialog.SelectedPath, "*" & LoopVar & "*")
 
@@ -4281,6 +4256,11 @@ Public Class Pokemonedit
             '''''''''''''''''''''''''''''''''''''''''''''''''''''''
             Dim convMons As New List(Of String)
 
+            'Sets the cry conversion number of mons in Conversions.txt
+            'Cry conversion number reuses the cry of one Mon for another, to save space
+            'Conversions.txt is just a list of x=y numbers
+            'Ex: set alolan muk's cry to be the same as regular muk's, assuming Mon 1024 is your alolan muk
+            '1024=89
             If IO.File.Exists(FolderBrowserDialog.SelectedPath & "\Conversions.txt") Then
                 convMons.AddRange(IO.File.ReadLines(FolderBrowserDialog.SelectedPath & "\Conversions.txt"))
 

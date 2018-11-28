@@ -44,6 +44,7 @@ Partial Class Pokemonedit
         Me.Button5 = New System.Windows.Forms.Button()
         Me.FootPrintPointer = New System.Windows.Forms.TextBox()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.Label61 = New System.Windows.Forms.Label()
         Me.Button40 = New System.Windows.Forms.Button()
         Me.Button22 = New System.Windows.Forms.Button()
         Me.Button21 = New System.Windows.Forms.Button()
@@ -286,7 +287,6 @@ Partial Class Pokemonedit
         Me.Button39 = New System.Windows.Forms.Button()
         Me.Button41 = New System.Windows.Forms.Button()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.Label61 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox26.SuspendLayout()
@@ -600,6 +600,17 @@ Partial Class Pokemonedit
         Me.GroupBox16.TabIndex = 3
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "Icons"
+        '
+        'Label61
+        '
+        Me.Label61.AutoSize = True
+        Me.Label61.ForeColor = System.Drawing.Color.Crimson
+        Me.Label61.Location = New System.Drawing.Point(18, 119)
+        Me.Label61.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label61.Name = "Label61"
+        Me.Label61.Size = New System.Drawing.Size(97, 20)
+        Me.Label61.TabIndex = 13
+        Me.Label61.Text = "Invalid Pal#: "
         '
         'Button40
         '
@@ -3161,17 +3172,6 @@ Partial Class Pokemonedit
         Me.CheckBox1.TabIndex = 23
         Me.CheckBox1.Text = "Efficient Imports"
         Me.CheckBox1.UseVisualStyleBackColor = True
-        '
-        'Label61
-        '
-        Me.Label61.AutoSize = True
-        Me.Label61.ForeColor = System.Drawing.Color.Crimson
-        Me.Label61.Location = New System.Drawing.Point(27, 119)
-        Me.Label61.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(97, 20)
-        Me.Label61.TabIndex = 13
-        Me.Label61.Text = "Invalid Pal#: "
         '
         'Pokemonedit
         '
