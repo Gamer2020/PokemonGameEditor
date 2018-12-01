@@ -854,6 +854,17 @@ ErrorHandle:
         Dim Palette15(&HFFF) As Byte
         Dim Palette32() As Color
         Dim bSprite As Bitmap
+
+        Dim individualPalettes As Boolean = False
+        Dim pTableOffset As Integer = 0
+
+        Try
+            pTableOffset = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPointerTable2", ""), System.Globalization.NumberStyles.HexNumber) + ((palindex * 8))
+            individualPalettes = True
+        Catch
+
+        End Try
+
         Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
             Using r As New BinaryReader(fs)
                 fs.Position = sOffset
@@ -866,7 +877,15 @@ ErrorHandle:
                 ReDim Temp(&HFFF)
                 'fs.Position = pOffset
                 'pOffset = r.ReadInt32 - &H8000000
-                fs.Position = pOffset
+
+                If Not individualPalettes Then
+                    fs.Position = pOffset
+                Else
+                    fs.Position = pTableOffset
+                    pOffset = r.ReadInt32 - &H8000000
+                    fs.Position = pOffset
+                End If
+
                 r.Read(Temp, 0, &HFFF)
                 'LZ77UnComp(Temp, Palette15)
 
@@ -890,6 +909,17 @@ ErrorHandle:
         Dim Palette15(&HFFF) As Byte
         Dim Palette32() As Color
         Dim bSprite As Bitmap
+
+        Dim individualPalettes As Boolean = False
+        Dim pTableOffset As Integer = 0
+
+        Try
+            pTableOffset = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPointerTable2", ""), System.Globalization.NumberStyles.HexNumber) + ((palindex * 8))
+            individualPalettes = True
+        Catch
+
+        End Try
+
         Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
             Using r As New BinaryReader(fs)
                 fs.Position = sOffset
@@ -903,6 +933,15 @@ ErrorHandle:
                 'fs.Position = pOffset
                 'pOffset = r.ReadInt32 - &H8000000
                 fs.Position = pOffset
+
+                If Not individualPalettes Then
+                    fs.Position = pOffset
+                Else
+                    fs.Position = pTableOffset
+                    pOffset = r.ReadInt32 - &H8000000
+                    fs.Position = pOffset
+                End If
+
                 r.Read(Temp, 0, &HFFF)
                 'LZ77UnComp(Temp, Palette15)
 
