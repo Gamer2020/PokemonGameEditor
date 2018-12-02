@@ -229,8 +229,6 @@ Partial Class Pokemonedit
         Me.Clr1 = New System.Windows.Forms.ComboBox()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.GroupBox35 = New System.Windows.Forms.GroupBox()
-        Me.Button35 = New System.Windows.Forms.Button()
-        Me.Button36 = New System.Windows.Forms.Button()
         Me.Button37 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.pSample2 = New System.Windows.Forms.PictureBox()
@@ -287,6 +285,7 @@ Partial Class Pokemonedit
         Me.Button39 = New System.Windows.Forms.Button()
         Me.Button41 = New System.Windows.Forms.Button()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.imptCompChk = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox26.SuspendLayout()
@@ -2570,6 +2569,9 @@ Partial Class Pokemonedit
         '
         'TabPage6
         '
+        Me.TabPage6.Controls.Add(Me.Button34)
+        Me.TabPage6.Controls.Add(Me.imptCompChk)
+        Me.TabPage6.Controls.Add(Me.Button33)
         Me.TabPage6.Controls.Add(Me.GroupBox35)
         Me.TabPage6.Controls.Add(Me.GroupBox34)
         Me.TabPage6.Controls.Add(Me.GroupBox21)
@@ -2584,8 +2586,6 @@ Partial Class Pokemonedit
         '
         'GroupBox35
         '
-        Me.GroupBox35.Controls.Add(Me.Button35)
-        Me.GroupBox35.Controls.Add(Me.Button36)
         Me.GroupBox35.Controls.Add(Me.Button37)
         Me.GroupBox35.Controls.Add(Me.Panel2)
         Me.GroupBox35.Controls.Add(Me.chkCompressed2)
@@ -2604,27 +2604,6 @@ Partial Class Pokemonedit
         Me.GroupBox35.TabIndex = 8
         Me.GroupBox35.TabStop = False
         Me.GroupBox35.Text = "Growl Cry"
-        '
-        'Button35
-        '
-        Me.Button35.Location = New System.Drawing.Point(428, 265)
-        Me.Button35.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button35.Name = "Button35"
-        Me.Button35.Size = New System.Drawing.Size(84, 41)
-        Me.Button35.TabIndex = 30
-        Me.Button35.Text = "Export"
-        Me.Button35.UseVisualStyleBackColor = True
-        '
-        'Button36
-        '
-        Me.Button36.Enabled = False
-        Me.Button36.Location = New System.Drawing.Point(336, 264)
-        Me.Button36.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button36.Name = "Button36"
-        Me.Button36.Size = New System.Drawing.Size(84, 41)
-        Me.Button36.TabIndex = 29
-        Me.Button36.Text = "Import"
-        Me.Button36.UseVisualStyleBackColor = True
         '
         'Button37
         '
@@ -2734,8 +2713,6 @@ Partial Class Pokemonedit
         '
         'GroupBox34
         '
-        Me.GroupBox34.Controls.Add(Me.Button34)
-        Me.GroupBox34.Controls.Add(Me.Button33)
         Me.GroupBox34.Controls.Add(Me.Button32)
         Me.GroupBox34.Controls.Add(Me.chkCompressed1)
         Me.GroupBox34.Controls.Add(Me.panel1)
@@ -2757,7 +2734,7 @@ Partial Class Pokemonedit
         '
         'Button34
         '
-        Me.Button34.Location = New System.Drawing.Point(428, 264)
+        Me.Button34.Location = New System.Drawing.Point(776, 300)
         Me.Button34.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button34.Name = "Button34"
         Me.Button34.Size = New System.Drawing.Size(84, 41)
@@ -2767,7 +2744,7 @@ Partial Class Pokemonedit
         '
         'Button33
         '
-        Me.Button33.Location = New System.Drawing.Point(336, 264)
+        Me.Button33.Location = New System.Drawing.Point(776, 254)
         Me.Button33.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button33.Name = "Button33"
         Me.Button33.Size = New System.Drawing.Size(84, 41)
@@ -2788,7 +2765,6 @@ Partial Class Pokemonedit
         'chkCompressed1
         '
         Me.chkCompressed1.AutoSize = True
-        Me.chkCompressed1.Enabled = False
         Me.chkCompressed1.Location = New System.Drawing.Point(26, 230)
         Me.chkCompressed1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.chkCompressed1.Name = "chkCompressed1"
@@ -3173,6 +3149,17 @@ Partial Class Pokemonedit
         Me.CheckBox1.Text = "Efficient Imports"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
+        'imptCompChk
+        '
+        Me.imptCompChk.AutoSize = True
+        Me.imptCompChk.Location = New System.Drawing.Point(777, 227)
+        Me.imptCompChk.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.imptCompChk.Name = "imptCompChk"
+        Me.imptCompChk.Size = New System.Drawing.Size(125, 24)
+        Me.imptCompChk.TabIndex = 28
+        Me.imptCompChk.Text = "Compressed"
+        Me.imptCompChk.UseVisualStyleBackColor = True
+        '
         'Pokemonedit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -3283,6 +3270,7 @@ Partial Class Pokemonedit
         Me.GroupBox28.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.TabPage6.ResumeLayout(False)
+        Me.TabPage6.PerformLayout()
         Me.GroupBox35.ResumeLayout(False)
         Me.GroupBox35.PerformLayout()
         Me.Panel2.ResumeLayout(False)
@@ -3543,12 +3531,10 @@ Partial Class Pokemonedit
     Private WithEvents panel1 As System.Windows.Forms.Panel
     Private WithEvents pSample As System.Windows.Forms.PictureBox
     Private WithEvents chkCompressed2 As System.Windows.Forms.CheckBox
-    Private WithEvents chkCompressed1 As System.Windows.Forms.CheckBox
+    Friend WithEvents chkCompressed1 As System.Windows.Forms.CheckBox
     Private WithEvents Panel2 As System.Windows.Forms.Panel
     Private WithEvents pSample2 As System.Windows.Forms.PictureBox
     Friend WithEvents Button32 As System.Windows.Forms.Button
-    Friend WithEvents Button35 As System.Windows.Forms.Button
-    Friend WithEvents Button36 As System.Windows.Forms.Button
     Friend WithEvents Button37 As System.Windows.Forms.Button
     Friend WithEvents Button34 As System.Windows.Forms.Button
     Friend WithEvents Button33 As System.Windows.Forms.Button
@@ -3567,4 +3553,5 @@ Partial Class Pokemonedit
     Friend WithEvents Button41 As Button
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents Label61 As Label
+    Friend WithEvents imptCompChk As CheckBox
 End Class

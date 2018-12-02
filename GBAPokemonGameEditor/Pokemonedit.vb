@@ -3871,7 +3871,7 @@ Public Class Pokemonedit
         End If
     End Sub
 
-    Private Sub Button35_Click(sender As Object, e As EventArgs) Handles Button35.Click
+    Private Sub Button35_Click(sender As Object, e As EventArgs)
         SaveFileDialog.FileName = (PKMNames.SelectedIndex + 1) & ".wav"
         'SaveFileDialog.CheckFileExists = True
 
@@ -4410,4 +4410,7 @@ Public Class Pokemonedit
         MenuItem.Update()
     End Sub
 
+    Private Sub chkCompressed1_CheckedChanged(sender As Object, e As EventArgs) Handles chkCompressed1.CheckedChanged
+
+    End Sub
 End Class
