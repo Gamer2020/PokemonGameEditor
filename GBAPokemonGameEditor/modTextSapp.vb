@@ -13,6 +13,7 @@ Module modTextSapp
             m = False
             If Len(asciistring) - (i - 1) > 3 Then
                 Select Case Mid(asciistring, i, 4)
+                    Case "[er]" : Y = &H2C : m = True
                     Case "[Lv]" : Y = &H34 : m = True
                     Case "[PK]" : Y = &H53 : m = True
                     Case "[MN]" : Y = &H54 : m = True
@@ -20,6 +21,7 @@ Module modTextSapp
                     Case "[Ke]" : Y = &H56 : m = True
                     Case "[BL]" : Y = &H57 : m = True
                     Case "[OC]" : Y = &H58 : m = True
+                    Case "[re]" : Y = &HA0 : m = True
                     Case "" & "" & "" & "" : Y = &HFB : m = True
                         'Case StrDup(1, 10) : Y = &HFB : m = True
                         'Case StrDup(1, &HD) : Y = &HFB : m = True
@@ -43,12 +45,6 @@ Module modTextSapp
                     Case "[L]" : Y = &H7B : m = True
                     Case "[R]" : Y = &H7C : m = True
                     Case "[.]" : Y = &HB0 : m = True
-                    Case "[""]" : Y = &HB1 : m = True
-                    Case "[']" : Y = &HB3 : m = True
-                    Case "[m]" : Y = &HB5 : m = True
-                    Case "[f]" : Y = &HB6 : m = True
-                    Case "[p]" : Y = &HB7 : m = True
-                    Case "[x]" : Y = &HB9 : m = True
                     Case "[>]" : Y = &HEF : m = True
                     Case "[u]" : Y = &HF7 : m = True
                     Case "[d]" : Y = &HF8 : m = True
@@ -95,6 +91,7 @@ Module modTextSapp
                     Case "Ù" : Y = &H11 : m = True
                     Case "Ú" : Y = &H12 : m = True
                     Case "Û" : Y = &H13 : m = True
+                    Case "Ñ" : Y = &H14 : m = True
                     Case "ß" : Y = &H15 : m = True
                     Case "à" : Y = &H16 : m = True
                     Case "á" : Y = &H17 : m = True
@@ -108,14 +105,18 @@ Module modTextSapp
                     Case "ï" : Y = &H21 : m = True
                     Case "ò" : Y = &H22 : m = True
                     Case "ó" : Y = &H23 : m = True
-                    Case "œ" : Y = &H24 : m = True
-                    Case "ù" : Y = &H25 : m = True
-                    Case "ú" : Y = &H26 : m = True
-                    Case "°" : Y = &H28 : m = True
-                    Case "ª" : Y = &H29 : m = True
-                    Case "+" : Y = &H2C : m = True
+                    Case "ô" : Y = &H24 : m = True
+                    Case "œ" : Y = &H25 : m = True
+                    Case "ù" : Y = &H26 : m = True
+                    Case "ú" : Y = &H27 : m = True
+                    Case "û" : Y = &H28 : m = True
+                    Case "ñ" : Y = &H29 : m = True
+                    Case "º" : Y = &H2A : m = True
+                    Case "ª" : Y = &H2B : m = True
                     Case "&" : Y = &H2D : m = True
+                    Case "+" : Y = &H2E : m = True
                     Case "=" : Y = &H35 : m = True
+                    Case ";" : Y = &H36 : m = True
                     Case "¿" : Y = &H51 : m = True
                     Case "¡" : Y = &H52 : m = True
                     Case "Í" : Y = &H5A : m = True
@@ -124,6 +125,8 @@ Module modTextSapp
                     Case ")" : Y = &H5D : m = True
                     Case "â" : Y = &H68 : m = True
                     Case "í" : Y = &H6F : m = True
+                    Case "<" : Y = &H85 : m = True
+                    Case ">" : Y = &H86 : m = True
                     Case "0" : Y = &HA1 : m = True
                     Case "1" : Y = &HA2 : m = True
                     Case "2" : Y = &HA3 : m = True
@@ -138,10 +141,15 @@ Module modTextSapp
                     Case "?" : Y = &HAC : m = True
                     Case "." : Y = &HAD : m = True
                     Case "-" : Y = &HAE : m = True
-                    Case "·" : Y = &HAF : m = True
+                    Case "“" : Y = &HB1 : m = True
+                    Case "”" : Y = &HB2 : m = True
+                    Case "‘" : Y = &HB3 : m = True
+                    Case "’" : Y = &HB4 : m = True
+                    Case "♂" : Y = &HB5 : m = True
+                    Case "♀" : Y = &HB6 : m = True
+                    Case "¥" : Y = &HB7 : m = True
                     Case "," : Y = &HB8 : m = True
-                    Case """" : Y = &HB2 : m = True
-                    Case "'" : Y = &HB4 : m = True
+                    Case "×" : Y = &HB9 : m = True
                     Case "/" : Y = &HBA : m = True
                     Case "A" : Y = &HBB : m = True
                     Case "B" : Y = &HBC : m = True
@@ -571,7 +579,6 @@ Module modTextSapp
                         Case &HFD : Y = "\v" : n = True
                         Case &HFE : Y = "\n"
                         Case &HFF : Y = "\x"
-
                         Case &H7C : Y = " "
                         Case &H80 : Y = ""
                         Case Else : Y = "\h" & IIf(Len(Hex(X)) < 2, "0" & Hex(X), Hex(X))
@@ -597,6 +604,7 @@ Module modTextSapp
                         Case &H11 : Y = "Ù"
                         Case &H12 : Y = "Ú"
                         Case &H13 : Y = "Û"
+                        Case &H14 : Y = "Ñ"
                         Case &H15 : Y = "ß"
                         Case &H16 : Y = "à"
                         Case &H17 : Y = "á"
@@ -610,16 +618,20 @@ Module modTextSapp
                         Case &H21 : Y = "ï"
                         Case &H22 : Y = "ò"
                         Case &H23 : Y = "ó"
-                        Case &H24 : Y = "œ"
-                        Case &H25 : Y = "ù"
-                        Case &H26 : Y = "ú"
-                        Case &H28 : Y = "°"
-                        Case &H29 : Y = "ª"
-                        Case &H2B : Y = "&"
-                        Case &H2C : Y = "+"
+                        Case &H24 : Y = "ô"
+                        Case &H25 : Y = "œ"
+                        Case &H26 : Y = "ù"
+                        Case &H27 : Y = "ú"
+                        Case &H28 : Y = "û"
+                        Case &H29 : Y = "ñ"
+                        Case &H2A : Y = "°"
+                        Case &H2B : Y = "ª"
+                        Case &H2C : Y = "[er]"
                         Case &H2D : Y = "&"
-                        Case &H34 : Y = "[Lv]"
+                        Case &H2E : Y = "+"
+                        Case &H34 : Y = "[Lv]"                         
                         Case &H35 : Y = "="
+                        Case &H36 : Y = ";"
                         Case &H51 : Y = "¿"
                         Case &H52 : Y = "¡"
                         Case &H53 : Y = "[PK]"
@@ -639,6 +651,9 @@ Module modTextSapp
                         Case &H7A : Y = "[D]"
                         Case &H7B : Y = "[L]"
                         Case &H7C : Y = "[R]"
+                        Case &H85 : Y = "<"
+                        Case &H86 : Y = ">"
+                        Case &HA0 : Y = "[re]"
                         Case &HA1 : Y = "0"
                         Case &HA2 : Y = "1"
                         Case &HA3 : Y = "2"
@@ -655,15 +670,15 @@ Module modTextSapp
                         Case &HAE : Y = "-"
                         Case &HAF : Y = "·"
                         Case &HB0 : Y = "[.]"
-                        Case &HB1 : Y = "[""]"
-                        Case &HB2 : Y = """"
-                        Case &HB3 : Y = "[']"
-                        Case &HB4 : Y = "'"
+                        Case &HB1 : Y = "“"
+                        Case &HB2 : Y = "”"
+                        Case &HB3 : Y = "‘"
+                        Case &HB4 : Y = "’"
                         Case &HB5 : Y = "♂"
                         Case &HB6 : Y = "♀"
-                        Case &HB7 : Y = "[p]"
+                        Case &HB7 : Y = "¥"
                         Case &HB8 : Y = ","
-                        Case &HB9 : Y = "[x]"
+                        Case &HB9 : Y = "×"
                         Case &HBA : Y = "/"
                         Case &HBB : Y = "A"
                         Case &HBC : Y = "B"
@@ -819,6 +834,7 @@ Module modTextSapp
                     Case "Ù" : Y = &H11 : m = True
                     Case "Ú" : Y = &H12 : m = True
                     Case "Û" : Y = &H13 : m = True
+                    Case "Ñ" : Y = &H14 : m = True
                     Case "ß" : Y = &H15 : m = True
                     Case "à" : Y = &H16 : m = True
                     Case "á" : Y = &H17 : m = True
@@ -832,14 +848,18 @@ Module modTextSapp
                     Case "ï" : Y = &H21 : m = True
                     Case "ò" : Y = &H22 : m = True
                     Case "ó" : Y = &H23 : m = True
-                    Case "œ" : Y = &H24 : m = True
-                    Case "ù" : Y = &H25 : m = True
-                    Case "ú" : Y = &H26 : m = True
-                    Case "°" : Y = &H28 : m = True
-                    Case "ª" : Y = &H29 : m = True
-                    Case "+" : Y = &H2C : m = True
+                    Case "ô" : Y = &H24 : m = True
+                    Case "œ" : Y = &H25 : m = True
+                    Case "ù" : Y = &H26 : m = True
+                    Case "ú" : Y = &H27 : m = True
+                    Case "û" : Y = &H28 : m = True
+                    Case "ñ" : Y = &H29 : m = True
+                    Case "º" : Y = &H2A : m = True
+                    Case "ª" : Y = &H2B : m = True
                     Case "&" : Y = &H2D : m = True
+                    Case "+" : Y = &H2E : m = True
                     Case "=" : Y = &H35 : m = True
+                    Case ";" : Y = &H36 : m = True
                     Case "¿" : Y = &H51 : m = True
                     Case "¡" : Y = &H52 : m = True
                     Case "Í" : Y = &H5A : m = True
@@ -848,6 +868,8 @@ Module modTextSapp
                     Case ")" : Y = &H5D : m = True
                     Case "â" : Y = &H68 : m = True
                     Case "í" : Y = &H6F : m = True
+                    Case "<" : Y = &H85 : m = True
+                    Case ">" : Y = &H86 : m = True
                     Case "0" : Y = &HA1 : m = True
                     Case "1" : Y = &HA2 : m = True
                     Case "2" : Y = &HA3 : m = True
@@ -862,10 +884,15 @@ Module modTextSapp
                     Case "?" : Y = &HAC : m = True
                     Case "." : Y = &HAD : m = True
                     Case "-" : Y = &HAE : m = True
-                    Case "·" : Y = &HAF : m = True
+                    Case "“" : Y = &HB1 : m = True
+                    Case "”" : Y = &HB2 : m = True
+                    Case "‘" : Y = &HB3 : m = True
+                    Case "’" : Y = &HB4 : m = True
+                    Case "♂" : Y = &HB5 : m = True
+                    Case "♀" : Y = &HB6 : m = True
+                    Case "¥" : Y = &HB7 : m = True
                     Case "," : Y = &HB8 : m = True
-                    Case """" : Y = &HB2 : m = True
-                    Case "'" : Y = &HB4 : m = True
+                    Case "×" : Y = &HB9 : m = True
                     Case "/" : Y = &HBA : m = True
                     Case "A" : Y = &HBB : m = True
                     Case "B" : Y = &HBC : m = True
@@ -926,10 +953,8 @@ Module modTextSapp
                     Case "ä" : Y = &HF4 : m = True
                     Case "ö" : Y = &HF5 : m = True
                     Case "ü" : Y = &HF6 : m = True
-                    Case "♂" : Y = &HB5 : m = True
-                    Case "♀" : Y = &HB6 : m = True
-
-                        'This whole thing auto-converted from TBL file
+                    
+                    'This whole thing auto-converted from TBL file
                     Case "あ" : Y = &H1 '"a"
                     Case "い" : Y = &H2 '"i"
                     Case "う" : Y = &H3 '"u"
