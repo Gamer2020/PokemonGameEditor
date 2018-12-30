@@ -1159,7 +1159,7 @@ ErrorHandle:
 
     End Sub
 
-    Public Function GetAndDrawTrainerSpriteToBitmap(ByVal index As Integer, ByVal palindex As Integer, Optional ShowBackColor As Boolean = False) As Bitmap
+    Public Function GetAndDrawTrainerSpriteToBitmap(ByVal index As Integer, Optional ShowBackColor As Boolean = False) As Bitmap
 
         Dim sOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "TrainerImageTable", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8)
         Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "TrainerPaletteTable", ""), System.Globalization.NumberStyles.HexNumber) + (index * 8)

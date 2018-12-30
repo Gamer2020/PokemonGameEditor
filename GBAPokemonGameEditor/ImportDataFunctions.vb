@@ -4,14 +4,14 @@ Imports System.Net
 Imports VB = Microsoft.VisualBasic
 Module ImportDataFunctions
 
-    Private FrontPalette As Color() = New Color(&H11 - 1) {}
-    Private BackPalette As Color() = New Color(&H11 - 1) {}
+    Private FrontPalette As Color() = New Color(&H10 - 1) {}
+    Private BackPalette As Color() = New Color(&H10 - 1) {}
 
     Private FrontSprite As Byte()
     Private BackSprite As Byte()
 
-    Private AnimationNormalPalette As Color() = New Color(&H11 - 1) {}
-    Private AnimationShinyPalette As Color() = New Color(&H11 - 1) {}
+    Private AnimationNormalPalette As Color() = New Color(&H10 - 1) {}
+    Private AnimationShinyPalette As Color() = New Color(&H110 - 1) {}
 
     Private AnimationNormalSprite As Byte()
     Private AnimationShinySprite As Byte()
@@ -427,12 +427,12 @@ Module ImportDataFunctions
         Dim palcolor As Color
         Dim flag As Boolean = False
 
-        Array.Clear(FrontPalette, 0, &H10)
-        Array.Clear(BackPalette, 0, &H10)
+        Array.Clear(FrontPalette, 0, &H10 - 1)
+        Array.Clear(BackPalette, 0, &H10 - 1)
 
         If LoadAnimationFlag = True Then
-            Array.Clear(AnimationNormalPalette, 0, &H10)
-            Array.Clear(AnimationShinyPalette, 0, &H10)
+            Array.Clear(AnimationNormalPalette, 0, &H10 - 1)
+            Array.Clear(AnimationShinyPalette, 0, &H10 - 1)
 
         End If
 
@@ -552,21 +552,20 @@ Module ImportDataFunctions
             ConvertBitmapToPalette(OShinyBackBitmapAnimation, AnimationShinyPalette, True)
         End If
 
-        SynchSprite(FrontSprite, ONormalFrontBitmap, OShinyFrontBitmap)
         SynchSprite(BackSprite, ONormalBackBitmap, OShinyBackBitmap)
 
         If LoadAnimationFlag = True Then
-            SynchSprite2(AnimationNormalSprite, ONormalFrontBitmapAnimation, OShinyFrontBitmapAnimation)
+            SynchSprite(AnimationNormalSprite, ONormalFrontBitmapAnimation, OShinyFrontBitmapAnimation)
+            SaveAnimationSpriteToFreeSpace(PokemonIndex, AnimationNormalSprite)
+        Else
+            SynchSprite(FrontSprite, ONormalFrontBitmap, OShinyFrontBitmap)
+            SaveFrontSpriteToFreeSpace(PokemonIndex, FrontSprite, FrontPalette)
         End If
 
         mainbitmap.Dispose()
-
-        SaveFrontSpriteToFreeSpace(PokemonIndex, FrontSprite, FrontPalette)
         SaveBackSpriteToFreeSpace(PokemonIndex, BackSprite, BackPalette)
 
-        If LoadAnimationFlag = True Then
-            SaveAnimationSpriteToFreeSpace(PokemonIndex, AnimationNormalSprite)
-        End If
+
 
     End Sub
 
