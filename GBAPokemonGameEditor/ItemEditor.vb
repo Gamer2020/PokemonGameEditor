@@ -73,21 +73,23 @@ Public Class ItemEditor
 
         ChangeNameTextBox.Text = GetItemName(ItemListComboBox.SelectedIndex)
 
-        IndexTextBox.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 14) + (ItemListComboBox.SelectedIndex * 44), 2))), System.Globalization.NumberStyles.HexNumber)
-        PriceTextBox.Text = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 16) + (ItemListComboBox.SelectedIndex * 44), 2))), System.Globalization.NumberStyles.HexNumber)
-        HoldEffectTextBox.Text = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 18) + (ItemListComboBox.SelectedIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
-        ValueTextBox.Text = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 19) + (ItemListComboBox.SelectedIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
-        DescribPointTextBox.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 20) + (ItemListComboBox.SelectedIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
-        MysteryValue1TextBox.Text = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 24) + (ItemListComboBox.SelectedIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
-        MysteryValue2TextBox.Text = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 25) + (ItemListComboBox.SelectedIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
-        PocketComboBox.SelectedIndex = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 26) + (ItemListComboBox.SelectedIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
-        TypeTextBox.Text = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 27) + (ItemListComboBox.SelectedIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        Dim ItemHex As String = ReadHEX(LoadedROM, ((ItemBaseOff) + 14) + (ItemListComboBox.SelectedIndex * 44), 30)
 
-        FieldUsagePTTextBox.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 28) + (ItemListComboBox.SelectedIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
-        BattleUsagePTTextBox.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemListComboBox.SelectedIndex * 44), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
-        BUTextBox.Text = Int32.Parse((((ReadHEX(LoadedROM, ((ItemBaseOff) + 32) + (ItemListComboBox.SelectedIndex * 44), 1)))), System.Globalization.NumberStyles.HexNumber)
+        IndexTextBox.Text = Int32.Parse((ReverseHEX(ItemHex.Substring(0, 4))), System.Globalization.NumberStyles.HexNumber)
+        PriceTextBox.Text = Int32.Parse((ReverseHEX(ItemHex.Substring(4, 4))), System.Globalization.NumberStyles.HexNumber)
+        HoldEffectTextBox.Text = Int32.Parse((((ItemHex.Substring(8, 2)))), System.Globalization.NumberStyles.HexNumber)
+        ValueTextBox.Text = Int32.Parse((((ItemHex.Substring(10, 2)))), System.Globalization.NumberStyles.HexNumber)
+        DescribPointTextBox.Text = Hex(Int32.Parse((ReverseHEX(ItemHex.Substring(12, 8))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        MysteryValue1TextBox.Text = Int32.Parse((((ItemHex.Substring(20, 2)))), System.Globalization.NumberStyles.HexNumber)
+        MysteryValue2TextBox.Text = Int32.Parse((((ItemHex.Substring(22, 2)))), System.Globalization.NumberStyles.HexNumber)
+        PocketComboBox.SelectedIndex = Int32.Parse((((ItemHex.Substring(24, 2)))), System.Globalization.NumberStyles.HexNumber)
+        TypeTextBox.Text = Int32.Parse((((ItemHex.Substring(26, 2)))), System.Globalization.NumberStyles.HexNumber)
 
-        ExtParTxt.Text = ReverseHEX(ReadHEX(LoadedROM, ((ItemBaseOff) + 40) + (ItemListComboBox.SelectedIndex * 44), 4))
+        FieldUsagePTTextBox.Text = Hex(Int32.Parse((ReverseHEX(ItemHex.Substring(28, 8))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        BattleUsagePTTextBox.Text = Hex(Int32.Parse((ReverseHEX(ItemHex.Substring(44, 8))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+        BUTextBox.Text = Int32.Parse((((ItemHex.Substring(36, 2)))), System.Globalization.NumberStyles.HexNumber)
+
+        ExtParTxt.Text = ReverseHEX(ItemHex.Substring(52, 8))
 
         FileNum = FreeFile()
         FileOpen(FileNum, LoadedROM, OpenMode.Binary)
@@ -119,35 +121,57 @@ Public Class ItemEditor
 
     Private Sub SaveBttn_Click(sender As Object, e As EventArgs) Handles SaveBttn.Click
 
-        Dim listvar As Integer
-
+        Dim listvar As Integer = ItemListComboBox.SelectedIndex
         Dim LoopVar As Integer
-
-        listvar = ItemListComboBox.SelectedIndex
 
         ChangeItemName(listvar, ChangeNameTextBox.Text)
 
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 14) + (listvar * 44), ReverseHEX(VB.Right("0000" & Hex(IndexTextBox.Text), 4)))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 16) + (listvar * 44), ReverseHEX(VB.Right("0000" & Hex(PriceTextBox.Text), 4)))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 18) + (listvar * 44), Hex(HoldEffectTextBox.Text))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 19) + (listvar * 44), Hex(ValueTextBox.Text))
+        Dim ItemHex1 As String = ""
+        Dim ItemHex2 As String = ""
+        Dim ItemHex3 As String = ""
 
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 24) + (listvar * 44), Hex(MysteryValue1TextBox.Text))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 25) + (listvar * 44), Hex(MysteryValue2TextBox.Text))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 26) + (listvar * 44), Hex(PocketComboBox.SelectedIndex))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 27) + (listvar * 44), Hex(TypeTextBox.Text))
+        ItemHex1 += ReverseHEX(VB.Right("0000" & Hex(IndexTextBox.Text), 4))
+        ItemHex1 += ReverseHEX(VB.Right("0000" & Hex(PriceTextBox.Text), 4))
+        ItemHex1 += VB.Right("00" & Hex(HoldEffectTextBox.Text), 2)
+        ItemHex1 += VB.Right("00" & Hex(ValueTextBox.Text), 2)
+        '4 Bytes Skipped Over - Desc Pointer
+        ItemHex2 += VB.Right("00" & Hex(MysteryValue1TextBox.Text), 2)
+        ItemHex2 += VB.Right("00" & Hex(MysteryValue2TextBox.Text), 2)
+        ItemHex2 += VB.Right("00" & Hex(PocketComboBox.SelectedIndex), 2)
+        ItemHex2 += VB.Right("00" & Hex(TypeTextBox.Text), 2)
+        ItemHex2 += VB.Right("00000000" & ReverseHEX(Hex(Int32.Parse(((FieldUsagePTTextBox.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)), 8)
+        ItemHex2 += VB.Right("00" & Hex(BUTextBox.Text), 2)
+        '3 Bytes Skipped Over
+        ItemHex3 += VB.Right("00000000" & ReverseHEX(Hex(Int32.Parse(((BattleUsagePTTextBox.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)), 8)
+        ItemHex3 += VB.Right("00000000" & ReverseHEX(ExtParTxt.Text), 8)
 
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 28) + (ItemListComboBox.SelectedIndex * 44), ReverseHEX(Hex(Int32.Parse(((FieldUsagePTTextBox.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemListComboBox.SelectedIndex * 44), ReverseHEX(Hex(Int32.Parse(((BattleUsagePTTextBox.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 32) + (listvar * 44), Hex(BUTextBox.Text))
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 14) + (listvar * 44), ItemHex1) '(ItemBaseOff) + 14---19
+        '                                                                     (ItemBaseOff) + 20---23
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 24) + (listvar * 44), ItemHex2) '(ItemBaseOff) + 24---32
+        '                                                                     (ItemBaseOff) + 33---35
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 36) + (listvar * 44), ItemHex3) '(ItemBaseOff) + 36---43
 
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 40) + (ItemListComboBox.SelectedIndex * 44), ReverseHEX(ExtParTxt.Text))
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 14) + (listvar * 44), ReverseHEX(VB.Right("0000" & Hex(IndexTextBox.Text), 4)))
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 16) + (listvar * 44), ReverseHEX(VB.Right("0000" & Hex(PriceTextBox.Text), 4)))
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 18) + (listvar * 44), Hex(HoldEffectTextBox.Text))
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 19) + (listvar * 44), Hex(ValueTextBox.Text))
 
-        If header2 = "BPR" Or header2 = "BPG" Or header2 = "BPE" Then
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 24) + (listvar * 44), Hex(MysteryValue1TextBox.Text))
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 25) + (listvar * 44), Hex(MysteryValue2TextBox.Text))
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 26) + (listvar * 44), Hex(PocketComboBox.SelectedIndex))
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 27) + (listvar * 44), Hex(TypeTextBox.Text))
 
-        Else
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 28) + (ItemListComboBox.SelectedIndex * 44), ReverseHEX(Hex(Int32.Parse(((FieldUsagePTTextBox.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemListComboBox.SelectedIndex * 44), ReverseHEX(Hex(Int32.Parse(((BattleUsagePTTextBox.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 32) + (listvar * 44), Hex(BUTextBox.Text))
 
-        End If
+        'WriteHEX(LoadedROM, ((ItemBaseOff) + 40) + (ItemListComboBox.SelectedIndex * 44), ReverseHEX(ExtParTxt.Text))
+
+        'If header2 = "BPR" Or header2 = "BPG" Or header2 = "BPE" Then
+
+        'Else
+
+        'End If
 
         LoopVar = 0
 

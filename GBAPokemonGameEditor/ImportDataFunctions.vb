@@ -981,24 +981,7 @@ Module ImportDataFunctions
         Dim BUText As String = INI.GetString(iniPath, "Item", "BUText", "0")
         Dim ExtraParam As String = INI.GetString(iniPath, "Item", "ExtraParam", "00000000")
 
-
         ChangeItemName(ItemIndex, ItemName)
-
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 14) + (ItemIndex * 44), ReverseHEX(VB.Right("0000" & Hex(ItemIndex), 4)))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 16) + (ItemIndex * 44), ReverseHEX(VB.Right("0000" & Hex(Price), 4)))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 18) + (ItemIndex * 44), Hex(HoldEffect))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 19) + (ItemIndex * 44), Hex(Value))
-
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 24) + (ItemIndex * 44), Hex(Mystery1))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 25) + (ItemIndex * 44), Hex(Mystery2))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 26) + (ItemIndex * 44), Hex(Pocket))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 27) + (ItemIndex * 44), Hex(ItemType))
-
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 28) + (ItemIndex * 44), ReverseHEX(Hex(Int32.Parse(((FieldUsagePointer)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemIndex * 44), ReverseHEX(Hex(Int32.Parse(((BattleUsagePointer)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 32) + (ItemIndex * 44), Hex(BUText))
-
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 40) + (ItemIndex * 44), ReverseHEX(ExtraParam))
 
         'Description
         Dim alreadyInserted As Boolean = False
@@ -1038,7 +1021,27 @@ Module ImportDataFunctions
             FileClose(FileNum)
         End If
 
-        WriteHEX(LoadedROM, ((ItemBaseOff) + 20) + (ItemIndex * 44), ReverseHEX(Hex(Int32.Parse(((newtextoff))) + &H8000000)))
+        Dim ItemHex1 As String = ""
+        Dim ItemHex2 As String = ""
+
+        ItemHex1 += ReverseHEX(VB.Right("0000" & Hex(ItemIndex), 4))
+        ItemHex1 += ReverseHEX(VB.Right("0000" & Hex(Price), 4))
+        ItemHex1 += VB.Right("00" & Hex(HoldEffect), 2)
+        ItemHex1 += VB.Right("00" & Hex(Value), 2)
+        ItemHex1 += VB.Right("00000000" & ReverseHEX(Hex(Int32.Parse(((newtextoff))) + &H8000000)), 8)
+        ItemHex1 += VB.Right("00" & Hex(Mystery1), 2)
+        ItemHex1 += VB.Right("00" & Hex(Mystery2), 2)
+        ItemHex1 += VB.Right("00" & Hex(Pocket), 2)
+        ItemHex1 += VB.Right("00" & Hex(ItemType), 2)
+        ItemHex1 += VB.Right("00000000" & ReverseHEX(Hex(Int32.Parse(((FieldUsagePointer)), System.Globalization.NumberStyles.HexNumber) + &H8000000)), 8)
+        ItemHex1 += VB.Right("00" & Hex(BUText), 2)
+        '3 Bytes Skipped Over
+        ItemHex2 += VB.Right("00000000" & ReverseHEX(Hex(Int32.Parse(((BattleUsagePointer)), System.Globalization.NumberStyles.HexNumber) + &H8000000)), 8)
+        ItemHex2 += VB.Right("00000000" & ReverseHEX(ExtraParam), 8)
+
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 14) + (ItemIndex * 44), ItemHex1) '(ItemBaseOff) + 14---32
+        '                                                                       (ItemBaseOff) + 33---35
+        WriteHEX(LoadedROM, ((ItemBaseOff) + 36) + (ItemIndex * 44), ItemHex2) '(ItemBaseOff) + 36---43
 
     End Sub
 
@@ -1051,7 +1054,7 @@ Module ImportDataFunctions
         If mainbitmap.Height = 24 And mainbitmap.Width = 24 Then
 
         Else
-            MsgBox("The dimensions of the file" & ItemIndex & ".png" & " does not seem correct. Aborting...")
+            MsgBox("The dimensions of the file " & pngpath & " do not seem correct. Aborting...")
             Exit Sub
         End If
 
