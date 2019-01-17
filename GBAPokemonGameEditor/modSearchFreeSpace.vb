@@ -149,7 +149,7 @@ Module modSearchFreeSpace
 
             ' MsgBox(CInt("&H" & CurSearchOffset) + CInt(SearchIncrement))
 
-            CurSearchOffset = Hex(FindFreeSpace(FileName, FreeSpaceByte, NeededBytes, CInt("&H" & CurSearchOffset) + CInt(SearchIncrement)))
+            CurSearchOffset = Hex(FindFreeSpace(FileName, FreeSpaceByte, NeededBytes, CInt("&H" & CurSearchOffset) + CInt(SearchIncrement), True))
 
             SearchIncrement = SearchIncrement + 1
 
@@ -159,7 +159,7 @@ Module modSearchFreeSpace
 
     End Function
 
-    Private Function FindFreeSpace(selectedROMPath As String, freeSpaceByte As Byte, dataSize As Integer, startLocation As Integer) As Integer
+    Private Function FindFreeSpace(selectedROMPath As String, freeSpaceByte As Byte, dataSize As Integer, startLocation As Integer, Optional alignFour As Boolean = False) As Integer
 
         Dim rom As Byte() = File.ReadAllBytes(selectedROMPath)
 
@@ -168,6 +168,7 @@ Module modSearchFreeSpace
             For i As Integer = 0 To dataSize
                 If startLocation + dataSize <= rom.Length Then
                     If rom(startLocation + i) <> freeSpaceByte Then
+                        startLocation += i + 1
                         Exit For
                     ElseIf i = dataSize Then
                         spaceFound = True
@@ -181,7 +182,9 @@ Module modSearchFreeSpace
                 End If
             Next
             If Not spaceFound Then
-                startLocation += 1
+                If alignFour Then
+                    startLocation += 4 - (startLocation Mod 4)
+                End If
             End If
         End While
         Return startLocation

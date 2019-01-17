@@ -32,7 +32,7 @@ Public Class BattleFrontierEditor
 
         Else
             MsgBox("This ROM is not supported!!!")
-            End
+            Me.Close()
         End If
     End Sub
 

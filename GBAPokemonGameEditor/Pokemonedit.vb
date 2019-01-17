@@ -15,7 +15,6 @@ Public Class Pokemonedit
     Dim AnimationPointers As Integer
     Dim IconPointers As Integer
     Dim IconPalTable As Integer
-    Dim IconPalCount As Integer
     Dim EvoData As Integer
     Dim TMHMAttacks As Integer
     Dim TMHMCompoLoc As Integer
@@ -36,6 +35,9 @@ Public Class Pokemonedit
     Dim Tab4LoadedMon As Integer
     Dim Tab5LoadedMon As Integer
     Dim Tab6LoadedMon As Integer
+
+
+    Public Shared IconPalCount As Integer
 
     Public Shared PicStrings As List(Of String)
     Public Shared PicOffsets As List(Of String)
@@ -978,7 +980,7 @@ Public Class Pokemonedit
         TextBox6.Enabled = False
 
 
-        EvoTypes.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
+        EvoTypes.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + ((PKMNames.SelectedIndex + 1) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
 
 
         'This will enable the right stuff
@@ -1719,26 +1721,30 @@ Public Class Pokemonedit
             End If
 
             Dim LoopVar As Integer
+            Dim oldIndex As Integer = PKMNames.SelectedIndex
 
             LoopVar = 0
+
+            'TabControl1.SelectedTab = TabPage2
             Me.Enabled = False
 
             While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
-                '  PKMNames.SelectedIndex = LoopVar
+                'PKMNames.SelectedIndex = LoopVar
+                'TabChanged()
 
                 LoopVar = LoopVar + 1
-
-
 
                 ExportPokemonINI(FolderBrowserDialog.SelectedPath & "\Pokemon\" & LoopVar & ".ini", LoopVar)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
                 QuickRefresh(ProgressBar)
+                DoEvents()
             End While
 
             Me.Text = "Pokemon Editor"
             Me.UseWaitCursor = False
+            PKMNames.SelectedIndex = oldIndex
             Me.Enabled = True
             ProgressBar.Visible = False
             Me.BringToFront()
@@ -2443,17 +2449,18 @@ Public Class Pokemonedit
             ProgressBar.Visible = True
 
             Dim LoopVar As Integer
+            Dim oldIndex As Integer = PKMNames.SelectedIndex
 
             LoopVar = 0
 
+            'TabControl1.SelectedTab = TabPage2
             Me.Enabled = False
 
             While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
                 'PKMNames.SelectedIndex = LoopVar
+                'TabChanged()
 
                 LoopVar = LoopVar + 1
-
-
 
                 If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini") Then
                     ImportPokemonINI(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini", LoopVar)
@@ -2462,6 +2469,7 @@ Public Class Pokemonedit
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
                 QuickRefresh(ProgressBar)
+                DoEvents()
             End While
 
             LoopVar = 0
@@ -2484,6 +2492,7 @@ Public Class Pokemonedit
 
             Me.Text = "Pokemon Editor"
             Me.UseWaitCursor = False
+            PKMNames.SelectedIndex = oldIndex
             Me.Enabled = True
             ProgressBar.Visible = False
             Me.BringToFront()
@@ -3476,6 +3485,7 @@ Public Class Pokemonedit
 
             ImportPokemonIcon(fileOpenDialog.FileName, PKMNames.SelectedIndex + 1)
 
+
             i = PKMNames.SelectedIndex
 
             IconPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber)
@@ -3618,24 +3628,30 @@ Public Class Pokemonedit
             End If
 
             Dim LoopVar As Integer
+            Dim oldIndex As Integer = PKMNames.SelectedIndex
 
             LoopVar = 0
+
+            'TabControl1.SelectedTab = TabPage1
             Me.Enabled = False
+
             While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
-                '  PKMNames.SelectedIndex = LoopVar
+                'PKMNames.SelectedIndex = LoopVar
+                'TabChanged()
 
                 LoopVar = LoopVar + 1
-
 
                 ExportAseriesSheet(FolderBrowserDialog.SelectedPath & "\Sprites\" & LoopVar & ".png", LoopVar)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
                 QuickRefresh(ProgressBar)
+                DoEvents()
             End While
 
             Me.Text = "Pokemon Editor"
             Me.UseWaitCursor = False
+            PKMNames.SelectedIndex = oldIndex
             Me.Enabled = True
             ProgressBar.Visible = False
             Me.BringToFront()
@@ -3652,17 +3668,18 @@ Public Class Pokemonedit
             ProgressBar.Visible = True
 
             Dim LoopVar As Integer
+            Dim oldIndex As Integer = PKMNames.SelectedIndex
 
             LoopVar = 0
 
+            'TabControl1.SelectedTab = TabPage1
             Me.Enabled = False
 
             While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
                 'PKMNames.SelectedIndex = LoopVar
+                'TabChanged()
 
                 LoopVar = LoopVar + 1
-
-
 
                 If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png") Then
                     ImportAseriesSheet(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png", LoopVar)
@@ -3673,6 +3690,7 @@ Public Class Pokemonedit
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
 
                 QuickRefresh(ProgressBar)
+                DoEvents()
             End While
 
             PKMNames.SelectedIndex = 1
@@ -3680,6 +3698,7 @@ Public Class Pokemonedit
 
             Me.Text = "Pokemon Editor"
             Me.UseWaitCursor = False
+            PKMNames.SelectedIndex = oldIndex
             Me.Enabled = True
             ProgressBar.Visible = False
             Me.BringToFront()
@@ -4475,6 +4494,7 @@ Public Class Pokemonedit
             ImportPokemonIconNewOffset(fileOpenDialog.FileName, PKMNames.SelectedIndex + 1)
 
             i = PKMNames.SelectedIndex
+            TabChanged()
 
             IconPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber)
             IconPalTable = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber)
@@ -4538,7 +4558,4 @@ Public Class Pokemonedit
         MenuItem.Update()
     End Sub
 
-    Private Sub chkCompressed1_CheckedChanged(sender As Object, e As EventArgs) Handles chkCompressed1.CheckedChanged
-
-    End Sub
 End Class

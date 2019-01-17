@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="HoverInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>603, 17</value>
+  </metadata>
   <metadata name="fileOpenDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>132, 17</value>
   </metadata>
@@ -126,6 +129,80 @@
   <metadata name="FolderBrowserDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>405, 17</value>
   </metadata>
+  <metadata name="HoverInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>603, 17</value>
+  </metadata>
+  <metadata name="HoverInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>603, 17</value>
+  </metadata>
+  <data name="Button14.ToolTip" xml:space="preserve">
+    <value>Import All Pokemon:
+
+Select a folder containing Pokemon ini files
+to import. Files in the folder will be selected for 
+a Pokemon based on their filename.
+
+Ex: '1.ini' or '1 ~other text~.ini' will be imported
+       to Pokemon 1.</value>
+  </data>
+  <data name="Button28.ToolTip" xml:space="preserve">
+    <value>Import All Icons:
+
+Choose a folder and import 
+an icon for each Pokemon.
+
+The filename of each image must 
+start with the index number of the 
+Pokemon it will be imported to.
+
+The image will be imported at the 
+offset of the old icon.
+</value>
+  </data>
+  <data name="Button39.ToolTip" xml:space="preserve">
+    <value>Import All Cries:
+
+Choose a folder and import 
+cries for all Pokemon from .wav 
+files.
+
+The filename for each cry must 
+start with the index number of 
+the Pokemon it corresponds to.
+
+To compress all cries on import,
+check the 'Compressed' box
+above the import button in the
+'Cry Data' tab.</value>
+  </data>
+  <data name="Button41.ToolTip" xml:space="preserve">
+    <value>Import All Icons and Repoint:
+
+Choose a folder and import 
+an icon for each Pokemon.
+
+The filename of each image must 
+start with the index number of the 
+Pokemon it will be imported to.
+
+The image will be imported to 
+free space and the icon will be 
+repointed.</value>
+  </data>
+  <data name="CheckBox1.ToolTip" xml:space="preserve">
+    <value>When sprite sheets, sprite palettes, 
+Pokedex entries, and level up attack lists 
+are imported, they will be compared to 
+previous imports from this session. If the 
+data has already been imported, the data 
+will be repointed to the previous import, 
+instead of importing it again.
+
+Imported data is only stored for the time that 
+this window stays open. Closing and 
+reopening this window will clear all 
+'remembered' data.</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>48</value>
   </metadata>

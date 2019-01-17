@@ -880,10 +880,12 @@ ErrorHandle:
 
                 If Not individualPalettes Then
                     fs.Position = pOffset
+
                 Else
                     fs.Position = pTableOffset
                     pOffset = r.ReadInt32 - &H8000000
                     fs.Position = pOffset
+
                 End If
 
                 r.Read(Temp, 0, &HFFF)

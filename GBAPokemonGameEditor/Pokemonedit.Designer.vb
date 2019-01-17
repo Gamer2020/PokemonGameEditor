@@ -22,6 +22,7 @@ Partial Class Pokemonedit
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pokemonedit))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -286,6 +287,7 @@ Partial Class Pokemonedit
         Me.Button39 = New System.Windows.Forms.Button()
         Me.Button41 = New System.Windows.Forms.Button()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.HoverInfo = New System.Windows.Forms.ToolTip(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox26.SuspendLayout()
@@ -363,7 +365,7 @@ Partial Class Pokemonedit
         Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage6)
         Me.TabControl1.Location = New System.Drawing.Point(197, 33)
-        Me.TabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(829, 615)
@@ -380,9 +382,9 @@ Partial Class Pokemonedit
         Me.TabPage1.Controls.Add(Me.GroupBox15)
         Me.TabPage1.Controls.Add(Me.GroupBox14)
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(4)
         Me.TabPage1.Size = New System.Drawing.Size(821, 586)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Sprites"
@@ -392,9 +394,9 @@ Partial Class Pokemonedit
         '
         Me.GroupBox26.Controls.Add(Me.ItmAnmtn)
         Me.GroupBox26.Location = New System.Drawing.Point(599, 489)
-        Me.GroupBox26.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox26.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox26.Name = "GroupBox26"
-        Me.GroupBox26.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox26.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox26.Size = New System.Drawing.Size(179, 62)
         Me.GroupBox26.TabIndex = 6
         Me.GroupBox26.TabStop = False
@@ -403,7 +405,7 @@ Partial Class Pokemonedit
         'ItmAnmtn
         '
         Me.ItmAnmtn.Location = New System.Drawing.Point(20, 23)
-        Me.ItmAnmtn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ItmAnmtn.Margin = New System.Windows.Forms.Padding(4)
         Me.ItmAnmtn.MaxLength = 10
         Me.ItmAnmtn.Name = "ItmAnmtn"
         Me.ItmAnmtn.Size = New System.Drawing.Size(125, 22)
@@ -412,7 +414,7 @@ Partial Class Pokemonedit
         'Button20
         '
         Me.Button20.Location = New System.Drawing.Point(8, 40)
-        Me.Button20.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button20.Margin = New System.Windows.Forms.Padding(4)
         Me.Button20.Name = "Button20"
         Me.Button20.Size = New System.Drawing.Size(237, 28)
         Me.Button20.TabIndex = 9
@@ -422,7 +424,7 @@ Partial Class Pokemonedit
         'Button19
         '
         Me.Button19.Location = New System.Drawing.Point(8, 7)
-        Me.Button19.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button19.Margin = New System.Windows.Forms.Padding(4)
         Me.Button19.Name = "Button19"
         Me.Button19.Size = New System.Drawing.Size(237, 28)
         Me.Button19.TabIndex = 8
@@ -439,9 +441,9 @@ Partial Class Pokemonedit
         Me.GroupBox33.Controls.Add(Me.Label48)
         Me.GroupBox33.Controls.Add(Me.Label47)
         Me.GroupBox33.Location = New System.Drawing.Point(239, 249)
-        Me.GroupBox33.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox33.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox33.Name = "GroupBox33"
-        Me.GroupBox33.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox33.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox33.Size = New System.Drawing.Size(352, 302)
         Me.GroupBox33.TabIndex = 7
         Me.GroupBox33.TabStop = False
@@ -451,7 +453,7 @@ Partial Class Pokemonedit
         '
         Me.BackgroundBox.BackColor = System.Drawing.Color.Transparent
         Me.BackgroundBox.Location = New System.Drawing.Point(17, 90)
-        Me.BackgroundBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BackgroundBox.Margin = New System.Windows.Forms.Padding(4)
         Me.BackgroundBox.Name = "BackgroundBox"
         Me.BackgroundBox.Size = New System.Drawing.Size(320, 197)
         Me.BackgroundBox.TabIndex = 6
@@ -460,7 +462,7 @@ Partial Class Pokemonedit
         'EnemyAltitudeSelect
         '
         Me.EnemyAltitudeSelect.Location = New System.Drawing.Point(148, 58)
-        Me.EnemyAltitudeSelect.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EnemyAltitudeSelect.Margin = New System.Windows.Forms.Padding(4)
         Me.EnemyAltitudeSelect.Maximum = New Decimal(New Integer() {127, 0, 0, 0})
         Me.EnemyAltitudeSelect.Minimum = New Decimal(New Integer() {127, 0, 0, -2147483648})
         Me.EnemyAltitudeSelect.Name = "EnemyAltitudeSelect"
@@ -470,7 +472,7 @@ Partial Class Pokemonedit
         'EnemyYSelect
         '
         Me.EnemyYSelect.Location = New System.Drawing.Point(83, 58)
-        Me.EnemyYSelect.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EnemyYSelect.Margin = New System.Windows.Forms.Padding(4)
         Me.EnemyYSelect.Maximum = New Decimal(New Integer() {127, 0, 0, 0})
         Me.EnemyYSelect.Minimum = New Decimal(New Integer() {127, 0, 0, -2147483648})
         Me.EnemyYSelect.Name = "EnemyYSelect"
@@ -480,7 +482,7 @@ Partial Class Pokemonedit
         'PlayerYSelect
         '
         Me.PlayerYSelect.Location = New System.Drawing.Point(17, 58)
-        Me.PlayerYSelect.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PlayerYSelect.Margin = New System.Windows.Forms.Padding(4)
         Me.PlayerYSelect.Maximum = New Decimal(New Integer() {127, 0, 0, 0})
         Me.PlayerYSelect.Minimum = New Decimal(New Integer() {127, 0, 0, -2147483648})
         Me.PlayerYSelect.Name = "PlayerYSelect"
@@ -525,9 +527,9 @@ Partial Class Pokemonedit
         Me.GroupBox20.Controls.Add(Me.Button5)
         Me.GroupBox20.Controls.Add(Me.FootPrintPointer)
         Me.GroupBox20.Location = New System.Drawing.Point(8, 322)
-        Me.GroupBox20.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox20.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox20.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox20.Size = New System.Drawing.Size(200, 153)
         Me.GroupBox20.TabIndex = 4
         Me.GroupBox20.TabStop = False
@@ -536,7 +538,7 @@ Partial Class Pokemonedit
         'Button24
         '
         Me.Button24.Location = New System.Drawing.Point(20, 114)
-        Me.Button24.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button24.Margin = New System.Windows.Forms.Padding(4)
         Me.Button24.Name = "Button24"
         Me.Button24.Size = New System.Drawing.Size(91, 26)
         Me.Button24.TabIndex = 15
@@ -546,7 +548,7 @@ Partial Class Pokemonedit
         'Button23
         '
         Me.Button23.Location = New System.Drawing.Point(20, 85)
-        Me.Button23.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button23.Margin = New System.Windows.Forms.Padding(4)
         Me.Button23.Name = "Button23"
         Me.Button23.Size = New System.Drawing.Size(91, 26)
         Me.Button23.TabIndex = 14
@@ -556,7 +558,7 @@ Partial Class Pokemonedit
         'PictureBox1
         '
         Me.PictureBox1.Location = New System.Drawing.Point(136, 31)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(43, 39)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -566,7 +568,7 @@ Partial Class Pokemonedit
         'Button5
         '
         Me.Button5.Location = New System.Drawing.Point(20, 55)
-        Me.Button5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(4)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(91, 26)
         Me.Button5.TabIndex = 12
@@ -576,7 +578,7 @@ Partial Class Pokemonedit
         'FootPrintPointer
         '
         Me.FootPrintPointer.Location = New System.Drawing.Point(20, 23)
-        Me.FootPrintPointer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.FootPrintPointer.Margin = New System.Windows.Forms.Padding(4)
         Me.FootPrintPointer.Name = "FootPrintPointer"
         Me.FootPrintPointer.Size = New System.Drawing.Size(89, 22)
         Me.FootPrintPointer.TabIndex = 11
@@ -592,9 +594,9 @@ Partial Class Pokemonedit
         Me.GroupBox16.Controls.Add(Me.Button4)
         Me.GroupBox16.Controls.Add(Me.IconPointer)
         Me.GroupBox16.Location = New System.Drawing.Point(8, 76)
-        Me.GroupBox16.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox16.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox16.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox16.Size = New System.Drawing.Size(200, 230)
         Me.GroupBox16.TabIndex = 3
         Me.GroupBox16.TabStop = False
@@ -614,7 +616,7 @@ Partial Class Pokemonedit
         'Button40
         '
         Me.Button40.Location = New System.Drawing.Point(105, 156)
-        Me.Button40.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button40.Margin = New System.Windows.Forms.Padding(4)
         Me.Button40.Name = "Button40"
         Me.Button40.Size = New System.Drawing.Size(77, 31)
         Me.Button40.TabIndex = 15
@@ -624,7 +626,7 @@ Partial Class Pokemonedit
         'Button22
         '
         Me.Button22.Location = New System.Drawing.Point(20, 192)
-        Me.Button22.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button22.Margin = New System.Windows.Forms.Padding(4)
         Me.Button22.Name = "Button22"
         Me.Button22.Size = New System.Drawing.Size(163, 31)
         Me.Button22.TabIndex = 14
@@ -634,7 +636,7 @@ Partial Class Pokemonedit
         'Button21
         '
         Me.Button21.Location = New System.Drawing.Point(20, 156)
-        Me.Button21.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button21.Margin = New System.Windows.Forms.Padding(4)
         Me.Button21.Name = "Button21"
         Me.Button21.Size = New System.Drawing.Size(77, 31)
         Me.Button21.TabIndex = 13
@@ -644,7 +646,7 @@ Partial Class Pokemonedit
         'IconPicBox
         '
         Me.IconPicBox.Location = New System.Drawing.Point(140, 22)
-        Me.IconPicBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.IconPicBox.Margin = New System.Windows.Forms.Padding(4)
         Me.IconPicBox.Name = "IconPicBox"
         Me.IconPicBox.Size = New System.Drawing.Size(43, 79)
         Me.IconPicBox.TabIndex = 12
@@ -656,7 +658,7 @@ Partial Class Pokemonedit
         Me.IconPal.FormattingEnabled = True
         Me.IconPal.Items.AddRange(New Object() {"Pal 0", "Pal 1", "Pal 2"})
         Me.IconPal.Location = New System.Drawing.Point(20, 69)
-        Me.IconPal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.IconPal.Margin = New System.Windows.Forms.Padding(4)
         Me.IconPal.Name = "IconPal"
         Me.IconPal.Size = New System.Drawing.Size(89, 24)
         Me.IconPal.TabIndex = 2
@@ -664,7 +666,7 @@ Partial Class Pokemonedit
         'Button4
         '
         Me.Button4.Location = New System.Drawing.Point(20, 117)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(4)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(163, 31)
         Me.Button4.TabIndex = 1
@@ -674,7 +676,7 @@ Partial Class Pokemonedit
         'IconPointer
         '
         Me.IconPointer.Location = New System.Drawing.Point(20, 22)
-        Me.IconPointer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.IconPointer.Margin = New System.Windows.Forms.Padding(4)
         Me.IconPointer.Name = "IconPointer"
         Me.IconPointer.Size = New System.Drawing.Size(89, 22)
         Me.IconPointer.TabIndex = 0
@@ -693,9 +695,9 @@ Partial Class Pokemonedit
         Me.GroupBox15.Controls.Add(Me.Button2)
         Me.GroupBox15.Controls.Add(Me.AnimationPointer)
         Me.GroupBox15.Location = New System.Drawing.Point(599, 9)
-        Me.GroupBox15.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox15.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox15.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox15.Size = New System.Drawing.Size(212, 378)
         Me.GroupBox15.TabIndex = 2
         Me.GroupBox15.TabStop = False
@@ -761,7 +763,7 @@ Partial Class Pokemonedit
         'AniPic2
         '
         Me.AniPic2.Location = New System.Drawing.Point(113, 60)
-        Me.AniPic2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.AniPic2.Margin = New System.Windows.Forms.Padding(4)
         Me.AniPic2.Name = "AniPic2"
         Me.AniPic2.Size = New System.Drawing.Size(85, 158)
         Me.AniPic2.TabIndex = 13
@@ -770,7 +772,7 @@ Partial Class Pokemonedit
         'AniPic
         '
         Me.AniPic.Location = New System.Drawing.Point(16, 60)
-        Me.AniPic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.AniPic.Margin = New System.Windows.Forms.Padding(4)
         Me.AniPic.Name = "AniPic"
         Me.AniPic.Size = New System.Drawing.Size(85, 158)
         Me.AniPic.TabIndex = 12
@@ -780,7 +782,7 @@ Partial Class Pokemonedit
         '
         Me.Button2.Enabled = False
         Me.Button2.Location = New System.Drawing.Point(16, 27)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(91, 26)
         Me.Button2.TabIndex = 11
@@ -790,7 +792,7 @@ Partial Class Pokemonedit
         'AnimationPointer
         '
         Me.AnimationPointer.Location = New System.Drawing.Point(113, 27)
-        Me.AnimationPointer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.AnimationPointer.Margin = New System.Windows.Forms.Padding(4)
         Me.AnimationPointer.Name = "AnimationPointer"
         Me.AnimationPointer.Size = New System.Drawing.Size(84, 22)
         Me.AnimationPointer.TabIndex = 10
@@ -811,9 +813,9 @@ Partial Class Pokemonedit
         Me.GroupBox14.Controls.Add(Me.Label10)
         Me.GroupBox14.Controls.Add(Me.Label9)
         Me.GroupBox14.Location = New System.Drawing.Point(259, 9)
-        Me.GroupBox14.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox14.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox14.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox14.Size = New System.Drawing.Size(332, 233)
         Me.GroupBox14.TabIndex = 1
         Me.GroupBox14.TabStop = False
@@ -822,7 +824,7 @@ Partial Class Pokemonedit
         'BckPic2
         '
         Me.BckPic2.Location = New System.Drawing.Point(233, 111)
-        Me.BckPic2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BckPic2.Margin = New System.Windows.Forms.Padding(4)
         Me.BckPic2.Name = "BckPic2"
         Me.BckPic2.Size = New System.Drawing.Size(85, 79)
         Me.BckPic2.TabIndex = 12
@@ -831,7 +833,7 @@ Partial Class Pokemonedit
         'FrntPic2
         '
         Me.FrntPic2.Location = New System.Drawing.Point(233, 16)
-        Me.FrntPic2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.FrntPic2.Margin = New System.Windows.Forms.Padding(4)
         Me.FrntPic2.Name = "FrntPic2"
         Me.FrntPic2.Size = New System.Drawing.Size(85, 79)
         Me.FrntPic2.TabIndex = 11
@@ -840,7 +842,7 @@ Partial Class Pokemonedit
         'BckPic
         '
         Me.BckPic.Location = New System.Drawing.Point(128, 111)
-        Me.BckPic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BckPic.Margin = New System.Windows.Forms.Padding(4)
         Me.BckPic.Name = "BckPic"
         Me.BckPic.Size = New System.Drawing.Size(85, 79)
         Me.BckPic.TabIndex = 10
@@ -849,7 +851,7 @@ Partial Class Pokemonedit
         'FrntPic
         '
         Me.FrntPic.Location = New System.Drawing.Point(128, 16)
-        Me.FrntPic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.FrntPic.Margin = New System.Windows.Forms.Padding(4)
         Me.FrntPic.Name = "FrntPic"
         Me.FrntPic.Size = New System.Drawing.Size(85, 79)
         Me.FrntPic.TabIndex = 9
@@ -858,7 +860,7 @@ Partial Class Pokemonedit
         'Button3
         '
         Me.Button3.Location = New System.Drawing.Point(128, 193)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(189, 26)
         Me.Button3.TabIndex = 8
@@ -868,7 +870,7 @@ Partial Class Pokemonedit
         'ShinyPointer
         '
         Me.ShinyPointer.Location = New System.Drawing.Point(17, 194)
-        Me.ShinyPointer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ShinyPointer.Margin = New System.Windows.Forms.Padding(4)
         Me.ShinyPointer.Name = "ShinyPointer"
         Me.ShinyPointer.Size = New System.Drawing.Size(89, 22)
         Me.ShinyPointer.TabIndex = 7
@@ -876,7 +878,7 @@ Partial Class Pokemonedit
         'BackPointer
         '
         Me.BackPointer.Location = New System.Drawing.Point(17, 146)
-        Me.BackPointer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BackPointer.Margin = New System.Windows.Forms.Padding(4)
         Me.BackPointer.Name = "BackPointer"
         Me.BackPointer.Size = New System.Drawing.Size(89, 22)
         Me.BackPointer.TabIndex = 6
@@ -884,7 +886,7 @@ Partial Class Pokemonedit
         'NormalPointer
         '
         Me.NormalPointer.Location = New System.Drawing.Point(17, 98)
-        Me.NormalPointer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.NormalPointer.Margin = New System.Windows.Forms.Padding(4)
         Me.NormalPointer.Name = "NormalPointer"
         Me.NormalPointer.Size = New System.Drawing.Size(89, 22)
         Me.NormalPointer.TabIndex = 5
@@ -892,7 +894,7 @@ Partial Class Pokemonedit
         'FrontPointer
         '
         Me.FrontPointer.Location = New System.Drawing.Point(17, 50)
-        Me.FrontPointer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.FrontPointer.Margin = New System.Windows.Forms.Padding(4)
         Me.FrontPointer.Name = "FrontPointer"
         Me.FrontPointer.Size = New System.Drawing.Size(89, 22)
         Me.FrontPointer.TabIndex = 4
@@ -953,9 +955,9 @@ Partial Class Pokemonedit
         Me.TabPage2.Controls.Add(Me.GroupBox4)
         Me.TabPage2.Controls.Add(Me.GroupBox3)
         Me.TabPage2.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(4)
         Me.TabPage2.Size = New System.Drawing.Size(821, 586)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Base Stats"
@@ -968,9 +970,9 @@ Partial Class Pokemonedit
         Me.GroupBox11.Controls.Add(Me.SH2)
         Me.GroupBox11.Controls.Add(Me.SH1)
         Me.GroupBox11.Location = New System.Drawing.Point(505, 330)
-        Me.GroupBox11.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox11.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox11.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox11.Size = New System.Drawing.Size(252, 96)
         Me.GroupBox11.TabIndex = 3
         Me.GroupBox11.TabStop = False
@@ -979,7 +981,7 @@ Partial Class Pokemonedit
         'SHVal
         '
         Me.SHVal.Location = New System.Drawing.Point(136, 62)
-        Me.SHVal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SHVal.Margin = New System.Windows.Forms.Padding(4)
         Me.SHVal.Name = "SHVal"
         Me.SHVal.Size = New System.Drawing.Size(97, 22)
         Me.SHVal.TabIndex = 3
@@ -990,7 +992,7 @@ Partial Class Pokemonedit
         Me.SHCombo1.FormattingEnabled = True
         Me.SHCombo1.Items.AddRange(New Object() {"Instant", "1280 steps", "2560 steps", "3840 steps", "5120 steps", "6400 steps", "7680 steps", "8960 steps", "10240 steps", "20480 steps", "30720 steps"})
         Me.SHCombo1.Location = New System.Drawing.Point(136, 18)
-        Me.SHCombo1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SHCombo1.Margin = New System.Windows.Forms.Padding(4)
         Me.SHCombo1.Name = "SHCombo1"
         Me.SHCombo1.Size = New System.Drawing.Size(97, 24)
         Me.SHCombo1.TabIndex = 2
@@ -999,7 +1001,7 @@ Partial Class Pokemonedit
         '
         Me.SH2.AutoSize = True
         Me.SH2.Location = New System.Drawing.Point(8, 63)
-        Me.SH2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SH2.Margin = New System.Windows.Forms.Padding(4)
         Me.SH2.Name = "SH2"
         Me.SH2.Size = New System.Drawing.Size(80, 21)
         Me.SH2.TabIndex = 1
@@ -1011,7 +1013,7 @@ Partial Class Pokemonedit
         '
         Me.SH1.AutoSize = True
         Me.SH1.Location = New System.Drawing.Point(8, 23)
-        Me.SH1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SH1.Margin = New System.Windows.Forms.Padding(4)
         Me.SH1.Name = "SH1"
         Me.SH1.Size = New System.Drawing.Size(91, 21)
         Me.SH1.TabIndex = 0
@@ -1023,9 +1025,9 @@ Partial Class Pokemonedit
         '
         Me.GroupBox27.Controls.Add(Me.PadBase)
         Me.GroupBox27.Location = New System.Drawing.Point(309, 305)
-        Me.GroupBox27.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox27.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox27.Name = "GroupBox27"
-        Me.GroupBox27.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox27.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox27.Size = New System.Drawing.Size(96, 60)
         Me.GroupBox27.TabIndex = 10
         Me.GroupBox27.TabStop = False
@@ -1034,7 +1036,7 @@ Partial Class Pokemonedit
         'PadBase
         '
         Me.PadBase.Location = New System.Drawing.Point(15, 23)
-        Me.PadBase.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PadBase.Margin = New System.Windows.Forms.Padding(4)
         Me.PadBase.MaxLength = 4
         Me.PadBase.Name = "PadBase"
         Me.PadBase.Size = New System.Drawing.Size(67, 22)
@@ -1045,9 +1047,9 @@ Partial Class Pokemonedit
         Me.GroupBox8.Controls.Add(Me.EggType2)
         Me.GroupBox8.Controls.Add(Me.EggType1)
         Me.GroupBox8.Location = New System.Drawing.Point(16, 436)
-        Me.GroupBox8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox8.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox8.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox8.Size = New System.Drawing.Size(185, 96)
         Me.GroupBox8.TabIndex = 2
         Me.GroupBox8.TabStop = False
@@ -1059,7 +1061,7 @@ Partial Class Pokemonedit
         Me.EggType2.FormattingEnabled = True
         Me.EggType2.Items.AddRange(New Object() {"-------", "Monster", "Water 1", "Bug", "Flying", "Field", "Fairy", "Plant", "HumanShape", "Water 3", "Mineral", "Chaos", "Water 2", "Ditto", "Dragon", "Can't Breed"})
         Me.EggType2.Location = New System.Drawing.Point(8, 57)
-        Me.EggType2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EggType2.Margin = New System.Windows.Forms.Padding(4)
         Me.EggType2.Name = "EggType2"
         Me.EggType2.Size = New System.Drawing.Size(160, 24)
         Me.EggType2.TabIndex = 1
@@ -1070,7 +1072,7 @@ Partial Class Pokemonedit
         Me.EggType1.FormattingEnabled = True
         Me.EggType1.Items.AddRange(New Object() {"-------", "Monster", "Water 1", "Bug", "Flying", "Field", "Fairy", "Plant", "HumanShape", "Water 3", "Mineral", "Chaos", "Water 2", "Ditto", "Dragon", "Can't Breed"})
         Me.EggType1.Location = New System.Drawing.Point(8, 23)
-        Me.EggType1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EggType1.Margin = New System.Windows.Forms.Padding(4)
         Me.EggType1.Name = "EggType1"
         Me.EggType1.Size = New System.Drawing.Size(160, 24)
         Me.EggType1.TabIndex = 0
@@ -1082,9 +1084,9 @@ Partial Class Pokemonedit
         Me.GroupBox13.Controls.Add(Me.G2)
         Me.GroupBox13.Controls.Add(Me.G1)
         Me.GroupBox13.Location = New System.Drawing.Point(16, 305)
-        Me.GroupBox13.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox13.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox13.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox13.Size = New System.Drawing.Size(281, 123)
         Me.GroupBox13.TabIndex = 9
         Me.GroupBox13.TabStop = False
@@ -1093,7 +1095,7 @@ Partial Class Pokemonedit
         'GVal
         '
         Me.GVal.Location = New System.Drawing.Point(151, 52)
-        Me.GVal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GVal.Margin = New System.Windows.Forms.Padding(4)
         Me.GVal.Name = "GVal"
         Me.GVal.Size = New System.Drawing.Size(99, 22)
         Me.GVal.TabIndex = 3
@@ -1104,7 +1106,7 @@ Partial Class Pokemonedit
         Me.GCombo1.FormattingEnabled = True
         Me.GCombo1.Items.AddRange(New Object() {"100% Male", "87% Male", "75% Male", "65% Male", "50% Male", "65% Female", "75% Female", "87% Female", "100% Female", "Genderless"})
         Me.GCombo1.Location = New System.Drawing.Point(151, 20)
-        Me.GCombo1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GCombo1.Margin = New System.Windows.Forms.Padding(4)
         Me.GCombo1.Name = "GCombo1"
         Me.GCombo1.Size = New System.Drawing.Size(99, 24)
         Me.GCombo1.TabIndex = 2
@@ -1113,7 +1115,7 @@ Partial Class Pokemonedit
         '
         Me.G2.AutoSize = True
         Me.G2.Location = New System.Drawing.Point(23, 53)
-        Me.G2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.G2.Margin = New System.Windows.Forms.Padding(4)
         Me.G2.Name = "G2"
         Me.G2.Size = New System.Drawing.Size(80, 21)
         Me.G2.TabIndex = 1
@@ -1125,7 +1127,7 @@ Partial Class Pokemonedit
         '
         Me.G1.AutoSize = True
         Me.G1.Location = New System.Drawing.Point(23, 25)
-        Me.G1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.G1.Margin = New System.Windows.Forms.Padding(4)
         Me.G1.Name = "G1"
         Me.G1.Size = New System.Drawing.Size(91, 21)
         Me.G1.TabIndex = 0
@@ -1140,9 +1142,9 @@ Partial Class Pokemonedit
         Me.GroupBox12.Controls.Add(Me.HP2)
         Me.GroupBox12.Controls.Add(Me.HP1)
         Me.GroupBox12.Location = New System.Drawing.Point(505, 199)
-        Me.GroupBox12.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox12.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox12.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox12.Size = New System.Drawing.Size(267, 123)
         Me.GroupBox12.TabIndex = 8
         Me.GroupBox12.TabStop = False
@@ -1154,7 +1156,7 @@ Partial Class Pokemonedit
         Me.HPCombo1.FormattingEnabled = True
         Me.HPCombo1.Items.AddRange(New Object() {"Lowest (0)", "Low (35)", "Normal (70)", "Medium-High (90)", "High (100)", "Very High (140)", "Max (255)"})
         Me.HPCombo1.Location = New System.Drawing.Point(136, 23)
-        Me.HPCombo1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.HPCombo1.Margin = New System.Windows.Forms.Padding(4)
         Me.HPCombo1.Name = "HPCombo1"
         Me.HPCombo1.Size = New System.Drawing.Size(103, 24)
         Me.HPCombo1.TabIndex = 3
@@ -1162,7 +1164,7 @@ Partial Class Pokemonedit
         'HPVal
         '
         Me.HPVal.Location = New System.Drawing.Point(136, 54)
-        Me.HPVal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.HPVal.Margin = New System.Windows.Forms.Padding(4)
         Me.HPVal.Name = "HPVal"
         Me.HPVal.Size = New System.Drawing.Size(104, 22)
         Me.HPVal.TabIndex = 2
@@ -1171,7 +1173,7 @@ Partial Class Pokemonedit
         '
         Me.HP2.AutoSize = True
         Me.HP2.Location = New System.Drawing.Point(8, 58)
-        Me.HP2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.HP2.Margin = New System.Windows.Forms.Padding(4)
         Me.HP2.Name = "HP2"
         Me.HP2.Size = New System.Drawing.Size(80, 21)
         Me.HP2.TabIndex = 1
@@ -1183,7 +1185,7 @@ Partial Class Pokemonedit
         '
         Me.HP1.AutoSize = True
         Me.HP1.Location = New System.Drawing.Point(8, 26)
-        Me.HP1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.HP1.Margin = New System.Windows.Forms.Padding(4)
         Me.HP1.Name = "HP1"
         Me.HP1.Size = New System.Drawing.Size(91, 21)
         Me.HP1.TabIndex = 0
@@ -1195,9 +1197,9 @@ Partial Class Pokemonedit
         '
         Me.GroupBox10.Controls.Add(Me.Grate)
         Me.GroupBox10.Location = New System.Drawing.Point(299, 128)
-        Me.GroupBox10.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox10.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox10.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox10.Size = New System.Drawing.Size(189, 64)
         Me.GroupBox10.TabIndex = 7
         Me.GroupBox10.TabStop = False
@@ -1209,7 +1211,7 @@ Partial Class Pokemonedit
         Me.Grate.FormattingEnabled = True
         Me.Grate.Items.AddRange(New Object() {"1,000,000", "600,000", "1,640,000", "1,059,860", "800,000", "1,250,000"})
         Me.Grate.Location = New System.Drawing.Point(8, 23)
-        Me.Grate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Grate.Margin = New System.Windows.Forms.Padding(4)
         Me.Grate.Name = "Grate"
         Me.Grate.Size = New System.Drawing.Size(160, 24)
         Me.Grate.TabIndex = 0
@@ -1218,9 +1220,9 @@ Partial Class Pokemonedit
         '
         Me.GroupBox9.Controls.Add(Me.Bexp)
         Me.GroupBox9.Location = New System.Drawing.Point(199, 199)
-        Me.GroupBox9.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox9.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox9.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox9.Size = New System.Drawing.Size(92, 62)
         Me.GroupBox9.TabIndex = 6
         Me.GroupBox9.TabStop = False
@@ -1229,7 +1231,7 @@ Partial Class Pokemonedit
         'Bexp
         '
         Me.Bexp.Location = New System.Drawing.Point(25, 25)
-        Me.Bexp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Bexp.Margin = New System.Windows.Forms.Padding(4)
         Me.Bexp.Name = "Bexp"
         Me.Bexp.Size = New System.Drawing.Size(43, 22)
         Me.Bexp.TabIndex = 0
@@ -1239,9 +1241,9 @@ Partial Class Pokemonedit
         Me.GroupBox7.Controls.Add(Me.Ev2)
         Me.GroupBox7.Controls.Add(Me.Ev1)
         Me.GroupBox7.Location = New System.Drawing.Point(299, 199)
-        Me.GroupBox7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox7.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox7.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox7.Size = New System.Drawing.Size(189, 98)
         Me.GroupBox7.TabIndex = 5
         Me.GroupBox7.TabStop = False
@@ -1253,7 +1255,7 @@ Partial Class Pokemonedit
         Me.Ev2.FormattingEnabled = True
         Me.Ev2.Items.AddRange(New Object() {"Nothing", "1 SpA", "2 SpA", "3 SpA", "1 SpD", "1 SpD, 1 SpA", "1 SpD, 2 SpA", "1 SpD, 3 SpA", "2 SpD", "2 SpD, 1 SpA", "2 SpD, 2 SpA", "2 SpD, 3 SpA", "3 SpD", "3 SpD, 1 SpA", "3 SpD, 2 SpA", "3 SpD, 3 SpA"})
         Me.Ev2.Location = New System.Drawing.Point(20, 58)
-        Me.Ev2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Ev2.Margin = New System.Windows.Forms.Padding(4)
         Me.Ev2.Name = "Ev2"
         Me.Ev2.Size = New System.Drawing.Size(160, 24)
         Me.Ev2.TabIndex = 1
@@ -1264,7 +1266,7 @@ Partial Class Pokemonedit
         Me.Ev1.FormattingEnabled = True
         Me.Ev1.Items.AddRange(New Object() {"Nothing", "1 HP", "2 HP", "3 HP", "1 Atk", "1 HP, 1 Atk", "2 HP, 1 Atk", "3 HP, 1 Atk", "2 Atk", "1 HP, 2 Atk", "2 HP, 2 Atk", "3 HP, 2 Atk", "3 Atk", "1 HP, 3 Atk", "2 HP, 3 Atk", "3 HP, 3 Atk", "1 Def", "1 Def, 1 HP", "1 Def, 2 HP", "1 Def, 3 HP", "1 Def, 1 Atk", "1 Def, 1 HP, 1 Atk", "1 Def, 2 HP, 1 Atk", "1 Def, 3 HP, 1 Atk", "1 Def, 2 Atk", "1 Def, 1 HP, 2 Atk", "1 Def, 2 HP, 2 Atk", "1 Def, 3 HP, 2 Atk", "1 Def, 3 Atk", "1 Def, 1 HP, 3 Atk", "1 Def, 2 HP, 3 Atk", "1 Def, 3 HP, 3 Atk", "2 Def", "2 Def, 1 HP", "2 Def, 2 HP", "2 Def, 3 HP", "2 Def, 1 Atk", "2 Def, 1 HP, 1 Atk", "2 Def, 2 HP, 1 Atk", "2 Def, 3 HP, 1 Atk", "2 Def, 2 Atk", "2 Def, 1 HP, 2 Atk", "2 Def, 2 HP, 2 Atk", "2 Def, 3 HP, 2 Atk", "2 Def, 3 Atk", "2 Def, 1 HP, 3 Atk", "2 Def, 2 HP, 3 Atk", "2 Def, 3 HP, 3 Atk", "3 Def", "3 Def, 1 HP", "3 Def, 2 HP", "3 Def, 3 Hp", "3 Def, 1 Atk", "3 Def, 1 HP, 1 Atk", "3 Def, 2 HP, 1 Atk", "3 Def, 3 HP, 1 Atk", "3 Def, 2 Atk", "3 Def, 1 HP, 2 Atk", "3 Def, 2 HP, 2 Atk", "3 Def, 3 HP, 2 Atk", "3 Def, 3 Atk", "3 Def, 1 HP, 3 Atk", "3 Def, 2 HP, 3 Atk", "3 Def, 3 HP, 3 Atk", "1 Spe", "1 Spe, 1 HP", "1 Spe, 2 HP", "1 Spe, 3 HP", "1 Spe, 1 Atk", "1 Spe, 1 HP, 1 Atk", "1 Spe, 2 HP, 1 Atk", "1 Spe, 3 HP, 1 Atk", "1 Spe, 2 Atk", "1 Spe, 1 HP, 2 Atk", "1 Spe, 2 HP, 2 Atk", "1 Spe, 3 HP, 2 Atk", "1 Spe, 3 Atk", "1 Spe, 1 HP, 3 Atk", "1 Spe, 2 HP, 3 Atk", "1 Spe, 3 HP, 3 Atk", "1 Spe, 1 Def", "1 Spe, 1 HP, 1 Def", "1 Spe, 2 HP, 1 Def", "1 Spe, 3 HP, 1 Def", "1 Spe, 1 Atk, 1 Def", "1 Spe, 1 HP, 1 Atk, 1 Def", "1 Spe, 2 HP, 1 Atk, 1 Def", "1 Spe, 3 HP, 1 Atk, 1 Def", "1 Spe, 2 Atk, 1 Def", "1 Spe, 1 HP, 2 Atk, 1 Def", "1 Spe, 2 HP, 2 Atk, 1 Def", "1 Spe, 3 HP, 2 Atk, 1 Def", "1 Spe, 3 Atk, 1 Def", "1 Spe, 1 HP, 3 Atk, 1 Def", "1 Spe, 2 HP, 3 Atk, 1 Def", "1 Spe, 3 HP, 3 Atk, 1 Def", "1 Spe, 2 Def", "1 Spe, 1 HP, 2 Def", "1 Spe, 2 HP, 2 Def", "1 Spe, 3 HP, 2 Def", "1 Spe, 1 Atk, 2 Def", "1 Spe, 1 HP, 1 Atk, 2 Def", "1 Spe, 2 HP, 1 Atk, 2 Def", "1 Spe, 3 HP, 1 Atk, 2 Def", "1 Spe, 2 Atk, 2 Def", "1 Spe, 1 HP, 2 Atk, 2 Def", "1 Spe, 2 HP, 2 Atk, 2 Def", "1 Spe, 3 HP, 2 Atk, 2 Def", "1 Spe, 3 Atk, 2 Def", "1 Spe, 1 HP, 3 Atk, 2 Def", "1 Spe, 2 HP, 3 Atk, 2 Def", "1 Spe, 3 HP, 3 Atk, 2 Def", "1 Spe, 3 Def", "1 Spe, 1 HP, 3 Def", "1 Spe, 2 HP, 3 Def", "1 Spe, 3 HP, 3 Def", "1 Spe, 1 Atk, 3 Def", "1 Spe, 1 HP, 1 Atk, 3 Def", "1 Spe, 2 HP, 1 Atk, 3 Def", "1 Spe, 3 HP, 1 Atk, 3 Def", "1 Spe, 2 Atk, 3 Def", "1 Spe, 1 HP, 2 Atk, 3 Def", "1 Spe, 2 HP, 2 Atk, 3 Def", "1 Spe, 3 HP, 2 Atk, 3 Def", "1 Spe, 3 Atk, 3 Def", "1 Spe, 1 HP, 3 Atk, 3 Def", "1 Spe, 2 HP, 3 Atk, 3 Def", "1 Spe, 3 HP, 3 Atk, 3 Def", "2 Spe", "2 Spe, 1 HP", "2 Spe, 2 HP", "2 Spe, 3 HP", "2 Spe, 1 Atk", "2 Spe, 1 HP, 1 Atk", "2 Spe, 2 HP, 1 Atk", "2 Spe, 3 HP, 1 Atk", "2 Spe, 2 Atk", "2 Spe, 1 HP, 2 Atk", "2 Spe, 2 HP, 2 Atk", "2 Spe, 3 HP, 2 Atk", "2 Spe, 3 Atk", "2 Spe, 1 HP, 3 Atk", "2 Spe, 2 HP, 3 Atk", "2 Spe, 3 HP, 3 Atk", "2 Spe, 1 Def", "2 Spe, 1 HP, 1 Def", "2 Spe, 2 HP, 1 Def", "2 Spe, 3 HP, 1 Def", "2 Spe, 1 Atk, 1 Def", "2 Spe, 1 HP, 1 Atk, 1 Def", "2 Spe, 2 HP, 1 Atk, 1 Def", "2 Spe, 3 HP, 1 Atk, 1 Def", "2 SPe, 2 Atk, 1 Def", "2 Spe, 1 HP, 2 Atk, 1 Def", "2 Spe, 2 HP, 2 Atk, 1 Def", "2 Spe, 3 HP, 2 Atk, 1 Def", "2 Spe, 3 Atk, 1 Def", "2 Spe, 1 HP, 3 Atk, 1 Def", "2 Spe, 2 HP, 3 Atk, 1 Def", "2 Spe, 3 HP, 3 Atk, 1 Def", "2 Spe, 2 Def", "2 Spe, 1 HP, 2 Def", "2 Spe, 2 HP, 2 Def", "2 Spe, 3 HP, 2 Def", "2 Spe, 1 Atk, 2 Def", "2 Spe, 1 HP, 1 Atk, 2 Def", "2 Spe, 2 HP, 1 Atk, 2 Def", "2 Spe, 3 HP, 1 Atk, 2 Def", "2 Spe, 2 Atk, 2 Def", "2 Spe, 1 HP, 2 Atk, 2 Def", "2 Spe, 2 HP, 2 Atk, 2 Def", "2 Spe, 3 HP, 2 Atk, 2 Def", "2 Spe, 3 Atk, 2 Def", "2 Spe, 1 HP, 3 Atk, 2 Def", "2 Spe, 2 HP, 3 Atk, 2 Def", "2 Spe, 3 HP, 3 Atk, 2 Def", "2 Spe, 3 Def", "2 Spe, 1 HP, 3 Def", "2 Spe, 2 HP, 3 Def", "2 Spe, 3 HP, 3 Def", "2 Spe, 1 Atk, 3 Def", "2 Spe, 1 HP, 1 Atk, 3 Def", "2 Spe, 2 HP, 1 Atk, 3 Def", "2 Spe, 3 HP, 1 Atk, 3 Def", "2 Spe, 2 Atk, 3 Def", "2 Spe, 1 HP, 2 Atk, 3 Def", "2 Spe, 2 HP, 2 Atk, 3 Def", "2 Spe, 3 HP, 2 Atk, 3 Def", "2 Spe, 3 Atk, 3 Def", "2 Spe, 1 HP, 3 Atk, 3 Def", "2 Spe, 2 HP, 3 Atk, 3 Def", "2 Spe, 3 HP, 3 Atk, 3 Def", "3 Spe", "3 Spe, 1 HP", "3 Spe, 2 HP", "3 Spe, 3 HP", "3 Spe, 1 Atk", "3 Spe, 1 HP, 1 Atk", "3 Spe, 2 HP, 1 Atk", "3 Spe, 3 HP, 1 Atk", "3 Spe, 2 Atk", "3 Spe, 1 HP, 2 Atk", "3 Spe, 2 HP, 2 Atk", "3 Spe, 3 HP, 2 Atk", "3 Spe, 3 Atk", "3 Spe, 1 HP, 3 Atk", "3 Spe, 2 HP, 3 Atk", "3 Spe, 3 HP, 3 Atk", "3 Spe, 1 Def", "3 Spe, 1 HP, 1 Def", "3 Spe, 2 HP, 1 Def", "3 Spe, 3 HP, 1 Def", "3 Spe, 1 Atk, 1 Def", "3 Spe, 1 HP, 1 Atk, 1 Def", "3 Spe, 2 HP, 1 Atk, 1 Def", "3 Spe, 3 HP, 1 Atk, 1 Def", "3 Spe, 2 Atk, 1 Def", "3 Spe, 1 HP, 2 Atk, 1 Def", "3 Spe, 2 HP, 2 Atk, 1 Def", "3 Spe, 3 HP, 2 Atk, 1 Def", "3 Spe, 3 Atk, 1 Def", "3 Spe, 1 HP, 3 Atk, 1 Def", "3 Spe, 2 HP, 3 Atk, 1 Def", "3 Spe, 3 HP, 3 Atk, 1 Def", "3 Spe, 2 Def", "3 Spe, 1 HP, 2 Def", "3 Spe, 2 HP, 2 Def", "3 Spe, 3 HP, 2 Def", "3 Spe, 1 Atk, 2 Def", "3 Spe, 1 HP, 1 Atk, 2 Def", "3 Spe, 2 HP, 1 Atk, 2 Def", "3 Spe, 3 HP, 1 Atk, 2 Def", "3 Spe, 2 Atk, 2 Def", "3 Spe, 1 HP, 2 Atk, 2 Def", "3 Spe, 2 HP, 2 Atk, 2 Def", "3 Spe, 3 HP, 2 Atk, 2 Def", "3 Spe, 3 Atk, 2 Def", "3 Spe, 1 HP, 3 Atk, 2 Def", "3 Spe, 2 HP, 3 Atk, 2 Def", "3 Spe, 3 HP, 3 Atk, 2 Def", "3 Spe, 3 Def", "3 Spe, 1 HP, 3 Def", "3 Spe, 2 HP, 3 Def", "3 Spe, 3 HP, 3 Def", "3 Spe, 1 Atk, 3 Def", "3 Spe, 1 HP, 1 Atk, 3 Def", "3 Spe, 2 HP, 1 Atk, 3 Def", "3 Spe, 3 HP, 1 ATk, 3 Def", "3 Spe, 2 Atk, 3 Def", "3 Spe, 1 HP, 2 Atk, 3 Def", "3 Spe, 2 HP, 2 Atk, 3 Def", "3 Spe, 3 HP, 2 ATk, 3 Def", "3 Spe, 3 Atk, 3 Def", "3 Spe, 1 HP, 3 Atk, 3 Def", "3 Spe, 2 HP, 3 Atk, 3 Def", "3 Spe, 3 HP, 3 Atk, 3 Def"})
         Me.Ev1.Location = New System.Drawing.Point(20, 25)
-        Me.Ev1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Ev1.Margin = New System.Windows.Forms.Padding(4)
         Me.Ev1.Name = "Ev1"
         Me.Ev1.Size = New System.Drawing.Size(160, 24)
         Me.Ev1.TabIndex = 0
@@ -1274,9 +1276,9 @@ Partial Class Pokemonedit
         Me.GroupBox1.Controls.Add(Me.Lft1)
         Me.GroupBox1.Controls.Add(Me.Rght1)
         Me.GroupBox1.Location = New System.Drawing.Point(324, 391)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Size = New System.Drawing.Size(133, 91)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
@@ -1286,7 +1288,7 @@ Partial Class Pokemonedit
         '
         Me.Lft1.AutoSize = True
         Me.Lft1.Location = New System.Drawing.Point(20, 52)
-        Me.Lft1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Lft1.Margin = New System.Windows.Forms.Padding(4)
         Me.Lft1.Name = "Lft1"
         Me.Lft1.Size = New System.Drawing.Size(88, 21)
         Me.Lft1.TabIndex = 1
@@ -1298,7 +1300,7 @@ Partial Class Pokemonedit
         '
         Me.Rght1.AutoSize = True
         Me.Rght1.Location = New System.Drawing.Point(20, 23)
-        Me.Rght1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Rght1.Margin = New System.Windows.Forms.Padding(4)
         Me.Rght1.Name = "Rght1"
         Me.Rght1.Size = New System.Drawing.Size(97, 21)
         Me.Rght1.TabIndex = 0
@@ -1311,9 +1313,9 @@ Partial Class Pokemonedit
         Me.GroupBox6.Controls.Add(Me.Ab2)
         Me.GroupBox6.Controls.Add(Me.Ab1)
         Me.GroupBox6.Location = New System.Drawing.Point(8, 199)
-        Me.GroupBox6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox6.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox6.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox6.Size = New System.Drawing.Size(183, 98)
         Me.GroupBox6.TabIndex = 4
         Me.GroupBox6.TabStop = False
@@ -1324,7 +1326,7 @@ Partial Class Pokemonedit
         Me.Ab2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.Ab2.FormattingEnabled = True
         Me.Ab2.Location = New System.Drawing.Point(8, 57)
-        Me.Ab2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Ab2.Margin = New System.Windows.Forms.Padding(4)
         Me.Ab2.Name = "Ab2"
         Me.Ab2.Size = New System.Drawing.Size(160, 24)
         Me.Ab2.TabIndex = 1
@@ -1334,7 +1336,7 @@ Partial Class Pokemonedit
         Me.Ab1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.Ab1.FormattingEnabled = True
         Me.Ab1.Location = New System.Drawing.Point(8, 23)
-        Me.Ab1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Ab1.Margin = New System.Windows.Forms.Padding(4)
         Me.Ab1.Name = "Ab1"
         Me.Ab1.Size = New System.Drawing.Size(160, 24)
         Me.Ab1.TabIndex = 0
@@ -1344,9 +1346,9 @@ Partial Class Pokemonedit
         Me.GroupBox5.Controls.Add(Me.Type2)
         Me.GroupBox5.Controls.Add(Me.Type1)
         Me.GroupBox5.Location = New System.Drawing.Point(564, 23)
-        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox5.Size = New System.Drawing.Size(181, 97)
         Me.GroupBox5.TabIndex = 3
         Me.GroupBox5.TabStop = False
@@ -1358,7 +1360,7 @@ Partial Class Pokemonedit
         Me.Type2.FormattingEnabled = True
         Me.Type2.Items.AddRange(New Object() {"Normal", "Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost", "Steel", "???", "Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark"})
         Me.Type2.Location = New System.Drawing.Point(8, 62)
-        Me.Type2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Type2.Margin = New System.Windows.Forms.Padding(4)
         Me.Type2.Name = "Type2"
         Me.Type2.Size = New System.Drawing.Size(160, 24)
         Me.Type2.TabIndex = 1
@@ -1369,7 +1371,7 @@ Partial Class Pokemonedit
         Me.Type1.FormattingEnabled = True
         Me.Type1.Items.AddRange(New Object() {"Normal", "Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost", "Steel", "???", "Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark"})
         Me.Type1.Location = New System.Drawing.Point(8, 27)
-        Me.Type1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Type1.Margin = New System.Windows.Forms.Padding(4)
         Me.Type1.Name = "Type1"
         Me.Type1.Size = New System.Drawing.Size(160, 24)
         Me.Type1.TabIndex = 0
@@ -1381,9 +1383,9 @@ Partial Class Pokemonedit
         Me.GroupBox4.Controls.Add(Me.Item2)
         Me.GroupBox4.Controls.Add(Me.Item1)
         Me.GroupBox4.Location = New System.Drawing.Point(299, 23)
-        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox4.Size = New System.Drawing.Size(253, 97)
         Me.GroupBox4.TabIndex = 2
         Me.GroupBox4.TabStop = False
@@ -1392,7 +1394,7 @@ Partial Class Pokemonedit
         'HeldItem2
         '
         Me.HeldItem2.Location = New System.Drawing.Point(21, 62)
-        Me.HeldItem2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.HeldItem2.Margin = New System.Windows.Forms.Padding(4)
         Me.HeldItem2.Name = "HeldItem2"
         Me.HeldItem2.Size = New System.Drawing.Size(32, 30)
         Me.HeldItem2.TabIndex = 3
@@ -1401,7 +1403,7 @@ Partial Class Pokemonedit
         'HeldItem1
         '
         Me.HeldItem1.Location = New System.Drawing.Point(21, 28)
-        Me.HeldItem1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.HeldItem1.Margin = New System.Windows.Forms.Padding(4)
         Me.HeldItem1.Name = "HeldItem1"
         Me.HeldItem1.Size = New System.Drawing.Size(32, 30)
         Me.HeldItem1.TabIndex = 2
@@ -1413,7 +1415,7 @@ Partial Class Pokemonedit
         Me.Item2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.Item2.FormattingEnabled = True
         Me.Item2.Location = New System.Drawing.Point(84, 62)
-        Me.Item2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Item2.Margin = New System.Windows.Forms.Padding(4)
         Me.Item2.Name = "Item2"
         Me.Item2.Size = New System.Drawing.Size(160, 24)
         Me.Item2.TabIndex = 1
@@ -1424,7 +1426,7 @@ Partial Class Pokemonedit
         Me.Item1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.Item1.FormattingEnabled = True
         Me.Item1.Location = New System.Drawing.Point(84, 28)
-        Me.Item1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Item1.Margin = New System.Windows.Forms.Padding(4)
         Me.Item1.Name = "Item1"
         Me.Item1.Size = New System.Drawing.Size(160, 24)
         Me.Item1.TabIndex = 0
@@ -1448,9 +1450,9 @@ Partial Class Pokemonedit
         Me.GroupBox3.Controls.Add(Me.Label2)
         Me.GroupBox3.Controls.Add(Me.Label1)
         Me.GroupBox3.Location = New System.Drawing.Point(8, 23)
-        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox3.Size = New System.Drawing.Size(283, 169)
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
@@ -1459,7 +1461,7 @@ Partial Class Pokemonedit
         'RunBase
         '
         Me.RunBase.Location = New System.Drawing.Point(215, 119)
-        Me.RunBase.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RunBase.Margin = New System.Windows.Forms.Padding(4)
         Me.RunBase.Name = "RunBase"
         Me.RunBase.Size = New System.Drawing.Size(43, 22)
         Me.RunBase.TabIndex = 15
@@ -1467,7 +1469,7 @@ Partial Class Pokemonedit
         'CatchBase
         '
         Me.CatchBase.Location = New System.Drawing.Point(215, 87)
-        Me.CatchBase.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CatchBase.Margin = New System.Windows.Forms.Padding(4)
         Me.CatchBase.Name = "CatchBase"
         Me.CatchBase.Size = New System.Drawing.Size(43, 22)
         Me.CatchBase.TabIndex = 14
@@ -1475,7 +1477,7 @@ Partial Class Pokemonedit
         'SpDefBase
         '
         Me.SpDefBase.Location = New System.Drawing.Point(215, 57)
-        Me.SpDefBase.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SpDefBase.Margin = New System.Windows.Forms.Padding(4)
         Me.SpDefBase.Name = "SpDefBase"
         Me.SpDefBase.Size = New System.Drawing.Size(43, 22)
         Me.SpDefBase.TabIndex = 13
@@ -1483,7 +1485,7 @@ Partial Class Pokemonedit
         'SpAttBase
         '
         Me.SpAttBase.Location = New System.Drawing.Point(215, 27)
-        Me.SpAttBase.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SpAttBase.Margin = New System.Windows.Forms.Padding(4)
         Me.SpAttBase.Name = "SpAttBase"
         Me.SpAttBase.Size = New System.Drawing.Size(43, 22)
         Me.SpAttBase.TabIndex = 12
@@ -1491,7 +1493,7 @@ Partial Class Pokemonedit
         'SpeedBase
         '
         Me.SpeedBase.Location = New System.Drawing.Point(77, 119)
-        Me.SpeedBase.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SpeedBase.Margin = New System.Windows.Forms.Padding(4)
         Me.SpeedBase.Name = "SpeedBase"
         Me.SpeedBase.Size = New System.Drawing.Size(44, 22)
         Me.SpeedBase.TabIndex = 11
@@ -1499,7 +1501,7 @@ Partial Class Pokemonedit
         'DefBase
         '
         Me.DefBase.Location = New System.Drawing.Point(79, 87)
-        Me.DefBase.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DefBase.Margin = New System.Windows.Forms.Padding(4)
         Me.DefBase.Name = "DefBase"
         Me.DefBase.Size = New System.Drawing.Size(43, 22)
         Me.DefBase.TabIndex = 10
@@ -1507,7 +1509,7 @@ Partial Class Pokemonedit
         'AtBase
         '
         Me.AtBase.Location = New System.Drawing.Point(79, 57)
-        Me.AtBase.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.AtBase.Margin = New System.Windows.Forms.Padding(4)
         Me.AtBase.Name = "AtBase"
         Me.AtBase.Size = New System.Drawing.Size(43, 22)
         Me.AtBase.TabIndex = 9
@@ -1515,7 +1517,7 @@ Partial Class Pokemonedit
         'HpBase
         '
         Me.HpBase.Location = New System.Drawing.Point(79, 27)
-        Me.HpBase.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.HpBase.Margin = New System.Windows.Forms.Padding(4)
         Me.HpBase.Name = "HpBase"
         Me.HpBase.Size = New System.Drawing.Size(43, 22)
         Me.HpBase.TabIndex = 8
@@ -1604,9 +1606,9 @@ Partial Class Pokemonedit
         '
         Me.TabPage3.Controls.Add(Me.GroupBox17)
         Me.TabPage3.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage3.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(4)
         Me.TabPage3.Size = New System.Drawing.Size(821, 586)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Evolution data"
@@ -1640,9 +1642,9 @@ Partial Class Pokemonedit
         Me.GroupBox17.Controls.Add(Me.EvoSlots)
         Me.GroupBox17.Controls.Add(Me.EvoPKMNames)
         Me.GroupBox17.Location = New System.Drawing.Point(8, 10)
-        Me.GroupBox17.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox17.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox17.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox17.Size = New System.Drawing.Size(761, 341)
         Me.GroupBox17.TabIndex = 2
         Me.GroupBox17.TabStop = False
@@ -1651,7 +1653,7 @@ Partial Class Pokemonedit
         'TextBox6
         '
         Me.TextBox6.Location = New System.Drawing.Point(563, 297)
-        Me.TextBox6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox6.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(52, 22)
         Me.TextBox6.TabIndex = 34
@@ -1670,7 +1672,7 @@ Partial Class Pokemonedit
         '
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Location = New System.Drawing.Point(275, 229)
-        Me.ComboBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ComboBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBox3.Name = "ComboBox3"
         Me.ComboBox3.Size = New System.Drawing.Size(131, 24)
         Me.ComboBox3.TabIndex = 32
@@ -1688,7 +1690,7 @@ Partial Class Pokemonedit
         'TextBox2
         '
         Me.TextBox2.Location = New System.Drawing.Point(359, 300)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(47, 22)
         Me.TextBox2.TabIndex = 30
@@ -1696,7 +1698,7 @@ Partial Class Pokemonedit
         'TextBox1
         '
         Me.TextBox1.Location = New System.Drawing.Point(245, 300)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(41, 22)
         Me.TextBox1.TabIndex = 29
@@ -1725,7 +1727,7 @@ Partial Class Pokemonedit
         '
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Location = New System.Drawing.Point(275, 262)
-        Me.ComboBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ComboBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(131, 24)
         Me.ComboBox2.TabIndex = 26
@@ -1753,7 +1755,7 @@ Partial Class Pokemonedit
         'PictureBox2
         '
         Me.PictureBox2.Location = New System.Drawing.Point(509, 188)
-        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(85, 79)
         Me.PictureBox2.TabIndex = 23
@@ -1764,7 +1766,7 @@ Partial Class Pokemonedit
         Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(509, 151)
-        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(160, 24)
         Me.ComboBox1.TabIndex = 22
@@ -1772,7 +1774,7 @@ Partial Class Pokemonedit
         'EvoBasePokePic
         '
         Me.EvoBasePokePic.Location = New System.Drawing.Point(200, 23)
-        Me.EvoBasePokePic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EvoBasePokePic.Margin = New System.Windows.Forms.Padding(4)
         Me.EvoBasePokePic.Name = "EvoBasePokePic"
         Me.EvoBasePokePic.Size = New System.Drawing.Size(85, 79)
         Me.EvoBasePokePic.TabIndex = 11
@@ -1781,7 +1783,7 @@ Partial Class Pokemonedit
         'EvoItemPic
         '
         Me.EvoItemPic.Location = New System.Drawing.Point(245, 188)
-        Me.EvoItemPic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EvoItemPic.Margin = New System.Windows.Forms.Padding(4)
         Me.EvoItemPic.Name = "EvoItemPic"
         Me.EvoItemPic.Size = New System.Drawing.Size(32, 30)
         Me.EvoItemPic.TabIndex = 10
@@ -1790,7 +1792,7 @@ Partial Class Pokemonedit
         'EvoPokePic
         '
         Me.EvoPokePic.Location = New System.Drawing.Point(509, 20)
-        Me.EvoPokePic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EvoPokePic.Margin = New System.Windows.Forms.Padding(4)
         Me.EvoPokePic.Name = "EvoPokePic"
         Me.EvoPokePic.Size = New System.Drawing.Size(85, 79)
         Me.EvoPokePic.TabIndex = 9
@@ -1799,7 +1801,7 @@ Partial Class Pokemonedit
         'EvoLevel
         '
         Me.EvoLevel.Location = New System.Drawing.Point(245, 126)
-        Me.EvoLevel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EvoLevel.Margin = New System.Windows.Forms.Padding(4)
         Me.EvoLevel.Name = "EvoLevel"
         Me.EvoLevel.Size = New System.Drawing.Size(32, 22)
         Me.EvoLevel.TabIndex = 8
@@ -1809,7 +1811,7 @@ Partial Class Pokemonedit
         Me.EvoItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.EvoItem.FormattingEnabled = True
         Me.EvoItem.Location = New System.Drawing.Point(245, 155)
-        Me.EvoItem.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EvoItem.Margin = New System.Windows.Forms.Padding(4)
         Me.EvoItem.Name = "EvoItem"
         Me.EvoItem.Size = New System.Drawing.Size(160, 24)
         Me.EvoItem.TabIndex = 7
@@ -1860,7 +1862,7 @@ Partial Class Pokemonedit
         Me.EvoTypes.FormattingEnabled = True
         Me.EvoTypes.Items.AddRange(New Object() {"None", "Happiness", "Happiness (Day)", "Happiness (Night)", "Level", "Trade", "Trade w/ Item", "Item", "Atk > Def", "Atk = Def", "Atk < Def", "High Personality", "Low Personality", "Allow Pokemon Creation", "Create Extra Pokemon", "Max Beauty"})
         Me.EvoTypes.Location = New System.Drawing.Point(9, 151)
-        Me.EvoTypes.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EvoTypes.Margin = New System.Windows.Forms.Padding(4)
         Me.EvoTypes.Name = "EvoTypes"
         Me.EvoTypes.Size = New System.Drawing.Size(160, 24)
         Me.EvoTypes.TabIndex = 2
@@ -1871,7 +1873,7 @@ Partial Class Pokemonedit
         Me.EvoSlots.ItemHeight = 16
         Me.EvoSlots.Items.AddRange(New Object() {"Evolution 1", "Evolution 2", "Evolution 3", "Evolution 4", "Evolution 5"})
         Me.EvoSlots.Location = New System.Drawing.Point(9, 23)
-        Me.EvoSlots.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EvoSlots.Margin = New System.Windows.Forms.Padding(4)
         Me.EvoSlots.Name = "EvoSlots"
         Me.EvoSlots.Size = New System.Drawing.Size(159, 84)
         Me.EvoSlots.TabIndex = 1
@@ -1881,7 +1883,7 @@ Partial Class Pokemonedit
         Me.EvoPKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.EvoPKMNames.FormattingEnabled = True
         Me.EvoPKMNames.Location = New System.Drawing.Point(313, 39)
-        Me.EvoPKMNames.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EvoPKMNames.Margin = New System.Windows.Forms.Padding(4)
         Me.EvoPKMNames.Name = "EvoPKMNames"
         Me.EvoPKMNames.Size = New System.Drawing.Size(160, 24)
         Me.EvoPKMNames.TabIndex = 0
@@ -1894,9 +1896,9 @@ Partial Class Pokemonedit
         Me.TabPage4.Controls.Add(Me.GroupBox23)
         Me.TabPage4.Controls.Add(Me.GroupBox22)
         Me.TabPage4.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage4.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(4)
         Me.TabPage4.Size = New System.Drawing.Size(821, 586)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Learnable attacks"
@@ -1905,7 +1907,7 @@ Partial Class Pokemonedit
         'Button12
         '
         Me.Button12.Location = New System.Drawing.Point(8, 11)
-        Me.Button12.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button12.Margin = New System.Windows.Forms.Padding(4)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(221, 50)
         Me.Button12.TabIndex = 10
@@ -1916,9 +1918,9 @@ Partial Class Pokemonedit
         '
         Me.GroupBox25.Controls.Add(Me.MTCom)
         Me.GroupBox25.Location = New System.Drawing.Point(507, 7)
-        Me.GroupBox25.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox25.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox25.Name = "GroupBox25"
-        Me.GroupBox25.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox25.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox25.Size = New System.Drawing.Size(221, 464)
         Me.GroupBox25.TabIndex = 9
         Me.GroupBox25.TabStop = False
@@ -1928,7 +1930,7 @@ Partial Class Pokemonedit
         '
         Me.MTCom.FormattingEnabled = True
         Me.MTCom.Location = New System.Drawing.Point(8, 23)
-        Me.MTCom.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MTCom.Margin = New System.Windows.Forms.Padding(4)
         Me.MTCom.Name = "MTCom"
         Me.MTCom.Size = New System.Drawing.Size(200, 378)
         Me.MTCom.TabIndex = 0
@@ -1940,9 +1942,9 @@ Partial Class Pokemonedit
         Me.GroupBox24.Controls.Add(Me.NewAt)
         Me.GroupBox24.Controls.Add(Me.lvlupattacks)
         Me.GroupBox24.Location = New System.Drawing.Point(8, 135)
-        Me.GroupBox24.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox24.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox24.Name = "GroupBox24"
-        Me.GroupBox24.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox24.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox24.Size = New System.Drawing.Size(221, 336)
         Me.GroupBox24.TabIndex = 8
         Me.GroupBox24.TabStop = False
@@ -1951,7 +1953,7 @@ Partial Class Pokemonedit
         'Button11
         '
         Me.Button11.Location = New System.Drawing.Point(8, 270)
-        Me.Button11.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button11.Margin = New System.Windows.Forms.Padding(4)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(201, 50)
         Me.Button11.TabIndex = 3
@@ -1961,7 +1963,7 @@ Partial Class Pokemonedit
         'AtLvl
         '
         Me.AtLvl.Location = New System.Drawing.Point(8, 236)
-        Me.AtLvl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.AtLvl.Margin = New System.Windows.Forms.Padding(4)
         Me.AtLvl.Name = "AtLvl"
         Me.AtLvl.Size = New System.Drawing.Size(31, 22)
         Me.AtLvl.TabIndex = 2
@@ -1971,7 +1973,7 @@ Partial Class Pokemonedit
         Me.NewAt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.NewAt.FormattingEnabled = True
         Me.NewAt.Location = New System.Drawing.Point(48, 235)
-        Me.NewAt.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.NewAt.Margin = New System.Windows.Forms.Padding(4)
         Me.NewAt.Name = "NewAt"
         Me.NewAt.Size = New System.Drawing.Size(160, 24)
         Me.NewAt.TabIndex = 1
@@ -1981,7 +1983,7 @@ Partial Class Pokemonedit
         Me.lvlupattacks.FormattingEnabled = True
         Me.lvlupattacks.ItemHeight = 16
         Me.lvlupattacks.Location = New System.Drawing.Point(8, 23)
-        Me.lvlupattacks.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lvlupattacks.Margin = New System.Windows.Forms.Padding(4)
         Me.lvlupattacks.Name = "lvlupattacks"
         Me.lvlupattacks.Size = New System.Drawing.Size(200, 196)
         Me.lvlupattacks.TabIndex = 0
@@ -1990,9 +1992,9 @@ Partial Class Pokemonedit
         '
         Me.GroupBox23.Controls.Add(Me.TMHMCom)
         Me.GroupBox23.Location = New System.Drawing.Point(245, 7)
-        Me.GroupBox23.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox23.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox23.Name = "GroupBox23"
-        Me.GroupBox23.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox23.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox23.Size = New System.Drawing.Size(253, 464)
         Me.GroupBox23.TabIndex = 7
         Me.GroupBox23.TabStop = False
@@ -2002,7 +2004,7 @@ Partial Class Pokemonedit
         '
         Me.TMHMCom.FormattingEnabled = True
         Me.TMHMCom.Location = New System.Drawing.Point(9, 23)
-        Me.TMHMCom.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TMHMCom.Margin = New System.Windows.Forms.Padding(4)
         Me.TMHMCom.Name = "TMHMCom"
         Me.TMHMCom.Size = New System.Drawing.Size(235, 378)
         Me.TMHMCom.TabIndex = 0
@@ -2012,9 +2014,9 @@ Partial Class Pokemonedit
         Me.GroupBox22.Controls.Add(Me.Button10)
         Me.GroupBox22.Controls.Add(Me.LvlUpAttPointer)
         Me.GroupBox22.Location = New System.Drawing.Point(8, 69)
-        Me.GroupBox22.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox22.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox22.Name = "GroupBox22"
-        Me.GroupBox22.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox22.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox22.Size = New System.Drawing.Size(221, 62)
         Me.GroupBox22.TabIndex = 6
         Me.GroupBox22.TabStop = False
@@ -2023,7 +2025,7 @@ Partial Class Pokemonedit
         'Button10
         '
         Me.Button10.Location = New System.Drawing.Point(119, 23)
-        Me.Button10.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button10.Margin = New System.Windows.Forms.Padding(4)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(91, 26)
         Me.Button10.TabIndex = 12
@@ -2033,7 +2035,7 @@ Partial Class Pokemonedit
         'LvlUpAttPointer
         '
         Me.LvlUpAttPointer.Location = New System.Drawing.Point(20, 23)
-        Me.LvlUpAttPointer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.LvlUpAttPointer.Margin = New System.Windows.Forms.Padding(4)
         Me.LvlUpAttPointer.Name = "LvlUpAttPointer"
         Me.LvlUpAttPointer.Size = New System.Drawing.Size(89, 22)
         Me.LvlUpAttPointer.TabIndex = 11
@@ -2047,7 +2049,7 @@ Partial Class Pokemonedit
         Me.TabPage5.Controls.Add(Me.GroupBox28)
         Me.TabPage5.Controls.Add(Me.GroupBox2)
         Me.TabPage5.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage5.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Size = New System.Drawing.Size(821, 586)
         Me.TabPage5.TabIndex = 5
@@ -2068,9 +2070,9 @@ Partial Class Pokemonedit
         Me.GroupBox31.Controls.Add(Me.Label43)
         Me.GroupBox31.Controls.Add(Me.Label44)
         Me.GroupBox31.Location = New System.Drawing.Point(7, 188)
-        Me.GroupBox31.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox31.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox31.Name = "GroupBox31"
-        Me.GroupBox31.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox31.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox31.Size = New System.Drawing.Size(228, 257)
         Me.GroupBox31.TabIndex = 21
         Me.GroupBox31.TabStop = False
@@ -2080,7 +2082,7 @@ Partial Class Pokemonedit
         '
         Me.RSEDexTrainer.BackColor = System.Drawing.Color.Transparent
         Me.RSEDexTrainer.Location = New System.Drawing.Point(125, 151)
-        Me.RSEDexTrainer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RSEDexTrainer.Margin = New System.Windows.Forms.Padding(4)
         Me.RSEDexTrainer.Name = "RSEDexTrainer"
         Me.RSEDexTrainer.Size = New System.Drawing.Size(85, 79)
         Me.RSEDexTrainer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -2091,7 +2093,7 @@ Partial Class Pokemonedit
         '
         Me.RSEDexPoke.BackColor = System.Drawing.Color.Transparent
         Me.RSEDexPoke.Location = New System.Drawing.Point(20, 151)
-        Me.RSEDexPoke.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RSEDexPoke.Margin = New System.Windows.Forms.Padding(4)
         Me.RSEDexPoke.Name = "RSEDexPoke"
         Me.RSEDexPoke.Size = New System.Drawing.Size(85, 79)
         Me.RSEDexPoke.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -2101,7 +2103,7 @@ Partial Class Pokemonedit
         'Offset_1
         '
         Me.Offset_1.Location = New System.Drawing.Point(73, 58)
-        Me.Offset_1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Offset_1.Margin = New System.Windows.Forms.Padding(4)
         Me.Offset_1.Name = "Offset_1"
         Me.Offset_1.Size = New System.Drawing.Size(49, 22)
         Me.Offset_1.TabIndex = 9
@@ -2129,7 +2131,7 @@ Partial Class Pokemonedit
         'Offset_2
         '
         Me.Offset_2.Location = New System.Drawing.Point(159, 58)
-        Me.Offset_2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Offset_2.Margin = New System.Windows.Forms.Padding(4)
         Me.Offset_2.Name = "Offset_2"
         Me.Offset_2.Size = New System.Drawing.Size(49, 22)
         Me.Offset_2.TabIndex = 6
@@ -2147,7 +2149,7 @@ Partial Class Pokemonedit
         'Scale2
         '
         Me.Scale2.Location = New System.Drawing.Point(160, 112)
-        Me.Scale2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Scale2.Margin = New System.Windows.Forms.Padding(4)
         Me.Scale2.Name = "Scale2"
         Me.Scale2.Size = New System.Drawing.Size(49, 22)
         Me.Scale2.TabIndex = 3
@@ -2155,7 +2157,7 @@ Partial Class Pokemonedit
         'Scale1
         '
         Me.Scale1.Location = New System.Drawing.Point(73, 113)
-        Me.Scale1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Scale1.Margin = New System.Windows.Forms.Padding(4)
         Me.Scale1.Name = "Scale1"
         Me.Scale1.Size = New System.Drawing.Size(51, 22)
         Me.Scale1.TabIndex = 2
@@ -2185,9 +2187,9 @@ Partial Class Pokemonedit
         Me.GroupBox32.Controls.Add(Me.TextBox5)
         Me.GroupBox32.Controls.Add(Me.Label45)
         Me.GroupBox32.Location = New System.Drawing.Point(199, 14)
-        Me.GroupBox32.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox32.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox32.Name = "GroupBox32"
-        Me.GroupBox32.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox32.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox32.Size = New System.Drawing.Size(184, 66)
         Me.GroupBox32.TabIndex = 20
         Me.GroupBox32.TabStop = False
@@ -2196,7 +2198,7 @@ Partial Class Pokemonedit
         'TextBox5
         '
         Me.TextBox5.Location = New System.Drawing.Point(61, 27)
-        Me.TextBox5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox5.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox5.MaxLength = 11
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(107, 22)
@@ -2224,9 +2226,9 @@ Partial Class Pokemonedit
         Me.GroupBox30.Controls.Add(Me.Pointer1)
         Me.GroupBox30.Controls.Add(Me.Label39)
         Me.GroupBox30.Location = New System.Drawing.Point(243, 188)
-        Me.GroupBox30.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox30.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox30.Name = "GroupBox30"
-        Me.GroupBox30.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox30.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox30.Size = New System.Drawing.Size(516, 322)
         Me.GroupBox30.TabIndex = 19
         Me.GroupBox30.TabStop = False
@@ -2255,7 +2257,7 @@ Partial Class Pokemonedit
         'Button17
         '
         Me.Button17.Location = New System.Drawing.Point(12, 151)
-        Me.Button17.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button17.Margin = New System.Windows.Forms.Padding(4)
         Me.Button17.Name = "Button17"
         Me.Button17.Size = New System.Drawing.Size(127, 30)
         Me.Button17.TabIndex = 6
@@ -2265,7 +2267,7 @@ Partial Class Pokemonedit
         'Description2
         '
         Me.Description2.Location = New System.Drawing.Point(147, 177)
-        Me.Description2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Description2.Margin = New System.Windows.Forms.Padding(4)
         Me.Description2.Multiline = True
         Me.Description2.Name = "Description2"
         Me.Description2.ScrollBars = System.Windows.Forms.ScrollBars.Both
@@ -2276,7 +2278,7 @@ Partial Class Pokemonedit
         'Description1
         '
         Me.Description1.Location = New System.Drawing.Point(147, 23)
-        Me.Description1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Description1.Margin = New System.Windows.Forms.Padding(4)
         Me.Description1.Multiline = True
         Me.Description1.Name = "Description1"
         Me.Description1.ScrollBars = System.Windows.Forms.ScrollBars.Both
@@ -2287,7 +2289,7 @@ Partial Class Pokemonedit
         'Button18
         '
         Me.Button18.Location = New System.Drawing.Point(12, 114)
-        Me.Button18.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button18.Margin = New System.Windows.Forms.Padding(4)
         Me.Button18.Name = "Button18"
         Me.Button18.Size = New System.Drawing.Size(127, 30)
         Me.Button18.TabIndex = 3
@@ -2297,7 +2299,7 @@ Partial Class Pokemonedit
         'Pointer2
         '
         Me.Pointer2.Location = New System.Drawing.Point(15, 82)
-        Me.Pointer2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Pointer2.Margin = New System.Windows.Forms.Padding(4)
         Me.Pointer2.Name = "Pointer2"
         Me.Pointer2.Size = New System.Drawing.Size(123, 22)
         Me.Pointer2.TabIndex = 2
@@ -2305,7 +2307,7 @@ Partial Class Pokemonedit
         'Pointer1
         '
         Me.Pointer1.Location = New System.Drawing.Point(15, 50)
-        Me.Pointer1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Pointer1.Margin = New System.Windows.Forms.Padding(4)
         Me.Pointer1.Name = "Pointer1"
         Me.Pointer1.Size = New System.Drawing.Size(123, 22)
         Me.Pointer1.TabIndex = 1
@@ -2335,9 +2337,9 @@ Partial Class Pokemonedit
         Me.GroupBox29.Controls.Add(Me.Label35)
         Me.GroupBox29.Controls.Add(Me.Label36)
         Me.GroupBox29.Location = New System.Drawing.Point(391, 4)
-        Me.GroupBox29.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox29.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox29.Name = "GroupBox29"
-        Me.GroupBox29.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox29.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox29.Size = New System.Drawing.Size(192, 175)
         Me.GroupBox29.TabIndex = 16
         Me.GroupBox29.TabStop = False
@@ -2425,7 +2427,7 @@ Partial Class Pokemonedit
         'Wght
         '
         Me.Wght.Location = New System.Drawing.Point(103, 92)
-        Me.Wght.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Wght.Margin = New System.Windows.Forms.Padding(4)
         Me.Wght.Name = "Wght"
         Me.Wght.Size = New System.Drawing.Size(55, 22)
         Me.Wght.TabIndex = 5
@@ -2433,7 +2435,7 @@ Partial Class Pokemonedit
         'Hght
         '
         Me.Hght.Location = New System.Drawing.Point(103, 20)
-        Me.Hght.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Hght.Margin = New System.Windows.Forms.Padding(4)
         Me.Hght.Name = "Hght"
         Me.Hght.Size = New System.Drawing.Size(55, 22)
         Me.Hght.TabIndex = 4
@@ -2468,9 +2470,9 @@ Partial Class Pokemonedit
         Me.GroupBox28.Controls.Add(Me.Label26)
         Me.GroupBox28.Controls.Add(Me.Label25)
         Me.GroupBox28.Location = New System.Drawing.Point(7, 14)
-        Me.GroupBox28.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox28.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox28.Name = "GroupBox28"
-        Me.GroupBox28.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox28.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox28.Size = New System.Drawing.Size(184, 166)
         Me.GroupBox28.TabIndex = 1
         Me.GroupBox28.TabStop = False
@@ -2479,7 +2481,7 @@ Partial Class Pokemonedit
         'TextBox7
         '
         Me.TextBox7.Location = New System.Drawing.Point(125, 91)
-        Me.TextBox7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox7.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(44, 22)
         Me.TextBox7.TabIndex = 6
@@ -2497,7 +2499,7 @@ Partial Class Pokemonedit
         'TextBox4
         '
         Me.TextBox4.Location = New System.Drawing.Point(125, 58)
-        Me.TextBox4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox4.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(44, 22)
         Me.TextBox4.TabIndex = 4
@@ -2505,7 +2507,7 @@ Partial Class Pokemonedit
         'TextBox3
         '
         Me.TextBox3.Location = New System.Drawing.Point(125, 23)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(44, 22)
         Me.TextBox3.TabIndex = 3
@@ -2513,7 +2515,7 @@ Partial Class Pokemonedit
         'Button16
         '
         Me.Button16.Location = New System.Drawing.Point(26, 129)
-        Me.Button16.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button16.Margin = New System.Windows.Forms.Padding(4)
         Me.Button16.Name = "Button16"
         Me.Button16.Size = New System.Drawing.Size(143, 28)
         Me.Button16.TabIndex = 2
@@ -2544,9 +2546,9 @@ Partial Class Pokemonedit
         '
         Me.GroupBox2.Controls.Add(Me.Clr1)
         Me.GroupBox2.Location = New System.Drawing.Point(199, 87)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox2.Size = New System.Drawing.Size(175, 64)
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
@@ -2558,7 +2560,7 @@ Partial Class Pokemonedit
         Me.Clr1.FormattingEnabled = True
         Me.Clr1.Items.AddRange(New Object() {"Red", "Blue", "Yellow", "Green", "Black", "Brown", "Purple", "Gray", "White", "Pink"})
         Me.Clr1.Location = New System.Drawing.Point(8, 23)
-        Me.Clr1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Clr1.Margin = New System.Windows.Forms.Padding(4)
         Me.Clr1.Name = "Clr1"
         Me.Clr1.Size = New System.Drawing.Size(160, 24)
         Me.Clr1.TabIndex = 0
@@ -2573,7 +2575,7 @@ Partial Class Pokemonedit
         Me.TabPage6.Controls.Add(Me.GroupBox21)
         Me.TabPage6.Location = New System.Drawing.Point(4, 25)
         Me.TabPage6.Name = "TabPage6"
-        Me.TabPage6.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage6.Size = New System.Drawing.Size(821, 586)
         Me.TabPage6.TabIndex = 6
         Me.TabPage6.Text = "Cry Data"
@@ -2685,7 +2687,7 @@ Partial Class Pokemonedit
         'Button31
         '
         Me.Button31.Location = New System.Drawing.Point(24, 94)
-        Me.Button31.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button31.Margin = New System.Windows.Forms.Padding(4)
         Me.Button31.Name = "Button31"
         Me.Button31.Size = New System.Drawing.Size(187, 26)
         Me.Button31.TabIndex = 21
@@ -2715,7 +2717,7 @@ Partial Class Pokemonedit
         'CryComp2
         '
         Me.CryComp2.Location = New System.Drawing.Point(122, 64)
-        Me.CryComp2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CryComp2.Margin = New System.Windows.Forms.Padding(4)
         Me.CryComp2.Name = "CryComp2"
         Me.CryComp2.Size = New System.Drawing.Size(43, 22)
         Me.CryComp2.TabIndex = 21
@@ -2723,7 +2725,7 @@ Partial Class Pokemonedit
         'CryPointer2
         '
         Me.CryPointer2.Location = New System.Drawing.Point(122, 34)
-        Me.CryPointer2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CryPointer2.Margin = New System.Windows.Forms.Padding(4)
         Me.CryPointer2.Name = "CryPointer2"
         Me.CryPointer2.Size = New System.Drawing.Size(89, 22)
         Me.CryPointer2.TabIndex = 17
@@ -2816,7 +2818,7 @@ Partial Class Pokemonedit
         'CryPointer
         '
         Me.CryPointer.Location = New System.Drawing.Point(122, 32)
-        Me.CryPointer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CryPointer.Margin = New System.Windows.Forms.Padding(4)
         Me.CryPointer.Name = "CryPointer"
         Me.CryPointer.Size = New System.Drawing.Size(89, 22)
         Me.CryPointer.TabIndex = 11
@@ -2834,7 +2836,7 @@ Partial Class Pokemonedit
         'Button6
         '
         Me.Button6.Location = New System.Drawing.Point(24, 94)
-        Me.Button6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button6.Margin = New System.Windows.Forms.Padding(4)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(187, 26)
         Me.Button6.TabIndex = 12
@@ -2844,7 +2846,7 @@ Partial Class Pokemonedit
         'CryComp1
         '
         Me.CryComp1.Location = New System.Drawing.Point(122, 64)
-        Me.CryComp1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CryComp1.Margin = New System.Windows.Forms.Padding(4)
         Me.CryComp1.Name = "CryComp1"
         Me.CryComp1.Size = New System.Drawing.Size(43, 22)
         Me.CryComp1.TabIndex = 19
@@ -2855,9 +2857,9 @@ Partial Class Pokemonedit
         Me.GroupBox21.Controls.Add(Me.CryConver)
         Me.GroupBox21.Controls.Add(Me.Label18)
         Me.GroupBox21.Location = New System.Drawing.Point(690, 23)
-        Me.GroupBox21.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox21.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox21.Name = "GroupBox21"
-        Me.GroupBox21.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox21.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox21.Size = New System.Drawing.Size(115, 157)
         Me.GroupBox21.TabIndex = 6
         Me.GroupBox21.TabStop = False
@@ -2866,7 +2868,7 @@ Partial Class Pokemonedit
         'Button13
         '
         Me.Button13.Location = New System.Drawing.Point(12, 78)
-        Me.Button13.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button13.Margin = New System.Windows.Forms.Padding(4)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(91, 26)
         Me.Button13.TabIndex = 16
@@ -2876,7 +2878,7 @@ Partial Class Pokemonedit
         'CryConver
         '
         Me.CryConver.Location = New System.Drawing.Point(12, 47)
-        Me.CryConver.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CryConver.Margin = New System.Windows.Forms.Padding(4)
         Me.CryConver.Name = "CryConver"
         Me.CryConver.Size = New System.Drawing.Size(89, 22)
         Me.CryConver.TabIndex = 15
@@ -2894,7 +2896,7 @@ Partial Class Pokemonedit
         'Button1
         '
         Me.Button1.Location = New System.Drawing.Point(8, 102)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(157, 28)
         Me.Button1.TabIndex = 2
@@ -2907,9 +2909,9 @@ Partial Class Pokemonedit
         Me.GroupBox18.Controls.Add(Me.ChangePKMName)
         Me.GroupBox18.Controls.Add(Me.CurPKMName)
         Me.GroupBox18.Location = New System.Drawing.Point(11, 188)
-        Me.GroupBox18.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox18.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox18.Name = "GroupBox18"
-        Me.GroupBox18.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox18.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox18.Size = New System.Drawing.Size(173, 123)
         Me.GroupBox18.TabIndex = 7
         Me.GroupBox18.TabStop = False
@@ -2918,7 +2920,7 @@ Partial Class Pokemonedit
         'Button15
         '
         Me.Button15.Location = New System.Drawing.Point(8, 86)
-        Me.Button15.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button15.Margin = New System.Windows.Forms.Padding(4)
         Me.Button15.Name = "Button15"
         Me.Button15.Size = New System.Drawing.Size(157, 28)
         Me.Button15.TabIndex = 10
@@ -2928,7 +2930,7 @@ Partial Class Pokemonedit
         'ChangePKMName
         '
         Me.ChangePKMName.Location = New System.Drawing.Point(8, 49)
-        Me.ChangePKMName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ChangePKMName.Margin = New System.Windows.Forms.Padding(4)
         Me.ChangePKMName.Name = "ChangePKMName"
         Me.ChangePKMName.Size = New System.Drawing.Size(157, 30)
         Me.ChangePKMName.TabIndex = 6
@@ -2938,7 +2940,7 @@ Partial Class Pokemonedit
         'CurPKMName
         '
         Me.CurPKMName.Location = New System.Drawing.Point(8, 17)
-        Me.CurPKMName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CurPKMName.Margin = New System.Windows.Forms.Padding(4)
         Me.CurPKMName.MaxLength = 10
         Me.CurPKMName.Name = "CurPKMName"
         Me.CurPKMName.Size = New System.Drawing.Size(156, 22)
@@ -2951,9 +2953,9 @@ Partial Class Pokemonedit
         Me.GroupBox19.Controls.Add(Me.PKMNames)
         Me.GroupBox19.Controls.Add(Me.Button1)
         Me.GroupBox19.Location = New System.Drawing.Point(11, 33)
-        Me.GroupBox19.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox19.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox19.Name = "GroupBox19"
-        Me.GroupBox19.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox19.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox19.Size = New System.Drawing.Size(173, 148)
         Me.GroupBox19.TabIndex = 8
         Me.GroupBox19.TabStop = False
@@ -2962,7 +2964,7 @@ Partial Class Pokemonedit
         'PokemonListIndex
         '
         Me.PokemonListIndex.Location = New System.Drawing.Point(60, 62)
-        Me.PokemonListIndex.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PokemonListIndex.Margin = New System.Windows.Forms.Padding(4)
         Me.PokemonListIndex.Name = "PokemonListIndex"
         Me.PokemonListIndex.ReadOnly = True
         Me.PokemonListIndex.Size = New System.Drawing.Size(52, 22)
@@ -2983,29 +2985,35 @@ Partial Class Pokemonedit
         Me.PKMNames.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.PKMNames.FormattingEnabled = True
         Me.PKMNames.Location = New System.Drawing.Point(8, 23)
-        Me.PKMNames.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PKMNames.Margin = New System.Windows.Forms.Padding(4)
         Me.PKMNames.Name = "PKMNames"
         Me.PKMNames.Size = New System.Drawing.Size(156, 24)
         Me.PKMNames.TabIndex = 7
         '
         'Button7
         '
+        Me.Button7.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button7.Location = New System.Drawing.Point(11, 316)
-        Me.Button7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button7.Margin = New System.Windows.Forms.Padding(4)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(173, 23)
+        Me.Button7.Size = New System.Drawing.Size(173, 26)
         Me.Button7.TabIndex = 9
         Me.Button7.Text = "Import Pokemon"
+        Me.HoverInfo.SetToolTip(Me.Button7, "Import Pokemon:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Select a Pokemon ini file to import," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "overwriting the currentl" &
+        "y selected pokemon.")
         Me.Button7.UseVisualStyleBackColor = True
         '
         'Button8
         '
+        Me.Button8.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button8.Location = New System.Drawing.Point(11, 368)
-        Me.Button8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button8.Margin = New System.Windows.Forms.Padding(4)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(173, 23)
+        Me.Button8.Size = New System.Drawing.Size(173, 26)
         Me.Button8.TabIndex = 10
         Me.Button8.Text = "Export Pokemon"
+        Me.HoverInfo.SetToolTip(Me.Button8, "Export Pokemon:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Choose a location to export an ini " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "file containing the data " &
+        "for the " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "current Pokemon.")
         Me.Button8.UseVisualStyleBackColor = True
         '
         'fileOpenDialog
@@ -3014,121 +3022,153 @@ Partial Class Pokemonedit
         '
         'Button9
         '
+        Me.Button9.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button9.Location = New System.Drawing.Point(11, 395)
-        Me.Button9.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button9.Margin = New System.Windows.Forms.Padding(4)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(173, 23)
+        Me.Button9.Size = New System.Drawing.Size(173, 26)
         Me.Button9.TabIndex = 11
         Me.Button9.Text = "Export All Pokemon"
+        Me.HoverInfo.SetToolTip(Me.Button9, "Export All Pokemon:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Choose a folder and export an " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "ini file for each Pokemon " &
+        "to that folder." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Each filename will be the Pokemon's " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "index number + '.ini'.")
         Me.Button9.UseVisualStyleBackColor = True
         '
         'ProgressBar
         '
         Me.ProgressBar.Location = New System.Drawing.Point(11, 656)
-        Me.ProgressBar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ProgressBar.Margin = New System.Windows.Forms.Padding(4)
         Me.ProgressBar.Name = "ProgressBar"
         Me.ProgressBar.Size = New System.Drawing.Size(1016, 20)
         Me.ProgressBar.TabIndex = 12
+        Me.HoverInfo.SetToolTip(Me.ProgressBar, "Peekaboo")
         Me.ProgressBar.Visible = False
         '
         'Button14
         '
+        Me.Button14.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button14.Location = New System.Drawing.Point(11, 342)
-        Me.Button14.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button14.Margin = New System.Windows.Forms.Padding(4)
         Me.Button14.Name = "Button14"
-        Me.Button14.Size = New System.Drawing.Size(173, 23)
+        Me.Button14.Size = New System.Drawing.Size(173, 26)
         Me.Button14.TabIndex = 13
         Me.Button14.Text = "Import All Pokemon"
+        Me.HoverInfo.SetToolTip(Me.Button14, resources.GetString("Button14.ToolTip"))
         Me.Button14.UseVisualStyleBackColor = True
         '
         'Button25
         '
+        Me.Button25.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button25.Location = New System.Drawing.Point(11, 422)
-        Me.Button25.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button25.Margin = New System.Windows.Forms.Padding(4)
         Me.Button25.Name = "Button25"
-        Me.Button25.Size = New System.Drawing.Size(173, 23)
+        Me.Button25.Size = New System.Drawing.Size(173, 26)
         Me.Button25.TabIndex = 14
         Me.Button25.Text = "Import All Sprite sheets"
+        Me.HoverInfo.SetToolTip(Me.Button25, "Import All Sprite sheets:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Choose a folder to import sprite " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "sheets for each P" &
+        "okemon." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "The filename of the image must " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "start with the index number of the" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) &
+        "Pokemon it will be imported to.")
         Me.Button25.UseVisualStyleBackColor = True
         '
         'Button26
         '
+        Me.Button26.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button26.Location = New System.Drawing.Point(11, 448)
-        Me.Button26.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button26.Margin = New System.Windows.Forms.Padding(4)
         Me.Button26.Name = "Button26"
-        Me.Button26.Size = New System.Drawing.Size(173, 23)
+        Me.Button26.Size = New System.Drawing.Size(173, 26)
         Me.Button26.TabIndex = 15
         Me.Button26.Text = "Export All Sprite sheets"
+        Me.HoverInfo.SetToolTip(Me.Button26, "Export All Sprite sheets:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Choose a folder and export " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "a png image to the fold" &
+        "er " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "for each Pokemon.")
         Me.Button26.UseVisualStyleBackColor = True
         '
         'Button27
         '
+        Me.Button27.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button27.Location = New System.Drawing.Point(11, 500)
-        Me.Button27.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button27.Margin = New System.Windows.Forms.Padding(4)
         Me.Button27.Name = "Button27"
-        Me.Button27.Size = New System.Drawing.Size(173, 23)
+        Me.Button27.Size = New System.Drawing.Size(173, 26)
         Me.Button27.TabIndex = 17
         Me.Button27.Text = "Export All Icons"
+        Me.HoverInfo.SetToolTip(Me.Button27, "Export All Icons:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Choose a folder and export" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the icon of each Pokemon" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "as a p" &
+        "ng file.")
         Me.Button27.UseVisualStyleBackColor = True
         '
         'Button28
         '
+        Me.Button28.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button28.Location = New System.Drawing.Point(11, 474)
-        Me.Button28.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button28.Margin = New System.Windows.Forms.Padding(4)
         Me.Button28.Name = "Button28"
-        Me.Button28.Size = New System.Drawing.Size(124, 23)
+        Me.Button28.Size = New System.Drawing.Size(124, 26)
         Me.Button28.TabIndex = 16
         Me.Button28.Text = "Import All Icons"
+        Me.HoverInfo.SetToolTip(Me.Button28, resources.GetString("Button28.ToolTip"))
         Me.Button28.UseVisualStyleBackColor = True
         '
         'Button29
         '
+        Me.Button29.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button29.Location = New System.Drawing.Point(11, 551)
-        Me.Button29.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button29.Margin = New System.Windows.Forms.Padding(4)
         Me.Button29.Name = "Button29"
-        Me.Button29.Size = New System.Drawing.Size(173, 23)
+        Me.Button29.Size = New System.Drawing.Size(173, 26)
         Me.Button29.TabIndex = 19
         Me.Button29.Text = "Export All Footprints"
+        Me.HoverInfo.SetToolTip(Me.Button29, "Export All Footprints:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Choose a folder and export" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "all Pokemon footprints" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "as " &
+        "png files.")
         Me.Button29.UseVisualStyleBackColor = True
         '
         'Button30
         '
+        Me.Button30.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button30.Location = New System.Drawing.Point(11, 525)
-        Me.Button30.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button30.Margin = New System.Windows.Forms.Padding(4)
         Me.Button30.Name = "Button30"
-        Me.Button30.Size = New System.Drawing.Size(173, 23)
+        Me.Button30.Size = New System.Drawing.Size(173, 26)
         Me.Button30.TabIndex = 18
         Me.Button30.Text = "Import All Footprints"
+        Me.HoverInfo.SetToolTip(Me.Button30, "Import All Footprints:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Choose a folder and import" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the footprint for each" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Pok" &
+        "emon from the folder.")
         Me.Button30.UseVisualStyleBackColor = True
         '
         'Button38
         '
+        Me.Button38.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button38.Location = New System.Drawing.Point(11, 602)
-        Me.Button38.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button38.Margin = New System.Windows.Forms.Padding(4)
         Me.Button38.Name = "Button38"
-        Me.Button38.Size = New System.Drawing.Size(173, 23)
+        Me.Button38.Size = New System.Drawing.Size(173, 26)
         Me.Button38.TabIndex = 21
         Me.Button38.Text = "Export All Cries"
+        Me.HoverInfo.SetToolTip(Me.Button38, "Export All Cries:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Choose a folder and export" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the cries of each Pokemon." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Th" &
+        "e cries will be exported as wav " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "files with the index number of the " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Pokemon a" &
+        "s the filename.")
         Me.Button38.UseVisualStyleBackColor = True
         '
         'Button39
         '
+        Me.Button39.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button39.Location = New System.Drawing.Point(11, 576)
-        Me.Button39.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button39.Margin = New System.Windows.Forms.Padding(4)
         Me.Button39.Name = "Button39"
-        Me.Button39.Size = New System.Drawing.Size(173, 23)
+        Me.Button39.Size = New System.Drawing.Size(173, 26)
         Me.Button39.TabIndex = 20
         Me.Button39.Text = "Import All Cries"
+        Me.HoverInfo.SetToolTip(Me.Button39, resources.GetString("Button39.ToolTip"))
         Me.Button39.UseVisualStyleBackColor = True
         '
         'Button41
         '
-        Me.Button41.Location = New System.Drawing.Point(137, 474)
-        Me.Button41.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button41.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button41.Location = New System.Drawing.Point(135, 474)
+        Me.Button41.Margin = New System.Windows.Forms.Padding(4)
         Me.Button41.Name = "Button41"
-        Me.Button41.Size = New System.Drawing.Size(47, 23)
+        Me.Button41.Size = New System.Drawing.Size(49, 26)
         Me.Button41.TabIndex = 22
         Me.Button41.Text = "Rep."
+        Me.HoverInfo.SetToolTip(Me.Button41, resources.GetString("Button41.ToolTip"))
         Me.Button41.UseVisualStyleBackColor = True
         '
         'CheckBox1
@@ -3140,7 +3180,17 @@ Partial Class Pokemonedit
         Me.CheckBox1.Size = New System.Drawing.Size(130, 21)
         Me.CheckBox1.TabIndex = 23
         Me.CheckBox1.Text = "Efficient Imports"
+        Me.CheckBox1.TextAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.HoverInfo.SetToolTip(Me.CheckBox1, resources.GetString("CheckBox1.ToolTip"))
         Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'HoverInfo
+        '
+        Me.HoverInfo.AutomaticDelay = 0
+        Me.HoverInfo.AutoPopDelay = 32000
+        Me.HoverInfo.BackColor = System.Drawing.SystemColors.Control
+        Me.HoverInfo.InitialDelay = 500
+        Me.HoverInfo.ReshowDelay = 100
         '
         'Pokemonedit
         '
@@ -3169,7 +3219,7 @@ Partial Class Pokemonedit
         Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.Name = "Pokemonedit"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -3536,4 +3586,5 @@ Partial Class Pokemonedit
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents Label61 As Label
     Friend WithEvents imptCompChk As CheckBox
+    Friend WithEvents HoverInfo As ToolTip
 End Class

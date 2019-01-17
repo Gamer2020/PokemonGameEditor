@@ -892,8 +892,6 @@ Module ImportDataFunctions
 
     Public Sub ImportPokemonIconNewOffset(filename As String, PokemonIndex As Integer)
 
-        Dim iconpals(2)() As Color
-
         Dim importimg As New Bitmap(filename)
 
 
@@ -914,21 +912,48 @@ Module ImportDataFunctions
         Dim ImgBytes As Byte()
         Dim ImgString As String
 
+        Dim individualPalettes As Boolean = False
+
+        Try
+            pOffset = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPointerTable2", ""), System.Globalization.NumberStyles.HexNumber)
+            individualPalettes = True
+        Catch
+
+        End Try
+
+        Dim iconpals(Pokemonedit.IconPalCount - 1)() As Color
 
         Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
             Using r As New BinaryReader(fs)
 
-                fs.Position = sOffset
-                sOffset = r.ReadInt32 - &H8000000
-
-                fs.Position = pOffset
-
                 Dim indexvar As Integer = 0
 
-                Do
-                    iconpals(indexvar) = LoadPaletteFromROM(fs)
-                    indexvar += 1
-                Loop While (indexvar <= 2)
+                If Not individualPalettes Then
+
+                    fs.Position = sOffset
+                    sOffset = r.ReadInt32 - &H8000000
+
+                    fs.Position = pOffset
+
+                    Do
+                        iconpals(indexvar) = LoadPaletteFromROM(fs)
+                        indexvar += 1
+                    Loop While (indexvar <= 2)
+
+                Else
+
+                    Dim pTable As Integer = pOffset
+
+                    Do
+                        fs.Position = pTable + (8 * indexvar)
+                        pOffset = r.ReadInt32 - &H8000000
+                        fs.Position = pOffset
+                        iconpals(indexvar) = LoadPaletteFromROM(fs)
+                        indexvar += 1
+                    Loop While (indexvar <= Pokemonedit.IconPalCount - 1)
+
+
+                End If
 
                 fs.Close()
                 r.Close()
