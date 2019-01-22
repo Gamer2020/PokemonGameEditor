@@ -40,30 +40,39 @@ Public Class PokedexListEditor
 
             LoopVar = 0
 
-            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+            Dim PokedexNumToSpecies As List(Of Integer) = AllPokedexNumbertoSpecies()
+
+            For Looper As Integer = 0 To PokedexNumToSpecies.Count() - 1
+                ListBox1.Items.Add(GetPokemonName(PokedexNumToSpecies(Looper)))
+            Next
+
+            If header2 <> "BPE" Then
+                While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
 
 
-                ListBox1.Items.Add(GetPokemonName(PokedexNumbertoSpecies(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexAlphabetTable", "")), System.Globalization.NumberStyles.HexNumber) + (LoopVar * 2), 2))), System.Globalization.NumberStyles.HexNumber))))
 
-                If header2 <> "BPE" Then
                     ListBox4.Items.Add(GetPokemonName((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexTypeTable", "")), System.Globalization.NumberStyles.HexNumber) + (LoopVar * 2), 2))), System.Globalization.NumberStyles.HexNumber))))
 
-                End If
 
-                LoopVar = LoopVar + 1
 
-            End While
+                    LoopVar = LoopVar + 1
+
+                End While
+            End If
 
             LoopVar = 0
 
-            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfDexEntries", "")) - 1
+            Dim PokedexNumToSpeciesLight As List(Of Integer) = AllPokedexNumbertoSpecies("PokedexLightestTable", "NumberOfDexEntries")
 
-                ListBox2.Items.Add(GetPokemonName(PokedexNumbertoSpecies(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexLightestTable", "")), System.Globalization.NumberStyles.HexNumber) + (LoopVar * 2), 2))), System.Globalization.NumberStyles.HexNumber))))
-                ListBox3.Items.Add(GetPokemonName(PokedexNumbertoSpecies(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "PokedexSmallestTable", "")), System.Globalization.NumberStyles.HexNumber) + (LoopVar * 2), 2))), System.Globalization.NumberStyles.HexNumber))))
+            For Looper As Integer = 0 To PokedexNumToSpeciesLight.Count() - 1
+                ListBox2.Items.Add(GetPokemonName(PokedexNumToSpeciesLight(Looper)))
+            Next
 
+            Dim PokedexNumToSpeciesSmall As List(Of Integer) = AllPokedexNumbertoSpecies("PokedexSmallestTable", "NumberOfDexEntries")
 
-                LoopVar = LoopVar + 1
-            End While
+            For Looper As Integer = 0 To PokedexNumToSpeciesSmall.Count() - 1
+                ListBox3.Items.Add(GetPokemonName(PokedexNumToSpeciesSmall(Looper)))
+            Next
 
             ListBox1.SelectedIndex = 0
             ListBox2.SelectedIndex = 0

@@ -1,7 +1,7 @@
 ﻿Option Strict Off
 Option Explicit Off
 Imports VB = Microsoft.VisualBasic
-Public Class movetutor2
+Public Class MoveTutorEditor
 
 
     Dim Offset As Integer

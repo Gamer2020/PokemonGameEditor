@@ -253,6 +253,19 @@ Module WichuSpriteFunctions
         Dim num As Integer = -1
         Dim num7 As Integer = (palettes.Length - 1)
         Dim i As Integer = 0
+        Dim blankColor As Color = Color.FromArgb(&H0)
+
+
+        Dim tempPal As List(Of Color) = New List(Of Color)
+
+        For Each color In bitmapPalette
+            If Not color.ToArgb() = blankColor.ToArgb() Then
+                tempPal.Add(color)
+            End If
+        Next
+        ReDim bitmapPalette(tempPal.Count)
+        bitmapPalette = tempPal.ToArray()
+
         Do While (i <= num7)
             Dim num4 As Integer = 0
             Dim num8 As Integer = (bitmapPalette.Length - 1)

@@ -33,6 +33,7 @@ Partial Class EggMoveEditor
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.FrntPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -136,11 +137,21 @@ Partial Class EggMoveEditor
         Me.Button6.Text = "Save"
         Me.Button6.UseVisualStyleBackColor = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(392, 241)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(226, 140)
+        Me.Label1.TabIndex = 15
+        Me.Label1.Text = resources.GetString("Label1.Text")
+        '
         'EggMoveEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(624, 403)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
@@ -160,6 +171,7 @@ Partial Class EggMoveEditor
         Me.Text = "Egg Move Editor"
         CType(Me.FrntPic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -173,4 +185,5 @@ Partial Class EggMoveEditor
     Friend WithEvents Button4 As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
+    Friend WithEvents Label1 As Label
 End Class

@@ -592,10 +592,8 @@ Module ImportDataFunctions
         End If
 
         Try
-            SynchSprite(FrontSprite, ONormalFrontBitmap, OShinyFrontBitmap)
             SynchSprite(BackSprite, ONormalBackBitmap, OShinyBackBitmap)
         Catch
-            SynchSpriteOverflow(FrontSprite, ONormalFrontBitmap, OShinyFrontBitmap)
             SynchSpriteOverflow(BackSprite, ONormalBackBitmap, OShinyBackBitmap)
         End Try
 
@@ -605,16 +603,18 @@ Module ImportDataFunctions
             Catch
                 SynchSprite2Overflow(AnimationNormalSprite, ONormalFrontBitmapAnimation, OShinyFrontBitmapAnimation)
             End Try
+            SaveAnimationSpriteToFreeSpace(PokemonIndex, AnimationNormalSprite)
+        Else
+            Try
+                SynchSprite(FrontSprite, ONormalFrontBitmap, OShinyFrontBitmap)
+            Catch
+                SynchSpriteOverflow(FrontSprite, ONormalFrontBitmap, OShinyFrontBitmap)
+            End Try
+            SaveFrontSpriteToFreeSpace(PokemonIndex, FrontSprite, FrontPalette)
         End If
 
         mainbitmap.Dispose()
-
-        SaveFrontSpriteToFreeSpace(PokemonIndex, FrontSprite, FrontPalette)
         SaveBackSpriteToFreeSpace(PokemonIndex, BackSprite, BackPalette)
-
-        If LoadAnimationFlag = True Then
-            SaveAnimationSpriteToFreeSpace(PokemonIndex, AnimationNormalSprite)
-        End If
 
     End Sub
 
@@ -776,8 +776,6 @@ Module ImportDataFunctions
 
     Public Sub ImportPokemonIcon(filename As String, PokemonIndex As Integer)
 
-        Dim iconpals(2)() As Color
-
         Dim importimg As New Bitmap(filename)
 
 
@@ -794,21 +792,52 @@ Module ImportDataFunctions
         Dim pOffset As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPals", ""), System.Globalization.NumberStyles.HexNumber)
 
         Dim hexstring As String = ""
+        'Dim ImgNewOffset
+        'Dim ImgBytes As Byte()
+        'Dim ImgString As String
+
+        Dim individualPalettes As Boolean = False
+
+        Try
+            pOffset = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPointerTable2", ""), System.Globalization.NumberStyles.HexNumber)
+            individualPalettes = True
+        Catch
+
+        End Try
+
+        Dim iconpals(Pokemonedit.IconPalCount - 1)() As Color
 
         Using fs As New FileStream(LoadedROM, FileMode.Open, FileAccess.Read)
             Using r As New BinaryReader(fs)
 
+                Dim indexvar As Integer = 0
+
                 fs.Position = sOffset
                 sOffset = r.ReadInt32 - &H8000000
 
-                fs.Position = pOffset
+                If Not individualPalettes Then
 
-                Dim indexvar As Integer = 0
+                    fs.Position = pOffset
 
-                Do
-                    iconpals(indexvar) = LoadPaletteFromROM(fs)
-                    indexvar += 1
-                Loop While (indexvar <= 2)
+                    Do
+                        iconpals(indexvar) = LoadPaletteFromROM(fs)
+                        indexvar += 1
+                    Loop While (indexvar <= 2)
+
+                Else
+
+                    Dim pTable As Integer = pOffset
+
+                    Do
+                        fs.Position = pTable + (8 * indexvar)
+                        pOffset = r.ReadInt32 - &H8000000
+                        fs.Position = pOffset
+                        iconpals(indexvar) = LoadPaletteFromROM(fs)
+                        indexvar += 1
+                    Loop While (indexvar <= Pokemonedit.IconPalCount - 1)
+
+
+                End If
 
                 fs.Close()
                 r.Close()
@@ -909,8 +938,8 @@ Module ImportDataFunctions
 
         Dim hexstring As String = ""
         Dim ImgNewOffset
-        Dim ImgBytes As Byte()
-        Dim ImgString As String
+        'Dim ImgBytes As Byte()
+        'Dim ImgString As String
 
         Dim individualPalettes As Boolean = False
 
@@ -929,9 +958,6 @@ Module ImportDataFunctions
                 Dim indexvar As Integer = 0
 
                 If Not individualPalettes Then
-
-                    fs.Position = sOffset
-                    sOffset = r.ReadInt32 - &H8000000
 
                     fs.Position = pOffset
 
@@ -964,14 +990,11 @@ Module ImportDataFunctions
         palval = GetClosestPalette(importimg, iconpals)
 
         ConvertBitmapToPalette(importimg, iconpals(palval), True)
-        ImgBytes = ConvertStringToByteArray(CompressLz77String(ConvertByteArrayToString(SaveBitmapToArray(importimg, iconpals(palval)))))
-        ImgString = ByteArrayToHexString(ImgBytes)
+        'ImgBytes = ConvertStringToByteArray(CompressLz77String(ConvertByteArrayToString(SaveBitmapToArray(importimg, iconpals(palval)))))
+        'ImgString = ByteArrayToHexString(ImgBytes)
         hexstring = ByteArrayToHexString(SaveBitmapToArray(importimg, iconpals(palval)))
         ImgNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(hexstring) / 2)), "&H" & GetString(GetINIFileLocation(), header, "B00000", "B00000"))
         WriteHEX(LoadedROM, ImgNewOffset, hexstring)
-
-
-        sOffset = Int32.Parse(GetString(GetINIFileLocation(), header, "IconPointerTable", ""), System.Globalization.NumberStyles.HexNumber) + (PokemonIndex * 4)
 
         WriteHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber) + PokemonIndex, Hex(palval))
         WriteHEX(LoadedROM, sOffset, ReverseHEX(Hex((ImgNewOffset) + &H8000000)))
