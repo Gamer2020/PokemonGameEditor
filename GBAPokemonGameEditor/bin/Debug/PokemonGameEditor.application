@@ -9,14 +9,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="PokemonGameEditor.exe.manifest" size="4714">
+    <dependentAssembly dependencyType="install" codebase="PokemonGameEditor.exe.manifest" size="7578">
       <assemblyIdentity name="PokemonGameEditor.exe" version="3.8.1.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZPldB61y37uHoxUw3d9sjfXQNo6uXLUSu3S+Zm/hJaA=</dsig:DigestValue>
+        <dsig:DigestValue>+ozcpp+1WQkmLxHf9Bs7nRlyNAeOoeSwufL8iHFYYH8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
