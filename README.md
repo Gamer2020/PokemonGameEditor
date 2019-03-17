@@ -1,3 +1,6 @@
+This program is to be considered legacy! Please use https://github.com/pret/pokeemerald
+=================================================================================================
+
 Support is not being offered at this time! Please make sure to use the latest beta and make sure you have the correct ROM dump.
 =================================================================================================
 
