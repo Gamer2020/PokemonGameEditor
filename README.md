@@ -4,6 +4,9 @@ This program is to be considered legacy! Please use https://github.com/pret/poke
 Support is not being offered at this time! Please make sure to use the latest beta and make sure you have the correct ROM dump.
 =================================================================================================
 
+Improvements are allowed/encouraged and pull requests will be reviewed. Any improvements should be submitted so they are all kept in one place.
+=================================================================================================
+
 ![alt tag](https://raw.githubusercontent.com/Gamer2020/PokemonGameEditor/master/Screenshots/PGEBANNER.png)
 
 Pokemon Game Editor, commonly know as PGE, is an all in one tool started in 2010 by Gamer2020 for hacking the Game Boy Advanced Pokemon games. The program continues to evolve over the years and has had 60,000+ downloads. It has even inspired several copycat programs hence the slogan "Accept no Imitations!" was adopted. The program is currently developed in VB.Net with Visual Studio 2017.
