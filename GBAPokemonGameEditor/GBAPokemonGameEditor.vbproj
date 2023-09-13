@@ -79,7 +79,7 @@
     <ManifestKeyFile>GBAPokemonGameEditor_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -206,10 +206,10 @@
     <Compile Include="mMain.vb" />
     <Compile Include="modSearchFreeSpace.vb" />
     <Compile Include="modTextSapp.vb" />
-    <Compile Include="movetutor2.Designer.vb">
-      <DependentUpon>movetutor2.vb</DependentUpon>
+    <Compile Include="MoveTutorEditor.Designer.vb">
+      <DependentUpon>MoveTutorEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="movetutor2.vb">
+    <Compile Include="MoveTutorEditor.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -335,8 +335,8 @@
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="movetutor2.resx">
-      <DependentUpon>movetutor2.vb</DependentUpon>
+    <EmbeddedResource Include="MoveTutorEditor.resx">
+      <DependentUpon>MoveTutorEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

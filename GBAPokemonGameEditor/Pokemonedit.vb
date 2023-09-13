@@ -29,11 +29,28 @@ Public Class Pokemonedit
     Dim DexDescripLength1 As Integer
     Dim DexDescripLength2 As Integer
 
+    Dim Tab1LoadedMon As Integer
+    Dim Tab2LoadedMon As Integer
+    Dim Tab3LoadedMon As Integer
+    Dim Tab4LoadedMon As Integer
+    Dim Tab5LoadedMon As Integer
+    Dim Tab6LoadedMon As Integer
+
+
+    Public Shared IconPalCount As Integer
+
+    Public Shared PicStrings As List(Of String)
+    Public Shared PicOffsets As List(Of String)
+    Public Shared PalStrings As List(Of String)
+    Public Shared PalOffsets As List(Of String)
+    Public Shared DexDescps As List(Of String)
+    Public Shared DexOffsets As List(Of String)
+    Public Shared AtkStrings As List(Of String)
+    Public Shared AtkOffsets As List(Of String)
+
     Private Sub Pokemonedit_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         MainFrm.Visible = True
     End Sub
-
-
 
     Private Sub Pokemonedit_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
@@ -143,8 +160,6 @@ Public Class Pokemonedit
 
             LoopVar = LoopVar + 1
 
-
-
         End While
 
         If header2 = "BPR" Or header2 = "BPG" Then
@@ -154,7 +169,6 @@ Public Class Pokemonedit
             ItmAnmtn.Enabled = False
             ItmAnmtn.Text = ""
         End If
-
 
         If header2 = "AXP" Or header2 = "AXV" Then
             Pointer2.Enabled = True
@@ -167,109 +181,166 @@ Public Class Pokemonedit
         TMHMLoad()
         MTLoad()
 
+        Try
+            IconPalCount = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalCount", "")), System.Globalization.NumberStyles.HexNumber)
+            If IconPalCount > 3 Then
+
+                For tempLoop = 0 To IconPalCount - 4
+                    IconPal.Items.Add("Pal " + Convert.ToString(tempLoop + 3))
+                Next
+
+            End If
+        Catch
+
+            IconPalCount = 3
+
+        End Try
+
+
+        baseoff = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonData", "")), System.Globalization.NumberStyles.HexNumber)
+
         PKMNames.SelectedIndex = 0
 
         Me.Cursor = Cursors.Arrow
+
+        PicStrings = New List(Of String)
+        PicOffsets = New List(Of String)
+        PalStrings = New List(Of String)
+        PalOffsets = New List(Of String)
+        DexDescps = New List(Of String)
+        DexOffsets = New List(Of String)
+        AtkStrings = New List(Of String)
+        AtkOffsets = New List(Of String)
+
+        Tab1LoadedMon = PKMNames.SelectedIndex + 1
+        Tab2LoadedMon = -1
+        Tab3LoadedMon = -1
+        Tab4LoadedMon = -1
+        Tab5LoadedMon = -1
+        Tab6LoadedMon = -1
+
     End Sub
 
 
     Private Sub Baseload()
 
-        baseoff = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonData", "")), System.Globalization.NumberStyles.HexNumber)
+        Dim basehex As String = ReadHEX(LoadedROM, (baseoff) + ((i + 1) * 28), 28)
 
-        HpBase.Text = Int32.Parse(((ReadHEX(LoadedROM, (baseoff) + 28 + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        AtBase.Text = Int32.Parse(((ReadHEX(LoadedROM, ((baseoff) + 28 + 1) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        DefBase.Text = Int32.Parse(((ReadHEX(LoadedROM, ((baseoff) + 28 + 2) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        SpeedBase.Text = Int32.Parse(((ReadHEX(LoadedROM, ((baseoff) + 28 + 3) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        SpAttBase.Text = Int32.Parse(((ReadHEX(LoadedROM, ((baseoff) + 28 + 4) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        SpDefBase.Text = Int32.Parse(((ReadHEX(LoadedROM, ((baseoff) + 28 + 5) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        CatchBase.Text = Int32.Parse(((ReadHEX(LoadedROM, ((baseoff) + 28 + 8) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        RunBase.Text = Int32.Parse(((ReadHEX(LoadedROM, ((baseoff) + 28 + 24) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        Item1.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 12) + (i * 28), 2))), System.Globalization.NumberStyles.HexNumber)
-        Item2.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 14) + (i * 28), 2))), System.Globalization.NumberStyles.HexNumber)
-        Type1.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 6) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        Type2.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 7) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        Ab1.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 22) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        Ab2.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 23) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        Ev1.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 10) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        Ev2.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 11) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        EggType1.SelectedIndex = (Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 20) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber))
-        EggType2.SelectedIndex = (Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 21) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber))
-        Bexp.Text = Int32.Parse(((ReadHEX(LoadedROM, ((baseoff) + 28 + 9) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-        Grate.SelectedIndex = (Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 19) + 28 + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber))
-        PadBase.Text = ((ReadHEX(LoadedROM, ((baseoff) + 28 + 26) + (i * 28), 2)))
+        HpBase.Text = Int32.Parse(basehex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber)
+        AtBase.Text = Int32.Parse(basehex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber)
+        DefBase.Text = Int32.Parse(basehex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber)
+        SpeedBase.Text = Int32.Parse(basehex.Substring(6, 2), System.Globalization.NumberStyles.HexNumber)
+        SpAttBase.Text = Int32.Parse(basehex.Substring(8, 2), System.Globalization.NumberStyles.HexNumber)
+        SpDefBase.Text = Int32.Parse(basehex.Substring(10, 2), System.Globalization.NumberStyles.HexNumber)
+        CatchBase.Text = Int32.Parse(basehex.Substring(16, 2), System.Globalization.NumberStyles.HexNumber)
+        RunBase.Text = Int32.Parse(basehex.Substring(48, 2), System.Globalization.NumberStyles.HexNumber)
+        Item1.SelectedIndex = Int32.Parse(ReverseHEX(basehex.Substring(24, 4)), System.Globalization.NumberStyles.HexNumber)
+        Item2.SelectedIndex = Int32.Parse(ReverseHEX(basehex.Substring(28, 4)), System.Globalization.NumberStyles.HexNumber)
+        Type1.SelectedIndex = Int32.Parse(basehex.Substring(12, 2), System.Globalization.NumberStyles.HexNumber)
+        Type2.SelectedIndex = Int32.Parse(basehex.Substring(14, 2), System.Globalization.NumberStyles.HexNumber)
+        Ab1.SelectedIndex = Int32.Parse(basehex.Substring(44, 2), System.Globalization.NumberStyles.HexNumber)
+        Ab2.SelectedIndex = Int32.Parse(basehex.Substring(46, 2), System.Globalization.NumberStyles.HexNumber)
+        Ev1.SelectedIndex = Int32.Parse(basehex.Substring(20, 2), System.Globalization.NumberStyles.HexNumber)
+        Ev2.SelectedIndex = Int32.Parse(basehex.Substring(22, 2), System.Globalization.NumberStyles.HexNumber)
+        EggType1.SelectedIndex = (Int32.Parse(basehex.Substring(40, 2), System.Globalization.NumberStyles.HexNumber))
+        EggType2.SelectedIndex = (Int32.Parse(basehex.Substring(42, 2), System.Globalization.NumberStyles.HexNumber))
+        Bexp.Text = Int32.Parse(basehex.Substring(18, 2), System.Globalization.NumberStyles.HexNumber)
+        Grate.SelectedIndex = (Int32.Parse(basehex.Substring(38, 2), System.Globalization.NumberStyles.HexNumber))
+        PadBase.Text = basehex.Substring(52, 4)
 
-        If ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "00" Then
+        'hpbase.text = int32.parse(((readhex(loadedrom, (baseoff) + 28 + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'atbase.text = int32.parse(((readhex(loadedrom, ((baseoff) + 28 + 1) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'defbase.text = int32.parse(((readhex(loadedrom, ((baseoff) + 28 + 2) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'speedbase.text = int32.parse(((readhex(loadedrom, ((baseoff) + 28 + 3) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'spattbase.text = int32.parse(((readhex(loadedrom, ((baseoff) + 28 + 4) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'spdefbase.text = int32.parse(((readhex(loadedrom, ((baseoff) + 28 + 5) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'catchbase.text = int32.parse(((readhex(loadedrom, ((baseoff) + 28 + 8) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'runbase.text = int32.parse(((readhex(loadedrom, ((baseoff) + 28 + 24) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'item1.selectedindex = int32.parse((reversehex(readhex(loadedrom, ((baseoff) + 28 + 12) + (i * 28), 2))), system.globalization.numberstyles.hexnumber)
+        'item2.selectedindex = int32.parse((reversehex(readhex(loadedrom, ((baseoff) + 28 + 14) + (i * 28), 2))), system.globalization.numberstyles.hexnumber)
+        'type1.selectedindex = int32.parse((reversehex(readhex(loadedrom, ((baseoff) + 28 + 6) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'type2.selectedindex = int32.parse((reversehex(readhex(loadedrom, ((baseoff) + 28 + 7) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'ab1.selectedindex = int32.parse((reversehex(readhex(loadedrom, ((baseoff) + 28 + 22) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'ab2.selectedindex = int32.parse((reversehex(readhex(loadedrom, ((baseoff) + 28 + 23) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'ev1.selectedindex = int32.parse((reversehex(readhex(loadedrom, ((baseoff) + 28 + 10) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'ev2.selectedindex = int32.parse((reversehex(readhex(loadedrom, ((baseoff) + 28 + 11) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'eggtype1.selectedindex = (int32.parse((reversehex(readhex(loadedrom, ((baseoff) + 28 + 20) + (i * 28), 1))), system.globalization.numberstyles.hexnumber))
+        'eggtype2.selectedindex = (int32.parse((reversehex(readhex(loadedrom, ((baseoff) + 28 + 21) + (i * 28), 1))), system.globalization.numberstyles.hexnumber))
+        'bexp.text = int32.parse(((readhex(loadedrom, ((baseoff) + 28 + 9) + (i * 28), 1))), system.globalization.numberstyles.hexnumber)
+        'grate.selectedindex = (int32.parse((reversehex(readhex(loadedrom, ((baseoff) + 19) + 28 + (i * 28), 1))), system.globalization.numberstyles.hexnumber))
+        'padbase.text = ((readhex(loadedrom, ((baseoff) + 28 + 26) + (i * 28), 2)))
+
+        If (basehex.Substring(34, 2)) = "00" Then
 
             SHVal.Enabled = False
             SH1.Checked = True
             SHCombo1.Enabled = True
             SHCombo1.SelectedIndex = 0
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "05" Then
+        ElseIf (basehex.Substring(34, 2)) = "05" Then
 
             SHVal.Enabled = False
             SH1.Checked = True
             SHCombo1.Enabled = True
             SHCombo1.SelectedIndex = 1
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "0A" Then
+        ElseIf (basehex.Substring(34, 2)) = "0A" Then
 
             SH1.Checked = True
             SHVal.Enabled = False
             SHCombo1.Enabled = True
             SHCombo1.SelectedIndex = 2
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "0F" Then
+        ElseIf (basehex.Substring(34, 2)) = "0F" Then
 
             SH1.Checked = True
             SHVal.Enabled = False
             SHCombo1.Enabled = True
             SHCombo1.SelectedIndex = 3
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "14" Then
+        ElseIf (basehex.Substring(34, 2)) = "14" Then
 
             SH1.Checked = True
             SHVal.Enabled = False
             SHCombo1.Enabled = True
             SHCombo1.SelectedIndex = 4
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "19" Then
+        ElseIf (basehex.Substring(34, 2)) = "19" Then
 
             SH1.Checked = True
             SHVal.Enabled = False
             SHCombo1.Enabled = True
             SHCombo1.SelectedIndex = 5
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "1E" Then
+        ElseIf (basehex.Substring(34, 2)) = "1E" Then
 
             SH1.Checked = True
             SHVal.Enabled = False
             SHCombo1.Enabled = True
             SHCombo1.SelectedIndex = 6
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "23" Then
+        ElseIf (basehex.Substring(34, 2)) = "23" Then
 
             SH1.Checked = True
             SHVal.Enabled = False
             SHCombo1.Enabled = True
             SHCombo1.SelectedIndex = 7
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "28" Then
+        ElseIf (basehex.Substring(34, 2)) = "28" Then
 
             SH1.Checked = True
             SHVal.Enabled = False
             SHCombo1.Enabled = True
             SHCombo1.SelectedIndex = 8
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "50" Then
+        ElseIf (basehex.Substring(34, 2)) = "50" Then
 
             SH1.Checked = True
             SHVal.Enabled = False
             SHCombo1.Enabled = True
             SHCombo1.SelectedIndex = 9
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1))) = "78" Then
+        ElseIf (basehex.Substring(34, 2)) = "78" Then
 
             SH1.Checked = True
             SHVal.Enabled = False
@@ -281,155 +352,154 @@ Public Class Pokemonedit
             SH2.Checked = True
             SHCombo1.Enabled = False
             SHVal.Enabled = True
-            SHVal.Text = ((ReadHEX(LoadedROM, ((baseoff) + 28 + 17) + (i * 28), 1)))
+            SHVal.Text = (basehex.Substring(34, 2))
 
         End If
 
-        If Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber) < 10 Then
-
-            Rght1.Checked = True
-
-            Clr1.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
-
-        ElseIf Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber) > 10 Then
-
-            Lft1.Checked = True
-            Clr1.SelectedIndex = (Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)) - 128
-
-        End If
-
-        If ((ReadHEX(LoadedROM, ((baseoff) + 28 + 18) + (i * 28), 1))) = "00" Then
+        If (basehex.Substring(36, 2)) = "00" Then
 
             HPVal.Enabled = False
             HP1.Checked = True
             HPCombo1.Enabled = True
             HPCombo1.SelectedIndex = 0
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 18) + (i * 28), 1))) = "23" Then
+        ElseIf (basehex.Substring(36, 2)) = "23" Then
 
             HPVal.Enabled = False
             HP1.Checked = True
             HPCombo1.Enabled = True
             HPCombo1.SelectedIndex = 1
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 18) + (i * 28), 1))) = "46" Then
+        ElseIf (basehex.Substring(36, 2)) = "46" Then
 
             HP1.Checked = True
             HPVal.Enabled = False
             HPCombo1.Enabled = True
             HPCombo1.SelectedIndex = 2
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 18) + (i * 28), 1))) = "5A" Then
+        ElseIf (basehex.Substring(36, 2)) = "5A" Then
 
             HP1.Checked = True
             HPVal.Enabled = False
             HPCombo1.Enabled = True
             HPCombo1.SelectedIndex = 3
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 18) + (i * 28), 1))) = "64" Then
+        ElseIf (basehex.Substring(36, 2)) = "64" Then
 
             HP1.Checked = True
             HPVal.Enabled = False
             HPCombo1.Enabled = True
             HPCombo1.SelectedIndex = 4
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 18) + (i * 28), 1))) = "8C" Then
+        ElseIf (basehex.Substring(36, 2)) = "8C" Then
 
             HP1.Checked = True
             HPVal.Enabled = False
             HPCombo1.Enabled = True
             HPCombo1.SelectedIndex = 5
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 18) + (i * 28), 1))) = "FF" Then
+        ElseIf (basehex.Substring(36, 2)) = "FF" Then
 
             HP1.Checked = True
             HPVal.Enabled = False
             HPCombo1.Enabled = True
             HPCombo1.SelectedIndex = 6
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 18) + (i * 28), 1))) <> "00" And ((ReadHEX(LoadedROM, (("&H" & baseoff) + 18) + (i * 28), 1))) <> "23" And ((ReadHEX(LoadedROM, (("&H" & baseoff) + 18) + (i * 28), 1))) <> "46" And ((ReadHEX(LoadedROM, (("&H" & baseoff) + 18) + (i * 28), 1))) <> "5A" And ((ReadHEX(LoadedROM, (("&H" & baseoff) + 18) + (i * 28), 1))) <> "64" And ((ReadHEX(LoadedROM, (("&H" & baseoff) + 18) + (i * 28), 1))) <> "8C" And ((ReadHEX(LoadedROM, (("&H" & baseoff) + 18) + (i * 28), 1))) <> "FF" Then
+        Else
+
             HP2.Checked = True
             HPCombo1.Enabled = False
             HPVal.Enabled = True
-            HPVal.Text = ((ReadHEX(LoadedROM, ((baseoff) + 28 + 18) + (i * 28), 1)))
+            HPVal.Text = (basehex.Substring(36, 2))
 
         End If
 
-        If ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1))) = "00" Then
+        If (basehex.Substring(32, 2)) = "00" Then
 
             GVal.Enabled = False
             G1.Checked = True
             GCombo1.Enabled = True
             GCombo1.SelectedIndex = 0
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1))) = "1F" Then
+        ElseIf (basehex.Substring(32, 2)) = "1F" Then
 
             GVal.Enabled = False
             G1.Checked = True
             GCombo1.Enabled = True
             GCombo1.SelectedIndex = 1
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1))) = "3F" Then
+        ElseIf (basehex.Substring(32, 2)) = "3F" Then
 
             G1.Checked = True
             GVal.Enabled = False
             GCombo1.Enabled = True
             GCombo1.SelectedIndex = 2
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1))) = "59" Then
+        ElseIf (basehex.Substring(32, 2)) = "59" Then
 
             G1.Checked = True
             GVal.Enabled = False
             GCombo1.Enabled = True
             GCombo1.SelectedIndex = 3
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1))) = "7F" Then
+        ElseIf (basehex.Substring(32, 2)) = "7F" Then
 
             G1.Checked = True
             GVal.Enabled = False
             GCombo1.Enabled = True
             GCombo1.SelectedIndex = 4
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1))) = "A5" Then
+        ElseIf (basehex.Substring(32, 2)) = "A5" Then
 
             G1.Checked = True
             GVal.Enabled = False
             GCombo1.Enabled = True
             GCombo1.SelectedIndex = 5
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1))) = "BF" Then
+        ElseIf (basehex.Substring(32, 2)) = "BF" Then
 
             G1.Checked = True
             GVal.Enabled = False
             GCombo1.Enabled = True
             GCombo1.SelectedIndex = 6
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1))) = "DF" Then
+        ElseIf (basehex.Substring(32, 2)) = "DF" Then
 
             G1.Checked = True
             GVal.Enabled = False
             GCombo1.Enabled = True
             GCombo1.SelectedIndex = 7
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1))) = "FE" Then
+        ElseIf (basehex.Substring(32, 2)) = "FE" Then
 
             G1.Checked = True
             GVal.Enabled = False
             GCombo1.Enabled = True
             GCombo1.SelectedIndex = 8
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1))) = "FF" Then
+        ElseIf (basehex.Substring(32, 2)) = "FF" Then
 
             G1.Checked = True
             GVal.Enabled = False
             GCombo1.Enabled = True
             GCombo1.SelectedIndex = 9
 
-        ElseIf ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1))) <> "00" And ((ReadHEX(LoadedROM, ((baseoff) + 16) + (i * 28), 1))) <> "1F" And ((ReadHEX(LoadedROM, ((baseoff) + 16) + (i * 28), 1))) <> "3F" And ((ReadHEX(LoadedROM, ((baseoff) + 16) + (i * 28), 1))) <> "59" And ((ReadHEX(LoadedROM, ((baseoff) + 16) + (i * 28), 1))) <> "7F" And ((ReadHEX(LoadedROM, ((baseoff) + 16) + (i * 28), 1))) <> "A5" And ((ReadHEX(LoadedROM, ((baseoff) + 16) + (i * 28), 1))) <> "BF" And ((ReadHEX(LoadedROM, ((baseoff) + 16) + (i * 28), 1))) <> "DF" And ((ReadHEX(LoadedROM, ((baseoff) + 16) + (i * 28), 1))) <> "FE" And ((ReadHEX(LoadedROM, ((baseoff) + 16) + (i * 28), 1))) <> "FF" Then
+        Else
+
             G2.Checked = True
             GCombo1.Enabled = False
             GVal.Enabled = True
-            GVal.Text = ((ReadHEX(LoadedROM, ((baseoff) + 28 + 16) + (i * 28), 1)))
+            GVal.Text = (basehex.Substring(32, 2))
+
+        End If
+
+        If (basehex.Substring(50, 2)) < 10 Then
+
+            Rght1.Checked = True
+
+        ElseIf (basehex.Substring(50, 2)) > 10 Then
+
+            Lft1.Checked = True
 
         End If
 
@@ -615,6 +685,9 @@ Public Class Pokemonedit
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
         i = PKMNames.SelectedIndex
+
+        LoadUnloadedTabs()
+
         BaseSave()
         EvoSave()
         TMHMCOMSave()
@@ -648,9 +721,6 @@ Public Class Pokemonedit
         IconPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber)
         IconPalTable = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber)
         FootPrintTable = Int32.Parse((GetString(GetINIFileLocation(), header, "FootPrintTable", "")), System.Globalization.NumberStyles.HexNumber)
-        CryTable = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable", "")), System.Globalization.NumberStyles.HexNumber)
-        CryTable2 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
-        CryTable3 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable2", "")), System.Globalization.NumberStyles.HexNumber)
 
         FrontPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (FrontSpritePointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
         BackPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (BackSpritePointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
@@ -658,10 +728,56 @@ Public Class Pokemonedit
         NormalPointer.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (NormalPalPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
 
         IconPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (IconPointers) + (4) + (i * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
-        IconPal.SelectedIndex = Int32.Parse(((ReadHEX(LoadedROM, (IconPalTable) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber)
+
+        Try
+            IconPal.SelectedIndex = Int32.Parse(((ReadHEX(LoadedROM, (IconPalTable) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber)
+            Label61.Text = "                           "
+        Catch
+            IconPal.SelectedIndex = IconPalCount - 1
+            Label61.Text = "Invalid Pal#: " + Convert.ToString(Int32.Parse(((ReadHEX(LoadedROM, (IconPalTable) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
+        End Try
+
+        Label61.Invalidate()
+        Label61.Update()
 
         FootPrintPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (FootPrintTable) + (4) + (i * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
+        AnimationPointer.Text = ""
+        AniPic.Image = Nothing
+        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "0") = "0" Then
+
+
+            If header2 = "BPE" Then
+
+                GroupBox15.Enabled = True
+                Button2.Enabled = True
+                AnimationPointer.Enabled = True
+
+                AnimationPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAnimations", "")), System.Globalization.NumberStyles.HexNumber)
+                AnimationPointer.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AnimationPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
+
+                'GetAndDrawAnimationPokemonPic(AniPic, i + 1)
+                'GetAndDrawAnimationPokemonPicShiny(AniPic2, i + 1)
+
+
+                TextBox8.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "FrontAnimationTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
+                TextBox9.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "BackAnimTable", "")), System.Globalization.NumberStyles.HexNumber)) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
+                TextBox10.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "AnimDelayTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
+
+            Else
+
+                GroupBox15.Enabled = False
+                Button2.Enabled = False
+                AnimationPointer.Enabled = False
+
+            End If
+        End If
+    End Sub
+
+    Private Sub LoadCryWindow()
+        CryTable = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable", "")), System.Globalization.NumberStyles.HexNumber)
+        CryTable2 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
+        CryTable3 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable2", "")), System.Globalization.NumberStyles.HexNumber)
 
         'cry stuff with conversion table support
         If (i + 1) < 252 Then
@@ -677,15 +793,27 @@ Public Class Pokemonedit
             CryComp1.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable) + (i * 12), 1))), System.Globalization.NumberStyles.HexNumber))
             CryComp2.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable3) + (i * 12), 1))), System.Globalization.NumberStyles.HexNumber))
 
+            Dim cry1Offset = Int32.Parse(CryPointer.Text, System.Globalization.NumberStyles.HexNumber)
+            Dim cry3Offset = Int32.Parse(CryPointer2.Text, System.Globalization.NumberStyles.HexNumber)
+
             crynorm = LoadCry(i, CryTable)
-            crygrowl = LoadCry(i, CryTable3)
+
+            If cry1Offset = cry3Offset Then
+
+                crygrowl = crynorm
+
+            Else
+
+                crygrowl = LoadCry(i, CryTable3)
+
+            End If
 
             Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
-            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples   "
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples   "
 
             chkCompressed1.Checked = crynorm.Compressed
             chkCompressed2.Checked = crygrowl.Compressed
@@ -718,8 +846,8 @@ Public Class Pokemonedit
             Label53.Text = "Sample Rate: " & 0 & " Hz"
             Label54.Text = "Sample Rate: " & 0 & " Hz"
 
-            Label55.Text = "Size: 0 samples"
-            Label56.Text = "Size: 0 samples"
+            Label55.Text = "Size: 0 samples          "
+            Label56.Text = "Size: 0 samples          "
 
             chkCompressed1.Checked = False
             chkCompressed2.Checked = False
@@ -730,7 +858,7 @@ Public Class Pokemonedit
         End If
 
 
-        If (i + 1) > 276 Then
+        If (i + 1) > 276 Then 'And (i + 1) < 440
             GroupBox21.Enabled = True
             CryConver.Enabled = True
             Button13.Enabled = True
@@ -744,15 +872,30 @@ Public Class Pokemonedit
 
             CryPointer2.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable3) + (4)) + ((CryConver.Text) * 12), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
-            crynorm = LoadCry(CryConver.Text, CryTable)
-            crygrowl = LoadCry(CryConver.Text, CryTable3)
+            CryComp1.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable) + ((CryConver.Text) * 12), 1))), System.Globalization.NumberStyles.HexNumber))
+            CryComp2.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable3) + ((CryConver.Text) * 12), 1))), System.Globalization.NumberStyles.HexNumber))
+
+            Dim cry1Offset = Int32.Parse(CryPointer.Text, System.Globalization.NumberStyles.HexNumber)
+            Dim cry3Offset = Int32.Parse(CryPointer2.Text, System.Globalization.NumberStyles.HexNumber)
+
+            crynorm = LoadCry(i, CryTable)
+
+            If cry1Offset = cry3Offset Then
+
+                crygrowl = crynorm
+
+            Else
+
+                crygrowl = LoadCry(i, CryTable3)
+
+            End If
 
             Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
-            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples   "
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples   "
 
             chkCompressed1.Checked = crynorm.Compressed
             chkCompressed2.Checked = crygrowl.Compressed
@@ -762,41 +905,6 @@ Public Class Pokemonedit
 
         End If
 
-        GroupBox15.Enabled = False
-        Button2.Enabled = False
-        AnimationPointer.Text = ""
-        AnimationPointer.Enabled = False
-        AniPic.Image = Nothing
-        If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "0") = "0" Then
-
-
-            If header2 = "BPE" Then
-                Button2.Enabled = True
-                AnimationPointer.Enabled = True
-                GroupBox15.Enabled = True
-
-                AnimationPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonAnimations", "")), System.Globalization.NumberStyles.HexNumber)
-                AnimationPointer.Text = (Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (AnimationPointers) + (8) + (i * 8), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000))
-
-                GetAndDrawAnimationPokemonPic(AniPic, i + 1)
-                GetAndDrawAnimationPokemonPicShiny(AniPic2, i + 1)
-
-
-                TextBox8.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "FrontAnimationTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
-                TextBox9.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "BackAnimTable", "")), System.Globalization.NumberStyles.HexNumber)) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
-                TextBox10.Text = (Int32.Parse(((ReadHEX(LoadedROM, (Int32.Parse((GetString(GetINIFileLocation(), header, "AnimDelayTable", "")), System.Globalization.NumberStyles.HexNumber)) + (i), 1))), System.Globalization.NumberStyles.HexNumber))
-
-
-            End If
-            GetAndDrawFrontPokemonPic(FrntPic, i + 1)
-            GetAndDrawBackPokemonPic(BckPic2, i + 1)
-            GetAndDrawFrontPokemonPicShiny(FrntPic2, i + 1)
-            GetAndDrawBackPokemonPicNormal(BckPic, i + 1)
-
-            'GetAndDrawFrontPokemonPic(EvoBasePokePic, i + 1)
-            GetAndDrawPokemonIconPic(IconPicBox, i + 1, IconPal.SelectedIndex)
-            GetAndDrawPokemonFootPrint(PictureBox1, i + 1)
-        End If
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
@@ -842,8 +950,6 @@ Public Class Pokemonedit
 
         EvoData = Int32.Parse((GetString(GetINIFileLocation(), header, "PokemonEvolutions", "")), System.Globalization.NumberStyles.HexNumber)
 
-
-
         'Reset the evolution stuff!
 
         EvoTypes.SelectedIndex = -1
@@ -874,7 +980,7 @@ Public Class Pokemonedit
         TextBox6.Enabled = False
 
 
-        EvoTypes.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", ""))) + ((PKMNames.SelectedIndex) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
+        EvoTypes.SelectedIndex = Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, (EvoData) + ((PKMNames.SelectedIndex + 1) * (8 * (GetString(GetINIFileLocation(), header, "NumberOfEvolutionsPerPokemon", "")))) + (EvoSlots.SelectedIndex * 8), 2)))), System.Globalization.NumberStyles.HexNumber)
 
 
         'This will enable the right stuff
@@ -1074,7 +1180,11 @@ Public Class Pokemonedit
         If GetString(AppPath & "GBAPGESettings.ini", "Settings", "DisablePKMImages", "0") = "0" Then
 
             If EvoPKMNames.SelectedIndex + 1 > 0 Then
+                EvoPokePic.Invalidate()
+
                 GetAndDrawFrontPokemonPic(EvoPokePic, EvoPKMNames.SelectedIndex + 1)
+
+                EvoPokePic.Update()
             Else
                 EvoPokePic.Image = Nothing
             End If
@@ -1083,6 +1193,8 @@ Public Class Pokemonedit
 
     Private Sub EvoItem_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EvoItem.SelectedIndexChanged
         If EvoItem.SelectedIndex > -1 Then
+            EvoItemPic.Invalidate()
+
             If header2 = "BPR" Or header2 = "BPG" Then
 
                 GetAndDrawItemPic(EvoItemPic, EvoItem.SelectedIndex)
@@ -1097,6 +1209,7 @@ Public Class Pokemonedit
 
             End If
 
+            EvoItemPic.Update()
         Else
             EvoItemPic.Image = Nothing
         End If
@@ -1138,25 +1251,15 @@ Public Class Pokemonedit
 
     Private Sub PKMNames_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PKMNames.SelectedIndexChanged
 
-        Me.Enabled = False
+        Me.Invalidate()
 
         i = PKMNames.SelectedIndex
         PokemonListIndex.Text = PKMNames.SelectedIndex + 1
 
+        QuickRefresh(PokemonListIndex)
+        QuickRefresh(CurPKMName)
 
-        Baseload()
-
-        MediaLoad()
-
-        TMHMCOMLoad()
-
-        LearnableMoveLoad()
-
-        MTComLoad()
-
-        LoadDexData()
-
-        LoadSpritePosition()
+        TabChanged()
 
         CurPKMName.Text = GetPokemonName(PKMNames.SelectedIndex + 1)
 
@@ -1169,9 +1272,9 @@ Public Class Pokemonedit
 
         EvoSlots.SelectedIndex = -1
         EvoSlots.SelectedIndex = 0
-        lvlupattacks.SelectedIndex = 0
+        'lvlupattacks.SelectedIndex = 0
 
-        Me.Enabled = True
+        Me.Validate()
 
     End Sub
 
@@ -1618,25 +1721,30 @@ Public Class Pokemonedit
             End If
 
             Dim LoopVar As Integer
+            Dim oldIndex As Integer = PKMNames.SelectedIndex
 
             LoopVar = 0
+
+            'TabControl1.SelectedTab = TabPage2
             Me.Enabled = False
 
             While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
-                '  PKMNames.SelectedIndex = LoopVar
+                'PKMNames.SelectedIndex = LoopVar
+                'TabChanged()
 
                 LoopVar = LoopVar + 1
-
-
 
                 ExportPokemonINI(FolderBrowserDialog.SelectedPath & "\Pokemon\" & LoopVar & ".ini", LoopVar)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                QuickRefresh(ProgressBar)
+                DoEvents()
             End While
 
             Me.Text = "Pokemon Editor"
             Me.UseWaitCursor = False
+            PKMNames.SelectedIndex = oldIndex
             Me.Enabled = True
             ProgressBar.Visible = False
             Me.BringToFront()
@@ -1779,23 +1887,35 @@ Public Class Pokemonedit
 
         If (i + 1) < 252 Then
 
-            'MsgBox(Val(CryPointer.Text) + &H8000000)
-
             WriteHEX(LoadedROM, (CryTable) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
             ' WriteHEX(LoadedROM, (CryTable3) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
 
-            WriteHEX(LoadedROM, (CryTable) + (i * 12), (Hex(Int32.Parse(((CryComp1.Text)), System.Globalization.NumberStyles.HexNumber))))
-            'WriteHEX(LoadedROM, (CryTable3) + (i * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
+            Dim cry1Offset = (Int32.Parse(ReverseHEX((ReadHEX(LoadedROM, (CryTable) + (i * 12) + 4, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+            Dim cry3Offset = (Int32.Parse(ReverseHEX((ReadHEX(LoadedROM, (CryTable3) + (i * 12) + 4, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
             crynorm = LoadCry(i, CryTable)
-            crygrowl = LoadCry(i, CryTable3)
+
+            If cry1Offset = cry3Offset Then
+
+                crygrowl = crynorm
+
+            Else
+
+                crygrowl = LoadCry(i, CryTable3)
+
+            End If
+
+            WriteHEX(LoadedROM, CryTable + (i * 12), ReverseHEX(If(crynorm.Compressed, "00003C20", "00003C00")))
+
+            CryComp1.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable) + (i * 12), 1))), System.Globalization.NumberStyles.HexNumber))
+            CryComp2.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable3) + (i * 12), 1))), System.Globalization.NumberStyles.HexNumber))
 
             Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
-            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples   "
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples   "
 
             chkCompressed1.Checked = crynorm.Compressed
             chkCompressed2.Checked = crygrowl.Compressed
@@ -1808,21 +1928,37 @@ Public Class Pokemonedit
             MsgBox("This shoudln't be enabled! report it!")
         ElseIf (i + 1) > 276 Then
 
-            WriteHEX(LoadedROM, (CryTable) + (4) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+            Dim CurrConv As Integer = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+
+            WriteHEX(LoadedROM, (CryTable) + (4) + (CurrConv * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
             ' WriteHEX(LoadedROM, (CryTable3) + (4) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
 
-            WriteHEX(LoadedROM, (CryTable) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), (Hex(Int32.Parse(((CryComp1.Text)), System.Globalization.NumberStyles.HexNumber))))
-            'WriteHEX(LoadedROM, (CryTable3) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
+            Dim cry1Offset = (Int32.Parse(ReverseHEX((ReadHEX(LoadedROM, (CryTable) + (CurrConv * 12) + 4, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+            Dim cry3Offset = (Int32.Parse(ReverseHEX((ReadHEX(LoadedROM, (CryTable3) + (CurrConv * 12) + 4, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
-            crynorm = LoadCry(((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))), CryTable)
-            crygrowl = LoadCry(((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))), CryTable3)
+            crynorm = LoadCry(i, CryTable)
+
+            If cry1Offset = cry3Offset Then
+
+                crygrowl = crynorm
+
+            Else
+
+                crygrowl = LoadCry(i, CryTable3)
+
+            End If
+
+            WriteHEX(LoadedROM, (CryTable) + (CurrConv * 12), ReverseHEX(If(crynorm.Compressed, "00003C20", "00003C00")))
+
+            CryComp1.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable) + (CurrConv * 12), 1))), System.Globalization.NumberStyles.HexNumber))
+            CryComp2.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable3) + (CurrConv * 12), 1))), System.Globalization.NumberStyles.HexNumber))
 
             Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
-            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples   "
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples   "
 
             chkCompressed1.Checked = crynorm.Compressed
             chkCompressed2.Checked = crygrowl.Compressed
@@ -2154,15 +2290,27 @@ Public Class Pokemonedit
             'Label53.Text = "Sample Rate: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer.Text) + (4), 4)))), System.Globalization.NumberStyles.HexNumber)) >> 10) & " Hz"
             'Label54.Text = "Sample Rate: " & ((Int32.Parse(((ReverseHEX(ReadHEX(LoadedROM, ("&H" & CryPointer2.Text) + (4), 4)))), System.Globalization.NumberStyles.HexNumber)) >> 10) & " Hz"
 
-            crynorm = LoadCry(CryConver.Text, CryTable)
-            crygrowl = LoadCry(CryConver.Text, CryTable3)
+            Dim cry1Offset = Int32.Parse(CryPointer.Text, System.Globalization.NumberStyles.HexNumber)
+            Dim cry3Offset = Int32.Parse(CryPointer2.Text, System.Globalization.NumberStyles.HexNumber)
+
+            crynorm = LoadCry(i, CryTable)
+
+            If cry1Offset = cry3Offset Then
+
+                crygrowl = crynorm
+
+            Else
+
+                crygrowl = LoadCry(i, CryTable3)
+
+            End If
 
             Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
-            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples   "
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples   "
 
             chkCompressed1.Checked = crynorm.Compressed
             chkCompressed2.Checked = crygrowl.Compressed
@@ -2301,24 +2449,27 @@ Public Class Pokemonedit
             ProgressBar.Visible = True
 
             Dim LoopVar As Integer
+            Dim oldIndex As Integer = PKMNames.SelectedIndex
 
             LoopVar = 0
 
+            'TabControl1.SelectedTab = TabPage2
             Me.Enabled = False
 
             While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
                 'PKMNames.SelectedIndex = LoopVar
+                'TabChanged()
 
                 LoopVar = LoopVar + 1
-
-
 
                 If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini") Then
                     ImportPokemonINI(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".ini", LoopVar)
                 End If
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                QuickRefresh(ProgressBar)
+                DoEvents()
             End While
 
             LoopVar = 0
@@ -2341,6 +2492,7 @@ Public Class Pokemonedit
 
             Me.Text = "Pokemon Editor"
             Me.UseWaitCursor = False
+            PKMNames.SelectedIndex = oldIndex
             Me.Enabled = True
             ProgressBar.Visible = False
             Me.BringToFront()
@@ -2476,6 +2628,16 @@ Public Class Pokemonedit
 
             Else
                 TextBox7.Enabled = False
+            End If
+
+            If Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber) < 10 Then
+
+                Clr1.SelectedIndex = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)
+
+            ElseIf Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber) > 10 Then
+
+                Clr1.SelectedIndex = (Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((baseoff) + 28 + 25) + (i * 28), 1))), System.Globalization.NumberStyles.HexNumber)) - 128
+
             End If
 
         Else
@@ -3323,6 +3485,7 @@ Public Class Pokemonedit
 
             ImportPokemonIcon(fileOpenDialog.FileName, PKMNames.SelectedIndex + 1)
 
+
             i = PKMNames.SelectedIndex
 
             IconPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber)
@@ -3465,23 +3628,30 @@ Public Class Pokemonedit
             End If
 
             Dim LoopVar As Integer
+            Dim oldIndex As Integer = PKMNames.SelectedIndex
 
             LoopVar = 0
+
+            'TabControl1.SelectedTab = TabPage1
             Me.Enabled = False
+
             While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
-                '  PKMNames.SelectedIndex = LoopVar
+                'PKMNames.SelectedIndex = LoopVar
+                'TabChanged()
 
                 LoopVar = LoopVar + 1
-
 
                 ExportAseriesSheet(FolderBrowserDialog.SelectedPath & "\Sprites\" & LoopVar & ".png", LoopVar)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                QuickRefresh(ProgressBar)
+                DoEvents()
             End While
 
             Me.Text = "Pokemon Editor"
             Me.UseWaitCursor = False
+            PKMNames.SelectedIndex = oldIndex
             Me.Enabled = True
             ProgressBar.Visible = False
             Me.BringToFront()
@@ -3498,17 +3668,18 @@ Public Class Pokemonedit
             ProgressBar.Visible = True
 
             Dim LoopVar As Integer
+            Dim oldIndex As Integer = PKMNames.SelectedIndex
 
             LoopVar = 0
 
+            'TabControl1.SelectedTab = TabPage1
             Me.Enabled = False
 
             While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
                 'PKMNames.SelectedIndex = LoopVar
+                'TabChanged()
 
                 LoopVar = LoopVar + 1
-
-
 
                 If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png") Then
                     ImportAseriesSheet(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png", LoopVar)
@@ -3517,7 +3688,9 @@ Public Class Pokemonedit
                 End If
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                QuickRefresh(ProgressBar)
+                DoEvents()
             End While
 
             PKMNames.SelectedIndex = 1
@@ -3525,6 +3698,7 @@ Public Class Pokemonedit
 
             Me.Text = "Pokemon Editor"
             Me.UseWaitCursor = False
+            PKMNames.SelectedIndex = oldIndex
             Me.Enabled = True
             ProgressBar.Visible = False
             Me.BringToFront()
@@ -3557,7 +3731,8 @@ Public Class Pokemonedit
                 ExportPokemonIcon(FolderBrowserDialog.SelectedPath & "\Icons\" & LoopVar & ".png", LoopVar)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                QuickRefresh(ProgressBar)
             End While
 
             Me.Text = "Pokemon Editor"
@@ -3597,7 +3772,8 @@ Public Class Pokemonedit
                 End If
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                QuickRefresh(ProgressBar)
             End While
 
             PKMNames.SelectedIndex = 1
@@ -3638,7 +3814,8 @@ Public Class Pokemonedit
                 End If
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                QuickRefresh(ProgressBar)
             End While
 
             PKMNames.SelectedIndex = 1
@@ -3678,7 +3855,8 @@ Public Class Pokemonedit
                 ExportPokemonFootprint(FolderBrowserDialog.SelectedPath & "\Footprints\" & LoopVar & ".png", LoopVar)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                QuickRefresh(ProgressBar)
             End While
 
             Me.Text = "Pokemon Editor"
@@ -3699,18 +3877,32 @@ Public Class Pokemonedit
             'WriteHEX(LoadedROM, (CryTable) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
             WriteHEX(LoadedROM, (CryTable3) + (4) + (i * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
 
-            'WriteHEX(LoadedROM, (CryTable) + (i * 12), (Hex(Int32.Parse(((CryComp1.Text)), System.Globalization.NumberStyles.HexNumber))))
-            WriteHEX(LoadedROM, (CryTable3) + (i * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
+            Dim cry1Offset = Int32.Parse(CryPointer.Text, System.Globalization.NumberStyles.HexNumber)
+            Dim cry3Offset = Int32.Parse(CryPointer2.Text, System.Globalization.NumberStyles.HexNumber)
 
             crynorm = LoadCry(i, CryTable)
-            crygrowl = LoadCry(i, CryTable3)
+
+            If cry1Offset = cry3Offset Then
+
+                crygrowl = crynorm
+
+            Else
+
+                crygrowl = LoadCry(i, CryTable3)
+
+            End If
+
+            WriteHEX(LoadedROM, (CryTable3) + (i * 12), ReverseHEX(If(crygrowl.Compressed, "00003C30", "00003C00")))
+
+            CryComp1.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable) + (i * 12), 1))), System.Globalization.NumberStyles.HexNumber))
+            CryComp2.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable3) + (i * 12), 1))), System.Globalization.NumberStyles.HexNumber))
 
             Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
-            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples   "
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples   "
 
             chkCompressed1.Checked = crynorm.Compressed
             chkCompressed2.Checked = crygrowl.Compressed
@@ -3723,21 +3915,37 @@ Public Class Pokemonedit
             MsgBox("This shoudln't be enabled! report it!")
         ElseIf (i + 1) > 276 Then
 
+            Dim CurrConv As Integer = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+
             'WriteHEX(LoadedROM, (CryTable) + (4) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
-            WriteHEX(LoadedROM, (CryTable3) + (4) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
+            WriteHEX(LoadedROM, (CryTable3) + (4) + (CurrConv * 12), ReverseHEX(Hex(Int32.Parse(((CryPointer2.Text)), System.Globalization.NumberStyles.HexNumber) + &H8000000)))
 
-            'WriteHEX(LoadedROM, (CryTable) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), (Hex(Int32.Parse(((CryComp1.Text)), System.Globalization.NumberStyles.HexNumber))))
-            WriteHEX(LoadedROM, (CryTable3) + (((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))) * 12), (Hex(Int32.Parse(((CryComp2.Text)), System.Globalization.NumberStyles.HexNumber))))
+            Dim cry1Offset = (Int32.Parse(ReverseHEX((ReadHEX(LoadedROM, (CryTable) + (CurrConv * 12) + 4, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+            Dim cry3Offset = (Int32.Parse(ReverseHEX((ReadHEX(LoadedROM, (CryTable3) + (CurrConv * 12) + 4, 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
 
-            crynorm = LoadCry(((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))), CryTable)
-            crygrowl = LoadCry(((Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, ((CryTable2)) + ((i - 276) * 2), 2))), System.Globalization.NumberStyles.HexNumber))), CryTable3)
+            crynorm = LoadCry(i, CryTable)
+
+            If cry1Offset = cry3Offset Then
+
+                crygrowl = crynorm
+
+            Else
+
+                crygrowl = LoadCry(i, CryTable3)
+
+            End If
+
+            WriteHEX(LoadedROM, (CryTable3) + ((CryConver.Text) * 12), ReverseHEX(If(crygrowl.Compressed, "00003C30", "00003C00")))
+
+            CryComp1.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable) + (CurrConv * 12), 1))), System.Globalization.NumberStyles.HexNumber))
+            CryComp2.Text = Hex(Int32.Parse(((ReadHEX(LoadedROM, (CryTable3) + (CurrConv * 12), 1))), System.Globalization.NumberStyles.HexNumber))
 
             Label53.Text = "Sample Rate: " & crynorm.SampleRate & " Hz"
             Label54.Text = "Sample Rate: " & crygrowl.SampleRate & " Hz"
 
 
-            Label55.Text = "Size: " & crynorm.Data.Length & " samples"
-            Label56.Text = "Size: " & crygrowl.Data.Length & " samples"
+            Label55.Text = "Size: " & crynorm.Data.Length & " samples   "
+            Label56.Text = "Size: " & crygrowl.Data.Length & " samples   "
 
             chkCompressed1.Checked = crynorm.Compressed
             chkCompressed2.Checked = crygrowl.Compressed
@@ -3809,7 +4017,7 @@ Public Class Pokemonedit
         End If
     End Sub
 
-    Private Sub Button35_Click(sender As Object, e As EventArgs) Handles Button35.Click
+    Private Sub Button35_Click(sender As Object, e As EventArgs)
         SaveFileDialog.FileName = (PKMNames.SelectedIndex + 1) & ".wav"
         'SaveFileDialog.CheckFileExists = True
 
@@ -3914,8 +4122,14 @@ Public Class Pokemonedit
             Me.Enabled = False
 
             crynorm = ImportCry(fileOpenDialog.FileName, crynorm)
+            crynorm.Index += 1
+            Dim cryGood As Boolean = SaveCryNoPrompt(crynorm, CryTable, CryTable3)
 
-            SaveCry(crynorm, CryTable)
+            If cryGood Then
+
+                LoadCryWindow()
+
+            End If
 
             Me.Text = "Pokemon Editor"
             Me.Enabled = True
@@ -3947,7 +4161,8 @@ Public Class Pokemonedit
                 ExportCry(FolderBrowserDialog.SelectedPath & "\Cries\" & LoopVar & ".wav", crynorm)
 
                 ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
-                Me.Refresh()
+
+                QuickRefresh(ProgressBar)
             End While
 
             Me.Text = "Pokemon Editor"
@@ -3956,14 +4171,6 @@ Public Class Pokemonedit
             ProgressBar.Visible = False
             Me.BringToFront()
         End If
-    End Sub
-
-    Private Sub Button36_Click(sender As Object, e As EventArgs) Handles Button36.Click
-
-    End Sub
-
-    Private Sub chkCompressed1_CheckedChanged(sender As Object, e As EventArgs) Handles chkCompressed1.CheckedChanged
-
     End Sub
 
     Private Sub AniSavBttn_Click(sender As Object, e As EventArgs) Handles AniSavBttn.Click
@@ -3979,11 +4186,376 @@ Public Class Pokemonedit
 
     End Sub
 
-    Private Sub Label15_Click(sender As Object, e As EventArgs) Handles Label15.Click
+    Private Sub TabChanged() Handles TabControl1.Selected
+
+        If (TabControl1.SelectedTab Is TabPage1 And Not Tab1LoadedMon = PKMNames.SelectedIndex + 1) Then
+
+            MediaLoad()
+
+            LoadSpritePosition()
+
+            'BackgroundBox loads late if its not invalidated/updated
+            BackgroundBox.Invalidate()
+
+            GetAndDrawFrontPokemonPic(FrntPic, i + 1)
+            GetAndDrawBackPokemonPic(BckPic2, i + 1)
+            GetAndDrawFrontPokemonPicShiny(FrntPic2, i + 1)
+            GetAndDrawBackPokemonPicNormal(BckPic, i + 1)
+
+            GetAndDrawPokemonIconPic(IconPicBox, i + 1, IconPal.SelectedIndex)
+
+
+            GetAndDrawPokemonFootPrint(PictureBox1, i + 1)
+
+            If header2 = "BPE" Then
+
+                GetAndDrawAnimationPokemonPic(AniPic, i + 1)
+                GetAndDrawAnimationPokemonPicShiny(AniPic2, i + 1)
+
+            End If
+
+            BackgroundBox.Update()
+
+            QuickRefresh(FrontPointer)
+            QuickRefresh(BackPointer)
+            QuickRefresh(NormalPointer)
+            QuickRefresh(ShinyPointer)
+            QuickRefresh(IconPointer)
+            QuickRefresh(FootPrintPointer)
+            QuickRefresh(PictureBox1)
+            QuickRefresh(PlayerYSelect)
+            QuickRefresh(EnemyYSelect)
+            QuickRefresh(EnemyAltitudeSelect)
+
+            If header2 = "BPE" Then
+                QuickRefresh(AnimationPointer)
+                QuickRefresh(TextBox8)
+                QuickRefresh(TextBox9)
+                QuickRefresh(TextBox10)
+            End If
+
+            Tab1LoadedMon = PKMNames.SelectedIndex + 1
+
+        ElseIf TabControl1.SelectedTab Is TabPage2 And Not Tab2LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            Baseload()
+
+            Tab2LoadedMon = PKMNames.SelectedIndex + 1
+
+        ElseIf TabControl1.SelectedTab Is TabPage3 And Not Tab3LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            QuickRefresh(EvoItemPic)
+
+            Tab3LoadedMon = PKMNames.SelectedIndex + 1
+
+        ElseIf TabControl1.SelectedTab Is TabPage4 And Not Tab4LoadedMon = PKMNames.SelectedIndex + 1 Then
+            lvlupattacks.BeginUpdate()
+
+            TMHMCOMLoad()
+
+            LearnableMoveLoad()
+
+            MTComLoad()
+
+            lvlupattacks.SelectedIndex = 0
+
+
+            QuickRefresh(MTCom)
+            QuickRefresh(TMHMCom)
+            QuickRefresh(LvlUpAttPointer)
+
+            lvlupattacks.EndUpdate()
+
+            QuickRefresh(lvlupattacks)
+
+            Tab4LoadedMon = PKMNames.SelectedIndex + 1
+
+        ElseIf TabControl1.SelectedTab Is TabPage5 And Not Tab5LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            LoadDexData()
+
+            QuickRefresh(Description1)
+            QuickRefresh(TextBox3)
+            QuickRefresh(TextBox4)
+            QuickRefresh(TextBox7)
+            QuickRefresh(TextBox5)
+            QuickRefresh(Hght)
+            QuickRefresh(Wght)
+            QuickRefresh(Offset_1)
+            QuickRefresh(Offset_2)
+            QuickRefresh(Scale1)
+            QuickRefresh(Scale2)
+            QuickRefresh(Pointer1)
+            QuickRefresh(Pointer2)
+            QuickRefresh(RSEDexPoke)
+            QuickRefresh(RSEDexTrainer)
+            QuickRefresh(GroupBox31)
+
+            Tab5LoadedMon = PKMNames.SelectedIndex + 1
+
+        ElseIf (TabControl1.SelectedTab Is TabPage6 And Not Tab6LoadedMon = PKMNames.SelectedIndex + 1) Then
+
+            LoadCryWindow()
+
+            QuickRefresh(Panel1)
+            QuickRefresh(Panel2)
+            QuickRefresh(CryPointer)
+            QuickRefresh(CryPointer2)
+            QuickRefresh(CryComp1)
+            QuickRefresh(CryComp2)
+            QuickRefresh(CryConver)
+            QuickRefresh(chkCompressed1)
+            QuickRefresh(chkCompressed2)
+            QuickRefresh(Label53)
+            QuickRefresh(Label54)
+            QuickRefresh(Label55)
+            QuickRefresh(Label56)
+
+            Tab6LoadedMon = PKMNames.SelectedIndex + 1
+
+        End If
 
     End Sub
 
-    Private Sub EvoItemPic_Click(sender As Object, e As EventArgs) Handles EvoItemPic.Click
+    Private Sub LoadUnloadedTabs()
+        'Me.Enabled = False
 
+        If Not (Tab1LoadedMon = PKMNames.SelectedIndex + 1 Or Tab2LoadedMon = PKMNames.SelectedIndex + 1 Or Tab3LoadedMon = PKMNames.SelectedIndex + 1) Then
+
+            Baseload()
+
+        End If
+
+        If Not Tab4LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            TMHMCOMLoad()
+
+            LearnableMoveLoad()
+
+            MTComLoad()
+
+            lvlupattacks.SelectedIndex = 0
+
+            Tab4LoadedMon = PKMNames.SelectedIndex + 1
+
+        End If
+
+        If Not Tab5LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            LoadDexData()
+
+        End If
+
+        If Not Tab1LoadedMon = PKMNames.SelectedIndex + 1 Then
+
+            LoadSpritePosition()
+
+        End If
+
+
+        Tab2LoadedMon = PKMNames.SelectedIndex + 1
+        Tab3LoadedMon = PKMNames.SelectedIndex + 1
+        Tab4LoadedMon = PKMNames.SelectedIndex + 1
+        Tab5LoadedMon = PKMNames.SelectedIndex + 1
+
+        'Me.Enabled = True
     End Sub
+
+    Private Sub Button39_Click(sender As Object, e As EventArgs) Handles Button39.Click
+        FolderBrowserDialog.Description = "Select folder to import cries from:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            Dim LoopVar As Integer
+
+            LoopVar = 1 'Might need to be zero
+
+            Me.Enabled = False
+
+            CryTable = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable", "")), System.Globalization.NumberStyles.HexNumber)
+            'CryTable2 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
+            CryTable3 = Int32.Parse((GetString(GetINIFileLocation(), header, "CryTable2", "")), System.Globalization.NumberStyles.HexNumber)
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+                'PKMNames.SelectedIndex = LoopVar
+
+                Dim validFiles As String() = GetFiles(FolderBrowserDialog.SelectedPath, "*" & LoopVar & "*")
+
+                If validFiles.Count > 0 Then
+                    crynorm = New Cry With {
+                        .Index = LoopVar
+                    }
+                    crynorm = ImportCry(validFiles(0), crynorm)
+                    SaveCryNoPrompt(crynorm, CryTable, CryTable3)
+                End If
+
+
+                LoopVar = LoopVar + 1
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                QuickRefresh(ProgressBar)
+
+            End While
+
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            Dim convMons As New List(Of String)
+
+            'Sets the cry conversion number of mons in Conversions.txt
+            'Cry conversion number reuses the cry of one Mon for another, to save space
+            'Conversions.txt is just a list of x=y numbers
+            'Ex: set alolan muk's cry to be the same as regular muk's, assuming Mon 1024 is your alolan muk
+            '1024=89
+            If IO.File.Exists(FolderBrowserDialog.SelectedPath & "\Conversions.txt") Then
+                convMons.AddRange(IO.File.ReadLines(FolderBrowserDialog.SelectedPath & "\Conversions.txt"))
+
+                Dim MonArray As List(Of String()) = New List(Of String())
+                For Each mon As String In convMons
+                    MonArray.Add(mon.Split(New String() {"="}, StringSplitOptions.None))
+                Next
+
+                Dim offset As Integer = Int32.Parse((GetString(GetINIFileLocation(), header, "CryConversionTable", "")), System.Globalization.NumberStyles.HexNumber)
+
+                For Each mon As String() In MonArray
+                    If mon.Count > 1 Then
+                        If mon(1) < 277 Then
+                            WriteHEX(LoadedROM, ((offset)) + ((Int32.Parse(mon(0)) - 277) * 2), ReverseHEX(VB.Right("0000" & Hex(Int32.Parse(mon(1) - 1)), 4)))
+                        Else
+                            WriteHEX(LoadedROM, ((offset)) + ((Int32.Parse(mon(0)) - 277) * 2), ReverseHEX(VB.Right("0000" & Hex(Int32.Parse(mon(1))), 4)))
+                        End If
+                    End If
+                Next
+            End If
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+            PKMNames.SelectedIndex = 0
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub Button40_Click(sender As Object, e As EventArgs) Handles Button40.Click
+        fileOpenDialog.FileName = ""
+        fileOpenDialog.CheckFileExists = True
+
+        ' Check to ensure that the selected path exists.  Dialog box displays 
+        ' a warning otherwise.
+        fileOpenDialog.CheckPathExists = True
+
+        ' Get or set default extension. Doesn't include the leading ".".
+        fileOpenDialog.DefaultExt = "png"
+
+        ' Return the file referenced by a link? If False, simply returns the selected link
+        ' file. If True, returns the file linked to the LNK file.
+        fileOpenDialog.DereferenceLinks = True
+
+        ' Just as in VB6, use a set of pairs of filters, separated with "|". Each 
+        ' pair consists of a description|file spec. Use a "|" between pairs. No need to put a
+        ' trailing "|". You can set the FilterIndex property as well, to select the default
+        ' filter. The first filter is numbered 1 (not 0). The default is 1. 
+        fileOpenDialog.Filter =
+                   "(*.png)|*.png*"
+
+        fileOpenDialog.Multiselect = False
+
+        ' Restore the original directory when done selecting
+        ' a file? If False, the current directory changes
+        ' to the directory in which you selected the file.
+        ' Set this to True to put the current folder back
+        ' where it was when you started.
+        ' The default is False.
+        '.RestoreDirectory = False
+
+        ' Show the Help button and Read-Only checkbox?
+        fileOpenDialog.ShowHelp = False
+        fileOpenDialog.ShowReadOnly = False
+
+        ' Start out with the read-only check box checked?
+        ' This only make sense if ShowReadOnly is True.
+        fileOpenDialog.ReadOnlyChecked = False
+
+        fileOpenDialog.Title = "Select Icon to import"
+
+        ' Only accept valid Win32 file names?
+        fileOpenDialog.ValidateNames = True
+
+
+        If fileOpenDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            Me.Text = "Please wait..."
+            Me.Enabled = False
+
+            ImportPokemonIconNewOffset(fileOpenDialog.FileName, PKMNames.SelectedIndex + 1)
+
+            i = PKMNames.SelectedIndex
+            TabChanged()
+
+            IconPointers = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPointerTable", "")), System.Globalization.NumberStyles.HexNumber)
+            IconPalTable = Int32.Parse((GetString(GetINIFileLocation(), header, "IconPalTable", "")), System.Globalization.NumberStyles.HexNumber)
+
+            IconPointer.Text = Hex(Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, (IconPointers) + (4) + (i * 4), 4))), System.Globalization.NumberStyles.HexNumber) - &H8000000)
+            IconPal.SelectedIndex = Int32.Parse(((ReadHEX(LoadedROM, (IconPalTable) + (1) + (i), 1))), System.Globalization.NumberStyles.HexNumber)
+
+            GetAndDrawPokemonIconPic(IconPicBox, i + 1, IconPal.SelectedIndex)
+
+            Me.Text = "Pokemon Editor"
+            Me.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Button41_Click(sender As Object, e As EventArgs) Handles Button41.Click
+        FolderBrowserDialog.Description = "Select folder to import Icons from:"
+
+        If FolderBrowserDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Me.Text = "Please wait..."
+            Me.UseWaitCursor = True
+            ProgressBar.Value = 0
+            ProgressBar.Visible = True
+
+            Dim LoopVar As Integer
+
+            LoopVar = 0
+
+            Me.Enabled = False
+
+            While LoopVar < (GetString(GetINIFileLocation(), header, "NumberOfPokemon", "")) - 1 = True
+                'PKMNames.SelectedIndex = LoopVar
+
+                LoopVar = LoopVar + 1
+
+                If System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png") Then
+                    ImportPokemonIconNewOffset(FolderBrowserDialog.SelectedPath & "\" & LoopVar & ".png", LoopVar)
+                ElseIf System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & VB.Right("000" & LoopVar, 3) & ".png") And LoopVar < 1000 Then
+                    ImportPokemonIconNewOffset(FolderBrowserDialog.SelectedPath & "\" & VB.Right("000" & LoopVar, 3) & ".png", LoopVar)
+                ElseIf System.IO.File.Exists(FolderBrowserDialog.SelectedPath & "\" & VB.Right("0000" & LoopVar, 4) & ".png") And LoopVar >= 1000 Then
+                    ImportPokemonIconNewOffset(FolderBrowserDialog.SelectedPath & "\" & VB.Right("0000" & LoopVar, 4) & ".png", LoopVar)
+                End If
+
+                ProgressBar.Value = (LoopVar / (GetString(GetINIFileLocation(), header, "NumberOfPokemon", ""))) * 100
+                QuickRefresh(ProgressBar)
+
+            End While
+
+            PKMNames.SelectedIndex = 1
+            PKMNames.SelectedIndex = 0
+
+            Me.Text = "Pokemon Editor"
+            Me.UseWaitCursor = False
+            Me.Enabled = True
+            ProgressBar.Visible = False
+            Me.BringToFront()
+        End If
+    End Sub
+
+    Private Sub QuickRefresh(MenuItem)
+        MenuItem.Invalidate()
+        MenuItem.Update()
+    End Sub
+
 End Class

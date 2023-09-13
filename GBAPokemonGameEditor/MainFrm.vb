@@ -396,7 +396,8 @@ Public Class MainFrm
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
         'Me.Visible = False
         Me.Cursor = Cursors.WaitCursor
-        movetutor2.Show()
+        MoveTutorEditor.Show()
+        MoveTutorEditor.BringToFront()
         Me.Cursor = Cursors.Arrow
     End Sub
 
@@ -404,6 +405,7 @@ Public Class MainFrm
         'Me.Visible = False
         Me.Cursor = Cursors.WaitCursor
         PokedexOrderEditor.Show()
+        PokedexOrderEditor.BringToFront()
         Me.Cursor = Cursors.Arrow
     End Sub
 
@@ -411,6 +413,7 @@ Public Class MainFrm
         ' Me.Visible = False
         Me.Cursor = Cursors.WaitCursor
         Pokemonedit.Show()
+        Pokemonedit.BringToFront()
         Me.Cursor = Cursors.Arrow
     End Sub
 
@@ -437,6 +440,7 @@ Public Class MainFrm
         Me.Cursor = Cursors.WaitCursor
         'Me.Visible = False
         AttackEditor.Show()
+        AttackEditor.BringToFront()
         Me.Cursor = Cursors.Arrow
     End Sub
 
@@ -446,6 +450,7 @@ Public Class MainFrm
         'Me.Visible = False
         Me.Cursor = Cursors.WaitCursor
         AbilityEdit.Show()
+        AbilityEdit.BringToFront()
         Me.Cursor = Cursors.Arrow
     End Sub
 
@@ -554,6 +559,7 @@ Public Class MainFrm
         'Me.Visible = False
         Me.Cursor = Cursors.WaitCursor
         RSEStarterEditor.Show()
+        RSEStarterEditor.BringToFront()
         Me.Cursor = Cursors.Arrow
     End Sub
 
@@ -561,6 +567,7 @@ Public Class MainFrm
         'Me.Visible = False
         Me.Cursor = Cursors.WaitCursor
         PokedexDataEditor.Show()
+        PokedexDataEditor.BringToFront()
         Me.Cursor = Cursors.Arrow
     End Sub
 
@@ -569,6 +576,7 @@ Public Class MainFrm
         'Me.Visible = False
         Me.Cursor = Cursors.WaitCursor
         BattleFrontierEditor.Show()
+        BattleFrontierEditor.BringToFront()
         Me.Cursor = Cursors.Arrow
     End Sub
 

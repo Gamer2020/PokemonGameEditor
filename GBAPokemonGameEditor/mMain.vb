@@ -209,20 +209,57 @@ Module mMain
         Dim bytesloaded As Byte()
 
         bytesloaded = IO.File.ReadAllBytes(LoadedROM)
+        Dim NationalDexTable As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "NationalDexTable", ""), System.Globalization.NumberStyles.HexNumber)
 
         ' If DexNumber = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + ((DexNumber - 1) * 2), 2))), System.Globalization.NumberStyles.HexNumber) Then
-        If DexNumber = Int32.Parse((ReverseHEX(Get2Bytes(bytesloaded, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + ((DexNumber - 1) * 2)))), System.Globalization.NumberStyles.HexNumber) Then
+        If DexNumber = Int32.Parse((ReverseHEX(Get2Bytes(bytesloaded, NationalDexTable + ((DexNumber - 1) * 2)))), System.Globalization.NumberStyles.HexNumber) Then
 
             curval = DexNumber - 1
 
         Else
             '  While DexNumber <> Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (curval * 2), 2))), System.Globalization.NumberStyles.HexNumber)
-            While DexNumber <> Int32.Parse((ReverseHEX(Get2Bytes(bytesloaded, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (curval * 2)))), System.Globalization.NumberStyles.HexNumber)
+            While DexNumber <> Int32.Parse((ReverseHEX(Get2Bytes(bytesloaded, NationalDexTable + (curval * 2)))), System.Globalization.NumberStyles.HexNumber)
 
                 curval = curval + 1
             End While
         End If
         PokedexNumbertoSpecies = curval + 1
+    End Function
+
+    Public Function AllPokedexNumbertoSpecies(Optional DexTableName As String = "PokedexAlphabetTable", Optional PkmnCountName As String = "NumberOfPokemon") As List(Of Integer)
+
+        Dim curval As Integer = 0
+        Dim MaxPkmn As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, PkmnCountName, "")) - 1
+        Dim Dexnumbers As String = ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, DexTableName, "")), System.Globalization.NumberStyles.HexNumber), MaxPkmn * 2)
+        Dim bytesloaded As Byte()
+        Dim PkmnList As List(Of Integer) = New List(Of Integer)
+        Dim DexNumber As Integer = 0
+        Dim NationalDexTable As Integer = Int32.Parse(GetString(GetINIFileLocation(), header, "NationalDexTable", ""), System.Globalization.NumberStyles.HexNumber)
+
+        bytesloaded = IO.File.ReadAllBytes(LoadedROM)
+
+        For LoopVar As Integer = 0 To MaxPkmn - 1
+            DexNumber = Int32.Parse(ReverseHEX(Dexnumbers.Substring(LoopVar * 4, 4)), System.Globalization.NumberStyles.HexNumber)
+
+            ' If DexNumber = Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + ((DexNumber - 1) * 2), 2))), System.Globalization.NumberStyles.HexNumber) Then
+            If DexNumber = Int32.Parse((ReverseHEX(Get2Bytes(bytesloaded, NationalDexTable + ((DexNumber - 1) * 2)))), System.Globalization.NumberStyles.HexNumber) Then
+
+                curval = DexNumber - 1
+
+            Else
+                '  While DexNumber <> Int32.Parse((ReverseHEX(ReadHEX(LoadedROM, Int32.Parse((GetString(GetINIFileLocation(), header, "NationalDexTable", "")), System.Globalization.NumberStyles.HexNumber) + (curval * 2), 2))), System.Globalization.NumberStyles.HexNumber)
+                While DexNumber <> Int32.Parse((ReverseHEX(Get2Bytes(bytesloaded, NationalDexTable + (curval * 2)))), System.Globalization.NumberStyles.HexNumber)
+
+                    curval = curval + 1
+
+                End While
+            End If
+
+            PkmnList.Add(curval + 1)
+            curval = 0
+        Next
+
+        AllPokedexNumbertoSpecies = PkmnList
     End Function
 
     Public Function Get2Bytes(bytesin As Byte(), local As Integer) As String

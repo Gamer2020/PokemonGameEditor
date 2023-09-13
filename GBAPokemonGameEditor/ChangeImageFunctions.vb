@@ -10,8 +10,8 @@ Module ChangeImageFunctions
         Dim ImgBytes As Byte()
         Dim PalBytes As Byte()
 
-        Dim ImgNewOffset As String
-        Dim PalNewOffset As String
+        Dim ImgNewOffset As String = ""
+        Dim PalNewOffset As String = ""
 
         ImgBytes = ConvertStringToByteArray(CompressLz77String(ConvertByteArrayToString(Sprite)))
         PalBytes = ConvertStringToByteArray(CompressLz77String(ConvertPaletteToString(pallete)))
@@ -19,16 +19,51 @@ Module ChangeImageFunctions
         ImgString = ByteArrayToHexString(ImgBytes)
         PalString = ByteArrayToHexString(PalBytes)
 
-        ImgNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(ImgString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+        Dim alreadyInsertedPic As Boolean = False
+        Dim alreadyInsertedPal As Boolean = False
+        If Pokemonedit.CheckBox1.Checked Then
+            If Pokemonedit.PicStrings.Count > 0 Then
+                Dim countNum As Integer = 0
+                For Each oldPic As String In Pokemonedit.PicStrings
+                    If String.Compare(ImgString, oldPic) = 0 Then
+                        alreadyInsertedPic = True
+                        ImgNewOffset = Pokemonedit.PicOffsets(countNum)
+                        Exit For
+                    End If
 
-        WriteHEX(LoadedROM, ImgNewOffset, ImgString)
+                    countNum += 1
+                Next
+            End If
+
+            If Pokemonedit.PicStrings.Count > 0 Then
+                Dim countNum As Integer = 0
+                For Each oldPal As String In Pokemonedit.PalStrings
+                    If String.Compare(PalString, oldPal) = 0 Then
+                        alreadyInsertedPal = True
+                        PalNewOffset = Pokemonedit.PalOffsets(countNum)
+                        Exit For
+                    End If
+
+                    countNum += 1
+                Next
+            End If
+        End If
+
+
+        If Not alreadyInsertedPic Then
+            ImgNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(ImgString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+            Pokemonedit.PicStrings.Add(ImgString)
+            Pokemonedit.PicOffsets.Add(ImgNewOffset)
+            WriteHEX(LoadedROM, ImgNewOffset, ImgString)
+        End If
+        If Not alreadyInsertedPal Then
+            PalNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PalString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+            Pokemonedit.PalStrings.Add(PalString)
+            Pokemonedit.PalOffsets.Add(PalNewOffset)
+            WriteHEX(LoadedROM, PalNewOffset, PalString)
+        End If
 
         WriteHEX(LoadedROM, sOffset, ReverseHEX(Hex((ImgNewOffset) + &H8000000)))
-
-        PalNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PalString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
-
-        WriteHEX(LoadedROM, PalNewOffset, PalString)
-
         WriteHEX(LoadedROM, pOffset, ReverseHEX(Hex((PalNewOffset) + &H8000000)))
 
     End Sub
@@ -43,8 +78,8 @@ Module ChangeImageFunctions
         Dim ImgBytes As Byte()
         Dim PalBytes As Byte()
 
-        Dim ImgNewOffset As String
-        Dim PalNewOffset As String
+        Dim ImgNewOffset As String = ""
+        Dim PalNewOffset As String = ""
 
         ImgBytes = ConvertStringToByteArray(CompressLz77String(ConvertByteArrayToString(Sprite)))
         PalBytes = ConvertStringToByteArray(CompressLz77String(ConvertPaletteToString(pallete)))
@@ -52,16 +87,51 @@ Module ChangeImageFunctions
         ImgString = ByteArrayToHexString(ImgBytes)
         PalString = ByteArrayToHexString(PalBytes)
 
-        ImgNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(ImgString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+        Dim alreadyInsertedPic As Boolean = False
+        Dim alreadyInsertedPal As Boolean = False
+        If Pokemonedit.CheckBox1.Checked Then
+            If Pokemonedit.PicStrings.Count > 0 Then
+                Dim countNum As Integer = 0
+                For Each oldPic As String In Pokemonedit.PicStrings
+                    If String.Compare(ImgString, oldPic) = 0 Then
+                        alreadyInsertedPic = True
+                        ImgNewOffset = Pokemonedit.PicOffsets(countNum)
+                        Exit For
+                    End If
 
-        WriteHEX(LoadedROM, ImgNewOffset, ImgString)
+                    countNum += 1
+                Next
+            End If
+
+            If Pokemonedit.PicStrings.Count > 0 Then
+                Dim countNum As Integer = 0
+                For Each oldPal As String In Pokemonedit.PalStrings
+                    If String.Compare(PalString, oldPal) = 0 Then
+                        alreadyInsertedPal = True
+                        PalNewOffset = Pokemonedit.PalOffsets(countNum)
+                        Exit For
+                    End If
+
+                    countNum += 1
+                Next
+            End If
+        End If
+
+
+        If Not alreadyInsertedPic Then
+            ImgNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(ImgString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+            Pokemonedit.PicStrings.Add(ImgString)
+            Pokemonedit.PicOffsets.Add(ImgNewOffset)
+            WriteHEX(LoadedROM, ImgNewOffset, ImgString)
+        End If
+        If Not alreadyInsertedPal Then
+            PalNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PalString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
+            Pokemonedit.PalStrings.Add(PalString)
+            Pokemonedit.PalOffsets.Add(PalNewOffset)
+            WriteHEX(LoadedROM, PalNewOffset, PalString)
+        End If
 
         WriteHEX(LoadedROM, sOffset, ReverseHEX(Hex((ImgNewOffset) + &H8000000)))
-
-        PalNewOffset = SearchFreeSpaceFourAligned(LoadedROM, &HFF, ((Len(PalString) / 2)), "&H" & GetString(GetINIFileLocation(), header, "StartSearchingForSpaceOffset", "800000"))
-
-        WriteHEX(LoadedROM, PalNewOffset, PalString)
-
         WriteHEX(LoadedROM, pOffset, ReverseHEX(Hex((PalNewOffset) + &H8000000)))
 
     End Sub
