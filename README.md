@@ -1,7 +1,10 @@
-This program is to be considered legacy! Please use https://github.com/pret/pokeemerald
-=================================================================================================
+While this program does work if people use it correctly, is to be considered legacy! Using "tools" on ROMs to make your own Pokemon game is a thing of the past. 
+================================================================================================================================================================
 
-Support is not being offered at this time! Please make sure to use the latest beta and make sure you have the correct ROM dump.
+Please learn to use https://github.com/pret/pokeemerald and other decompilation projects. You will gain some valuable skills and have much better results in the long run. Working at the source level has been a longtime dream for many people that people need to take advantage of.
+==================================
+
+Support is not being offered at this time! Please make sure to use the latest beta and make sure you have the correct ROM dump. Do not contact me asking for help with the program.
 =================================================================================================
 
 Improvements are allowed/encouraged and pull requests will be reviewed. Any improvements should be submitted so they are all kept in one place.
